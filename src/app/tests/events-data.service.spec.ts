@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EventsDataService } from './events-data.service';
+import { EventsDataService } from '../shared/services/events-data.service';
 
 describe('EventsDataService', () => {
   beforeEach(() => {

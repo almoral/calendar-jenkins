@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CalendarDataService } from './calendar-data.service';
+import { CalendarDataService } from '../shared/services/calendar-data.service';
 
 describe('CalendarDataService', () => {
   beforeEach(() => {

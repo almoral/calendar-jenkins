@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ConfigurationService } from './configuration.service';
+import { ConfigurationService } from '../shared/services/configuration.service';
 
 describe('ConfigurationService', () => {
   beforeEach(() => {

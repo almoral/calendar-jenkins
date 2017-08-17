@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { ConfigurationService } from './configuration.service';
-import { CategoriesService } from './categories.service';
-import { CalendarDataService } from './calendar-data.service';
-import {EventsDataService} from "./events-data.service";
+import { ConfigurationService } from './shared/services/configuration.service';
+import { CategoriesService } from './shared/services/categories.service';
+import { CalendarDataService } from './shared/services/calendar-data.service';
+import {EventsDataService} from "./shared/services/events-data.service";
 import {HttpModule} from "@angular/http";
 
 @NgModule({
