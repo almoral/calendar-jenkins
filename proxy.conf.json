@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://s0144821.miamidade.gov:7009/msgraph/api/calendars",
+    "secure": false
+  }
+}
