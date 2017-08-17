@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { EventsDataService } from '../shared/services/events-data.service';
+import { CalendarDataService } from '../shared/services/calendar-data.service';
+import { MDCEvent }  from '../shared/models/MDCEvent';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-events',
@@ -8,12 +10,21 @@ import { EventsDataService } from '../shared/services/events-data.service';
 })
 export class EventsComponent implements OnInit {
 
+  public events: Array<MDCEvent> = [];
+
   @Input() selectedDepartment: string;
 
-  constructor(private events: EventsDataService) { }
+  constructor(private calendarDataService: CalendarDataService) { }
 
   ngOnInit() {
-    this.events.getEventsFromCalendar();
+
+    this.calendarDataService.getEvents().subscribe((events: Array<MDCEvent>) => {
+
+        this.events = events;
+      },
+      error => {
+        console.error('ERROR: ', error.toString());
+      });
 
     if(window['selectedDepartment']){
       this.selectedDepartment = window['selectedDepartment'];

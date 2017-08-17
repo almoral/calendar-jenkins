@@ -3,7 +3,7 @@
  */
 import * as tv4 from "tv4";
 
-export class Event {
+export class MDCEvent {
 
   public id: number;
   public eventTitle: string;
@@ -14,7 +14,7 @@ export class Event {
   public hasAttachments: boolean;
 
   public static schema = {
-    "title": "Event",
+    "title": "MDCEvent",
     "description": "Schema to validate event retrieved from Sharepoint.",
     "type": "object",
     "required": ["id", "eventTitle", "eventDate", "endDate", "isRecurring", "isAllDayEvent", "hasAttachments"],
@@ -73,18 +73,18 @@ export class Event {
 
 
   /**
-   * fromJson creates an instance of the Event object from
+   * fromJson creates an instance of the MDCEvent object from
    * a json. If the json does not validate correctly, null is returned.
    * @param json - designed to be used with a json coming from a service.
-   * @returns {any} if json validates returns an Event otherwise it returns null.
+   * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
-  public static fromJSON(json: any): Event {
-    if (Event.validateJson(json))
-      return new Event(json.id, json.Title, json.EventDate, json.EndDate, json.fRecurrence, json.fAllDayEvent, json.Attachments);
-    else {
-      console.error("error: invalid json to build event", json);
-      return null;
-    }
+  public static fromJSON(json: any): MDCEvent {
+    // if (MDCEvent.validateJson(json))
+      return new MDCEvent(json.id, json.Title, json.EventDate, json.EndDate, json.fRecurrence, json.fAllDayEvent, json.Attachments);
+    // else {
+    //   console.error("error: invalid json to build event", json);
+    //   return null;
+    // }
 
 
   }
@@ -98,7 +98,7 @@ export class Event {
    * false otherwise.
    */
   private static validateJson(json: any): boolean {
-    return tv4.validate(json, Event.schema);
+    return tv4.validate(json, MDCEvent.schema);
   }
 
 }
