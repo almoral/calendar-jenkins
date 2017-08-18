@@ -1,12 +1,16 @@
-<p>
+<div class="container">
+  <div class="row">
+<p class="col">
   events works!
   {{selectedDepartment}}
 </p>
-<ul class="MDCEvent-List">
-  <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of events">
+<ul class="MDCEvent-List collection">
+  <li class="MDCEvent-List-Item collection-item" *ngFor="let MDCEvent of events">
     <div *ngIf="MDCEvent.eventTitle" class="MDCEvent-List-Item--container">
       <h4 class="MDCEvent-List-Item--title">{{MDCEvent.eventTitle}}</h4>
       <span class="MDCEvent-List-Item--eventDate">Event Date: {{MDCEvent.eventDate}}</span>
     </div>
   </li>
 </ul>
+  </div>
+</div>
