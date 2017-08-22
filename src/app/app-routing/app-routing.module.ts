@@ -6,13 +6,18 @@ import {TestViewComponent} from "../test-view/test-view.component";
 import {CalendarComponent} from "../calendar/calendar.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'calendar', pathMatch: 'full' },
-  {path: 'calendar', component: CalendarComponent,
-    children: [
-      {path: 'events', component: EventsComponent},
-      {path: 'test-view', component: TestViewComponent}
-    ]
-  }
+  // {path: '', redirectTo: 'calendar', pathMatch: 'full' },
+  // {path: 'calendar', component: CalendarComponent,
+  //   children: [
+  //     {path: 'events', component: EventsComponent},
+  //     {path: 'test-view', component: TestViewComponent}
+  //   ]
+  // },
+  // {path: '**', component: CalendarComponent}
+  {path: '', redirectTo: 'events', pathMatch: 'full'},
+  {path: 'events', component: EventsComponent},
+  {path: 'test', component: TestViewComponent},
+  {path: '**', component: EventsComponent}
 ];
 
 @NgModule({

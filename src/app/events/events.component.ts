@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { CalendarDataService } from '../shared/services/calendar-data.service';
 import { MDCEvent }  from '../shared/models/MDCEvent';
+import {environment} from '../../environments/environment';
 import * as _ from 'lodash';
 
 @Component({
@@ -26,8 +27,8 @@ export class EventsComponent implements OnInit {
         console.error('ERROR: ', error.toString());
       });
 
-    if(window['selectedDepartment']){
-      this.selectedDepartment = window['selectedDepartment'];
+    if(!_.isNil(environment.selectedDepartment)){
+      this.selectedDepartment = environment.selectedDepartment;
     }
 
   }
