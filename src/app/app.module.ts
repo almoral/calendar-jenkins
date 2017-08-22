@@ -10,17 +10,21 @@ import { CategoriesService } from './shared/services/categories.service';
 import { CalendarDataService } from './shared/services/calendar-data.service';
 import {EventsDataService} from "./shared/services/events-data.service";
 import {HttpModule} from "@angular/http";
+import {AppRoutingModule} from './app-routing/app-routing.module';
+import { TestViewComponent } from './test-view/test-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     DatePickerComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    TestViewComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [
     ConfigurationService,
