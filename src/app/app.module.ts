@@ -12,6 +12,7 @@ import {EventsDataService} from "./shared/services/events-data.service";
 import {HttpModule} from "@angular/http";
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { TestViewComponent } from './test-view/test-view.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TestViewComponent } from './test-view/test-view.component';
     EventsComponent,
     DatePickerComponent,
     CategoriesComponent,
-    TestViewComponent
+    TestViewComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
