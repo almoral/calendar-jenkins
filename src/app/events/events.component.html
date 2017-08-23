@@ -4,15 +4,21 @@
   events works!
   {{selectedDepartment}}
 </p>
-    <a routerLink="/test">Show test view</a>
-
-<ul class="MDCEvent-List collection">
-  <li class="MDCEvent-List-Item collection-item" *ngFor="let MDCEvent of events">
+  </div>
+    <!--<a routerLink="/test">Show test view</a>-->
+  <div class="row">
+    <div class="col s6">
+<ul class="MDCEvent-List">
+  <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of filteredArray">
     <div *ngIf="MDCEvent.eventTitle" class="MDCEvent-List-Item--container">
-      <h4 class="MDCEvent-List-Item--title">{{MDCEvent.eventTitle}}</h4>
+      <h6 class="MDCEvent-List-Item--title">{{MDCEvent.eventTitle}}</h6>
       <span class="MDCEvent-List-Item--eventDate">Event Date: {{MDCEvent.eventDate}}</span>
     </div>
   </li>
 </ul>
+  </div>
+    <div class="col s5">
+      <ng2-datepicker [options]="datePickerOptions" [(ngModel)]="datePickerDate"></ng2-datepicker>
+    </div>
   </div>
 </div>
