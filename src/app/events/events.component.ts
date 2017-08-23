@@ -51,11 +51,13 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
   }
 
   ngAfterContentChecked(){
+    if (!_.isNil(this.datePickerDate.momentObj))
     this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD'));
   };
 
   ngDoCheck(){
-    this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD').toString());
+    if (!_.isNil(this.datePickerDate.momentObj))
+      this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD').toString());
   }
 
   private applyFilter(filter: string){
@@ -68,6 +70,15 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
       }
       return false;
     });
+  }
+
+  private reset(){
+    this.filteredArray = this.events;
+    this.datePickerDate.year = null;
+    this.datePickerDate.month = null;
+    this.datePickerDate.momentObj = null;
+    this.datePickerDate.formatted = null;
+
   }
 
 }
