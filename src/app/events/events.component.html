@@ -5,10 +5,10 @@
   {{selectedDepartment}}
 </p>
   </div>
-    <!--<a routerLink="/test">Show test view</a>-->
+
   <div class="row">
     <div class="col s6">
-<ul class="MDCEvent-List">
+<ul class="MDCEvent-List" *ngIf="filteredArray.length > 0; else elseBlock">
   <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of filteredArray">
     <div *ngIf="MDCEvent.eventTitle" class="MDCEvent-List-Item--container">
       <h6 class="MDCEvent-List-Item--title">{{MDCEvent.eventTitle}}</h6>
@@ -16,6 +16,13 @@
     </div>
   </li>
 </ul>
+      <ng-template #elseBlock>
+      <div class="card-panel blue-grey lighten-3">
+        <p>
+          No events found.
+        </p>
+      </div>
+      </ng-template>
   </div>
     <div class="col s5">
       <ng2-datepicker [options]="{maxDate: currentDate}" [(ngModel)]="datePickerDate"></ng2-datepicker>
