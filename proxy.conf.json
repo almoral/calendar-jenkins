@@ -4,4 +4,10 @@
     "pathRewrite": {"^/api": ""},
     "secure": false
   }
+//,
+//  "/categories":{
+//    "target": "http://s0144035.miamidade.gov/ajaxreq/lscs/v1/document/$TeamSite/Metadata/listValuesAndLabels?q=(TeamSite/Templating/DCR/Type:=data-types/taxonomy) AND (TeamSite/Metadata/mduid:=tax1450881961115869)&project=//s0144035/BETA/main/miamidade&max=100&format=json&context=//s0144035/BETA/main/miamidade",
+//    "pathRewrite": {"^/api": ""},
+//    "secure" : false
+//  }
 }

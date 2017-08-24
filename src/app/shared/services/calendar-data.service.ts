@@ -9,7 +9,10 @@ import { MDCEvent } from "../models/MDCEvent";
 @Injectable()
 export class CalendarDataService {
 
-  constructor(private http: Http, private configurationService: ConfigurationService) { }
+  constructor(
+    private http: Http,
+    private configurationService: ConfigurationService
+  ) { }
 
   getEvents(): Observable<Object>{
     return this.http.get(this.configurationService.urlMayor)
