@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col s6">
+    <div class="MDCEvent-Container col s6">
 <ul class="MDCEvent-List" *ngIf="filteredArray.length > 0; else elseBlock">
   <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of filteredArray">
     <div *ngIf="MDCEvent.eventTitle" class="MDCEvent-List-Item--container">
@@ -23,7 +23,7 @@
       </div>
       </ng-template>
   </div>
-    <div class="col s5">
+    <div class="col s6">
       <ng2-datepicker [options]="{maxDate: currentDate}" [(ngModel)]="datePickerDate"></ng2-datepicker>
       <br/>
       <button class="btn blue-grey lighten-2" (click)="reset()">Reset</button>
