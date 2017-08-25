@@ -4,10 +4,11 @@
     "pathRewrite": {"^/api": ""},
     "secure": false
   }
-//,
-//  "/categories":{
-//    "target": "http://s0144035.miamidade.gov/ajaxreq/lscs/v1/document/$TeamSite/Metadata/listValuesAndLabels?q=(TeamSite/Templating/DCR/Type:=data-types/taxonomy) AND (TeamSite/Metadata/mduid:=tax1450881961115869)&project=//s0144035/BETA/main/miamidade&max=100&format=json&context=//s0144035/BETA/main/miamidade",
-//    "pathRewrite": {"^/api": ""},
-//    "secure" : false
-//  }
+,
+  "/categories":{
+    "target": "http://s0144035.miamidade.gov",
+    "pathRewrite": {"http://s0144035.miamidade.gov/iw/cci/meta/no-injection/iw-mount/BETA/main/miamidade/WORKAREA/wa1/categories": "http://s0144035.miamidade.gov/ajaxreq/lscs/v1/document/$TeamSite/Metadata/listValuesAndLabels?q=(TeamSite/Templating/DCR/Type:=data-types/taxonomy) AND (TeamSite/Metadata/mduid:=tax1450881961115869)&project=//s0144035.miamidade.gov/BETA/main/miamidade&max=100&format=json&context=//s0144035.miamidade.gov/BETA/main/miamidade"},
+    "changeOrigin": true,
+    "secure" : false
+  }
 }

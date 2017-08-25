@@ -1,22 +1,34 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import { ConfigurationService} from "./configuration.service";
-import {Http, Response} from "@angular/http";
+import {Http} from "@angular/http";
 import 'rxjs/Rx';
 
 @Injectable()
 export class CategoriesService {
-  public categories: Array<any> = [];
+
+  public arrCategories: Array<any> = [];
+
   constructor(
     private configurationService: ConfigurationService,
     private http: Http
   ) { }
 
-  getCategories(): Observable<Object>{
+  getCategories(): Observable<Array<Object>>{
     return this.http.get(this.configurationService.urlCategories)
-      .map((category: any) => {
-        this.categories.push(category);
-        return this.categories;
+      .map((data: any) => {
+
+
+          JSON.parse(data.json().results.assets[0].metadata["TeamSite/Metadata/listValuesAndLabels"]).map(
+            (item: any) => {
+              let category: any = {"value": "", "label": ""};
+                category.label = item.label;
+                category.value = item.value;
+                this.arrCategories.push(category);
+            });
+          // console.log('CATEGORIES: ', this.arrCategories);
+
+        return this.arrCategories;
       })
       .catch(error => {
         console.error('ERROR: ', error);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CategoriesService} from "../shared/services/categories.service";
 
 @Component({
@@ -8,13 +8,17 @@ import {CategoriesService} from "../shared/services/categories.service";
 })
 export class CategoriesComponent implements OnInit {
 
+  // public categories: Array<any> = [];
+
+  @Input()  categories: Array<Object>;
+
   constructor(
     private categoriesService: CategoriesService
   ) { }
 
   ngOnInit() {
-    this.categoriesService.getCategories().subscribe((item) => {
-      console.log('CATEGORIES: ', item);
+    this.categoriesService.getCategories().subscribe((items) => {
+      this.categories = items;
     })
   }
 

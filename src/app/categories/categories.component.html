@@ -1,3 +1,4 @@
-<p>
-  categories works!
-</p>
+<label for="MDCEvent-Categories">Select a category:</label>
+<select id="MDCEvent-Categories" class="MDCEvent-Categories">
+  <option *ngFor="let category of categories" value="{{category['value']}}">{{category['label']}}</option>
+</select>
