@@ -45,7 +45,7 @@ export class CalendarDataService {
 
     let raw: Array<any> = response.json().value;
     let model: Array<MDCEvent> = raw.reduce(function (accumulator, item) {
-      let event = MDCEvent.fromJSON(item.fields);
+      let event = MDCEvent.fromJSON(item);
       if (event) {
         accumulator.push(event);
       }
