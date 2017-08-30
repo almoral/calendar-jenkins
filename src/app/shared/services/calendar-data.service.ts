@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
-import {Observable} from "rxjs";
 import 'rxjs/Rx';
-import * as _ from "lodash"
-import {Http, Response} from "@angular/http";
-import { MDCEvent } from "../models/MDCEvent";
+import * as _ from 'lodash';
+import {Http, Response} from '@angular/http';
+import { MDCEvent } from '../models/MDCEvent';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class CalendarDataService {
