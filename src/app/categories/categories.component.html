@@ -1,3 +1,9 @@
-<p>
-  categories works!
-</p>
+
+<!--<select id="MDCEvent-Categories" class="MDCEvent-Categories">-->
+  <!--<option *ngFor="let category of categories" value="{{category['value']}}">{{category['label']}}</option>-->
+<!--</select>-->
+
+<div class="" *ngFor="let category of categories; let i = index">
+  <label for="{{i}}">{{category['label']}}</label>
+  <input id="{{i}}" type="checkbox" value="{{category['value']}}">
+</div>

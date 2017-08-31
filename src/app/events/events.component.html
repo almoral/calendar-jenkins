@@ -9,9 +9,12 @@
     <div class="MDCEvent-Container col s6">
 <ul class="MDCEvent-List" *ngIf="filteredArray.length > 0; else elseBlock">
   <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of filteredArray">
-    <div *ngIf="MDCEvent.eventTitle" class="MDCEvent-List-Item--container">
-      <h6 class="MDCEvent-List-Item--title">{{MDCEvent.eventTitle}}</h6>
+    <div *ngIf="MDCEvent.eventName" class="MDCEvent-List-Item--container">
+      <h6 class="MDCEvent-List-Item--title">{{MDCEvent.eventName}}</h6>
       <span class="MDCEvent-List-Item--eventDate">Event Date: {{MDCEvent.eventDate}}</span>
+      <br/>
+      <span class="MDCEvent-List-Item--startTime">{{MDCEvent.startTime}}</span> &mdash;
+      <span class="MDCEvent-List-Item--endTime">{{MDCEvent.endTime}}</span>
     </div>
   </li>
 </ul>
@@ -26,6 +29,7 @@
     <div class="col s6">
       <ng2-datepicker [options]="{maxDate: currentDate}" [(ngModel)]="datePickerDate"></ng2-datepicker>
       <br/>
+      <!--<app-categories></app-categories>-->
       <button class="btn blue-grey lighten-2" (click)="reset()">Reset</button>
     </div>
   </div>
