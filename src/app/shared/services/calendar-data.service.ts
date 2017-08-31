@@ -15,7 +15,8 @@ export class CalendarDataService {
   ) { }
 
   getEvents(): Observable<Object>{
-    return this.http.get(this.configurationService.urlMayor)
+    // return this.http.get(this.configurationService.urlMayor)
+    return this.http.get(this.configurationService.urlEvents)
       .map((response: any) => {
         let events = this.jsonToEvents(response);
         //TODO: Add check to verify a valid object has been returned.
@@ -43,7 +44,7 @@ export class CalendarDataService {
       return null;
     }
 
-    let raw: Array<any> = response.json().value;
+    let raw: Array<any> = response.json();
     let model: Array<MDCEvent> = raw.reduce(function (accumulator, item) {
       let event = MDCEvent.fromJSON(item);
       if (event) {
