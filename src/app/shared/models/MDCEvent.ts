@@ -9,6 +9,8 @@ export class MDCEvent {
   public eventName: string;
   public eventDate: string;
   public endDate: string;
+  public startTime: string;
+  public endTime: string;
   public geolocation: string;
   public isAllDayEvent: boolean;
   public isRecurringEvent: boolean;
@@ -48,6 +50,12 @@ export class MDCEvent {
         'type': 'string'
       },
       'endDate': {
+        'type': 'string'
+      },
+      'startTime': {
+        'type': 'string'
+      },
+      'endTime': {
         'type': 'string'
       },
       'geolocation': {
@@ -124,6 +132,8 @@ export class MDCEvent {
               eventName: string,
               eventDate: string,
               endDate: string,
+              startTime: string,
+              endTime: string,
               geolocation: string,
               isRecurringEvent: boolean,
               isAllDayEvent: boolean,
@@ -149,6 +159,8 @@ export class MDCEvent {
     this.eventName = eventName || '';
     this.eventDate = eventDate || '';
     this.endDate = endDate || '';
+    this.startTime = startTime || '';
+    this.endTime = endTime || '';
     this.geolocation = geolocation || '';
     this.isRecurringEvent = isRecurringEvent || false;
     this.isAllDayEvent = isAllDayEvent || false;
@@ -184,6 +196,8 @@ export class MDCEvent {
         json.eventName,
         json.eventDate,
         json.endDate,
+        json.startTime,
+        json.endTime,
         json.geolocation,
         json.isAllDayEvent,
         json.isRecurringEvent,
