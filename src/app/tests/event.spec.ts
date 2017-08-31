@@ -4,82 +4,51 @@ import {MDCEvent} from "../shared/models/MDCEvent";
 
 describe('MDCEvent', () => {
   it('should create an instance', () => {
-    expect(new MDCEvent(1, 123, 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,['animals', 'public-safety'],'eventType','This is a short description.','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'}))
+    expect(new MDCEvent(1, '123', 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,'animals, public-safety','eventType','This is a short description.','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'}))
       .toBeTruthy();
   });
 
   it('when no short description passed we should get an empty description', () => {
-    let mdcEvent = new MDCEvent(1, 123, 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,['animals', 'public-safety'],'eventType',,'This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
+    let mdcEvent = new MDCEvent(1, '123', 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,'animals,public-safety','eventType', '','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.shortDescription).toBe('');
   });
 
 
   it('when null short description is passed we should get an empty short description', () => {
-    let mdcEvent = new MDCEvent(1, 123, 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,['animals', 'public-safety'],'eventType', null,'This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
+    let mdcEvent = new MDCEvent(1, '123', 'eventName','eventDate','endDate','startTime','endTime','geolocation',false,false,false,'animals, public-safety','eventType', null,'This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {});
     expect(mdcEvent).toBeTruthy();
-    expect(mdcEvent.description).toBe('');
+    expect(mdcEvent.shortDescription).toBe('');
   });
 
 
-  it('when null id or mdcEventCode or label is passed it should be populated with empty', () => {
-    let mdcEvent = new MDCEvent(null, null, null, null);
+  it('when null id or odataId or empty value for eventName is passed it should be populated with an empty value', () => {
+    let mdcEvent = new MDCEvent(null, null, null,'eventDate','endDate','startTime','endTime','geolocation',false,false,false,'animals, public-safety','eventType', 'This is a short description.','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
     expect(mdcEvent).toBeTruthy();
-    expect(JSON.stringify(mdcEvent)).toEqual(JSON.stringify({
-      description: '',
-      id: null,
-      mdcEventCode: '',
-      label: ''
-    }));
+    expect(JSON.stringify(mdcEvent)).toEqual(JSON.stringify({ id: null, odataId: '', eventName: '', eventDate: 'eventDate', endDate: 'endDate', startTime: 'startTime', endTime: 'endTime', geolocation: 'geolocation', isRecurringEvent: false, isAllDayEvent: false, hasAttachments: false, categories: 'animals, public-safety', eventType: 'eventType', shortDescription: 'This is a short description.', longDescription: 'This is a long description.', contactName: 'contactName', contactPhone: '305-555-5555', contactEmail: 'contact@email.com', ADAName: 'ADAName', ADAPhone: '305-555-1234', ADAEmail: 'ADA@email.com', isClosedToMedia: false, isClosedToPublic: false, isFree: true, eventUrl:{'description': 'URL for event', 'url': 'http://www.google.com'}}));
   });
 
 
   it('when creating a mdcEvent from json, if json is null, return a null', () => {
-    expect(mdcEvent.fromJSON(null)).toBeNull();
+    expect(MDCEvent.fromJSON(null)).toBeNull();
   });
 
 
   it('when creating a mdcEvent from json, if json is undefined return a null', () => {
-    expect(mdcEvent.fromJSON(undefined)).toBeNull();
+    expect(MDCEvent.fromJSON(undefined)).toBeNull();
   });
-
 
   it('when creating a mdcEvent from json, if id is null, empty, or not in the json return a null', () => {
-    let json1 = {id: null, mdcEventCode: 'ES', label: 'spanish'};
-    expect(mdcEvent.fromJSON(json1)).toBeNull();
 
-    let json2 = {id: null, mdcEventCode: 'ES', label: 'spanish'};
-    expect(mdcEvent.fromJSON(json2)).toBeNull();
-
-    let json3 = {mdcEventCode: 'ES', label: 'spanish'};
-    expect(mdcEvent.fromJSON(json3)).toBeNull();
-
+    let json1 = {id: null, eventName: '', eventDate: 'eventDate', endDate: 'endDate', startTime: 'startTime', endTime: 'endTime', isRecurringEvent: false, isAllDayEvent: false, eventType: '', contactName: '', contactPhone: '', contactEmail: '', ADAName: '', ADAPhone: '', ADAEmail: ''};
+    expect(MDCEvent.fromJSON(json1)).toBeNull();
   });
 
+  it('when creating a mdcEvent from json, if a required field is null, empty, or not in the json return a null', () => {
 
-  it('when creating a mdcEvent from json, if mdcEventCode is null, empty, or not in the json return a null', () => {
-    let json1 = {id: 1, mdcEventCode: '', label: 'spanish'};
-    expect(mdcEvent.fromJSON(json1)).toBeNull();
-
-    let json2 = {id: 1, mdcEventCode: null, label: 'spanish'};
-    expect(mdcEvent.fromJSON(json2)).toBeNull();
-
-    let json3 = {id: 1, label: 'spanish'};
-    expect(mdcEvent.fromJSON(json3)).toBeNull();
-
+    let json1 = {id: null, eventName: '', eventDate: null};
+    expect(MDCEvent.fromJSON(json1)).toBeNull();
   });
 
-
-  it('when creating a mdcEvent from json, if label is null, empty, or not in the json return a null', () => {
-    let json1 = {id: 1, mdcEventCode: 'ES', label: ''};
-    expect(mdcEvent.fromJSON(json1)).toBeNull();
-
-    let json2 = {id: 1, mdcEventCode: 'ES', label: null};
-    expect(mdcEvent.fromJSON(json2)).toBeNull();
-
-    let json3 = {id: 1, mdcEventCode: 'ES'};
-    expect(mdcEvent.fromJSON(json3)).toBeNull();
-
-  });
 
 });
