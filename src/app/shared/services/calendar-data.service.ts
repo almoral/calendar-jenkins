@@ -15,18 +15,20 @@ export class CalendarDataService {
   ) { }
 
   getEvents(): Observable<Object> {
-    return this.http.get(this.configurationService.urlMayor)
-    // return this.http.get(this.configurationService.urlEvents)
+    // return this.http.get(this.configurationService.urlMayor)
+    return this.http.get(this.configurationService.urlEvents)
       .map((response: any) => {
-        let events = this.jsonToEvents(response);
+        const events = this.jsonToEvents(response);
         // TODO: Add check to verify a valid object has been returned.
-        return events;
+        if (!_.isNil(events)) {
+          return events;
+        }
       })
       .catch(error => {
         console.error('ERROR: ', error);
         return error;
-      })
-  };
+      });
+  }
 
 
 
@@ -44,9 +46,9 @@ export class CalendarDataService {
       return null;
     }
 
-    let raw: Array<any> = response.json();
-    let model: Array<MDCEvent> = raw.reduce(function (accumulator, item) {
-      let event = MDCEvent.fromJSON(item);
+    const raw: Array<any> = response.json().events;
+    const model: Array<MDCEvent> = raw.reduce(function (accumulator, item) {
+      const event = MDCEvent.fromJSON(item);
       if (event) {
         accumulator.push(event);
       }
@@ -58,7 +60,7 @@ export class CalendarDataService {
     }
 
     return model;
-  };
+  }
 
 
 

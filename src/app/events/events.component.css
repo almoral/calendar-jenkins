@@ -1,5 +1,5 @@
 .MDCEvent-Title{
-  padding-bottom: 15px;
+  padding: 15px;
   border-bottom: 5px solid #46BCEB;
 }
 
@@ -13,10 +13,10 @@
 .MDCEvent-Container{
   min-height: 400px;
   padding: 15px;
+  background-color: #fff;
 }
 
 .MDCEvent-List{
-  background-color: #fff;
   list-style-type: none;
   list-style-position: outside;
   font-family: "Helvetica Neue";

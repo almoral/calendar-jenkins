@@ -1,10 +1,11 @@
-import {Component, Input, OnInit, DoCheck, AfterContentChecked} from '@angular/core';
+import {Component, Input, OnInit, DoCheck, AfterContentChecked, ViewChild, EventEmitter} from '@angular/core';
 import { CalendarDataService } from '../shared/services/calendar-data.service';
 import { MDCEvent } from '../shared/models/MDCEvent';
 import {environment} from '../../environments/environment';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {DatePickerComponent} from 'ng2-datepicker/lib-dist/ng2-datepicker.component';
 
 @Component({
   selector: 'app-events',
@@ -12,6 +13,9 @@ import * as moment from 'moment';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
+
+  @ViewChild(DatePickerComponent)
+  private datePicker: DatePickerComponent;
 
   public events: Array<MDCEvent> = [];
   public filteredArray: Array<MDCEvent> = [];
@@ -31,7 +35,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
     dateModel.momentObj = momentObj;
     dateModel.formatted = momentObj.format('l');
     this.datePickerDate = dateModel;
-
+    this.datePicker.open();
     // Get events from service in order to populate event list.
     this.calendarDataService.getEvents().subscribe((events: Array<MDCEvent>) => {
         this.events = events;
@@ -51,28 +55,33 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
   }
 
   ngAfterContentChecked(){
-    if (!_.isNil(this.datePickerDate.momentObj))
-    this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD'));
-  };
+    if (!_.isNil(this.datePickerDate.momentObj)) {
+      this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD'));
+    }
+  }
 
   ngDoCheck(){
-    if (!_.isNil(this.datePickerDate.momentObj))
+    if (!_.isNil(this.datePickerDate.momentObj)) {
       this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD').toString());
+    }
   }
 
   private applyFilter(filter: string){
-    if (filter === '')
+    if (filter === ''){
       return true;
+    }
 
-    this.filteredArray = this.events.filter(item => {
-      if (item.eventDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1){
-        return true;
-      }
-      return false;
-    });
+    if (!_.isNil(this.events)) {
+      this.filteredArray = this.events.filter(item => {
+        if (item.eventDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+          return true;
+        }
+        return false;
+      });
+    }
   }
 
-  private reset(){
+  private reset() {
     this.filteredArray = this.events;
     this.datePickerDate.year = null;
     this.datePickerDate.month = null;

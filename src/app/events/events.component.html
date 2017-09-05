@@ -1,13 +1,14 @@
-<div class="container">
+
+    <div class="row">
+      <div class="col s12 m7">
+        <div class="MDCEvent-Container z-depth-1">
   <div class="MDCEvent-Title">
     <!--<h2>{{selectedDepartment}}</h2>-->
     <h2>Placeholder Title</h2>
     <span>Results</span>
   </div>
 
-  <div class="row">
-    <div class="MDCEvent-Container col s6">
-<table class="MDCEvent-List striped" *ngIf="filteredArray.length > 0; else elseBlock">
+<table class="MDCEvent-List striped" *ngIf="filteredArray && filteredArray.length > 0; else elseBlock">
   <thead>
     <tr>
       <th>Time</th>
@@ -44,11 +45,13 @@
         </div>
       </ng-template>
   </div>
-    <div class="col s6">
-      <ng2-datepicker [options]="{maxDate: currentDate}" [(ngModel)]="datePickerDate"></ng2-datepicker>
-      <br/>
-      <!--<app-categories></app-categories>-->
-      <button class="btn blue-grey lighten-2" (click)="reset()">Reset</button>
-    </div>
   </div>
+
+<div class="col s12 m5">
+  <ng2-datepicker [options]="{maxDate: currentDate}" [(ngModel)]="datePickerDate"></ng2-datepicker>
+  <br/>
+  <!--<app-categories></app-categories>-->
+  <button class="btn blue-grey lighten-2" (click)="reset()">Reset</button>
 </div>
+</div>
+
