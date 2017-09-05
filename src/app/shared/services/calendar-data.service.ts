@@ -14,12 +14,12 @@ export class CalendarDataService {
     private configurationService: ConfigurationService
   ) { }
 
-  getEvents(): Observable<Object>{
-    // return this.http.get(this.configurationService.urlMayor)
-    return this.http.get(this.configurationService.urlEvents)
+  getEvents(): Observable<Object> {
+    return this.http.get(this.configurationService.urlMayor)
+    // return this.http.get(this.configurationService.urlEvents)
       .map((response: any) => {
         let events = this.jsonToEvents(response);
-        //TODO: Add check to verify a valid object has been returned.
+        // TODO: Add check to verify a valid object has been returned.
         return events;
       })
       .catch(error => {

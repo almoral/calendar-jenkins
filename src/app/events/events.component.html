@@ -1,29 +1,47 @@
 <div class="container">
-  <div class="row">
-<p class="col">
-  {{selectedDepartment}}
-</p>
+  <div class="MDCEvent-Title">
+    <!--<h2>{{selectedDepartment}}</h2>-->
+    <h2>Placeholder Title</h2>
+    <span>Results</span>
   </div>
 
   <div class="row">
     <div class="MDCEvent-Container col s6">
-<ul class="MDCEvent-List" *ngIf="filteredArray.length > 0; else elseBlock">
-  <li class="MDCEvent-List-Item" *ngFor="let MDCEvent of filteredArray">
-    <div *ngIf="MDCEvent.eventName" class="MDCEvent-List-Item--container">
-      <h6 class="MDCEvent-List-Item--title">{{MDCEvent.eventName}}</h6>
-      <span class="MDCEvent-List-Item--eventDate">Event Date: {{MDCEvent.eventDate}}</span>
-      <br/>
+<table class="MDCEvent-List striped" *ngIf="filteredArray.length > 0; else elseBlock">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Event Information</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let MDCEvent of filteredArray">
+    <!--Ordered by time of event.-->
+    <td class="MDCEvent-List-Item">
       <span class="MDCEvent-List-Item--startTime">{{MDCEvent.startTime}}</span> &mdash;
       <span class="MDCEvent-List-Item--endTime">{{MDCEvent.endTime}}</span>
-    </div>
-  </li>
-</ul>
-      <ng-template #elseBlock>
-      <div class="card-panel blue-grey lighten-3">
-        <p>
-          No events found.
-        </p>
+    </td>
+    <td class="MDCEvent-List-Item">
+      <div *ngIf="MDCEvent.eventName" class="MDCEvent-List-Item--container">
+        <!--Event URL will be displayed if it exists in the record, otherwise no link is rendered-->
+        <h3 class="MDCEvent-List-Item--title">
+          <a href="{{MDCEvent.eventUrl}}" *ngIf="MDCEvent.eventUrl; else eventURLElse">{{MDCEvent.eventName}}</a>
+          <ng-template #eventURLElse>
+            {{MDCEvent.eventName}}
+          </ng-template>
+        </h3>
+        <span class="MDCEvent-List-Item--eventDate">Event Date: {{MDCEvent.eventDate}}</span>
       </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+      <ng-template #elseBlock>
+        <div class="card-panel blue-grey lighten-3">
+          <p>
+            No events found.
+          </p>
+        </div>
       </ng-template>
   </div>
     <div class="col s6">
