@@ -3,8 +3,8 @@
       <div class="col s12 m7">
         <div class="MDCEvent-Container z-depth-1">
   <div class="MDCEvent-Title">
-    <!--<h2>{{selectedDepartment}}</h2>-->
-    <h2>Placeholder Title</h2>
+    <h2>{{formattedDate}}</h2>
+    <!--<h2>Placeholder Title</h2>-->
     <span>Results</span>
   </div>
 
@@ -38,10 +38,10 @@
   </tbody>
 </table>
       <ng-template #elseBlock>
-        <div class="card-panel blue-grey lighten-3">
-          <p>
+        <div class="MDCEvent-List-No-Results">
+          <h5>
             No events found.
-          </p>
+          </h5>
         </div>
       </ng-template>
   </div>

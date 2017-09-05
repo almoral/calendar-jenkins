@@ -21,6 +21,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
   public filteredArray: Array<MDCEvent> = [];
   datePickerDate: DateModel;
   datePickerOptions: DatePickerOptions;
+  private formattedDate: any;
 
   @Input() selectedDepartment: string;
 
@@ -35,6 +36,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
     dateModel.momentObj = momentObj;
     dateModel.formatted = momentObj.format('l');
     this.datePickerDate = dateModel;
+    this.formattedDate = moment().format('dddd, MMMM Do');
     this.datePicker.open();
     // Get events from service in order to populate event list.
     this.calendarDataService.getEvents().subscribe((events: Array<MDCEvent>) => {
@@ -48,7 +50,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
       }
     );
 
-    if (!_.isNil(environment.selectedDepartment)){
+    if (!_.isNil(environment.selectedDepartment)) {
       this.selectedDepartment = environment.selectedDepartment;
     }
 
@@ -60,14 +62,15 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
     }
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     if (!_.isNil(this.datePickerDate.momentObj)) {
       this.applyFilter(this.datePickerDate.momentObj.format('YYYY-MM-DD').toString());
+      this.formattedDate = this.datePickerDate.momentObj.format('dddd, MMMM Do');
     }
   }
 
-  private applyFilter(filter: string){
-    if (filter === ''){
+  private applyFilter(filter: string) {
+    if (filter === '') {
       return true;
     }
 
