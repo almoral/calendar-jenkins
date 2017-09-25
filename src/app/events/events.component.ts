@@ -2,10 +2,10 @@ import {Component, Input, OnInit, DoCheck, AfterContentChecked, ViewChild, Event
 import { CalendarDataService } from '../shared/services/calendar-data.service';
 import { MDCEvent } from '../shared/models/MDCEvent';
 import {environment} from '../../environments/environment';
-import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import { DatePickerOptions, DateModel } from 'mdc-date';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import {DatePickerComponent} from 'ng2-datepicker/lib-dist/ng2-datepicker.component';
+import {DatePickerComponent} from 'mdc-date/lib-dist/ng2-datepicker.component';
 
 @Component({
   selector: 'app-events',
