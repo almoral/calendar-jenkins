@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ConfigurationService {
 
   // urlMayor: string = '/api/Mayor';
-  urlMayor = '/api/Mayor';
+  urlMayor = '/api/calendars/Mayor/events';
   urlProof = '/api/ProofOne';
   urlCategories = 'https://s0144821.miamidade.gov:7000/registration/api/topics';
   urlEvents = 'https://private-2b2f8b-calendar31.apiary-mock.com/api/calendars/id/events?from=&to=';

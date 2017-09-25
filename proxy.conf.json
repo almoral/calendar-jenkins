@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://s0144821.miamidade.gov:7009/msgraph/api/calendars",
+    "target": "http://s0144821.miamidade.gov:7009/office365/api/",
     "pathRewrite": {"^/api": ""},
     "secure": false
   }

@@ -15,8 +15,8 @@ export class CalendarDataService {
   ) { }
 
   getEvents(): Observable<Object> {
-    // return this.http.get(this.configurationService.urlMayor)
-    return this.http.get(this.configurationService.urlEvents)
+    return this.http.get(this.configurationService.urlMayor)
+    // return this.http.get(this.configurationService.urlEvents)
       .map((response: any) => {
         const events = this.jsonToEvents(response);
         // TODO: Add check to verify a valid object has been returned.
