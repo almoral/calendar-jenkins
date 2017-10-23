@@ -137,6 +137,7 @@ export class MDCEvent {
               geolocation: string,
               isRecurringEvent: boolean,
               isAllDayEvent: boolean,
+              hasAttachments: boolean,
               categories: string,
               eventType: string,
               shortDescription: string,
@@ -150,8 +151,7 @@ export class MDCEvent {
               isClosedToMedia: boolean,
               isClosedToPublic: boolean,
               isFree: boolean,
-              eventURL: object,
-              hasAttachments: boolean
+              eventURL: object
               ) {
 
     this.id = id || null;
@@ -189,7 +189,7 @@ export class MDCEvent {
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
   public static fromJSON(json: any): MDCEvent {
-    // if (MDCEvent.validateJson(json))
+    if (MDCEvent.validateJson(json))
       return new MDCEvent(
         json.id,
         json.odataId,
@@ -217,10 +217,10 @@ export class MDCEvent {
         json.isFree,
         json.eventURL
       );
-    // else {
-    //   console.error('error: invalid json to build event', json);
-    //   return null;
-    // }
+    else {
+      console.error('error: invalid json to build event', json);
+      return null;
+    }
 
 
   };
