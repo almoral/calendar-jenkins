@@ -12,6 +12,14 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { TestViewComponent } from './test-view/test-view.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DatePickerModule} from 'mdc-date';
+import { CalendarEventComponent } from './calendar-event/calendar-event.component';
+import { CalendarEventDateComponent } from './calendar-event-date/calendar-event-date.component';
+import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
+import { HeaderComponent } from './header/header.component';
+import { DateFilterComponent } from './date-filter/date-filter.component';
+import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { CalendarFiltersComponent } from './calendar-filters/calendar-filters.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +27,15 @@ import { DatePickerModule} from 'mdc-date';
     EventsComponent,
     CategoriesComponent,
     TestViewComponent,
-    CalendarComponent
+    CalendarComponent,
+    CalendarEventComponent,
+    CalendarEventDateComponent,
+    CalendarEventListComponent,
+    HeaderComponent,
+    DateFilterComponent,
+    CheckboxGroupComponent,
+    SearchBoxComponent,
+    CalendarFiltersComponent
   ],
   imports: [
     BrowserModule,
