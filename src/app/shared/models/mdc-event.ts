@@ -4,7 +4,7 @@ export class MdcEvent {
   public id: number;
   public odataId: string;
   public eventName: string;
-  public eventDate: Date;
+  public startDate: Date;
   public endDate: Date;
   public geolocation: string;
   public isAllDayEvent: boolean;
@@ -30,7 +30,7 @@ export class MdcEvent {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'eventName', 'eventDate', 'endDate', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'ADAName', 'ADAPhone', 'ADAEmail'],
+    'required': ['id', 'eventName', 'startDate', 'endDate', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'ADAName', 'ADAPhone', 'ADAEmail'],
     'properties': {
       'id': {
         'type': 'number'
@@ -41,7 +41,7 @@ export class MdcEvent {
       'eventName': {
         'type': 'string'
       },
-      'eventDate': {
+      'startDate': {
         'type': 'string'
       },
       'endDate': {
@@ -119,7 +119,7 @@ export class MdcEvent {
   constructor(id: number,
               odataId: string,
               eventName: string,
-              eventDate: string,
+              startDate: string,
               endDate: string,
               geolocation: string,
               isRecurringEvent: boolean,
@@ -144,7 +144,7 @@ export class MdcEvent {
     this.id = id || null;
     this.odataId = odataId || '';
     this.eventName = eventName || '';
-    this.eventDate = null;
+    this.startDate = null;
     this.endDate = null;
     this.geolocation = geolocation || '';
     this.isRecurringEvent = isRecurringEvent || false;
@@ -179,7 +179,7 @@ export class MdcEvent {
         json.id,
         json.odataId,
         json.eventName,
-        json.eventDate,
+        json.startDate,
         json.endDate,
         json.geolocation,
         json.isAllDayEvent,
