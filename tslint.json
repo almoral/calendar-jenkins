@@ -117,13 +117,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "mdc-calendar",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "mdc-calendar",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
