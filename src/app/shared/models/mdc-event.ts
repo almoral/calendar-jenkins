@@ -1,30 +1,25 @@
-/**
- * Created by almoral on 8/17/17.
- */
 import * as tv4 from 'tv4';
 
-export class MDCEvent {
+export class MdcEvent {
   public id: number;
   public odataId: string;
   public eventName: string;
-  public eventDate: string;
-  public endDate: string;
-  public startTime: string;
-  public endTime: string;
+  public eventDate: Date;
+  public endDate: Date;
   public geolocation: string;
   public isAllDayEvent: boolean;
   public isRecurringEvent: boolean;
   public hasAttachments: boolean;
-  public categories: string;
+  public categories: string [];
   public eventType: string;
   public shortDescription: string;
   public longDescription: string;
   public contactName: string;
   public contactPhone: string;
   public contactEmail: string;
-  public ADAName: string;
-  public ADAPhone: string;
-  public ADAEmail: string;
+  public adaName: string;
+  public adaPhone: string;
+  public adaEmail: string;
   public isClosedToMedia: boolean;
   public isClosedToPublic: boolean;
   public isFree: boolean;
@@ -35,7 +30,7 @@ export class MDCEvent {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'eventName', 'eventDate', 'endDate', 'startTime', 'endTime', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'ADAName', 'ADAPhone', 'ADAEmail'],
+    'required': ['id', 'eventName', 'eventDate', 'endDate', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'ADAName', 'ADAPhone', 'ADAEmail'],
     'properties': {
       'id': {
         'type': 'number'
@@ -50,12 +45,6 @@ export class MDCEvent {
         'type': 'string'
       },
       'endDate': {
-        'type': 'string'
-      },
-      'startTime': {
-        'type': 'string'
-      },
-      'endTime': {
         'type': 'string'
       },
       'geolocation': {
@@ -91,13 +80,13 @@ export class MDCEvent {
       'contactEmail': {
         'type': 'string'
       },
-      'ADAName': {
+      'adaName': {
         'type': 'string'
       },
-      'ADAPhone': {
+      'adaPhone': {
         'type': 'string'
       },
-      'ADAEmail': {
+      'adaEmail': {
         'type': 'string'
       },
       'isClosedToMedia': {
@@ -132,49 +121,45 @@ export class MDCEvent {
               eventName: string,
               eventDate: string,
               endDate: string,
-              startTime: string,
-              endTime: string,
               geolocation: string,
               isRecurringEvent: boolean,
               isAllDayEvent: boolean,
               hasAttachments: boolean,
-              categories: string,
+              categories: string [],
               eventType: string,
               shortDescription: string,
               longDescription: string,
               contactName: string,
               contactPhone: string,
               contactEmail: string,
-              ADAName: string,
-              ADAPhone: string,
-              ADAEmail: string,
+              adaName: string,
+              adaPhone: string,
+              adaEmail: string,
               isClosedToMedia: boolean,
               isClosedToPublic: boolean,
               isFree: boolean,
               eventURL: object
-              ) {
+  ) {
 
     this.id = id || null;
     this.odataId = odataId || '';
     this.eventName = eventName || '';
-    this.eventDate = eventDate || '';
-    this.endDate = endDate || '';
-    this.startTime = startTime || '';
-    this.endTime = endTime || '';
+    this.eventDate = null;
+    this.endDate = null;
     this.geolocation = geolocation || '';
     this.isRecurringEvent = isRecurringEvent || false;
     this.isAllDayEvent = isAllDayEvent || false;
     this.hasAttachments = hasAttachments || false;
-    this.categories = categories || '';
+    this.categories = categories || [];
     this.eventType = eventType || '';
     this.shortDescription = shortDescription || '';
     this.longDescription = longDescription || '';
     this.contactName = contactName || '';
     this.contactPhone = contactPhone || '';
     this.contactEmail = contactEmail || '';
-    this.ADAName = ADAName || '';
-    this.ADAPhone = ADAPhone || '';
-    this.ADAEmail = ADAEmail || '';
+    this.adaName = adaName || '';
+    this.adaPhone = adaPhone || '';
+    this.adaEmail = adaEmail || '';
     this.isClosedToMedia = isClosedToMedia || false;
     this.isClosedToPublic = isClosedToPublic || false;
     this.isFree = isFree || true;
@@ -188,16 +173,14 @@ export class MDCEvent {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
-  public static fromJSON(json: any): MDCEvent {
-    if (MDCEvent.validateJson(json))
-      return new MDCEvent(
+  public static fromJSON(json: any): MdcEvent {
+    if (MdcEvent.validateJson(json))
+      return new MdcEvent(
         json.id,
         json.odataId,
         json.eventName,
         json.eventDate,
         json.endDate,
-        json.startTime,
-        json.endTime,
         json.geolocation,
         json.isAllDayEvent,
         json.isRecurringEvent,
@@ -209,9 +192,9 @@ export class MDCEvent {
         json.contactName,
         json.contactPhone,
         json.contactEmail,
-        json.ADAName,
-        json.ADAPhone,
-        json.ADAEmail,
+        json.adaName,
+        json.adaPhone,
+        json.adaEmail,
         json.isClosedToMedia,
         json.isClosedToPublic,
         json.isFree,
@@ -234,7 +217,7 @@ export class MDCEvent {
    * false otherwise.
    */
   private static validateJson(json: any): boolean {
-    return tv4.validate(json, MDCEvent.schema);
+    return tv4.validate(json, MdcEvent.schema);
   };
 
 };

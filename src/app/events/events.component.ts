@@ -1,11 +1,11 @@
 import {Component, Input, OnInit, DoCheck, AfterContentChecked, ViewChild, EventEmitter} from '@angular/core';
 import { CalendarDataService } from '../shared/services/calendar-data.service';
-import { MDCEvent } from '../shared/models/MDCEvent';
 import {environment} from '../../environments/environment';
 import { DatePickerOptions, DateModel } from 'mdc-date';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import {DatePickerComponent} from 'mdc-date/lib-dist/ng2-datepicker.component';
+import {MdcEvent} from "../shared/models/mdc-event";
 
 @Component({
   selector: 'app-events',
@@ -17,8 +17,8 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
   @ViewChild(DatePickerComponent)
   private datePicker: DatePickerComponent;
 
-  public events: Array<MDCEvent> = [];
-  public filteredArray: Array<MDCEvent> = [];
+  public events: Array<MdcEvent> = [];
+  public filteredArray: Array<MdcEvent> = [];
   datePickerDate: DateModel;
   datePickerOptions: DatePickerOptions;
   private formattedDate: any;
@@ -39,7 +39,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
     this.formattedDate = moment().format('dddd, MMMM Do');
     this.datePicker.open();
     // Get events from service in order to populate event list.
-    this.calendarDataService.getEvents().subscribe((events: Array<MDCEvent>) => {
+    this.calendarDataService.getEvents().subscribe((events: Array<MdcEvent>) => {
         this.events = events;
 
         // Using filteredArray so that the view will automatically update when a new date is selected.
