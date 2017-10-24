@@ -76,7 +76,7 @@ export class EventsComponent implements OnInit, DoCheck, AfterContentChecked {
 
     if (!_.isNil(this.events)) {
       this.filteredArray = this.events.filter(item => {
-        if (item.eventDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        if (item.startDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
           return true;
         }
         return false;

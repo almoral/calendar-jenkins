@@ -119,8 +119,8 @@ export class MdcEvent {
   constructor(id: number,
               odataId: string,
               eventName: string,
-              startDate: string,
-              endDate: string,
+              startDate: Date,
+              endDate: Date,
               geolocation: string,
               isRecurringEvent: boolean,
               isAllDayEvent: boolean,
@@ -144,8 +144,8 @@ export class MdcEvent {
     this.id = id || null;
     this.odataId = odataId || '';
     this.eventName = eventName || '';
-    this.startDate = null;
-    this.endDate = null;
+    this.startDate = startDate || null;
+    this.endDate = endDate || null;
     this.geolocation = geolocation || '';
     this.isRecurringEvent = isRecurringEvent || false;
     this.isAllDayEvent = isAllDayEvent || false;
@@ -179,8 +179,8 @@ export class MdcEvent {
         json.id,
         json.odataId,
         json.eventName,
-        json.startDate,
-        json.endDate,
+        new Date(json.startDate),
+        new Date(json.endDate),
         json.geolocation,
         json.isAllDayEvent,
         json.isRecurringEvent,
@@ -202,7 +202,7 @@ export class MdcEvent {
       );
     else {
       console.error('error: invalid json to build event', json);
-      return null;
+      throw new Error('error: invalid json to build event');
     }
 
 
