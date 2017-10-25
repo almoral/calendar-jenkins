@@ -3,8 +3,8 @@ import { ConfigurationService } from './configuration.service';
 import 'rxjs/Rx';
 import * as _ from 'lodash';
 import {Http, Response} from '@angular/http';
-import { MDCEvent } from '../models/MDCEvent';
 import {Observable} from 'rxjs/Observable';
+import {MdcEvent} from "../models/mdc-event";
 
 @Injectable()
 export class CalendarDataService {
@@ -47,8 +47,8 @@ export class CalendarDataService {
     }
 
     const raw: Array<any> = response.json().events;
-    const model: Array<MDCEvent> = raw.reduce(function (accumulator, item) {
-      const event = MDCEvent.fromJSON(item);
+    const model: Array<MdcEvent> = raw.reduce(function (accumulator, item) {
+      const event = MdcEvent.fromJSON(item);
       if (event) {
         accumulator.push(event);
       }
