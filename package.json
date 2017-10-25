@@ -27,8 +27,9 @@
     "mdc-date": "^1.0.6",
     "moment": "~2.18.1",
     "rxjs": "^5.4.2",
+    "zone.js": "^0.8.14",
     "tv4": "~1.3.0",
-    "zone.js": "^0.8.14"
+    "tv4-formats": "3.0.3"
   },
   "devDependencies": {
     "@angular/cli": "~1.3.2",

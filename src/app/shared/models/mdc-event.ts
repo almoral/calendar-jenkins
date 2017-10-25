@@ -1,4 +1,6 @@
 import * as tv4 from 'tv4';
+import * as tv4format from 'tv4-formats';
+
 
 export class MdcEvent {
   public id: number;
@@ -26,11 +28,11 @@ export class MdcEvent {
   public eventUrl: object;
 
 
-  public static schema = {
+  public static schema2 = {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'eventName', 'startDate', 'endDate', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'ADAName', 'ADAPhone', 'ADAEmail'],
+    'required': ['id', 'eventName', 'startDate', 'endDate', 'isAllDayEvent', 'isRecurringEvent', 'eventType', 'contactName', 'contactPhone', 'contactEmail', 'adaName', 'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
@@ -42,10 +44,10 @@ export class MdcEvent {
         'type': 'string'
       },
       'startDate': {
-        'type': 'string'
+        'type': 'Date'
       },
       'endDate': {
-        'type': 'string'
+        'type': 'Date'
       },
       'geolocation': {
         'type': 'string'
@@ -58,9 +60,6 @@ export class MdcEvent {
       },
       'categories': {
         'type': 'array'
-      },
-      'items': {
-        'type': 'Object'
       },
       'eventType': {
         'type': 'string'
@@ -114,6 +113,108 @@ export class MdcEvent {
       }
     }
   }
+
+
+
+
+
+  public static schema = {
+    'title': 'MDCEvent',
+    'description': 'Schema to validate event retrieved from Sharepoint.',
+    'type': 'object',
+    'required': ['id', 'eventName', 'eventType', 'startDate', 'endDate',
+                 'contactName', 'contactPhone', 'contactEmail',
+                 'adaName', 'adaPhone', 'adaEmail'],
+    'properties': {
+      'id': {
+        'type': 'number'
+      },
+      'eventName': {
+        'type': 'string'
+      },
+      'eventType': {
+        'type': 'string'
+      },
+      'startDate': {
+        'type': 'string',
+        'format': 'date-time'
+      },
+      'endDate': {
+        'type': 'string',
+        'format': 'date-time'
+      },
+      'contactName': {
+        'type': 'string'
+      },
+      'contactPhone': {
+        'type': 'string'
+      },
+      'contactEmail': {
+        'type': 'string',
+        'format': 'email'
+      },
+      'adaName': {
+        'type': 'string'
+      },
+      'adaPhone': {
+        'type': 'string'
+      },
+      'adaEmail': {
+        'type': 'string',
+        'format': 'email'
+      },
+      'isRecurringEvent': {
+        'type': ['boolean', null]
+      },
+      'isAllDayEvent': {
+        'type': ['boolean', null]
+      },
+      'shortDescription': {
+        'type': ['string', null]
+      },
+      'longDescription': {
+        'type': ['string', null]
+      },
+      'isClosedToMedia': {
+        'type': ['boolean', null]
+      },
+      'isClosedToPublic': {
+        'type': ['boolean', null]
+      },
+      'isFree': {
+        'type': ['boolean', null]
+      },
+      'eventURL': {
+        'type': 'object',
+        'properties': {
+          'description': {
+            'type': ['string', null]
+          },
+          'url': {
+            'type': ['string', null],
+            'format': 'url'
+          }
+        }
+      },
+      'categories': {
+        'type': ['array', null],
+        'items':{
+          'type':'string'
+        }
+      }
+      //,
+      // 'hasAttachments': {
+      //   'type': 'boolean'
+      //  },
+      // 'odataId': {
+      //   'type': 'string'
+      // },
+      // 'geolocation': {
+      //   'type': 'string'
+      // },
+    }
+  }
+
 
 
   constructor(id: number,
@@ -216,7 +317,8 @@ export class MdcEvent {
    * @returns {boolean} - true when object contains id, languageCode and label.
    * false otherwise.
    */
-  private static validateJson(json: any): boolean {
+  public static validateJson(json: any): boolean {
+    tv4.addFormat(tv4format);
     return tv4.validate(json, MdcEvent.schema);
   };
 
