@@ -192,16 +192,138 @@ describe('MdcEvent', () => {
   });
 
   it('when creating a mdcEvent from json that matches the required schema, the event is created', () => {
-    //expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
   it('when creating a mdcEvent from json, if json is null, throw Error', () => {
     expect( function(){ MdcEvent.fromJSON(null); } ).toThrow(new Error("error: invalid json to build event"));
   });
 
-
   it('when creating a mdcEvent from json, if json is undefined throw Error', () => {
     expect( function(){ MdcEvent.fromJSON(undefined); } ).toThrow(new Error("error: invalid json to build event"));
+  });
+
+
+  it('when creating a mdcEvent from json, if id is not there or is null or not a number, throw Error', () => {
+    delete jsonEvent.id;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.id = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.id =  'should not be a string';
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.id =  1;
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if eventName is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.eventName;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventName = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventName =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventName =  "my eventName";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if eventType is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.eventType;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventType = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventType =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.eventType =  "public";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if startDate is not there or is null, or not a string formatted date (2017-07-21T15:00:00Z), throw Error', () => {
+    delete jsonEvent.startDate;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.startDate = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.startDate =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.startDate =  "2017-07-21T15:00:00Z";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if endDate is not there or is null, or not a string formatted date (2017-07-21T15:00:00Z), throw Error', () => {
+    delete jsonEvent.endDate;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.endDate = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.endDate =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.endDate =  "2017-07-21T15:00:00Z";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if contactName is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.contactName;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactName = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactName =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactName =  "my contactName";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if contactPhone is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.contactPhone;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactPhone = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactPhone =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactPhone =  "3055554444";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if contactEmail is not there or is null, or not a string formatted email, throw Error', () => {
+    delete jsonEvent.contactEmail;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactEmail = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactEmail =  "not an email";
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.contactEmail =  "contact@email.com";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+
+  it('when creating a mdcEvent from json, if adaName is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.adaName;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaName = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaName =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaName =  "my adaName";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if adaPhone is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.adaPhone;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaPhone = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaPhone =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaPhone =  "3055554444";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if adaEmail is not there or is null, or not a string formatted email, throw Error', () => {
+    delete jsonEvent.adaEmail;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaEmail = null;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaEmail =  "not an email";
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.adaEmail =  "ada@email.com";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
 });
