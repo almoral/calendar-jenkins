@@ -269,10 +269,10 @@ export class MdcEvent {
 
 
   /**
-   * fromJson creates an instance of the MDCEvent object from
-   * a json. If the json does not validate correctly, null is returned.
+   * fromJson creates an instance of the MdcEvent object from
+   * a json. If the json does not validate correctly, an Error is thrown.
    * @param json - designed to be used with a json coming from a service.
-   * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
+   * @returns {any} if json validates returns an MdcEvent otherwise it throws an error.
    */
   public static fromJSON(json: any): MdcEvent {
     if (MdcEvent.validateJson(json))
@@ -311,10 +311,9 @@ export class MdcEvent {
 
   /**
    * validateJson is design to validate the json that comes from
-   * a service. For this object to be useful it needs to have
-   * an id, languageCode and label.
+   * a service against MdcEvent.schema.
    * @param json - object coming from a service.
-   * @returns {boolean} - true when object contains id, languageCode and label.
+   * @returns {boolean} - true if schema validation passes against MdcEvent.schema.
    * false otherwise.
    */
   public static validateJson(json: any): boolean {
