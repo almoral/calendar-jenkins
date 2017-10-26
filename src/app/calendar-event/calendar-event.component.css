@@ -97,6 +97,7 @@ h2.group-title::after {
   background-color: #f3f3f3;
   padding: 15px;
   display: none;
+  font-size: 16px;
 }
 
 .calendar-quick-view-container .content-container {
@@ -136,3 +137,27 @@ h2.group-title::after {
 
 .icon-container .fa { margin: auto; }
 
+.fa {
+  font-size: 16px;
+}
+
+.calendar-title-container { display: table; }
+
+.calendar-title-container > .column {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.calendar-title-container > .column:first-child {
+  width: 60%;
+  padding-right: 15px;
+}
+
+.calendar-title-container > .column:last-child {
+  text-align: right;
+  padding-right: 100px;
+  font-size: 16px;
+}
+.btn {
+  width: 100%;
+}

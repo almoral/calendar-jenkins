@@ -18,6 +18,8 @@ import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calenda
 import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-department/calendar-filter-by-department.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
+import { MaterializeModule } from 'angular2-materialize';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MaterializeModule
   ],
   providers: [
     ConfigurationService,

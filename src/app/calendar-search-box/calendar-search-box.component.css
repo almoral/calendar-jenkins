@@ -32,6 +32,24 @@ CALENDAR LEFT WIDGETS
 }
 
 input[type=text].form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 30px;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+
+
   padding: 0 10px;
   border: 1px solid #dbe2e8;
   border-radius: 5px;
@@ -56,3 +74,6 @@ label {
   color: #fff;
   width: 100%;
 }
+
+
+
