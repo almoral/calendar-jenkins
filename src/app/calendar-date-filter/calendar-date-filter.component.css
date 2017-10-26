@@ -1,0 +1,51 @@
+/* --------------------------
+CALENDAR PICKER
+-------------------------- */
+
+.picker__table {
+  border-collapse: separate;
+  border-spacing: 6px;
+}
+
+.picker__weekday-display {
+  font-size: 14px;
+  background-color: #0277bd;
+}
+
+.picker__date-display {
+  background-color: #03a9f4;
+}
+
+.picker__year-display {
+  color: #fff;
+}
+
+.picker__table {
+  font-size: 14px;
+}
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
+  background-color: #03a9f4;
+}
+
+.picker__close,
+.picker__today,
+.picker__day.picker__day--today {
+  color: #03a9f4;
+}
+
+.picker__close,
+.picker__today {
+  font-size: 16px;
+}
+
+button.picker__today:focus,
+button.picker__clear:focus,
+button.picker__close:focus,
+.picker__nav--prev:hover,
+.picker__nav--next:hover {
+  background-color: #a1cede;
+}
+

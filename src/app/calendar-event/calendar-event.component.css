@@ -1,0 +1,138 @@
+/* --------------------------
+CALENDAR MAIN CONTENT
+-------------------------- */
+
+/*--Date Selector/Dropdowns --*/
+
+.date-container {
+  background-color: #9E9E9E;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.date-container h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+
+.date-container label {
+  color: #fff;
+}
+
+.calendar-content h2:not(:nth-of-type(1)) { margin-top: 75px; }
+
+h2.group-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+h2.group-title::after {
+  content: " ";
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin: 15px 0 0 0;
+  background-color: #f7f6f6;
+}
+
+.calendar-title-container {
+  width: 100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #03a9f4;
+  line-height: 1.5;
+}
+
+.plus-icon {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  margin-top: -12px;
+}
+
+.plus-icon::before,
+.plus-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #444;
+  transition: all 0.25s ease-in-out;
+}
+
+.plus-icon::before {
+  transform: rotate(0deg);
+  right: -8px;
+  width: 4px;
+  height: 12px;
+  top: 0;
+}
+
+.plus-icon::after {
+  top: 4px;
+  width: 12px;
+  height: 4px;
+}
+
+.active .plus-icon::before {
+  transform: rotate(90deg);
+  right: -8px;
+  width: 4px;
+  height: 12px;
+  top: 0;
+}
+
+.calendar-quick-view-container {
+  background-color: #f3f3f3;
+  padding: 15px;
+  display: none;
+}
+
+.calendar-quick-view-container .content-container {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.calendar-quick-view-container h3 { margin: 0; }
+
+.list-item {
+  display: table;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.detail-item {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.list-item.middle .detail-item{ vertical-align: middle; }
+
+.calendar-quick-view-container .list-item .detail-item:first-child,
+.nav-right-calendar .list-item .detail-item:first-child {
+  width: 60px;
+}
+
+.icon-container {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e1e7ec;
+  color: #606975;
+  display: flex;
+}
+
+.icon-container .fa { margin: auto; }
+
