@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { EventsComponent } from './events/events.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'mdc-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

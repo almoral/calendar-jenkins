@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestViewComponent } from './test-view.component';
+import { CalendarSearchBoxComponent } from './calendar-search-box.component';
 
-describe('TestViewComponent', () => {
-  let component: TestViewComponent;
-  let fixture: ComponentFixture<TestViewComponent>;
+describe('CalendarSearchBoxComponent', () => {
+  let component: CalendarSearchBoxComponent;
+  let fixture: ComponentFixture<CalendarSearchBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestViewComponent ]
+      declarations: [ CalendarSearchBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestViewComponent);
+    fixture = TestBed.createComponent(CalendarSearchBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
