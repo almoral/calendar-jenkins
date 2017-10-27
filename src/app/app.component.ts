@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import {Component, NgModule} from '@angular/core';
 @Component({
   selector: 'mdc-app-root',
   templateUrl: './app.component.html',

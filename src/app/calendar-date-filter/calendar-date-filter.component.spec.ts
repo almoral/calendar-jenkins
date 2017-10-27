@@ -1,5 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import {BaseRequestOptions, Http, ResponseOptions, Response, ResponseType} from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
 import { CalendarDateFilterComponent } from './calendar-date-filter.component';
 
 describe('CalendarDateFilterComponent', () => {
@@ -8,6 +9,7 @@ describe('CalendarDateFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [Http],
       declarations: [ CalendarDateFilterComponent ]
     })
     .compileComponents();
