@@ -35,5 +35,5 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  // Removed the other tests because they didn't apply.
+  //Removed the other tests because they didn't apply. We're not naming our app 'app' and we're only using an H1 when this component lives by itself.
 });
