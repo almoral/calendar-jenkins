@@ -17,11 +17,17 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "mdc-calendar",
+      "prefix": "mdc",
       "styles": [
+        "../node_modules/materialize-css/dist/css/materialize.css",
+        "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/hammerjs/hammer.js",
+        "../node_modules/materialize-css/dist/js/materialize.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

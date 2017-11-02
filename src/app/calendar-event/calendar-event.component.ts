@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-event',
+  selector: 'mdc-calendar-event',
   templateUrl: './calendar-event.component.html',
   styleUrls: ['./calendar-event.component.css']
 })

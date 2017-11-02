@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
+
+@NgModule({
+
+})
 
 @Component({
-  selector: 'app-calendar-event-date',
+  selector: 'mdc-calendar-event-date',
   templateUrl: './calendar-event-date.component.html',
   styleUrls: ['./calendar-event-date.component.css']
 })

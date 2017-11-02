@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { EventsComponent } from './events/events.component';
-
+import {Component, NgModule} from '@angular/core';
 @Component({
-  selector: 'app-root',
+  selector: 'mdc-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
