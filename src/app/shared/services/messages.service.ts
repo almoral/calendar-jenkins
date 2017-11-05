@@ -12,7 +12,7 @@ export class MessagesService {
    * be notified when the list of available errors change.
    * @type {"../../Observable".Observable<T>}
    */
-  errors$: Observable<string[]> = this.errorsSubject.asObservable();
+  public errors$: Observable<string[]> = this.errorsSubject.asObservable();
 
 
   constructor() {
