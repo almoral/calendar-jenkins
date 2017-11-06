@@ -1,5 +1,12 @@
 <div class="calendar-content">
 <h2 class="group-title">October 2, 2017</h2>
+
+
+  <ul>
+    <li *ngFor="let event of events$ | async"> {{event.eventName}} </li>
+  </ul>
+
+
 <mdc-calendar-event></mdc-calendar-event>
 
 <h2 class="group-title">October 7, 2017</h2>

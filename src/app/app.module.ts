@@ -19,6 +19,7 @@ import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-depart
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
+import {DataStoreService} from "./shared/services/data-store.service";
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MaterializeModule } from 'angular2-materialize';
     ConfigurationService,
     CategoriesService,
     CalendarDataService,
-    EventsDataService
+    EventsDataService,
+    DataStoreService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,7 @@
 import {Component, NgModule, OnInit} from '@angular/core';
+import {DataStoreService} from "../shared/services/data-store.service";
+import {Observable} from "rxjs";
+import {MdcEvent} from "../shared/models/mdc-event";
 
 @NgModule({
 
@@ -11,9 +14,13 @@ import {Component, NgModule, OnInit} from '@angular/core';
 })
 export class CalendarEventDateComponent implements OnInit {
 
-  constructor() { }
+  events$: Observable<MdcEvent[]>;
+  constructor(private dataStore: DataStoreService) { }
 
   ngOnInit() {
+
+    this.events$ = this.dataStore.events$;
+
   }
 
 }
