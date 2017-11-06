@@ -1,9 +1,9 @@
 import { TestBed, inject, async, getTestBed } from '@angular/core/testing';
 import {BaseRequestOptions, Http, ResponseOptions, Response, ResponseType} from "@angular/http";
 import {MockBackend, MockConnection} from '@angular/http/testing';
-import { EventsDataService } from '../shared/services/events-data.service';
-import { CalendarDataService} from '../shared/services/calendar-data.service';
-import { ConfigurationService} from '../shared/services/configuration.service';
+import { EventsDataService } from './events-data.service';
+import { CalendarDataService} from './calendar-data.service';
+import { ConfigurationService} from './configuration.service';
 
 class MockError extends Response implements Error {
   name: any;

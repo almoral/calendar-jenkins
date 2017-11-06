@@ -1,5 +1,6 @@
-import * as tv4 from 'tv4';
-import * as tv4format from 'tv4-formats';
+import * as tv4 from "tv4";
+import * as tv4format from "tv4-formats";
+import * as _ from "lodash";
 
 
 export class MdcEvent {
@@ -33,8 +34,8 @@ export class MdcEvent {
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
     'required': ['id', 'eventName', 'eventType', 'startDate', 'endDate',
-                 'contactName', 'contactPhone', 'contactEmail',
-                 'adaName', 'adaPhone', 'adaEmail'],
+      'contactName', 'contactPhone', 'contactEmail',
+      'adaName', 'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
@@ -108,23 +109,13 @@ export class MdcEvent {
       },
       'categories': {
         'type': ['array', null],
-        'items':{
-          'type':'string'
+        'items': {
+          'type': 'string'
         }
       }
-      //,
-      // 'hasAttachments': {
-      //   'type': 'boolean'
-      //  },
-      // 'odataId': {
-      //   'type': 'string'
-      // },
-      // 'geolocation': {
-      //   'type': 'string'
-      // },
+
     }
   }
-
 
 
   constructor(id: number,
@@ -149,8 +140,7 @@ export class MdcEvent {
               isClosedToMedia: boolean,
               isClosedToPublic: boolean,
               isFree: boolean,
-              eventURL: object
-  ) {
+              eventURL: object) {
 
     this.id = id || null;
     this.odataId = odataId || '';
@@ -219,6 +209,38 @@ export class MdcEvent {
 
   };
 
+
+  /**
+   * fromJSONArray translates an array of json objects into an array of
+   * MdcEvent objects. If one of objects in the imput array does not match
+   * the schema of MdcEvent, it is skipped.
+   * @param jsonArray - designed to be used with a json array coming from a service.
+   * @returns {any} - Array of MdcEvent objects.
+   */
+  public static fromJSONArray(jsonArray: Array<any> = []): Array<MdcEvent> {
+
+    // no input array is mapped it to an empty array
+    if (_.isEmpty(jsonArray)) {
+      return [];
+    }
+
+    // map each element of the jsonArray
+    const events: Array<MdcEvent> = jsonArray.reduce(function (accumulator, item) {
+
+      try{
+        accumulator.push(MdcEvent.fromJSON(item));
+      } catch(error){
+        // skip elements which do not conform to the schema
+      }
+
+      return accumulator;
+
+    }, []);
+
+    return events;
+  }
+
+
   /**
    * validateJson is design to validate the json that comes from
    * a service against MdcEvent.schema.
@@ -230,5 +252,7 @@ export class MdcEvent {
     tv4.addFormat(tv4format);
     return tv4.validate(json, MdcEvent.schema);
   };
+
+
 
 };

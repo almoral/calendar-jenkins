@@ -6,6 +6,7 @@ import { CategoriesService } from './shared/services/categories.service';
 import { CalendarDataService } from './shared/services/calendar-data.service';
 import {EventsDataService} from './shared/services/events-data.service';
 import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarEventComponent } from './calendar-event/calendar-event.component';
@@ -40,6 +41,7 @@ import {MessagesService} from "./shared/services/messages.service";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HttpModule,
     AppRoutingModule,
     NgxPaginationModule,
