@@ -19,6 +19,8 @@ import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-depart
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
+import { MessagesComponent } from './messages/messages.component';
+import {MessagesService} from "./shared/services/messages.service";
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { MaterializeModule } from 'angular2-materialize';
     CalendarSearchBoxComponent,
     CalendarFilterByTypeComponent,
     CalendarFilterByDepartmentComponent,
-    CalendarFilterContainerComponent
+    CalendarFilterContainerComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { MaterializeModule } from 'angular2-materialize';
     ConfigurationService,
     CategoriesService,
     CalendarDataService,
-    EventsDataService
+    EventsDataService,
+    MessagesService
   ],
   bootstrap: [AppComponent]
 })
