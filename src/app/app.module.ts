@@ -6,6 +6,7 @@ import { CategoriesService } from './shared/services/categories.service';
 import { CalendarDataService } from './shared/services/calendar-data.service';
 import {EventsDataService} from './shared/services/events-data.service';
 import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarEventComponent } from './calendar-event/calendar-event.component';
@@ -20,6 +21,8 @@ import { CalendarFilterContainerComponent } from './calendar-filter-container/ca
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
 import {DataStoreService} from "./shared/services/data-store.service";
+import { MessagesComponent } from './messages/messages.component';
+import {MessagesService} from "./shared/services/messages.service";
 
 
 @NgModule({
@@ -34,10 +37,12 @@ import {DataStoreService} from "./shared/services/data-store.service";
     CalendarSearchBoxComponent,
     CalendarFilterByTypeComponent,
     CalendarFilterByDepartmentComponent,
-    CalendarFilterContainerComponent
+    CalendarFilterContainerComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HttpModule,
     AppRoutingModule,
     NgxPaginationModule,
@@ -48,7 +53,8 @@ import {DataStoreService} from "./shared/services/data-store.service";
     CategoriesService,
     CalendarDataService,
     EventsDataService,
-    DataStoreService
+    DataStoreService,
+    MessagesService
   ],
   bootstrap: [AppComponent]
 })
