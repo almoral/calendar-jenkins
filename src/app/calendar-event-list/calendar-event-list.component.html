@@ -1,7 +1,7 @@
 
 <ul>
-  <li *ngFor="let eventDateCollection of events$ | async">
-    <mdc-calendar-event-date [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
+  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async">
+    <mdc-calendar-event-date  [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
   </li>
 
 </ul>

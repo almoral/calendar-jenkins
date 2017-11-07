@@ -1,3 +1,9 @@
+
+.calendar-content:not(:nth-of-type(1)){ margin-top: 75px; }
+
+.calendar-content:nth-of-type(1){ margin-top: 0; }
+
+
 /* --------------------------
 CALENDAR PAGINATION
 -------------------------- */
