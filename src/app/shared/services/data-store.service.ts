@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {MdcEvent} from "../models/mdc-event";
+import {BehaviorSubject, Observable} from 'rxjs/Rx';
+import {MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
-import {testEvents} from "../models/test-events";
+import {testEvents} from '../models/test-events';
 
 
 
@@ -11,7 +11,7 @@ export class DataStoreService {
 
   constructor() {
 
-    this.initializeLessonsList(testEvents.testEventsByDate);
+    this.initializeEventsList(testEvents.testEventsByDate);
 
   }
 
@@ -20,7 +20,7 @@ export class DataStoreService {
 
   public events$: Observable<{date: Date, events: MdcEvent[]}[]> = this.eventsSubject.asObservable();
 
-  initializeLessonsList(newEvents: {date: Date, events: MdcEvent[]}[]) {
+  initializeEventsList(newEvents: {date: Date, events: MdcEvent[]}[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
   }
 
