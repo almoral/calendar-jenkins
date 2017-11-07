@@ -1,4 +1,12 @@
-<mdc-calendar-event-date></mdc-calendar-event-date>
+
+<ul>
+  <li *ngFor="let eventDateCollection of events$ | async">
+    <mdc-calendar-event-date [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
+  </li>
+
+</ul>
+
+
 
 <div class="pagination">
   <div class="column left-align hide-on-small-only">
