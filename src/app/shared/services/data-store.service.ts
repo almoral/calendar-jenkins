@@ -5,23 +5,23 @@ import * as _ from 'lodash';
 import {testEvents} from "../models/test-events";
 
 
+
 @Injectable()
 export class DataStoreService {
 
   constructor() {
 
-    this.initializeLessonsList(testEvents);
+    this.initializeLessonsList(testEvents.testEventsByDate);
 
   }
 
 
   private eventsSubject = new BehaviorSubject([]);
 
-  public events$: Observable<MdcEvent[]> = this.eventsSubject.asObservable();
+  public events$: Observable<{date: Date, events: MdcEvent[]}[]> = this.eventsSubject.asObservable();
 
-  initializeLessonsList(newEvents: MdcEvent[]) {
+  initializeLessonsList(newEvents: {date: Date, events: MdcEvent[]}[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
-    //this.eventsSubject.next(testEvents);
   }
 
 }
