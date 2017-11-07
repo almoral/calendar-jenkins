@@ -11,7 +11,7 @@ export class DataStoreService {
 
   constructor() {
 
-    this.initializeLessonsList(testEvents.testEventsByDate);
+    this.initializeEventsList(testEvents.testEventsByDate);
 
   }
 
@@ -20,7 +20,7 @@ export class DataStoreService {
 
   public events$: Observable<{date: Date, events: MdcEvent[]}[]> = this.eventsSubject.asObservable();
 
-  initializeLessonsList(newEvents: {date: Date, events: MdcEvent[]}[]) {
+  initializeEventsList(newEvents: {date: Date, events: MdcEvent[]}[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
   }
 
