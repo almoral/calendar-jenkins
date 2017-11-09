@@ -446,6 +446,18 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSON(jsonEvent).recurrence.length).toBe(1);
   });
 
+  it('when creating a mdcEvent from json, if address is not an object or null, throw Error', () => {
+    jsonEvent.address = null;
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+    jsonEvent.address =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.address =  {location: 'myLocation'};
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+    expect(MdcEvent.fromJSON(jsonEvent).address.location).toBe('myLocation');
+
+  });
+
+
   it('when creating an Array of MdcEvents from a json array, that matches the required schema, the Array of MdcEvents is created', () => {
     expect(MdcEvent.fromJSONArray([jsonEvent]).length).toBe(1);
     expect((MdcEvent.fromJSONArray([jsonEvent]))[0] instanceof MdcEvent).toBe(true);

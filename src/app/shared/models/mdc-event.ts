@@ -241,7 +241,17 @@ export class MdcEvent {
    * @returns {any} if json validates returns an MdcEvent otherwise it throws an error.
    */
   public static fromJSON(json: any): MdcEvent {
-    if (MdcEvent.validateJson(json))
+    if (MdcEvent.validateJson(json)) {
+
+      // get address
+      let address = new MdcEventAddress(
+        json.address && json.address.location,
+        json.address && json.address.address1,
+        json.address && json.address.address2,
+        json.address && json.address.city,
+        json.address && json.address.state,
+        json.address && json.address.zip
+      );
 
       return new MdcEvent(
         json.id,
@@ -268,8 +278,8 @@ export class MdcEvent {
         json.fee,
         json.rsvp,
         json.url,
-        new MdcEventAddress(json.address)
-      );
+        address
+      )}
     else {
       console.error('error: invalid json to build event', json);
       throw new Error('error: invalid json to build event');
