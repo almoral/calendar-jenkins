@@ -364,4 +364,12 @@ export class MdcEvent {
 
 
 
+
+
 };
+
+
+export interface MdcEventsByDate {
+  date: Date;
+  events: MdcEvent[];
+}

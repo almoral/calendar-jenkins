@@ -1,7 +1,5 @@
 import {Component, NgModule, OnInit, Input} from '@angular/core';
-import {DataStoreService} from "../shared/services/data-store.service";
-import {Observable} from "rxjs";
-import {MdcEvent} from "../shared/models/mdc-event";
+import {MdcEventsByDate} from "../shared/models/mdc-event";
 
 @NgModule({
 
@@ -17,7 +15,7 @@ export class CalendarEventDateComponent implements OnInit {
 
 
   @Input()
-  eventDateCollection: {date: Date, events: MdcEvent[]};
+  eventDateCollection: MdcEventsByDate;
 
   constructor() { }
 
