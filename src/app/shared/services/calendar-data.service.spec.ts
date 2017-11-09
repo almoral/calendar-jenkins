@@ -25,8 +25,8 @@ describe('CalendarDataService', () => {
 
       let jsonEvent1 = {
         id: 1,
-        eventName: 'my eventName',
-        eventType: 'public',
+        title: 'my title',
+        type: 'public',
         startDate: '2017-07-20T15:00:00Z',
         endDate: '2017-07-21T15:00:00Z',
         contactName: 'my contactName',
@@ -42,14 +42,17 @@ describe('CalendarDataService', () => {
         isClosedToMedia: false,
         isClosedToPublic: false,
         isFree: false,
+        fee: 5,
+        rsvp: 'joe bler',
         categories: ['animals', 'public-safety'],
-        eventURL: {'description': 'URL for event', 'url': 'http://www.google.com'}
+        url: {'description': 'URL for event', 'url': 'http://www.google.com'},
+        address: null
       }
 
       let jsonEvent2 = {
         id: 2,
-        eventName: 'my eventName2',
-        eventType: 'public',
+        title: 'my title2',
+        type: 'public',
         startDate: '2017-07-20T15:00:00Z',
         endDate: '2017-07-21T15:00:00Z',
         contactName: 'my contactName2',
@@ -65,8 +68,11 @@ describe('CalendarDataService', () => {
         isClosedToMedia: false,
         isClosedToPublic: false,
         isFree: false,
+        fee: 5,
+        rsvp: 'joe bler',
         categories: ['animals', 'public-safety'],
-        eventURL: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
+        url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
+        address: null
       }
 
 
