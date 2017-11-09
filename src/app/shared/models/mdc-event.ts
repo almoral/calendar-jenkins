@@ -3,6 +3,31 @@ import * as tv4format from "tv4-formats";
 import * as _ from "lodash";
 
 
+
+export class MdcEventAddress {
+  location: string;
+  address1: string;
+  address2: string;
+  city:     string;
+  state:    string;
+  zip:      string;
+
+  constructor(location = '',
+              address1 = '',
+              address2 = '',
+              city = '',
+              state = '',
+              zip = ''){
+    this.location = location || '';
+    this.address1 = address1 || '';
+    this.address2 = address2 || '';
+    this.city = city || '';
+    this.state = state || '';
+    this.zip = zip || '';
+
+  }
+}
+
 export class MdcEvent {
   public id: number;
   public odataId: string;
@@ -28,6 +53,7 @@ export class MdcEvent {
   public fee: number;
   public rsvp: string;
   public url: object;
+  public address: MdcEventAddress;
 
 
   public static schema = {
@@ -125,7 +151,30 @@ export class MdcEvent {
         'items': {
           'type': 'string'
         }
-      }
+      },
+      'address': {
+        'type': ['object', 'null'],
+        'properties': {
+          'location': {
+            'type': ['string', 'null']
+          },
+          'address1': {
+            'type': ['string', 'null']
+          },
+          'address2': {
+            'type': ['string', 'null']
+          },
+          'city': {
+            'type': ['string', 'null']
+          },
+          'state': {
+            'type': ['string', 'null']
+          },
+          'zip': {
+            'type': ['string', 'null']
+          }
+        }
+      },
 
     }
   }
@@ -154,7 +203,8 @@ export class MdcEvent {
               isFree: boolean,
               fee: number,
               rsvp: string,
-              url: object) {
+              url: object,
+              address: MdcEventAddress) {
 
     this.id = id || null;
     this.odataId = odataId || '';
@@ -180,6 +230,7 @@ export class MdcEvent {
     this.fee = fee || null;
     this.rsvp = rsvp || '';
     this.url = url || {};
+    this.address = address || new MdcEventAddress();
   }
 
 
@@ -191,9 +242,6 @@ export class MdcEvent {
    */
   public static fromJSON(json: any): MdcEvent {
     if (MdcEvent.validateJson(json))
-
-      // convert recurrence object to array of dates
-
 
       return new MdcEvent(
         json.id,
@@ -219,7 +267,8 @@ export class MdcEvent {
         json.isFree,
         json.fee,
         json.rsvp,
-        json.url
+        json.url,
+        new MdcEventAddress(json.address)
       );
     else {
       console.error('error: invalid json to build event', json);

@@ -33,7 +33,8 @@ describe('MdcEvent', () => {
       fee: 21,
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
-      url: {'description': 'URL for event', 'url': 'http://www.google.com'}
+      url: {'description': 'URL for event', 'url': 'http://www.google.com'},
+      address: null
     }
 
     jsonEvent2 = {
@@ -59,7 +60,8 @@ describe('MdcEvent', () => {
       fee: 22,
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
-      url: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
+      url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
+      address: null
     }
 
 
@@ -88,7 +90,8 @@ describe('MdcEvent', () => {
         false,false,true,
         2,
         'rsvpme',
-        {'description': 'URL for event', 'url': 'http://www.google.com'}))
+        {'description': 'URL for event', 'url': 'http://www.google.com'},
+        null))
       .toBeTruthy();
   });
 
@@ -114,7 +117,8 @@ describe('MdcEvent', () => {
       false,false,true,
       2,
       'rsvpme',
-      {'description': 'URL for event', 'url': 'http://www.google.com'}
+      {'description': 'URL for event', 'url': 'http://www.google.com'},
+      null
 
     );
     expect(mdcEvent).toBeTruthy();
@@ -145,7 +149,8 @@ describe('MdcEvent', () => {
       false,false,true,
       2,
       'rsvpme',
-      {'description': 'URL for event', 'url': 'http://www.google.com'}
+      {'description': 'URL for event', 'url': 'http://www.google.com'},
+      null
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.id).toBeNull();

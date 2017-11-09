@@ -25,7 +25,8 @@ let jsonEvent1 = {
   fee: 3,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event', 'url': 'http://www.google.com'},
+  address: null
 }
 
 let jsonEvent2 = {
@@ -50,7 +51,8 @@ let jsonEvent2 = {
   fee: 4,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
+  address: null
 }
 
 let jsonEvent3 = {
@@ -75,7 +77,8 @@ let jsonEvent3 = {
   fee: 5,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 3', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 3', 'url': 'http://www.google.com'},
+  address: null
 }
 
 
@@ -101,7 +104,8 @@ let jsonEvent4 = {
   fee: 5,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 4', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 4', 'url': 'http://www.google.com'},
+  address: null
 }
 
 let jsonEvent5 = {
@@ -126,7 +130,8 @@ let jsonEvent5 = {
   fee: 7,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 5', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 5', 'url': 'http://www.google.com'},
+  address: null
 }
 
 let jsonEvent6 = {
@@ -151,7 +156,8 @@ let jsonEvent6 = {
   fee: 3.5,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 6', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 6', 'url': 'http://www.google.com'},
+  address: null
 }
 
 export class testEvents {
