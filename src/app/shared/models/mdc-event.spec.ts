@@ -12,8 +12,8 @@ describe('MdcEvent', () => {
   beforeEach(function () {
     jsonEvent = {
       id: 1,
-      eventName: 'my eventName',
-      eventType: 'public',
+      title: 'my title',
+      type: 'public',
       startDate: '2017-07-20T15:00:00Z',
       endDate: '2017-07-21T15:00:00Z',
       contactName: 'my contactName',
@@ -22,21 +22,24 @@ describe('MdcEvent', () => {
       adaName: 'my adaName',
       adaPhone: '3055551234',
       adaEmail: 'ada@email.com',
-      isRecurringEvent: false,
+      isRecurringEvent: true,
+      recurrence: ['2017-07-21T15:00:00Z'],
       isAllDayEvent: false,
       shortDescription: 'This is a short description.',
       longDescription: 'This is a long description.',
       isClosedToMedia: false,
       isClosedToPublic: false,
       isFree: false,
+      fee: 21,
+      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
-      eventURL: {'description': 'URL for event', 'url': 'http://www.google.com'}
+      url: {'description': 'URL for event', 'url': 'http://www.google.com'}
     }
 
     jsonEvent2 = {
       id: 2,
-      eventName: 'my eventName2',
-      eventType: 'public',
+      title: 'my title2',
+      type: 'public',
       startDate: '2017-07-20T15:00:00Z',
       endDate: '2017-07-21T15:00:00Z',
       contactName: 'my contactName2',
@@ -46,40 +49,104 @@ describe('MdcEvent', () => {
       adaPhone: '3055551234',
       adaEmail: 'ada2@email.com',
       isRecurringEvent: false,
+      recurrence: null,
       isAllDayEvent: true,
       shortDescription: 'This is a short description 2.',
       longDescription: 'This is a long description 2.',
       isClosedToMedia: false,
       isClosedToPublic: false,
       isFree: false,
+      fee: 22,
+      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
-      eventURL: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
+      url: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
     }
 
 
   });
 
   it('should create an instance', () => {
-    expect(new MdcEvent(1, '123', 'eventName', new Date(), new Date(),'geolocation',false,false,false,['animals', 'public-safety'],'eventType','This is a short description.','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'}))
+    expect(new MdcEvent(
+        1,
+        '123',
+        'title',
+        new Date(),
+        new Date(),
+        false,
+        null,
+        false,
+        ['animals', 'public-safety'],
+        'type',
+        'This is a short description.',
+        'This is a long description.',
+        'contactName',
+        '305-555-5555',
+        'contact@email.com',
+        'ADAName',
+        '305-555-1234',
+        'ADA@email.com',
+        false,false,true,
+        2,
+        'rsvpme',
+        {'description': 'URL for event', 'url': 'http://www.google.com'}))
       .toBeTruthy();
   });
 
   it('when creating a mdcEvent from contructor if no short description passed we should get an empty description in the event', () => {
-    let mdcEvent = new MdcEvent(1, '123', 'eventName', new Date(), new Date(),'geolocation',false,false,false,['animals', 'public-safety'],'eventType', '','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
+    let mdcEvent = new MdcEvent(
+      1,
+      '123',
+      'title',
+      new Date(), new Date(),
+      false,
+      null,
+      false,
+      ['animals', 'public-safety'],
+      'type',
+      null,
+      'This is a long description.',
+      'contactName',
+      '305-555-5555',
+      'contact@email.com',
+      'ADAName',
+      '305-555-1234',
+      'ADA@email.com',
+      false,false,true,
+      2,
+      'rsvpme',
+      {'description': 'URL for event', 'url': 'http://www.google.com'}
+
+    );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.shortDescription).toBe('');
   });
 
-
-  it('when creating a mdcEvent from contructor if null short description is passed we should get an empty short description in the event', () => {
-    let mdcEvent = new MdcEvent(1, '123', 'eventName', new Date(), new Date(), 'geolocation',false,false,false,['animals', 'public-safety'],'eventType', null,'This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {});
-    expect(mdcEvent).toBeTruthy();
-    expect(mdcEvent.shortDescription).toBe('');
-  });
 
 
   it('when creating a mdcEvent from contructor if a null id is passed in I expect it to be left as null in the event', () => {
-    let mdcEvent = new MdcEvent(null, null, null, new Date(), new Date(),'geolocation',false,false,false,['animals', 'public-safety'],'eventType', 'This is a short description.','This is a long description.','contactName','305-555-5555','contact@email.com','ADAName','305-555-1234','ADA@email.com',false,false,true, {'description': 'URL for event', 'url': 'http://www.google.com'});
+    let mdcEvent = new MdcEvent(
+      null,
+      null,
+      null,
+      new Date(), new Date(),
+      false,
+      null,
+      false,
+      ['animals', 'public-safety'],
+      'type',
+      null,
+      'This is a long description.',
+      'contactName',
+      '305-555-5555',
+      'contact@email.com',
+      'ADAName',
+      '305-555-1234',
+      'ADA@email.com',
+      false,false,true,
+      2,
+      'rsvpme',
+      {'description': 'URL for event', 'url': 'http://www.google.com'}
+    );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.id).toBeNull();
   });
@@ -96,25 +163,25 @@ describe('MdcEvent', () => {
     expect(MdcEvent.validateJson(jsonEvent)).toBeTruthy();
   });
 
-  it('when validating json schema, the eventName is required, it has to be a string and it cant be null', () => {
-    delete jsonEvent.eventName;
+  it('when validating json schema, the title is required, it has to be a string and it cant be null', () => {
+    delete jsonEvent.title;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventName = null;
+    jsonEvent.title = null;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventName =  1;
+    jsonEvent.title =  1;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventName =  'my event';
+    jsonEvent.title =  'my event';
     expect(MdcEvent.validateJson(jsonEvent)).toBeTruthy();
   });
 
-  it('when validating json schema, the eventType is required, it has to be a string and it cant be null', () => {
-    delete jsonEvent.eventType;
+  it('when validating json schema, the type is required, it has to be a string and it cant be null', () => {
+    delete jsonEvent.type;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventType = null;
+    jsonEvent.type = null;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventType =  1;
+    jsonEvent.type =  1;
     expect(MdcEvent.validateJson(jsonEvent)).toBeFalsy();
-    jsonEvent.eventType =  'my event';
+    jsonEvent.type =  'my event';
     expect(MdcEvent.validateJson(jsonEvent)).toBeTruthy();
   });
 
@@ -231,25 +298,25 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
-  it('when creating a mdcEvent from json, if eventName is not there or is null, or not a string, throw Error', () => {
-    delete jsonEvent.eventName;
+  it('when creating a mdcEvent from json, if title is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.title;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventName = null;
+    jsonEvent.title = null;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventName =  1;
+    jsonEvent.title =  1;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventName =  "my eventName";
+    jsonEvent.title =  "my title";
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
-  it('when creating a mdcEvent from json, if eventType is not there or is null, or not a string, throw Error', () => {
-    delete jsonEvent.eventType;
+  it('when creating a mdcEvent from json, if type is not there or is null, or not a string, throw Error', () => {
+    delete jsonEvent.type;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventType = null;
+    jsonEvent.type = null;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventType =  1;
+    jsonEvent.type =  1;
     expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.eventType =  "public";
+    jsonEvent.type =  "public";
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
@@ -342,6 +409,38 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
+  it('when creating a mdcEvent from json, if rsvp is not a string or null, throw Error', () => {
+    jsonEvent.rsvp = null;
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+    jsonEvent.rsvp =  1;
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.rsvp =  "rsvp";
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+
+  it('when creating a mdcEvent from json, if fee is not a number or null, throw Error', () => {
+    jsonEvent.fee = null;
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+    jsonEvent.fee =  'one';
+    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.fee =  1;
+    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
+  });
+
+  it('when creating a mdcEvent from json, if recurrence is not an array of strings, or null, or empty array, throw Error', () => {
+    jsonEvent.recurrence = null;
+    expect(MdcEvent.fromJSON(jsonEvent).recurrence).toEqual([]);
+    jsonEvent.recurrence =  [1];
+    expect( function(){ MdcEvent.fromJSON(jsonEvent).recurrence; } ).toThrow(new Error("error: invalid json to build event"));
+    jsonEvent.recurrence =  [];
+    expect(MdcEvent.fromJSON(jsonEvent).recurrence).toEqual([]);
+    jsonEvent.recurrence =  ['bad request'];
+    expect(MdcEvent.fromJSON(jsonEvent).recurrence).toEqual([]);
+    jsonEvent.recurrence =  ['2017-07-20T15:00:00Z'];
+    expect(MdcEvent.fromJSON(jsonEvent).recurrence.length).toBe(1);
+  });
+
   it('when creating an Array of MdcEvents from a json array, that matches the required schema, the Array of MdcEvents is created', () => {
     expect(MdcEvent.fromJSONArray([jsonEvent]).length).toBe(1);
     expect((MdcEvent.fromJSONArray([jsonEvent]))[0] instanceof MdcEvent).toBe(true);
@@ -359,6 +458,34 @@ describe('MdcEvent', () => {
   it('when creating an Array of MdcEvents from a json array, bad elements will not be added to the array', () => {
     delete jsonEvent.id;
     expect(MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]).length).toBe(1);
+  });
+
+  it('when creating a recurrence array from array of valid date strings, it is converted to array of dates', () => {
+
+    const dates = MdcEvent.fromJSONRecurrence(['2017-07-20T15:00:00Z','2014-05-20T15:00:00Z']);
+    expect(dates.length).toBe(2);
+    expect(dates[0] instanceof Date).toBe(true);
+    expect(dates[1] instanceof Date).toBe(true);
+    expect(dates[0].getFullYear()).toBe(2017);
+    expect(dates[1].getFullYear()).toBe(2014);
+
+  });
+
+  it('when creating an Array of dates from a [], an empty array is created. ', () => {
+    expect(MdcEvent.fromJSONRecurrence([])).toEqual([]);
+  });
+
+  it('when creating an Array of dates from a null, an empty array is created. ', () => {
+    expect(MdcEvent.fromJSONRecurrence(null)).toEqual([]);
+  });
+
+  it('when creating an Array of dates from a json array, bad elements will not be added to the array', () => {
+
+    const dates = MdcEvent.fromJSONRecurrence(['bad date', '2014-05-20T15:00:00Z', 'worst date']);
+    expect(dates.length).toBe(1);
+    expect(dates[0] instanceof Date).toBe(true);
+    expect(dates[0].getFullYear()).toBe(2014);
+
   });
 
 

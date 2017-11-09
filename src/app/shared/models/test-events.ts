@@ -5,8 +5,8 @@
 import {MdcEvent} from "./mdc-event";
 let jsonEvent1 = {
   id: 1,
-  eventName: 'my eventName',
-  eventType: 'public',
+  title: 'my title',
+  type: 'public',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName',
@@ -22,14 +22,16 @@ let jsonEvent1 = {
   isClosedToMedia: false,
   isClosedToPublic: false,
   isFree: false,
+  fee: 3,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event', 'url': 'http://www.google.com'}
 }
 
 let jsonEvent2 = {
   id: 2,
-  eventName: 'my eventName2',
-  eventType: 'public',
+  title: 'my title2',
+  type: 'public',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
@@ -45,14 +47,16 @@ let jsonEvent2 = {
   isClosedToMedia: false,
   isClosedToPublic: false,
   isFree: false,
+  fee: 4,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 2', 'url': 'http://www.google.com'}
 }
 
 let jsonEvent3 = {
   id: 3,
-  eventName: 'my eventName3',
-  eventType: 'private',
+  title: 'my title3',
+  type: 'private',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
@@ -68,15 +72,17 @@ let jsonEvent3 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
+  fee: 5,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event 3', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 3', 'url': 'http://www.google.com'}
 }
 
 
 let jsonEvent4 = {
   id: 4,
-  eventName: 'my eventName4',
-  eventType: 'private',
+  title: 'my title4',
+  type: 'private',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
@@ -92,14 +98,16 @@ let jsonEvent4 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
+  fee: 5,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event 4', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 4', 'url': 'http://www.google.com'}
 }
 
 let jsonEvent5 = {
   id: 5,
-  eventName: 'my eventName5',
-  eventType: 'private',
+  title: 'my title5',
+  type: 'private',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
@@ -115,14 +123,16 @@ let jsonEvent5 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
+  fee: 7,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event 5', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 5', 'url': 'http://www.google.com'}
 }
 
 let jsonEvent6 = {
   id: 6,
-  eventName: 'my eventName6',
-  eventType: 'private',
+  title: 'my title6',
+  type: 'private',
   startDate: '2017-07-20T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
@@ -138,8 +148,10 @@ let jsonEvent6 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
+  fee: 3.5,
+  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  eventURL: {'description': 'URL for event 6', 'url': 'http://www.google.com'}
+  url: {'description': 'URL for event 6', 'url': 'http://www.google.com'}
 }
 
 export class testEvents {

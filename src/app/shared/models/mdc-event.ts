@@ -6,15 +6,14 @@ import * as _ from "lodash";
 export class MdcEvent {
   public id: number;
   public odataId: string;
-  public eventName: string;
+  public title: string;
   public startDate: Date;
   public endDate: Date;
-  public geolocation: string;
   public isAllDayEvent: boolean;
   public isRecurringEvent: boolean;
-  public hasAttachments: boolean;
+  public recurrence: Date[];
   public categories: string [];
-  public eventType: string;
+  public type: string;
   public shortDescription: string;
   public longDescription: string;
   public contactName: string;
@@ -26,24 +25,26 @@ export class MdcEvent {
   public isClosedToMedia: boolean;
   public isClosedToPublic: boolean;
   public isFree: boolean;
-  public eventUrl: object;
+  public fee: number;
+  public rsvp: string;
+  public url: object;
 
 
   public static schema = {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'eventName', 'eventType', 'startDate', 'endDate',
+    'required': ['id', 'title', 'type', 'startDate', 'endDate',
       'contactName', 'contactPhone', 'contactEmail',
       'adaName', 'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
       },
-      'eventName': {
+      'title': {
         'type': 'string'
       },
-      'eventType': {
+      'type': {
         'type': 'string'
       },
       'startDate': {
@@ -75,40 +76,52 @@ export class MdcEvent {
         'format': 'email'
       },
       'isRecurringEvent': {
-        'type': ['boolean', null]
+        'type': ['boolean', 'null']
+      },
+      'recurrence': {
+        'type': ['array', 'null'],
+        'items': {
+          'type': 'string'
+        }
       },
       'isAllDayEvent': {
-        'type': ['boolean', null]
+        'type': ['boolean', 'null']
       },
       'shortDescription': {
-        'type': ['string', null]
+        'type': ['string', 'null']
       },
       'longDescription': {
-        'type': ['string', null]
+        'type': ['string', 'null']
       },
       'isClosedToMedia': {
-        'type': ['boolean', null]
+        'type': ['boolean', 'null']
       },
       'isClosedToPublic': {
-        'type': ['boolean', null]
+        'type': ['boolean', 'null']
       },
       'isFree': {
-        'type': ['boolean', null]
+        'type': ['boolean', 'null']
       },
-      'eventURL': {
+      'fee': {
+        'type': ['number', 'null']
+      },
+      'rsvp': {
+        'type': ['string', 'null']
+      },
+      'url': {
         'type': 'object',
         'properties': {
           'description': {
-            'type': ['string', null]
+            'type': ['string', 'null']
           },
           'url': {
-            'type': ['string', null],
+            'type': ['string', 'null'],
             'format': 'url'
           }
         }
       },
       'categories': {
-        'type': ['array', null],
+        'type': ['array', 'null'],
         'items': {
           'type': 'string'
         }
@@ -120,15 +133,14 @@ export class MdcEvent {
 
   constructor(id: number,
               odataId: string,
-              eventName: string,
+              title: string,
               startDate: Date,
               endDate: Date,
-              geolocation: string,
               isRecurringEvent: boolean,
+              recurrence: Date[],
               isAllDayEvent: boolean,
-              hasAttachments: boolean,
               categories: string [],
-              eventType: string,
+              type: string,
               shortDescription: string,
               longDescription: string,
               contactName: string,
@@ -140,19 +152,20 @@ export class MdcEvent {
               isClosedToMedia: boolean,
               isClosedToPublic: boolean,
               isFree: boolean,
-              eventURL: object) {
+              fee: number,
+              rsvp: string,
+              url: object) {
 
     this.id = id || null;
     this.odataId = odataId || '';
-    this.eventName = eventName || '';
+    this.title = title || '';
     this.startDate = startDate || null;
     this.endDate = endDate || null;
-    this.geolocation = geolocation || '';
     this.isRecurringEvent = isRecurringEvent || false;
+    this.recurrence = recurrence || null;
     this.isAllDayEvent = isAllDayEvent || false;
-    this.hasAttachments = hasAttachments || false;
     this.categories = categories || [];
-    this.eventType = eventType || '';
+    this.type = type || '';
     this.shortDescription = shortDescription || '';
     this.longDescription = longDescription || '';
     this.contactName = contactName || '';
@@ -164,7 +177,9 @@ export class MdcEvent {
     this.isClosedToMedia = isClosedToMedia || false;
     this.isClosedToPublic = isClosedToPublic || false;
     this.isFree = isFree || true;
-    this.eventUrl = eventURL || {};
+    this.fee = fee || null;
+    this.rsvp = rsvp || '';
+    this.url = url || {};
   }
 
 
@@ -176,18 +191,21 @@ export class MdcEvent {
    */
   public static fromJSON(json: any): MdcEvent {
     if (MdcEvent.validateJson(json))
+
+      // convert recurrence object to array of dates
+
+
       return new MdcEvent(
         json.id,
         json.odataId,
-        json.eventName,
+        json.title,
         new Date(json.startDate),
         new Date(json.endDate),
-        json.geolocation,
-        json.isAllDayEvent,
         json.isRecurringEvent,
-        json.hasAttachments,
+        MdcEvent.fromJSONRecurrence(json.recurrence),
+        json.isAllDayEvent,
         json.categories,
-        json.eventType,
+        json.type,
         json.shortDescription,
         json.longDescription,
         json.contactName,
@@ -199,7 +217,9 @@ export class MdcEvent {
         json.isClosedToMedia,
         json.isClosedToPublic,
         json.isFree,
-        json.eventURL
+        json.fee,
+        json.rsvp,
+        json.url
       );
     else {
       console.error('error: invalid json to build event', json);
@@ -240,6 +260,36 @@ export class MdcEvent {
     return events;
   }
 
+  /**
+   * fromJSONRecurrence translates an array of json strings into an array of
+   * Date objects. If one of strings in the imput array can not be converted to
+   * a Date, it is skipped.
+   * @param jsonRecurrence - the array of strings to be converted to dates.
+   * @returns {any} - converted array of dates
+   */
+  public static fromJSONRecurrence(jsonRecurrence: Array<string>): Array<Date>{
+
+    // no input array is mapped it to an empty array
+    if (_.isEmpty(jsonRecurrence)) {
+      return [];
+    }
+
+    // map each element of the jsonRecurrence from string to date.
+    // and ignores those strings which can not be coverted to a date.
+    const recurrenceDates: Array<Date> = jsonRecurrence.reduce(function (accumulator, item) {
+      let recurrenceDate = new Date(item);
+
+      if(!isNaN( recurrenceDate.getTime() )){
+        accumulator.push(recurrenceDate);
+      }
+
+      return accumulator;
+
+    }, []);
+
+      return recurrenceDates;
+
+  }
 
   /**
    * validateJson is design to validate the json that comes from
