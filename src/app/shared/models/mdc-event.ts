@@ -362,6 +362,22 @@ export class MdcEvent {
     return tv4.validate(json, MdcEvent.schema);
   };
 
-
-
 };
+
+
+/**
+ * MdcEventsByDate has a date and
+ * a collection of events that fall within that date.
+ * It is a way to group all events in a specific date, with
+ * explicit access to the date in question.
+ */
+export class MdcEventsByDate {
+  date: Date;
+  events: MdcEvent[];
+
+  constructor(date: Date, events: MdcEvent[]){
+    this.date = date;
+    this.events = events;
+
+  }
+}

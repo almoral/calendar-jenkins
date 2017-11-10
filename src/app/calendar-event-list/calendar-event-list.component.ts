@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataStoreService} from "../shared/services/data-store.service";
-import {MdcEvent} from "../shared/models/mdc-event";
+import {MdcEvent, MdcEventsByDate} from "../shared/models/mdc-event";
 import {Observable} from "rxjs";
 
 @Component({
@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class CalendarEventListComponent implements OnInit {
 
-  events$: Observable<{date: Date, events: MdcEvent[]}[]>;
+  events$: Observable<MdcEventsByDate[]>;
 
   constructor(private dataStore: DataStoreService) { }
 

@@ -7,7 +7,7 @@ let jsonEvent1 = {
   id: 1,
   title: 'my title',
   type: 'public',
-  startDate: '2017-07-20T15:00:00Z',
+  startDate: '2017-07-19T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName',
   contactPhone: '3055555555',
@@ -59,8 +59,8 @@ let jsonEvent3 = {
   id: 3,
   title: 'my title3',
   type: 'private',
-  startDate: '2017-07-20T15:00:00Z',
-  endDate: '2017-07-21T15:00:00Z',
+  startDate: '2017-07-22T15:00:00Z',
+  endDate: '2017-07-22T16:00:00Z',
   contactName: 'my contactName2',
   contactPhone: '3055555556',
   contactEmail: 'contact3@email.com',
@@ -86,8 +86,8 @@ let jsonEvent4 = {
   id: 4,
   title: 'my title4',
   type: 'private',
-  startDate: '2017-07-20T15:00:00Z',
-  endDate: '2017-07-21T15:00:00Z',
+  startDate: '2017-07-17T15:03:00Z',
+  endDate: '2017-07-21T15:04:00Z',
   contactName: 'my contactName2',
   contactPhone: '4055555556',
   contactEmail: 'contact4@email.com',
@@ -112,8 +112,8 @@ let jsonEvent5 = {
   id: 5,
   title: 'my title5',
   type: 'private',
-  startDate: '2017-07-20T15:00:00Z',
-  endDate: '2017-07-21T15:00:00Z',
+  startDate: '2017-07-17T15:07:00Z',
+  endDate: '2017-07-21T15:08:00Z',
   contactName: 'my contactName2',
   contactPhone: '5055555556',
   contactEmail: 'contact5@email.com',
@@ -138,7 +138,7 @@ let jsonEvent6 = {
   id: 6,
   title: 'my title6',
   type: 'private',
-  startDate: '2017-07-20T15:00:00Z',
+  startDate: '2017-07-18T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName2',
   contactPhone: '6055555556',
@@ -160,7 +160,85 @@ let jsonEvent6 = {
   address: null
 }
 
-export class testEvents {
+let jsonEvent7 = {
+  id: 7,
+  title: 'my title7',
+  type: 'private',
+  startDate: '2017-07-23T14:00:00Z',
+  endDate: '2017-07-23T16:00:00Z',
+  contactName: 'my contactName2',
+  contactPhone: '7055555557',
+  contactEmail: 'contact7@email.com',
+  adaName: 'my adaName7',
+  adaPhone: '7055551274',
+  adaEmail: 'ada7@email.com',
+  isRecurringEvent: false,
+  isAllDayEvent: true,
+  shortDescription: 'This is a short description 7.',
+  longDescription: 'This is a long description 7.',
+  isClosedToMedia: true,
+  isClosedToPublic: false,
+  isFree: false,
+  fee: 3.5,
+  rsvp: 'joe bler',
+  categories: ['animals', 'public-safety'],
+  url: {'description': 'URL for event 7', 'url': 'http://www.google.com'},
+  address: null
+}
+
+let jsonEvent8 = {
+  id: 8,
+  title: 'my title8',
+  type: 'private',
+  startDate: '2017-07-23T15:00:00Z',
+  endDate: '2017-07-23T18:00:00Z',
+  contactName: 'my contactName2',
+  contactPhone: '8055555558',
+  contactEmail: 'contact8@email.com',
+  adaName: 'my adaName8',
+  adaPhone: '8055551284',
+  adaEmail: 'ada8@email.com',
+  isRecurringEvent: false,
+  isAllDayEvent: true,
+  shortDescription: 'This is a short description 8.',
+  longDescription: 'This is a long description 8.',
+  isClosedToMedia: true,
+  isClosedToPublic: false,
+  isFree: false,
+  fee: 3.5,
+  rsvp: 'joe bler',
+  categories: ['animals', 'public-safety'],
+  url: {'description': 'URL for event 8', 'url': 'http://www.google.com'},
+  address: null
+}
+
+let jsonEvent9 = {
+  id: 9,
+  title: 'my title9',
+  type: 'private',
+  startDate: '2017-07-23T18:00:00Z',
+  endDate: '2017-07-23T19:00:00Z',
+  contactName: 'my contactName2',
+  contactPhone: '9055555559',
+  contactEmail: 'contact9@email.com',
+  adaName: 'my adaName9',
+  adaPhone: '9055551294',
+  adaEmail: 'ada9@email.com',
+  isRecurringEvent: false,
+  isAllDayEvent: true,
+  shortDescription: 'This is a short description 9.',
+  longDescription: 'This is a long description 9.',
+  isClosedToMedia: true,
+  isClosedToPublic: false,
+  isFree: false,
+  fee: 3.5,
+  rsvp: 'joe bler',
+  categories: ['animals', 'public-safety'],
+  url: {'description': 'URL for event 9', 'url': 'http://www.google.com'},
+  address: null
+}
+
+export class TestEvents {
 
   public static testEventsOne = [
     MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2)];
@@ -170,11 +248,21 @@ export class testEvents {
   public static testEventsThree = [
     MdcEvent.fromJSON(jsonEvent4), MdcEvent.fromJSON(jsonEvent5), MdcEvent.fromJSON(jsonEvent6)];
 
+  public static testEventsSameDay_7_23_2017 = [
+    MdcEvent.fromJSON(jsonEvent7), MdcEvent.fromJSON(jsonEvent8), MdcEvent.fromJSON(jsonEvent9)];
+
+  public static testEventsDifferentDates = [
+    MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent3)];
+
+  public static testEventsFour = [
+    ...TestEvents.testEventsOne, ...TestEvents.testEventsTwo, ...TestEvents.testEventsThree
+  ];
+
 
   public static testEventsByDate = [
-    {date: new Date(2017, 10, 5), events: testEvents.testEventsOne},
-    {date: new Date(2017, 10, 7), events: testEvents.testEventsTwo},
-    {date: new Date(2017, 10, 10), events: testEvents.testEventsThree}]
+    {date: new Date(2017, 10, 5), events: TestEvents.testEventsOne},
+    {date: new Date(2017, 10, 7), events: TestEvents.testEventsTwo},
+    {date: new Date(2017, 10, 10), events: TestEvents.testEventsThree}]
 
 
 }
