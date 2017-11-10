@@ -10,14 +10,14 @@ import {Response} from "@angular/http";
 
 
 /**
- * CalendarDataService is all about getting data
+ * EventDataService is all about getting data
  * for the calendar from external source. More specifically
  * it encapsulates the http calls and mapping
  * to the model of the application.
  */
 
 @Injectable()
-export class CalendarDataService {
+export class EventDataService {
 
   constructor(
     private httpClient: HttpClient,
