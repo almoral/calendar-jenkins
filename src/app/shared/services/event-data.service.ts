@@ -32,10 +32,11 @@ export class EventDataService {
    * @returns {Observable<MdcEvent []>} - Success Observable array of MdcEvents
    * http 404 - No calendar found: Observable empty array.
    * Any other http error code will throw an observable exception.
-   *
+   * TODO: signature needs to change to accept to-Date and from-Date
    */
   getEventsOnCalendar(calendarId: string): Observable<MdcEvent []> {
 
+    //TODO: use configurationService to get urls
     let url: string = `/api/calendar/${calendarId}/events`;
 
     return this.httpClient.get(url)
@@ -54,7 +55,7 @@ export class EventDataService {
               return Observable.of([]);
             }
             default: {
-              console.log(`Error returned code ${err.status}, body was: ${err.error}`);
+              console.error(`Error returned code ${err.status}, body was: ${err.error}`);
               return Observable.throw('Error ocurred: ' + err.status);
             }
           }

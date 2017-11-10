@@ -240,10 +240,9 @@ let jsonEvent9 = {
 
 export class TestEvents {
 
-  public static testEventsOne = [
-    MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2)];
+  public static testEventsOne = [MdcEvent.fromJSON(jsonEvent3)];
 
-  public static testEventsTwo = [MdcEvent.fromJSON(jsonEvent3)];
+  public static testEventsTwo = [MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2)];
 
   public static testEventsThree = [
     MdcEvent.fromJSON(jsonEvent4), MdcEvent.fromJSON(jsonEvent5), MdcEvent.fromJSON(jsonEvent6)];
