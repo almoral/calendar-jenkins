@@ -31,7 +31,7 @@ describe('DataStoreService', () => {
     )
   }));
 
-  it('when calling initializeEvents the collection grouped by date are emitted', inject([DataStoreService], (service: DataStoreService) => {
+  it('when calling initializeEvents the collection of events grouped by date are emitted', inject([DataStoreService], (service: DataStoreService) => {
 
     service.initializeEvents(TestEvents.testEventsTwo)
     let eventsByDate$ = service.eventsByDate$
