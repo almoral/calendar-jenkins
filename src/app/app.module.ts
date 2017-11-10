@@ -19,10 +19,11 @@ import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-depart
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
+import {EventService} from "./shared/services/event.service";
 import {DataStoreService} from "./shared/services/data-store.service";
 import { MessagesComponent } from './messages/messages.component';
 import {MessagesService} from "./shared/services/messages.service";
-import {EventService} from "./shared/services/event.service";
+
 
 
 @NgModule({
