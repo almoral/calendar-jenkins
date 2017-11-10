@@ -28,41 +28,6 @@ export class EventService {
       .value();
 
   }
-
-
-  eventsByDate2(events: MdcEvent[]): MdcEventsByDate[] {
-    return this.orderGroupEventsByDate(
-      this.mapEventsByDate(
-        this.groupEventsByDate(
-          events)));
-  }
-
-  groupEventsByDate(events: MdcEvent[]) {
-
-    let eventsByDateMap = _.groupBy(events, (event) => {
-        return (
-          new Date(event.startDate.getFullYear(),
-            event.startDate.getMonth(),
-            event.startDate.getDate()
-          )
-        );
-      }
-    );
-
-    return eventsByDateMap;
-  }
-
-  mapEventsByDate(eventsByDateMap): MdcEventsByDate[] {
-    return _.map(eventsByDateMap, (value, key) => {
-      return new MdcEventsByDate(new Date(key), value);
-    });
-  }
-
-  orderGroupEventsByDate(mdcEventsByDateArray: MdcEventsByDate[]): MdcEventsByDate[] {
-    let eventsOrderedByDate = _.orderBy(mdcEventsByDateArray, ['date'], ['asc']);
-    return eventsOrderedByDate;
-  }
-
-
+  
 }
 
