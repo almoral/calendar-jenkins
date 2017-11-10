@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs/Rx';
 import {MdcEventsByDate} from '../models/mdc-event';
 import * as _ from 'lodash';
-import {testEvents} from '../models/test-events';
+import {TestEvents} from '../models/test-events';
 
 
 
@@ -11,7 +11,7 @@ export class DataStoreService {
 
   constructor() {
 
-    this.initializeEventsList(testEvents.testEventsByDate);
+    this.initializeEventsList(TestEvents.testEventsByDate);
 
   }
 

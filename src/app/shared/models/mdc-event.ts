@@ -362,10 +362,6 @@ export class MdcEvent {
     return tv4.validate(json, MdcEvent.schema);
   };
 
-
-
-
-
 };
 
 
@@ -375,7 +371,13 @@ export class MdcEvent {
  * It is a way to group all events in a specific date, with
  * explicit access to the date in question.
  */
-export interface MdcEventsByDate {
+export class MdcEventsByDate {
   date: Date;
   events: MdcEvent[];
+
+  constructor(date: Date, events: MdcEvent[]){
+    this.date = date;
+    this.events = events;
+
+  }
 }
