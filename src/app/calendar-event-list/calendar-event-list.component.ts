@@ -16,7 +16,7 @@ export class CalendarEventListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.events$ = this.dataStore.events$;
+    this.events$ = this.dataStore.eventsByDate$;
 
   }
 }
