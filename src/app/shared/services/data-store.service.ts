@@ -3,15 +3,16 @@ import {BehaviorSubject, Observable} from 'rxjs/Rx';
 import {MdcEventsByDate} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {TestEvents} from '../models/test-events';
+import {EventService} from "./event.service";
 
 
 
 @Injectable()
 export class DataStoreService {
 
-  constructor() {
+  constructor(eventService: EventService) {
 
-    this.initializeEventsList(TestEvents.testEventsByDate);
+    this.initializeEventsList(eventService.eventsByDate(TestEvents.testEvents));
 
   }
 

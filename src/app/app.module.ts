@@ -22,6 +22,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import {DataStoreService} from "./shared/services/data-store.service";
 import { MessagesComponent } from './messages/messages.component';
 import {MessagesService} from "./shared/services/messages.service";
+import {EventService} from "./shared/services/event.service";
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MessagesService} from "./shared/services/messages.service";
   providers: [
     ConfigurationService,
     CategoriesService,
+    EventService,
     EventDataService,
     DataStoreService,
     MessagesService

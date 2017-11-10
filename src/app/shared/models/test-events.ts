@@ -254,15 +254,12 @@ export class TestEvents {
   public static testEventsDifferentDates = [
     MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent3)];
 
-  public static testEventsFour = [
-    ...TestEvents.testEventsOne, ...TestEvents.testEventsTwo, ...TestEvents.testEventsThree
+  public static testEvents = [
+    ...TestEvents.testEventsOne,
+    ...TestEvents.testEventsTwo,
+    ...TestEvents.testEventsThree,
+    ...TestEvents.testEventsSameDay_7_23_2017
   ];
-
-
-  public static testEventsByDate = [
-    {date: new Date(2017, 10, 5), events: TestEvents.testEventsOne},
-    {date: new Date(2017, 10, 7), events: TestEvents.testEventsTwo},
-    {date: new Date(2017, 10, 10), events: TestEvents.testEventsThree}]
 
 
 }
