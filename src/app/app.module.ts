@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ConfigurationService } from './shared/services/configuration.service';
 import { CategoriesService } from './shared/services/categories.service';
-import { CalendarDataService } from './shared/services/calendar-data.service';
-import {EventsDataService} from './shared/services/events-data.service';
+import { EventDataService } from './shared/services/event-data.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -51,8 +50,7 @@ import {MessagesService} from "./shared/services/messages.service";
   providers: [
     ConfigurationService,
     CategoriesService,
-    CalendarDataService,
-    EventsDataService,
+    EventDataService,
     DataStoreService,
     MessagesService
   ],

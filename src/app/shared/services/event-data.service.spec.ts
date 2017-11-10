@@ -1,27 +1,27 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CalendarDataService } from './calendar-data.service';
+import { EventDataService } from './event-data.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {ConfigurationService} from "./configuration.service";
 import {MdcEvent} from "../models/mdc-event";
 
-describe('CalendarDataService', () => {
+describe('EventDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CalendarDataService, ConfigurationService],
+      providers: [EventDataService, ConfigurationService],
       imports:[HttpClientTestingModule]
 
     });
   });
 
 
-  it('should be created', inject([CalendarDataService], (service: CalendarDataService) => {
+  it('should be created', inject([EventDataService], (service: EventDataService) => {
     expect(service).toBeTruthy();
   }));
 
 
-  it('when making a call to get events I would like it to be mapped to an array of MdcEvents', inject([HttpTestingController, CalendarDataService],
-    (httpMock: HttpTestingController, service: CalendarDataService) => {
+  it('when making a call to get events I would like it to be mapped to an array of MdcEvents', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
 
       let jsonEvent1 = {
         id: 1,
@@ -94,8 +94,8 @@ describe('CalendarDataService', () => {
 
     }));
 
-  it('when making a call to get events, if no calendar is found I would like to get an empty collection ', inject([HttpTestingController, CalendarDataService],
-    (httpMock: HttpTestingController, service: CalendarDataService) => {
+  it('when making a call to get events, if no calendar is found I would like to get an empty collection ', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
 
       service.getEventsOnCalendar("DOESNOTEXIST")
         .subscribe(data => {
@@ -110,8 +110,8 @@ describe('CalendarDataService', () => {
 
     }));
 
-  it('when making a call to get events, if http 500 Server error occurs, resend an error ', inject([HttpTestingController, CalendarDataService],
-    (httpMock: HttpTestingController, service: CalendarDataService) => {
+  it('when making a call to get events, if http 500 Server error occurs, resend an error ', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
 
       service.getEventsOnCalendar("ASD")
         .subscribe(data => {
@@ -126,8 +126,8 @@ describe('CalendarDataService', () => {
 
     }));
 
-  it('when making a call to get events, if network error occurs, resend an error ', inject([HttpTestingController, CalendarDataService],
-    (httpMock: HttpTestingController, service: CalendarDataService) => {
+  it('when making a call to get events, if network error occurs, resend an error ', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
 
       service.getEventsOnCalendar("ASD")
         .subscribe(data => {
