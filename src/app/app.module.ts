@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { ConfigurationService } from './shared/services/configuration.service';
 import { CategoriesService } from './shared/services/categories.service';
 import { EventDataService } from './shared/services/event-data.service';
-import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -23,6 +22,8 @@ import {EventService} from "./shared/services/event.service";
 import {DataStoreService} from "./shared/services/data-store.service";
 import { MessagesComponent } from './messages/messages.component';
 import {MessagesService} from "./shared/services/messages.service";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./shared/services/in-memory-data.service";
 
 
 
@@ -44,7 +45,7 @@ import {MessagesService} from "./shared/services/messages.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase:'api/calendar/ASD'}),
     AppRoutingModule,
     NgxPaginationModule,
     MaterializeModule
