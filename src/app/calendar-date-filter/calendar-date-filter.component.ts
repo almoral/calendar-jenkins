@@ -17,8 +17,9 @@ export class CalendarDateFilterComponent implements OnInit {
   filterDay: number;
 
   private years: number[] = [2014, 2015, 2016, 2017, 2018];
-  private months: string[] = [ 'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December' ];
+
+  // We can use the months function but it's deprecated in v2.0.
+  private months: string[] = moment.months();
   private days: number[];
   constructor() {}
 
@@ -39,7 +40,7 @@ export class CalendarDateFilterComponent implements OnInit {
   }
 
   private updateNumberOfDays(year: number, month: number): void {
-    let newNumberOfDays: number = moment("" + year + "-" + month + "", 'YYYY-MMMM').daysInMonth();
+    let newNumberOfDays: number = moment('' + year + '-' + month + '', 'YYYY-MMMM').daysInMonth();
     this.days = this.generateDaysInMonth(newNumberOfDays);
   }
 }
