@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import * as moment from 'moment';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'mdc-calendar-date-filter',
   templateUrl: './calendar-date-filter.component.html',
   styleUrls: ['./calendar-date-filter.component.css']
 })
+
 export class CalendarDateFilterComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  filterYear: number;
+  filterMonth: string;
+  filterDay: number;
+
+  private years: number[] = [2014, 2015, 2016, 2017, 2018];
+  private months: string[] = [ 'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December' ];
+  private days: number[];
+  constructor() {}
 
   ngOnInit() {
+    let daysInMonth: number = moment().daysInMonth();
+    this.days = this.generateDaysInMonth(daysInMonth);
+    this.filterYear = moment().year();
+    this.filterMonth = moment().format('MMMM');
+    this.filterDay = moment().date();
   }
 
+  private generateDaysInMonth(daysInMonth: number): number[] {
+    let arrDays: number[] = [];
+    _.times(daysInMonth, function(i){
+      arrDays.push(i + 1);
+    });
+    return arrDays;
+  }
+
+  private updateNumberOfDays(year: number, month: number): void {
+    let newNumberOfDays: number = moment("" + year + "-" + month + "", 'YYYY-MMMM').daysInMonth();
+    this.days = this.generateDaysInMonth(newNumberOfDays);
+  }
 }
