@@ -14,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
   createDb(reqInfo?: RequestInfo) {
 
-    const events = {events:TestEvents.testEvents};
+    const events = {events:TestEvents.testEventsOne};
     const departments = [];
     const types = [];
 
