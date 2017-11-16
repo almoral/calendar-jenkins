@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {DataStoreService} from "../shared/services/data-store.service";
 
 @Component({
   selector: 'mdc-calendar-search-box',
@@ -8,13 +7,10 @@ import {DataStoreService} from "../shared/services/data-store.service";
 })
 export class CalendarSearchBoxComponent implements OnInit {
 
-  constructor(private dataStoreService: DataStoreService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  clickMe(){
-    this.dataStoreService.getEvents(null, null);
-  }
 
 }
