@@ -12,8 +12,8 @@ import {EventDataService} from "./event-data.service";
 export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
-    this.initializeEvents(TestEvents.testEvents);
-    //this.getEvents(null, null);
+    //this.initializeEvents(TestEvents.testEvents);
+    this.getEvents(null, null);
   }
 
   // observable collection of events.
@@ -35,11 +35,8 @@ export class DataStoreService {
    * its eventsByDate representation at eventsByDate$
    */
   initializeEvents(newEvents: MdcEvent[]) {
-    console.log("The events are", newEvents);
     this.eventsSubject.next(_.cloneDeep(newEvents));
     let eventsByDate = this.eventService.eventsByDate(newEvents);
-
-    console.log("Events By Date", eventsByDate);
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
   }
 
