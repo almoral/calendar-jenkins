@@ -77,7 +77,7 @@ let jsonEvent3 = {
   fee: 5,
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
-  url: {'description': 'URL for event 3', 'url': 'http://www.google.com'},
+  url: {description: 'URL for event 3', url: 'http://www.google.com'},
   address: null
 }
 
@@ -239,6 +239,27 @@ let jsonEvent9 = {
 }
 
 export class TestEvents {
+
+
+
+
+  public static testJsonEventsOne = [jsonEvent3];
+
+  public static testJsonEventsTwo = [jsonEvent1, jsonEvent2];
+
+  public static testJsonEventsThree = [jsonEvent4, jsonEvent5, jsonEvent6];
+
+  public static testJsonEventsSameDay_7_23_2017 = [jsonEvent7, jsonEvent8, jsonEvent9];
+
+  public static testJsonEventsDifferentDates = [jsonEvent2, jsonEvent1, jsonEvent3];
+
+  public static testJsonEvents = [
+    ...TestEvents.testJsonEventsOne,
+    ...TestEvents.testJsonEventsTwo,
+    ...TestEvents.testJsonEventsThree,
+    ...TestEvents.testJsonEventsSameDay_7_23_2017
+  ];
+
 
   public static testEventsOne = [MdcEvent.fromJSON(jsonEvent3)];
 

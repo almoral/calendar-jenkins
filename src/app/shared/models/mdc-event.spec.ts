@@ -3,6 +3,7 @@
 
 
 import {MdcEvent} from "./mdc-event";
+import {TestEvents} from "./test-events";
 
 
 describe('MdcEvent', () => {

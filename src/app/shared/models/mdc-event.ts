@@ -310,6 +310,7 @@ export class MdcEvent {
         accumulator.push(MdcEvent.fromJSON(item));
       } catch(error){
         // skip elements which do not conform to the schema
+        console.error("fromJSONArray: could not process event: ", error);
       }
 
       return accumulator;
