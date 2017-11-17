@@ -99,3 +99,8 @@ button.picker__close:focus,
   height: 30px;
 }
 
+.date-container .btn.light-blue-text { 
+  font-size: 13px;
+  font-weight: 500;
+}
+
