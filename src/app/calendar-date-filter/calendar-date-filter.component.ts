@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import * as _ from 'lodash';
+import {DateService} from '../shared/services/date.service';
+
 
 
 @Component({
@@ -11,36 +12,26 @@ import * as _ from 'lodash';
 
 export class CalendarDateFilterComponent implements OnInit {
 
-  @Input()
-  filterYear: number;
-  filterMonth: string;
-  filterDay: number;
-
+  private filterYear: number;
+  private filterMonth: string;
+  private filterDay: number;
   private years: number[] = [2014, 2015, 2016, 2017, 2018];
-
-  // We can use the months function but it's deprecated in v2.0.
+  // We can use the months function but it's deprecated in momentjs v2.0.
   private months: string[] = moment.months();
   private days: number[];
-  constructor() {}
+
+  constructor( private dateService: DateService ) {}
 
   ngOnInit() {
-    let daysInMonth: number = moment().daysInMonth();
-    this.days = this.generateDaysInMonth(daysInMonth);
+    this.days = this.dateService.getDaysInMonth();
     this.filterYear = moment().year();
-    this.filterMonth = moment().format('MMMM');
-    this.filterDay = moment().date();
+    this.filterMonth = moment().format(this.dateService.monthFormat);
   }
 
-  private generateDaysInMonth(daysInMonth: number): number[] {
-    let arrDays: number[] = [];
-    _.times(daysInMonth, function(i){
-      arrDays.push(i + 1);
-    });
-    return arrDays;
+  public updateDays(year: number, month: number): void {
+    let selectedDate = this.dateService.createDate(year, month);
+    this.days = this.dateService.getNumberOfDays(selectedDate);
   }
 
-  private updateNumberOfDays(year: number, month: number): void {
-    let newNumberOfDays: number = moment('' + year + '-' + month + '', 'YYYY-MMMM').daysInMonth();
-    this.days = this.generateDaysInMonth(newNumberOfDays);
-  }
+
 }

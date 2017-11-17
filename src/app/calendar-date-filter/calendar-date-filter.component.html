@@ -4,14 +4,15 @@
 
     <div class="col s12 m3">
       <label for="filterYear">Year</label>
-      <select [(ngModel)]="filterYear" (change)="updateNumberOfDays(filterYear, filterMonth)" class="browser-default" id="filterYear">
+      <select [(ngModel)]="filterYear" (change)="updateDays(filterYear, filterMonth)" class="browser-default" id="filterYear">
         <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
       </select>
     </div>
 
     <div class="col s12 m6">
       <label for="filtermonth">Month</label>
-      <select [(ngModel)]="filterMonth" (change)="updateNumberOfDays(filterYear, filterMonth)" class="browser-default" id="filterMonth">
+      <select [(ngModel)]="filterMonth" (change)="updateDays(filterYear, filterMonth)" class="browser-default" id="filterMonth">
+        <option value=""></option>
         <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
       </select>
     </div>
@@ -19,6 +20,7 @@
     <div class="col s12 m3">
       <label for="filterDay">Day</label>
       <select [(ngModel)]="filterDay" class="browser-default" id="filterDay">
+        <option value=""></option>
         <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
       </select>
     </div>

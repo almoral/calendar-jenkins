@@ -5,5 +5,9 @@
 
 export const environment = {
   production: false,
-  selectedDepartment: window['selectedDepartment']
+  selectedDepartment: window['selectedDepartment'],
+  monthFormat: 'MMMM',
+  dateFormatFull: 'YYYY-MMMM',
+  dateFormatNumber: 'YYYY-MM',
+  dateFormatShortName: 'YYYY-MMM'
 };

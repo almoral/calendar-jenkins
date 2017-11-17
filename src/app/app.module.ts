@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ConfigurationService } from './shared/services/configuration.service';
 import { CategoriesService } from './shared/services/categories.service';
 import { EventDataService } from './shared/services/event-data.service';
+import { DateService } from './shared/services/date.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -57,7 +58,8 @@ import {FormsModule} from '@angular/forms';
     EventService,
     EventDataService,
     DataStoreService,
-    MessagesService
+    MessagesService,
+    DateService
   ],
   bootstrap: [AppComponent]
 })
