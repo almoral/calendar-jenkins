@@ -5,8 +5,8 @@ import {Observable} from "rxjs";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {MdcEvent} from "../models/mdc-event";
+import {forkJoin} from "rxjs/observable/forkJoin";
 import * as _ from "lodash";
-import {Response} from "@angular/http";
 
 
 /**
@@ -63,6 +63,44 @@ export class EventDataService {
       });
 
   }
+
+
+  /**
+   * getEventsOnCalendars combines all events for all calendars in calendars
+   * and returns an observable with single array with all events on it.
+   * If calendars is null or [] an Observable of empty array will be passed in.
+   * If an error is thrown by any of calendars, that calendar is ignored.
+   * @param calendars - array of calendarIds to be fetched.
+   * @returns {any} - Observable<MdcEvent[] Observable with all events of all calendars
+   * as a single array.
+   */
+  getEventsOnCalendars(calendars: string[]): Observable<MdcEvent[]> {
+
+    if (_.isEmpty(calendars)) {
+      return Observable.of([]);
+    }
+
+    // call each calendar on calendars
+    let events$: Array<Observable <MdcEvent[]> > = calendars.reduce((accumulator, calendarId) => {
+
+      // push each observable into array and
+      // handle errors by providing an empty array for that call.
+      accumulator.push(this.getEventsOnCalendar(calendarId)
+                        .catch((error) => {
+                          console.error('getEventsOnCalendars: error while processing calendarId', calendarId);
+                          return Observable.of([])}));
+      return accumulator;
+    }, []);
+
+    // Wait for all calendar calls to complete and
+    // then flatten the collections of events into one collection.
+    return forkJoin(events$)
+      .map((eventsByCalendar: Array<MdcEvent[]>):MdcEvent[] => {
+        return _.flatten(eventsByCalendar);
+      });
+  }
+
+
 
 
 
