@@ -38,6 +38,7 @@ export class EventDataService {
 
     //TODO: use configurationService to get urls
     let url: string = `/api/calendar/${calendarId}/events`;
+    //let url: string = 'api/events';
 
     return this.httpClient.get(url)
       .map((rawEvents, index) => {
