@@ -6,7 +6,12 @@ import {environment} from '../../../environments/environment';
 @Injectable()
 export class DateService {
 
-  public monthFormat: string = environment.monthFormat;
+  public static get MONTH_FORMAT(): string {
+   return'MMMM';
+  }
+  public static get DATE_FORMAT_FULL(): string {
+    return 'YYYY-MMMM';
+  }
 
   constructor() { }
 
@@ -29,7 +34,7 @@ export class DateService {
   }
 
   public getNumberOfDays(selectedDate: string): number[] {
-    let newNumberOfDays: number = moment(selectedDate, environment.dateFormatFull).daysInMonth();
+    let newNumberOfDays: number = moment(selectedDate, DateService.DATE_FORMAT_FULL).daysInMonth();
     let days: number[] = this.generateDaysInMonth(newNumberOfDays);
     return days;
   }

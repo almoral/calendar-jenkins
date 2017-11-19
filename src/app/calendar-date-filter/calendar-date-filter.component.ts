@@ -25,7 +25,7 @@ export class CalendarDateFilterComponent implements OnInit {
   ngOnInit() {
     this.days = this.dateService.getDaysInMonth();
     this.filterYear = moment().year();
-    this.filterMonth = moment().format(this.dateService.monthFormat);
+    this.filterMonth = moment().format(DateService.MONTH_FORMAT);
   }
 
   public updateDays(year: number, month: number): void {
