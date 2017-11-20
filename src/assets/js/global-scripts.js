@@ -56,7 +56,7 @@ function checkDropdown(){
 
 }
 
-function clearForm() 
+function clearForm()
 {
     $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
     $(':checkbox, :radio').prop('checked', false);
@@ -111,22 +111,22 @@ if($('.calendar-start').length) {
 
 }
 
-  $('.calendar-title-container').next().hide().prev().on('click', function () {
-    $(this).next().slideToggle();
-    $(this).toggleClass('active');
-
-    //For ADA Compliance
-    var expanded = $(this).next().attr('aria-expanded')
-
-    if(expanded == 'true') {
-      expanded = 'false'
-    } else {
-      expanded  = 'true'
-    };
-
-    $(this).next().attr('aria-expanded', expanded);
-
-  });
+  // $('.calendar-title-container').next().hide().prev().on('click', function () {
+  //   $(this).next().slideToggle();
+  //   $(this).toggleClass('active');
+  //
+  //   //For ADA Compliance
+  //   var expanded = $(this).next().attr('aria-expanded')
+  //
+  //   if(expanded == 'true') {
+  //     expanded = 'false'
+  //   } else {
+  //     expanded  = 'true'
+  //   };
+  //
+  //   $(this).next().attr('aria-expanded', expanded);
+  //
+  // });
 
   $('.mobile-fixed button').on('click', function (e) {
     $('.mobile-filters').addClass('active');
@@ -160,7 +160,7 @@ if($('.calendar-start').length) {
   })
 
 
-  
+
 
   // capture click on search icon - check width again in case of screen size change
   $('#global-icon-search a').on('click',function(e){
@@ -181,7 +181,7 @@ if($('.calendar-start').length) {
   });
 
 
-  $('body').on('click', '.dropdown > a, .sub-dropdown-container > li > a', function(e) { 
+  $('body').on('click', '.dropdown > a, .sub-dropdown-container > li > a', function(e) {
 
     e.preventDefault();
     $(this).next().slideToggle();
