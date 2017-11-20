@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ConfigurationService} from "./configuration.service";
-import {Http, Response} from "@angular/http";
 import 'rxjs/Rx';
 import {Category} from '../models/Category';
 import * as _ from 'lodash';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class CategoriesService {
@@ -13,11 +13,11 @@ export class CategoriesService {
 
   constructor(
     private configurationService: ConfigurationService,
-    private http: Http
+    private httpClient: HttpClient
   ) { }
 
   getCategories(): Observable<Array<Object>>{
-    return this.http.get(this.configurationService.urlCategories)
+    return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {
 
           let categories = this.jsonToCategories(response);
@@ -47,7 +47,7 @@ export class CategoriesService {
    * of Topic Objects. It will return an empty array if nothing
    * in the response could be converted to an Topic or the response hand an empty body.
    */
-  private jsonToCategories = (response: Response) => {
+  private jsonToCategories = (response: any) => {
     if (_.isEmpty(response.json())) {
       return null;
     }

@@ -4,6 +4,9 @@ import { EventDataService } from './event-data.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {ConfigurationService} from "./configuration.service";
 import {MdcEvent} from "../models/mdc-event";
+import {TestEvents} from "../models/test-events";
+import * as _ from "lodash";
+
 
 describe('EventDataService', () => {
   beforeEach(() => {
@@ -23,63 +26,6 @@ describe('EventDataService', () => {
   it('when making a call to get events I would like it to be mapped to an array of MdcEvents', inject([HttpTestingController, EventDataService],
     (httpMock: HttpTestingController, service: EventDataService) => {
 
-      let jsonEvent1 = {
-        id: 1,
-        title: 'my title',
-        type: 'public',
-        startDate: '2017-07-20T15:00:00Z',
-        endDate: '2017-07-21T15:00:00Z',
-        contactName: 'my contactName',
-        contactPhone: '3055555555',
-        contactEmail: 'contact@email.com',
-        adaName: 'my adaName',
-        adaPhone: '3055551234',
-        adaEmail: 'ada@email.com',
-        isRecurringEvent: false,
-        isAllDayEvent: false,
-        shortDescription: 'This is a short description.',
-        longDescription: 'This is a long description.',
-        isClosedToMedia: false,
-        isClosedToPublic: false,
-        isFree: false,
-        fee: 5,
-        rsvp: 'joe bler',
-        categories: ['animals', 'public-safety'],
-        url: {'description': 'URL for event', 'url': 'http://www.google.com'},
-        address: null
-      }
-
-      let jsonEvent2 = {
-        id: 2,
-        title: 'my title2',
-        type: 'public',
-        startDate: '2017-07-20T15:00:00Z',
-        endDate: '2017-07-21T15:00:00Z',
-        contactName: 'my contactName2',
-        contactPhone: '3055555555',
-        contactEmail: 'contact2@email.com',
-        adaName: 'my adaName2',
-        adaPhone: '3055551234',
-        adaEmail: 'ada2@email.com',
-        isRecurringEvent: false,
-        isAllDayEvent: true,
-        shortDescription: 'This is a short description 2.',
-        longDescription: 'This is a long description 2.',
-        isClosedToMedia: false,
-        isClosedToPublic: false,
-        isFree: false,
-        fee: 5,
-        rsvp: 'joe bler',
-        categories: ['animals', 'public-safety'],
-        url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
-        address: null
-      }
-
-
-      // mock the fromJSONArray so we control its output
-      let mockJsonEvents = [MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2)];
-      MdcEvent.fromJSONArray = (json) => mockJsonEvents;
-
       service.getEventsOnCalendar("ASD")
         .subscribe(data => {
           expect(data.length).toBe(2);
@@ -89,7 +35,7 @@ describe('EventDataService', () => {
 
       const req = httpMock.expectOne('/api/calendar/ASD/events');
       expect(req.request.method).toEqual('GET');
-      req.flush(mockJsonEvents);
+      req.flush({events:TestEvents.testJsonEventsTwo});
       httpMock.verify();
 
     }));
@@ -137,6 +83,99 @@ describe('EventDataService', () => {
       const req = httpMock.expectOne('/api/calendar/ASD/events');
       expect(req.request.method).toEqual('GET');
       req.error(new ErrorEvent('bad error'));
+
+      httpMock.verify();
+
+    }));
+
+  it('when making a call to get events from several calendars, when passing null an observable with empty array is returned ', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
+
+      service.getEventsOnCalendars(null)
+        .subscribe(data => {
+          expect(data).toEqual([]);
+        }, error => fail());
+
+    }));
+
+
+  it('when making a call to get events from several calendars, when passing [] an observable with empty array is returned ', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
+
+      service.getEventsOnCalendars([])
+        .subscribe(data => {
+          expect(data).toEqual([]);
+        }, error => fail());
+
+    }));
+
+  it('when making a call to get events from several calendars, I would like to get events from all caledars in one collection', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
+
+      service.getEventsOnCalendars(["ASD", "Mayor"])
+        .subscribe(data => {
+          expect(data.length).toBe(5);
+          expect(data instanceof Array).toBe(true);
+          expect(data[0] instanceof MdcEvent).toBe(true);
+          expect(data[1] instanceof MdcEvent).toBe(true);
+        }, error => fail());
+
+      const req = httpMock.expectOne('/api/calendar/ASD/events');
+      expect(req.request.method).toEqual('GET');
+      req.flush({events: TestEvents.testJsonEventsTwo});
+
+      const req2 = httpMock.expectOne('/api/calendar/Mayor/events');
+      expect(req2.request.method).toEqual('GET');
+      req2.flush({events:TestEvents.testJsonEventsThree});
+
+      httpMock.verify();
+
+    }));
+
+
+  it('when making a call to get events from several calendars, ignore calendars which do not exist', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
+
+      service.getEventsOnCalendars(["ASD", "NoCalendar"])
+        .subscribe(data => {
+          expect(data.length).toBe(2);
+          expect(data instanceof Array).toBe(true);
+          expect(data[0] instanceof MdcEvent).toBe(true);
+          expect(data[1] instanceof MdcEvent).toBe(true);
+        }, error => fail());
+
+      const req = httpMock.expectOne('/api/calendar/ASD/events');
+      expect(req.request.method).toEqual('GET');
+      req.flush({events: TestEvents.testJsonEventsTwo});
+
+      const req2 = httpMock.expectOne('/api/calendar/NoCalendar/events');
+      expect(req2.request.method).toEqual('GET');
+      req2.flush({}, { status: 404, statusText: 'Not Found' });
+
+      httpMock.verify();
+
+    }));
+
+
+
+  it('when making a call to get events from several calendars, ignore calendars that throw an error', inject([HttpTestingController, EventDataService],
+    (httpMock: HttpTestingController, service: EventDataService) => {
+
+      service.getEventsOnCalendars(["ASD", "NoCalendar"])
+        .subscribe(data => {
+          expect(data.length).toBe(2);
+          expect(data instanceof Array).toBe(true);
+          expect(data[0] instanceof MdcEvent).toBe(true);
+          expect(data[1] instanceof MdcEvent).toBe(true);
+        }, error => fail());
+
+      const req = httpMock.expectOne('/api/calendar/ASD/events');
+      expect(req.request.method).toEqual('GET');
+      req.flush({events: TestEvents.testJsonEventsTwo});
+
+      const req2 = httpMock.expectOne('/api/calendar/NoCalendar/events');
+      expect(req2.request.method).toEqual('GET');
+      req2.flush({}, { status: 500, statusText: 'Server Error' });
 
       httpMock.verify();
 
