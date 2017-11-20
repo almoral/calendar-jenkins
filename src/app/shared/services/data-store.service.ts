@@ -12,8 +12,8 @@ import {EventDataService} from "./event-data.service";
 export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
-    this.initializeEvents(TestEvents.testEvents);
-    //this.getEvents(null, null);
+    // this.initializeEvents(TestEvents.testEvents);
+    this.getEvents(null, null);
   }
 
   // observable collection of events.
