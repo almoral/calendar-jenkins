@@ -16,7 +16,7 @@ export class CalendarDateFilterComponent implements OnInit {
 
   private selectedYear: string;
   private selectedMonth: string;
-  private selectedDay: number;
+  private selectedDay: string;
   public selectedDate: string;
   private years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
@@ -43,7 +43,7 @@ export class CalendarDateFilterComponent implements OnInit {
   public updateDays(year: string, month: string, day?: string): void {
 
     if (month === '' && !_.isUndefined(day)) {
-      this.selectedDay = null;
+      this.selectedDay = '';
       this.disableDayField = true;
     } else {
       this.disableDayField = false;
