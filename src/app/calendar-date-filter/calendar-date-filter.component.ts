@@ -13,23 +13,23 @@ import {Observable} from 'rxjs/Observable';
 
 export class CalendarDateFilterComponent implements OnInit {
 
-  private filterYear: string;
-  private filterMonth: string;
-  private filterDay: number;
+  private selectedYear: string;
+  private selectedMonth: string;
+  private selectedDay: number;
   public selectedDate: string;
   private years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
   private months: string[] = moment.months();
-  private days$: Observable<number[]>;
+  private days$: Observable<string[]>;
 
   constructor( private dateService: DateService ) {}
 
   ngOnInit() {
 
     // Initial values used to populate dropdowns in date filter.
-    this.filterYear = moment().format(DateService.YEAR_FORMAT);
-    this.filterMonth = moment().format(DateService.MONTH_FORMAT);
-    this.days$ = Observable.of(this.dateService.getNumberOfDays(this.filterYear, this.filterMonth));
+    this.selectedYear = moment().format(DateService.YEAR_FORMAT);
+    this.selectedMonth = moment().format(DateService.MONTH_FORMAT);
+    this.days$ = Observable.of(this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth));
   }
 
   /**
@@ -40,6 +40,22 @@ export class CalendarDateFilterComponent implements OnInit {
   public updateDays(year: string, month: string): void {
     this.days$ = Observable.of(this.dateService.getNumberOfDays(year, month));
   }
+
+
+  public filterEventsByDate(year: string, month: string = '', day: string = '') {
+
+    if (day === '' && month === '') {
+      this.dateService.filterByYear(year);
+    }
+    if (month !== '') {
+      this.dateService.filterByMonth(year, month);
+    }
+    if (day !== '') {
+      this.dateService.filterByDate(year, month, day);
+    }
+
+  }
+
 
 
 }

@@ -4,14 +4,14 @@
 
     <div class="col s12 m3">
       <label for="filterYear">Year</label>
-      <select [(ngModel)]="filterYear" (change)="updateDays(filterYear, filterMonth)" class="browser-default" id="filterYear">
+      <select [(ngModel)]="selectedYear" (change)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterYear">
         <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
       </select>
     </div>
 
     <div class="col s12 m6">
       <label for="filtermonth">Month</label>
-      <select [(ngModel)]="filterMonth" (change)="updateDays(filterYear, filterMonth)" class="browser-default" id="filterMonth">
+      <select [(ngModel)]="selectedMonth" (change)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterMonth">
         <option value=""></option>
         <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
       </select>
@@ -19,7 +19,7 @@
 
     <div class="col s12 m3">
       <label for="filterDay">Day</label>
-      <select [(ngModel)]="filterDay" class="browser-default" id="filterDay">
+      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay">
         <option value=""></option>
         <option *ngFor="let day of days$ | async" [ngValue]="day">{{day}}</option>
       </select>
@@ -27,5 +27,5 @@
 
   </div>
 
-  <a class="waves-effect waves btn white light-blue-text">Apply Date Filter</a>
+  <a class="waves-effect waves btn white light-blue-text" (click)="filterEventsByDate(selectedYear, selectedMonth, selectedDay)">Apply Date Filter</a>
 </section>

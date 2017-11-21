@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { DataStoreService } from './data-store.service';
 
 @Injectable()
 export class DateService {
@@ -18,7 +19,11 @@ export class DateService {
     return 'YYYY-MMMM';
   }
 
-  constructor() { }
+  public static get DATE_PARAM_FORMAT(): string {
+    return 'M/D/YYYY';
+  }
+
+  constructor( private dataStoreService: DataStoreService) { }
 
   /**
    * createDateString concatenates the year and month that are passed in
@@ -35,7 +40,7 @@ export class DateService {
    * @param year - selected year.
    * @param month - selected month.
    */
-  public getNumberOfDays(year: string, month: string): number[] {
+  public getNumberOfDays(year: string, month: string): string[] {
     let selectedDate = DateService.createDateString(year, month);
     let newNumberOfDays: number = moment(selectedDate, DateService.YEAR_AND_MONTH_FORMAT).daysInMonth();
     return this.generateDaysInMonth(newNumberOfDays);
@@ -47,13 +52,36 @@ export class DateService {
    * The items are numbers equal to the current value in the parameter plus one.
    * @param daysInMonth - number of days.
    */
-  private generateDaysInMonth(daysInMonth: number): number[] {
-    const arrDays: number[] = [];
+  public generateDaysInMonth(daysInMonth: number): string[] {
+    const arrDays: string[] = [];
     _.times(daysInMonth, function(i){
-      arrDays.push(i + 1);
+      let entry: number = i + 1;
+      arrDays.push(entry.toString());
     });
     return arrDays;
   }
 
+  public filterByDate(year: string, month: string, day: string): void {
+    let filterDate: string = '' + month + '/' + day + '/' + year;
+
+    this.dataStoreService.getEvents(new Date(filterDate), new Date(filterDate));
+  }
+
+  public filterByMonth(year: string, month: string): void {
+    let fromDate: string = month + '/1/' + year;
+    let numberOfDays: string[] = this.getNumberOfDays(year, month);
+    let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
+
+    this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
+
+  }
+
+  public filterByYear(year: string): void  {
+    let fromDate: string = '1/1/' + year;
+    let toDate: string = '12/31/' + year;
+
+    this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
+
+  }
 
 }

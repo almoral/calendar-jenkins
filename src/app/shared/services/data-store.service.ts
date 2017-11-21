@@ -3,8 +3,8 @@ import {BehaviorSubject, Observable} from 'rxjs/Rx';
 import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {TestEvents} from '../models/test-events';
-import {EventService} from "./event.service";
-import {EventDataService} from "./event-data.service";
+import {EventService} from './event.service';
+import {EventDataService} from './event-data.service';
 
 
 
@@ -49,7 +49,7 @@ export class DataStoreService {
    */
   getEvents(to:Date, from: Date) {
     //TODO: remove hardcoded calendar by configured set of calendars
-    let events$:Observable<MdcEvent[]> = this.eventDataService.getEventsOnCalendar("ASD");
+    let events$:Observable<MdcEvent[]> = this.eventDataService.getEventsOnCalendar('ASD');
     events$.subscribe(events => this.initializeEvents(events));
     //TODO: what happens if an error comes. Who should handle displaying something ?
   }

@@ -1,11 +1,11 @@
-import {TestBed, inject} from "@angular/core/testing";
-import {DataStoreService} from "./data-store.service";
-import {TestEvents} from "../models/test-events";
-import {EventService} from "./event.service";
-import {EventDataService} from "./event-data.service";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {ConfigurationService} from "./configuration.service";
-import {MdcEvent, MdcEventsByDate} from "../models/mdc-event";
+import {TestBed, inject} from '@angular/core/testing';
+import {DataStoreService} from './data-store.service';
+import {TestEvents} from '../models/test-events';
+import {EventService} from './event.service';
+import {EventDataService} from './event-data.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ConfigurationService} from './configuration.service';
+import {MdcEvent, MdcEventsByDate} from '../models/mdc-event';
 
 describe('DataStoreService', () => {
   beforeEach(() => {
