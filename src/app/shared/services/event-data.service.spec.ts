@@ -35,8 +35,8 @@ describe('EventDataService', () => {
 
       const req = httpMock
         .expectOne(req => req.method === 'GET' && req.url === '/api/calendar/ASD/events');
-      expect(req.request.params.get('to')).toEqual('11/21/2017');
-      expect(req.request.params.get('from')).toEqual('11/25/2017');
+      expect(req.request.params.get('from')).toEqual('11/21/2017');
+      expect(req.request.params.get('to')).toEqual('11/25/2017');
       req.flush({events:TestEvents.testJsonEventsTwo});
       httpMock.verify();
 

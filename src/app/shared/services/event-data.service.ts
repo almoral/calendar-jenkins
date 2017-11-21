@@ -36,7 +36,7 @@ export class EventDataService {
    * http 404 - No calendar found: Observable empty array.
    * Any other http error code will throw an observable exception.
    */
-  getEventsOnCalendar(calendarId: string, to: Date, from: Date = to): Observable<MdcEvent []> {
+  getEventsOnCalendar(calendarId: string, from: Date, to: Date = from): Observable<MdcEvent []> {
 
     // Setup header
     const headers = new HttpHeaders()
@@ -77,7 +77,7 @@ export class EventDataService {
    * @returns {any} - Observable<MdcEvent[] Observable with all events of all calendars
    * as a single array.
    */
-  getEventsOnCalendars(calendars: string[], to: Date, from: Date = to): Observable<MdcEvent[]> {
+  getEventsOnCalendars(calendars: string[], from: Date, to: Date = from): Observable<MdcEvent[]> {
 
     if (_.isEmpty(calendars)) {
       return Observable.of([]);
@@ -88,7 +88,7 @@ export class EventDataService {
 
       // push each observable into array and
       // handle errors by providing an empty array for that call.
-      accumulator.push(this.getEventsOnCalendar(calendarId, to, from)
+      accumulator.push(this.getEventsOnCalendar(calendarId, from, to)
         .catch((error) => {
           console.error('getEventsOnCalendars: error while processing calendarId', calendarId);
           return Observable.of([])
