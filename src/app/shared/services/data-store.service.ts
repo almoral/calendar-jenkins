@@ -13,7 +13,8 @@ export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
     // this.initializeEvents(TestEvents.testEvents);
-    this.getEvents(null, null);
+    //TODO: intitial dates should come from some configuration.
+    this.getEvents( new Date("11/21/2016"), new Date("11/25/2017"));
   }
 
   // observable collection of events.
@@ -49,7 +50,7 @@ export class DataStoreService {
    */
   getEvents(to:Date, from: Date) {
     //TODO: remove hardcoded calendar by configured set of calendars
-    let events$:Observable<MdcEvent[]> = this.eventDataService.getEventsOnCalendar("ASD");
+    let events$:Observable<MdcEvent[]> = this.eventDataService.getEventsOnCalendar("ASD", to, from);
     events$.subscribe(events => this.initializeEvents(events));
     //TODO: what happens if an error comes. Who should handle displaying something ?
   }
