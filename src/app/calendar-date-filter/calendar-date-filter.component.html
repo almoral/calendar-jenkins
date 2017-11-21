@@ -11,7 +11,7 @@
 
     <div class="col s12 m6">
       <label for="filtermonth">Month</label>
-      <select [(ngModel)]="selectedMonth" (change)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterMonth">
+      <select [(ngModel)]="selectedMonth" (change)="updateDays(selectedYear, selectedMonth, selectedDay)" class="browser-default" id="filterMonth">
         <option value=""></option>
         <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
       </select>
@@ -19,7 +19,7 @@
 
     <div class="col s12 m3">
       <label for="filterDay">Day</label>
-      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay">
+      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField">
         <option value=""></option>
         <option *ngFor="let day of days$ | async" [ngValue]="day">{{day}}</option>
       </select>

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import {Observable} from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 
 
@@ -21,6 +22,7 @@ export class CalendarDateFilterComponent implements OnInit {
   // We can use the months function but it's deprecated in momentjs v2.0.
   private months: string[] = moment.months();
   private days$: Observable<string[]>;
+  private disableDayField = false;
 
   constructor( private dateService: DateService ) {}
 
@@ -36,8 +38,17 @@ export class CalendarDateFilterComponent implements OnInit {
    * updateDays calculates and returns the number of days in the selected month
    * @param year - selected year.
    * @param month - selected month.
+   * @param day - selected day (optional)
    */
-  public updateDays(year: string, month: string): void {
+  public updateDays(year: string, month: string, day?: string): void {
+
+    if (month === '' && !_.isUndefined(day)) {
+      this.selectedDay = null;
+      this.disableDayField = true;
+    } else {
+      this.disableDayField = false;
+    }
+
     this.days$ = Observable.of(this.dateService.getNumberOfDays(year, month));
   }
 
