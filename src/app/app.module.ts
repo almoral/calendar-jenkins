@@ -48,7 +48,7 @@ import {InMemoryDataService} from './shared/services/in-memory-data.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase:'api/calendar/ASD'}),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase:'api/calendar/ASD', passThruUnknownUrl: true}),
     AppRoutingModule,
     NgxPaginationModule,
     MaterializeModule,

@@ -281,7 +281,7 @@ export class MdcEvent {
         address
       )}
     else {
-      console.error('error: invalid json to build event', json);
+      console.error('fromJSON: invalid json to build event', json, tv4.error);
       throw new Error('error: invalid json to build event');
     }
 
