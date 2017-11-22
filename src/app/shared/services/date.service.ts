@@ -61,12 +61,25 @@ export class DateService {
     return arrDays;
   }
 
+  /**
+   * filterByDate generates the date value for a full date search.
+   * It then passes the date to the getEvents function in the dataStoreService.
+   * @param year - selected year.
+   * @param month - selected month.
+   * @param day - selected day.
+   */
   public filterByDate(year: string, month: string, day: string): void {
     let filterDate: string = '' + month + '/' + day + '/' + year;
 
     this.dataStoreService.getEvents(new Date(filterDate), new Date(filterDate));
   }
 
+  /**
+   * filterByMonth generates the date value for a search by  month.
+   * It then passes the date to the getEvents function in the dataStoreService.
+   * @param year - selected year.
+   * @param month - selected month.
+   */
   public filterByMonth(year: string, month: string): void {
     let fromDate: string = month + '/1/' + year;
     let numberOfDays: string[] = this.getNumberOfDays(year, month);
@@ -76,6 +89,11 @@ export class DateService {
 
   }
 
+  /**
+   * filterByYear generates the date value for a search by year.
+   * It then passes the date to the getEvents function in the dataStoreService.
+   * @param year - selected year.
+   */
   public filterByYear(year: string): void  {
     let fromDate: string = '1/1/' + year;
     let toDate: string = '12/31/' + year;
