@@ -21,12 +21,12 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="location">Joseph Caleb Center</div>
-          <div class="street-address">5400 NW 22nd Avenue</div>
+          <div class="location">{{event.address.location}}</div>
+          <div class="street-address">{{event.address.address1}}</div>
           <div class="address">
-            <span class="city">Miami, </span>
-            <span class="state">FL</span>
-            <span class="zip">33142</span>
+            <span class="city">{{event.address.city}} </span>
+            <span class="state">{{event.address.state}}</span>
+            <span class="zip">{{event.address.zip}}</span>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="location"><a href="mailto:test@miamidade.gov">test@miamidade.gov</a></div>
+          <div class="location"><a href="mailto:{{event.contactEmail}}">{{event.contactEmail}}</a></div>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="phone"><a href="tel:305-222-1111">305-222-1111</a></div>
+          <div class="phone"><a href="tel:{{event.contactPhone}}">{{event.contactPhone}}</a></div>
         </div>
       </div>
 
