@@ -6,7 +6,7 @@
       <h3 class="calendar-subtitle">{{event.title}}</h3>
     </div>
     <div class="column">
-      <span class="calendar-date">12:00pm-2:00pm</span>
+      <span class="calendar-date">{{event.startDate | displayTime}} - {{event.endDate | displayTime}}</span>
       <div class="plus-icon"></div>
     </div>
   </div>
