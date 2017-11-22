@@ -23,6 +23,10 @@ export class DateService {
     return 'M/D/YYYY';
   }
 
+  public static get DISPLAY_TIME_FORMAT(): string {
+    return 'h:mm a';
+  }
+
   constructor( private dataStoreService: DataStoreService) { }
 
   /**
