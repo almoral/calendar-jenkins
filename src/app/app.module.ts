@@ -23,10 +23,11 @@ import { MaterializeModule } from 'angular2-materialize';
 import {EventService} from './shared/services/event.service';
 import {DataStoreService} from './shared/services/data-store.service';
 import { MessagesComponent } from './messages/messages.component';
-import {FormsModule} from '@angular/forms';
-import {MessagesService} from './shared/services/messages.service';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './shared/services/in-memory-data.service';
+import {MessagesService} from "./shared/services/messages.service";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./shared/services/in-memory-data.service";
+import {FormsModule} from "@angular/forms";
+
 
 
 

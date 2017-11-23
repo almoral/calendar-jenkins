@@ -1,6 +1,7 @@
 <section class="widget" aria-labelledby="filterTitle">
   <h3 class="widget-title" id="filterTitle">Filter by Title</h3>
   <label for="calendar-title">Title</label>
-  <input type="text" id="calendar-Title" class="browser-default form-control">
+  <input type="text" [ngModel]="title" #box (keyup)="onEnter(box.value)" name="calendar-Title" id="calendar-Title" class="browser-default form-control">
   <a class="waves-effect wave-light btn blue">Filter Title</a>
+
 </section>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {DataStoreService} from "../shared/services/data-store.service";
 
 @Component({
   selector: 'mdc-calendar-search-box',
@@ -7,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarSearchBoxComponent implements OnInit {
 
-  constructor() { }
+  title$: Observable<string>;
+  title:string = '';
+
+  constructor(private dataStoreService:DataStoreService ) {}
 
   ngOnInit() {
+
+    this.title$ = Observable.of("Hey");
   }
+
+  onEnter(value: string) {this.dataStoreService.setTitle(value) }
 
 
 }

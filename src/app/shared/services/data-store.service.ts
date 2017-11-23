@@ -14,7 +14,8 @@ export class DataStoreService {
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
     // this.initializeEvents(TestEvents.testEvents);
     //TODO: intitial dates should come from some configuration.
-    this.getEvents( new Date('11/21/2016'), new Date('11/25/2017'));
+    this.getEvents( new Date("11/21/2016"), new Date("11/25/2017"));
+    this.subscribeTitle();
   }
 
   // observable collection of events.
@@ -25,6 +26,9 @@ export class DataStoreService {
   private eventsByDateSubject = new BehaviorSubject([]);
   public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
 
+  // observable title.
+  private titleSubject = new BehaviorSubject('');
+  private title$: Observable<string> = this.titleSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -56,4 +60,18 @@ export class DataStoreService {
   }
 
 
+  filterEventsByTitle(title:string){
+    let eventsByDate = this.eventService.eventsByDate(this.eventService.filterEventsByTitle(this.eventsSubject.getValue(), title));
+    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+
+  }
+
+
+  setTitle(title:string){
+    this.titleSubject.next(title);
+  }
+
+  subscribeTitle(){
+    this.title$.subscribe((title) => this.filterEventsByTitle(title));
+  }
 }
