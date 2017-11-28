@@ -21,7 +21,7 @@ export class CalendarDateFilterComponent implements OnInit {
   private years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
   private months: string[] = moment.months();
-  private days$: Observable<string[]>;
+  private days: string[];
   private disableDayField = false;
 
   constructor( private dateService: DateService ) {}
@@ -31,7 +31,7 @@ export class CalendarDateFilterComponent implements OnInit {
     // Initial values used to populate dropdowns in date filter.
     this.selectedYear = moment().format(DateService.YEAR_FORMAT);
     this.selectedMonth = moment().format(DateService.MONTH_FORMAT);
-    this.days$ = Observable.of(this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth));
+    this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
   }
 
   /**
@@ -49,7 +49,7 @@ export class CalendarDateFilterComponent implements OnInit {
       this.disableDayField = false;
     }
 
-    this.days$ = Observable.of(this.dateService.getNumberOfDays(year, month));
+    this.days = this.dateService.getNumberOfDays(year, month);
   }
 
 
