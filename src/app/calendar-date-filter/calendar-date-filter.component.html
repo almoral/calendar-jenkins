@@ -21,7 +21,7 @@
       <label for="filterDay">Day</label>
       <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField">
         <option value=""></option>
-        <option *ngFor="let day of days$ | async" [ngValue]="day">{{day}}</option>
+        <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
       </select>
     </div>
 
