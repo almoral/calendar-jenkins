@@ -4,32 +4,28 @@
 
     <div class="col s12 m3">
       <label for="filterYear">Year</label>
-      <select class="browser-default" id="filterYear">
-        <option value="2017" selected="">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
+      <select [(ngModel)]="selectedYear" (change)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterYear">
+        <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
       </select>
     </div>
 
     <div class="col s12 m6">
       <label for="filtermonth">Month</label>
-      <select class="browser-default" id="filterMonth">
-        <option value="October" selected="">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
+      <select [(ngModel)]="selectedMonth" (change)="updateDays(selectedYear, selectedMonth, selectedDay)" class="browser-default" id="filterMonth">
+        <option value=""></option>
+        <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
       </select>
     </div>
 
     <div class="col s12 m3">
       <label for="filterDay">Day</label>
-      <select class="browser-default" id="filterDay">
-        <option value="11" selected="">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
+      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField">
+        <option value=""></option>
+        <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
       </select>
     </div>
 
   </div>
 
-  <a class="waves-effect waves btn white light-blue-text">Apply Date Filter</a>
+  <a class="waves-effect waves btn white light-blue-text" (click)="filterEventsByDate(selectedYear, selectedMonth, selectedDay)">Apply Date Filter</a>
 </section>

@@ -3,8 +3,8 @@ import {BehaviorSubject, Observable} from 'rxjs/Rx';
 import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {TestEvents} from '../models/test-events';
-import {EventService} from "./event.service";
-import {EventDataService} from "./event-data.service";
+import {EventService} from './event.service';
+import {EventDataService} from './event-data.service';
 
 
 
@@ -14,7 +14,7 @@ export class DataStoreService {
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
     // this.initializeEvents(TestEvents.testEvents);
     //TODO: intitial dates should come from some configuration.
-    this.getEvents( new Date("11/21/2016"), new Date("11/25/2017"));
+    this.getEvents( new Date('11/21/2016'), new Date('11/25/2017'));
   }
 
   // observable collection of events.
@@ -49,10 +49,10 @@ export class DataStoreService {
    * @param from - end Date.
    */
   getEvents(from:Date, to: Date) {
-    //TODO: remove hardcoded calendar by configured set of calendars
-    let events$:Observable<MdcEvent[]> = this.eventDataService.getEventsOnCalendar("ASD", from, to);
+    // TODO: remove hardcoded calendar by configured set of calendars
+    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('ASD', from, to);
     events$.subscribe(events => this.initializeEvents(events));
-    //TODO: what happens if an error comes. Who should handle displaying something ?
+    // TODO: what happens if an error comes. Who should handle displaying something ?
   }
 
 
