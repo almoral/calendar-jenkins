@@ -1,9 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import * as moment from 'moment';
-import {DateService} from '../shared/services/date.service';
-import {Observable} from 'rxjs/Observable';
-import * as _ from 'lodash';
-
+import {Component, OnInit} from "@angular/core";
+import * as moment from "moment";
+import {DateService} from "../shared/services/date.service";
+import * as _ from "lodash";
 
 
 @Component({
