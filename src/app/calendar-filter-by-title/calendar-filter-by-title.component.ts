@@ -3,11 +3,11 @@ import {Observable} from "rxjs";
 import {DataStoreService} from "../shared/services/data-store.service";
 
 @Component({
-  selector: 'mdc-calendar-search-box',
-  templateUrl: './calendar-search-box.component.html',
-  styleUrls: ['./calendar-search-box.component.css']
+  selector: 'calendar-filter-by-title',
+  templateUrl: 'calendar-filter-by-title.component.html',
+  styleUrls: ['calendar-filter-by-title.component.css']
 })
-export class CalendarSearchBoxComponent implements OnInit {
+export class CalendarFilterByTitleComponent implements OnInit {
 
   title$: Observable<string>;
   title:string = '';

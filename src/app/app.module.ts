@@ -14,7 +14,7 @@ import { CalendarEventDateComponent } from './calendar-event-date/calendar-event
 import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
 import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-date-filter.component';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
-import { CalendarSearchBoxComponent } from './calendar-search-box/calendar-search-box.component';
+import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-department/calendar-filter-by-department.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
@@ -40,7 +40,7 @@ import {FormsModule} from "@angular/forms";
     CalendarEventListComponent,
     CalendarDateFilterComponent,
     CalendarHeaderComponent,
-    CalendarSearchBoxComponent,
+    CalendarFilterByTitleComponent,
     CalendarFilterByTypeComponent,
     CalendarFilterByDepartmentComponent,
     CalendarFilterContainerComponent,
