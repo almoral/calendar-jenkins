@@ -57,7 +57,7 @@ let jsonEvent2 = {
 
 let jsonEvent3 = {
   id: 3,
-  title: 'my title3',
+  title: 'my title3 is big',
   type: 'private',
   startDate: '2017-07-22T15:00:00Z',
   endDate: '2017-07-22T16:00:00Z',
@@ -110,7 +110,7 @@ let jsonEvent4 = {
 
 let jsonEvent5 = {
   id: 5,
-  title: 'my title5',
+  title: 'my title5 is big',
   type: 'private',
   startDate: '2017-07-17T15:07:00Z',
   endDate: '2017-07-21T15:08:00Z',
@@ -136,7 +136,7 @@ let jsonEvent5 = {
 
 let jsonEvent6 = {
   id: 6,
-  title: 'my title6',
+  title: 'my title6 is small',
   type: 'private',
   startDate: '2017-07-18T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',

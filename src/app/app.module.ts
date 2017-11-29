@@ -14,7 +14,7 @@ import { CalendarEventDateComponent } from './calendar-event-date/calendar-event
 import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
 import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-date-filter.component';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
-import { CalendarSearchBoxComponent } from './calendar-search-box/calendar-search-box.component';
+import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-department/calendar-filter-by-department.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
@@ -23,10 +23,11 @@ import { MaterializeModule } from 'angular2-materialize';
 import {EventService} from './shared/services/event.service';
 import {DataStoreService} from './shared/services/data-store.service';
 import { MessagesComponent } from './messages/messages.component';
-import {FormsModule} from '@angular/forms';
-import {MessagesService} from './shared/services/messages.service';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './shared/services/in-memory-data.service';
+import {MessagesService} from "./shared/services/messages.service";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./shared/services/in-memory-data.service";
+import {FormsModule} from "@angular/forms";
+
 
 
 
@@ -39,7 +40,7 @@ import {InMemoryDataService} from './shared/services/in-memory-data.service';
     CalendarEventListComponent,
     CalendarDateFilterComponent,
     CalendarHeaderComponent,
-    CalendarSearchBoxComponent,
+    CalendarFilterByTitleComponent,
     CalendarFilterByTypeComponent,
     CalendarFilterByDepartmentComponent,
     CalendarFilterContainerComponent,

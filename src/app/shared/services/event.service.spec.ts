@@ -54,4 +54,11 @@ describe('EventService', () => {
 
   }));
 
+  it('when I choose a title to filter events, only events that contain the string on the title should show', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByTitle(TestEvents.testEvents, 'big');
+    expect(events.length).toBe(2);
+
+  }));
+
+
 });
