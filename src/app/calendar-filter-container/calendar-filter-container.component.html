@@ -5,7 +5,7 @@
     <mdc-calendar-filter-by-department></mdc-calendar-filter-by-department>
   </aside>
 </div>
-<div class="col s12 m8 offset-m1">
+<div class="col s12 m8 offset-m1 hide-on-small-only">
   <mdc-calendar-date-filter></mdc-calendar-date-filter>
 </div>
 
@@ -33,8 +33,8 @@
 
 
 
-<div class="mobile-filters hide-on-med-and-up active modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
-  <div class="mobile-filters-container modal-content">
+<div class="mobile-filters hide-on-med-and-up active modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false, opacity: 0}]" [materializeActions]="modalActions">
+  <div class="mobile-filters-container">
 
     <!--Top Container-->
     <div class="top-menu-container">
@@ -58,127 +58,18 @@
         <aside class="sidebar">
 
           <!--Filter by Dates-->
-          <section class="widget" aria-labelledby="mobileFilterDate">
-            <h3 class="widget-title" id="mobileFilterDate">Filter by Date</h3>
 
-            <p>
-              <label for="mobileFilterYear">Year</label>
-              <select class="browser-default" id="mobileFilterYear">
-                <option value="2017" selected="">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-              </select>
-            </p>
+            <mdc-calendar-date-filter></mdc-calendar-date-filter>
 
-            <p>
-              <label for="mobilefiltermonth">Month</label>
-              <select class="browser-default" id="mobileFilterMonth">
-                <option value="October" selected="">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
-            </p>
-
-            <p>
-              <label for="mobileFilterDay">Day</label>
-              <select class="browser-default" id="mobileFilterDay">
-                <option value="11" selected="">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-              </select>
-            </p>
-
-          </section>
 
           <!--Filter by Title-->
-          <section class="widget" aria-labelledby="mobileFilterTitle">
-            <h3 class="widget-title" id="mobileFilterTitle">Filter by Title</h3>
-            <label for="calendar-title">Title</label>
-            <input type="text" id="calendar-Title" class="browser-default form-control">
-          </section>
+          <mdc-calendar-search-box></mdc-calendar-search-box>
 
           <!--Filter by type-->
-          <section class="widget" aria-labelledby="mobileFilterType">
-            <h3 class="widget-title" id="mobileFilterType">Filter by Type</h3>
+          <mdc-calendar-filter-by-type></mdc-calendar-filter-by-type>
 
-            <form action="#">
-              <p>
-                <input type="checkbox" id="type-item-01">
-                <label for="type-item-01">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-02">
-                <label for="type-item-02">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-03">
-                <label for="type-item-03">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-04">
-                <label for="type-item-04">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-05">
-                <label for="type-item-05">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-06">
-                <label for="type-item-06">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-07">
-                <label for="type-item-07">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="type-item-08">
-                <label for="type-item-08">Title <span class="text-muted">(200)</span> </label>
-              </p>
-            </form>
-          </section>
-
-          <!--Filter by department-->
-          <section class="widget">
-            <h3 class="widget-title">Filter by Department</h3>
-
-            <form action="#">
-              <p>
-                <input type="checkbox" id="department-item-01">
-                <label for="department-item-01">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-02">
-                <label for="department-item-02">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-03">
-                <label for="department-item-03">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-04">
-                <label for="department-item-04">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-05">
-                <label for="department-item-05">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-06">
-                <label for="department-item-06">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-07">
-                <label for="department-item-07">Title <span class="text-muted">(200)</span> </label>
-              </p>
-              <p>
-                <input type="checkbox" id="department-item-08">
-                <label for="department-item-08">Title <span class="text-muted">(200)</span> </label>
-              </p>
-            </form>
-
-
-
-          </section>
+          <!--Filter by Department-->
+          <mdc-calendar-filter-by-department></mdc-calendar-filter-by-department>
 
         </aside>
 
@@ -187,7 +78,7 @@
 
     <!--Bottom Container-->
     <div class="bottom-menu-container">
-      <button id="see-results">See results</button>
+      <button id="see-results" (click)="closeModal()">See results</button>
     </div>
 
   </div>
