@@ -8,7 +8,7 @@ import {DateService} from "../services/date.service";
 export class DisplayTimePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    let formattedTime: string = moment(value).format(DateService.DISPLAY_TIME_FORMAT);
+    const formattedTime: string = moment(value).format(DateService.DISPLAY_TIME_FORMAT);
     return formattedTime;
   }
 

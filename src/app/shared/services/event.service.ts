@@ -28,6 +28,20 @@ export class EventService {
       .value();
 
   }
-  
+
+
+  filterEventsByTitle(events: MdcEvent[], title: string): MdcEvent[] {
+
+    // filter of null/empty/undefined retuns empty collection.
+
+    // apply title filter
+    //_.matchesProperty('events.title', title)
+    return _.filter(events, (event: MdcEvent) => {
+      let match = new RegExp(title).test(event.title);
+      return match;
+    });
+
+  }
+
 }
 
