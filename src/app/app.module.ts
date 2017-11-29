@@ -27,7 +27,6 @@ import {FormsModule} from '@angular/forms';
 import {MessagesService} from './shared/services/messages.service';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './shared/services/in-memory-data.service';
-import { DisplayTimePipe } from './shared/pipes/display-time.pipe';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { DisplayTimePipe } from './shared/pipes/display-time.pipe';
     CalendarFilterByTypeComponent,
     CalendarFilterByDepartmentComponent,
     CalendarFilterContainerComponent,
-    MessagesComponent,
-    DisplayTimePipe
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

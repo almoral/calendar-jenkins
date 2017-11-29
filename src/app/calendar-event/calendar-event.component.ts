@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {MdcEvent} from "../shared/models/mdc-event";
+import {MdcEvent} from '../shared/models/mdc-event';
 import * as $ from 'jquery';
 
 @Component({
@@ -17,7 +17,6 @@ export class CalendarEventComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
   public showHide(event): void{
 
