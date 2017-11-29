@@ -39,8 +39,9 @@ export class DataStoreService {
    */
   initializeEvents(newEvents: MdcEvent[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
-    let eventsByDate = this.eventService.eventsByDate(newEvents);
-    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+    //let eventsByDate = this.eventService.eventsByDate(newEvents);
+    //this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+    this.filterEventsByTitle(this.titleSubject.getValue());
   }
 
   /**
