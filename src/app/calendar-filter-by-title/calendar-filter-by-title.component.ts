@@ -8,7 +8,7 @@ import {DataStoreService} from "../shared/services/data-store.service";
 })
 export class CalendarFilterByTitleComponent implements OnInit {
 
-  constructor(private dataStoreService:DataStoreService ) {
+  constructor(private dataStoreService: DataStoreService ) {
   }
 
   ngOnInit() {
