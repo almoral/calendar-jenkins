@@ -135,7 +135,7 @@ export class MdcEvent {
         'type': ['string', 'null']
       },
       'url': {
-        'type': 'object',
+        'type': ['object', 'null'],
         'properties': {
           'description': {
             'type': ['string', 'null']
