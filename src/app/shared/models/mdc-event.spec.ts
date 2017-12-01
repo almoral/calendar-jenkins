@@ -507,4 +507,11 @@ describe('MdcEvent', () => {
   });
 
 
+  it('when trying to create recrring events from an event whose flag isRecurringEvent is false, return empty array ', () => {
+    //expect(MdcEvent.fromJSONRecurrenceTwo(TestEvents.testJsonNonRecurring)).toEqual(null);
+    expect(true).toBe(false);
+  });
+
+
+
 });

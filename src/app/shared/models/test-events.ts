@@ -241,7 +241,7 @@ let jsonEvent9 = {
 export class TestEvents {
 
 
-
+  public static testJsonNonRecurring = jsonEvent1;
 
   public static testJsonEventsOne = [jsonEvent3];
 

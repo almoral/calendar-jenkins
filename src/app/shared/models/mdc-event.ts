@@ -351,6 +351,46 @@ export class MdcEvent {
 
   }
 
+
+  public static fromJSONRecurrenceTwo(json: any): Array<MdcEvent>{
+
+    // check if it is a reccurring event
+    if(!json.isRecurringEvent)
+      return [];
+
+    // Loop through the set of dates
+
+
+      // replace start date and end date
+
+      // build an MdcEvent
+
+    // no input array is mapped it to an empty array
+    // if (_.isEmpty(jsonRecurrence)) {
+    //   return [];
+    // }
+    //
+    // // map each element of the jsonRecurrence from string to date.
+    // // and ignores those strings which can not be coverted to a date.
+    // const recurrenceDates: Array<Date> = jsonRecurrence.reduce(function (accumulator, item) {
+    //   let recurrenceDate = new Date(item);
+    //
+    //   if(!isNaN( recurrenceDate.getTime() )){
+    //     accumulator.push(recurrenceDate);
+    //   }
+    //
+    //   return accumulator;
+    //
+    // }, []);
+    //
+    // return recurrenceDates;
+
+    return null;
+
+  }
+
+
+
   /**
    * validateJson is design to validate the json that comes from
    * a service against MdcEvent.schema.
