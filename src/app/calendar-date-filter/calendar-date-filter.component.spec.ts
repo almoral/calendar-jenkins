@@ -24,4 +24,10 @@ describe('CalendarDateFilterComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return a single call for the date entered', () => {
+    expect(this.filterEventsByDate('2017', '11', '1')).toEqual('events?to=11/01/2017&from=11/01/2017');
+  });
+
+
 });

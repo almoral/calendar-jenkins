@@ -56,10 +56,10 @@ export class CalendarDateFilterComponent implements OnInit {
     if (day === '' && month === '') {
       this.dateService.filterByYear(year);
     }
-    if (month !== '') {
+    if (month !== '' && day === '') {
       this.dateService.filterByMonth(year, month);
     }
-    if (day !== '') {
+    if (day !== '' && month !== '') {
       this.dateService.filterByDate(year, month, day);
     }
 
