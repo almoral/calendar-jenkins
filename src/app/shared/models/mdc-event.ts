@@ -305,7 +305,6 @@ export class MdcEvent {
     const startMilliseconds = parentEvent.startDate.getUTCMilliseconds();
 
     const endHours = parentEvent.endDate.getUTCHours();
-    console.log('END HOURS', endHours);
     const endMinutes = parentEvent.endDate.getUTCMinutes();
     const endSeconds = parentEvent.endDate.getUTCSeconds();
     const endMilliseconds = parentEvent.endDate.getUTCMilliseconds();
