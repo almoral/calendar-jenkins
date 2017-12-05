@@ -292,6 +292,10 @@ export class TestEvents {
 
   public static testJsonEventsDifferentDates = [jsonEvent2, jsonEvent1, jsonEvent3];
 
+  public static testJsonRecurringEvents = [TestEvents.testJsonRecurring];
+
+  public static testJsonRecurringAndNonEvents = [TestEvents.testJsonRecurring, TestEvents.testJsonNonRecurring];
+
   public static testJsonEvents = [
     ...TestEvents.testJsonEventsOne,
     ...TestEvents.testJsonEventsTwo,

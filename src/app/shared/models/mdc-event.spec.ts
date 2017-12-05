@@ -478,6 +478,17 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]).length).toBe(1);
   });
 
+
+  it('when creating an Array of MdcEvents from a json array containing one recurring event, independent recurring events will be created for each recurring date', () => {
+    expect(MdcEvent.fromJSONArray(TestEvents.testJsonRecurringEvents).length).toBe(3);
+  });
+
+
+  it('when creating an Array of MdcEvents from a json array containing both recurring events and none recurring events, ' +
+    'independent recurring events will be created for each recurring date as well as the non recurring one', () => {
+    expect(MdcEvent.fromJSONArray(TestEvents.testJsonRecurringAndNonEvents).length).toBe(4);
+  });
+
   it('when creating a recurrence array from array of valid date strings, it is converted to array of dates', () => {
 
     const dates = MdcEvent.fromJSONDates(['2017-07-20T15:00:00Z','2014-05-20T15:00:00Z']);
