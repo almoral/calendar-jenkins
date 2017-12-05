@@ -50,12 +50,12 @@ export class EventDataService {
     // Build options object
     const options = {headers, params};
 
-    //TODO: use configurationService to get urls  
+    //TODO: use configurationService to get urls
     //let url: string = `/api/calendar/${calendarId}/events`;
-    let url: string = `https://s0144821.miamidade.gov:7009/office365/api/calendars/${calendarId}/events`;
+    let url: string = `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`;
     //let url: string = 'api/events';
 
-    // Get the data
+    // Get the data 
     return this.httpClient.get(url, {params})
       .map((rawEvents, index) => {
         let events = MdcEvent.fromJSONArray(rawEvents['events']);

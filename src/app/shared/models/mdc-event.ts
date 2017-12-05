@@ -260,7 +260,7 @@ export class MdcEvent {
         new Date(json.startDate),
         new Date(json.endDate),
         json.isRecurringEvent,
-        MdcEvent.fromJSONRecurrence(json.recurrence),
+        MdcEvent.fromJSONDates(json.recurrence),
         json.isAllDayEvent,
         json.categories,
         json.type,
@@ -289,10 +289,56 @@ export class MdcEvent {
   };
 
 
+  public static fromJSONRecurrence(json: any): Array<MdcEvent>{
+
+    // Build MdcEvent from json
+    const parentEvent = MdcEvent.fromJSON(json);
+
+    // check if it is a reccurring event
+    if(!parentEvent.isRecurringEvent)
+      return [];
+
+    // Compute start and end times.
+    const startHours = parentEvent.startDate.getUTCHours();
+    const startMinutes = parentEvent.startDate.getUTCMinutes();
+    const startSeconds = parentEvent.startDate.getUTCSeconds();
+    const startMilliseconds = parentEvent.startDate.getUTCMilliseconds();
+
+    const endHours = parentEvent.endDate.getUTCHours();
+    const endMinutes = parentEvent.endDate.getUTCMinutes();
+    const endSeconds = parentEvent.endDate.getUTCSeconds();
+    const endMilliseconds = parentEvent.endDate.getUTCMilliseconds();
+
+
+    // Loop through the set of dates and build the recurring events
+    const recurrenceEvents: Array<MdcEvent> = parentEvent.recurrence.reduce(function(accumulator, date) {
+
+      // replace start time and end time with that of the parent.
+      let startDate = new Date(date.getTime());
+      startDate.setUTCHours(startHours, startMinutes, startSeconds, startMilliseconds);
+
+      let endDate = new Date(date.getTime());
+      endDate.setUTCHours(endHours, endMinutes, endSeconds, endMilliseconds);
+
+      let recurrenceEvent = _.cloneDeep(parentEvent);
+      recurrenceEvent.startDate = startDate;
+      recurrenceEvent.endDate = endDate;
+
+      accumulator.push(recurrenceEvent);
+      return accumulator;
+    }, []);
+
+
+    return recurrenceEvents;
+
+  }
+
+
   /**
    * fromJSONArray translates an array of json objects into an array of
    * MdcEvent objects. If one of objects in the imput array does not match
    * the schema of MdcEvent, it is skipped.
+   * In the case of a recurring event, an MdcEvent is created for each recurring date.
    * @param jsonArray - designed to be used with a json array coming from a service.
    * @returns {any} - Array of MdcEvent objects.
    */
@@ -307,7 +353,11 @@ export class MdcEvent {
     const events: Array<MdcEvent> = jsonArray.reduce(function (accumulator, item) {
 
       try{
-        accumulator.push(MdcEvent.fromJSON(item));
+        if(!item.isRecurringEvent)
+          accumulator.push(MdcEvent.fromJSON(item));
+        else
+          accumulator.push(...MdcEvent.fromJSONRecurrence(item));
+
       } catch(error){
         // skip elements which do not conform to the schema
         console.error("fromJSONArray: could not process event: ", error);
@@ -321,22 +371,22 @@ export class MdcEvent {
   }
 
   /**
-   * fromJSONRecurrence translates an array of json strings into an array of
+   * fromJSONDates translates an array of json strings into an array of
    * Date objects. If one of strings in the imput array can not be converted to
    * a Date, it is skipped.
-   * @param jsonRecurrence - the array of strings to be converted to dates.
+   * @param jsonDates - the array of strings to be converted to dates.
    * @returns {any} - converted array of dates
    */
-  public static fromJSONRecurrence(jsonRecurrence: Array<string>): Array<Date>{
+  public static fromJSONDates(jsonDates: Array<string>): Array<Date>{
 
     // no input array is mapped it to an empty array
-    if (_.isEmpty(jsonRecurrence)) {
+    if (_.isEmpty(jsonDates)) {
       return [];
     }
 
     // map each element of the jsonRecurrence from string to date.
     // and ignores those strings which can not be coverted to a date.
-    const recurrenceDates: Array<Date> = jsonRecurrence.reduce(function (accumulator, item) {
+    const recurrenceDates: Array<Date> = jsonDates.reduce(function (accumulator, item) {
       let recurrenceDate = new Date(item);
 
       if(!isNaN( recurrenceDate.getTime() )){
@@ -350,6 +400,10 @@ export class MdcEvent {
       return recurrenceDates;
 
   }
+
+
+
+
 
   /**
    * validateJson is design to validate the json that comes from
