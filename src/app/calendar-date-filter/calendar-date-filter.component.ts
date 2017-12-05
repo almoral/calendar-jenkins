@@ -65,7 +65,4 @@ export class CalendarDateFilterComponent implements OnInit {
     }
 
   }
-
-
-
 }

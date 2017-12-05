@@ -15,11 +15,6 @@ module.exports = function (config) {
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    browserConsoleLogOptions: {
-      level: 'log',
-      format: '%b %T: %m',
-      terminal: true
-    },
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true

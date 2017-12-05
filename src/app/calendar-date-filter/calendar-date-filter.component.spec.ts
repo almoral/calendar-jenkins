@@ -1,4 +1,3 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {async, ComponentFixture, TestBed, getTestBed, inject} from '@angular/core/testing';
 import {BaseRequestOptions, Http, ResponseOptions, Response, ResponseType} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
@@ -10,7 +9,7 @@ import {EventService} from '../shared/services/event.service';
 import { EventDataService } from '../shared/services/event-data.service';
 import { HttpClient, HttpHandler} from '@angular/common/http';
 import {ConfigurationService} from '../shared/services/configuration.service';
-
+import {FormsModule} from '@angular/forms';
 
 describe('CalendarDateFilterComponent', () => {
   let component: CalendarDateFilterComponent;
@@ -26,9 +25,8 @@ describe('CalendarDateFilterComponent', () => {
         EventDataService,
         ConfigurationService
       ],
-      imports: [ HttpClientTestingModule ],
-      declarations: [ CalendarDateFilterComponent ],
-      schemas:      [ NO_ERRORS_SCHEMA ]
+      imports: [ HttpClientTestingModule, FormsModule ],
+      declarations: [ CalendarDateFilterComponent ]
     })
     .compileComponents();
   }));
