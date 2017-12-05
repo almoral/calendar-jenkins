@@ -1,7 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import * as moment from "moment";
-import {DateService} from "../shared/services/date.service";
-import * as _ from "lodash";
+import {Component, OnInit} from '@angular/core';
+import * as moment from 'moment';
+import {DateService} from '../shared/services/date.service';
+import * as _ from 'lodash';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
@@ -56,15 +57,12 @@ export class CalendarDateFilterComponent implements OnInit {
     if (day === '' && month === '') {
       this.dateService.filterByYear(year);
     }
-    if (month !== '') {
+    if (month !== '' && day === '') {
       this.dateService.filterByMonth(year, month);
     }
-    if (day !== '') {
+    if (day !== '' && month !== '') {
       this.dateService.filterByDate(year, month, day);
     }
 
   }
-
-
-
 }

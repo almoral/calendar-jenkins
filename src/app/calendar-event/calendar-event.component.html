@@ -3,10 +3,10 @@
   <!--Calendar Item-->
   <div class="calendar-title-container" (click)="showHide($event)">
     <div class="column">
-      <h3 class="calendar-subtitle">{{event.title}}</h3>
+      <h3 class="calendar-subtitle">{{event?.title}}</h3>
     </div>
     <div class="column">
-      <span class="calendar-date">{{event.startDate | date:'shortTime'}} - {{event.endDate | date:'shortTime'}}</span>
+      <span class="calendar-date">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
       <div class="plus-icon"></div>
     </div>
   </div>
@@ -21,12 +21,12 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="location">{{event.address.location}}</div>
-          <div class="street-address">{{event.address.address1}}</div>
+          <div class="location">{{event?.address.location}}</div>
+          <div class="street-address">{{event?.address.address1}}</div>
           <div class="address">
-            <span class="city">{{event.address.city}} </span>
-            <span class="state">{{event.address.state}}</span>
-            <span class="zip">{{event.address.zip}}</span>
+            <span class="city">{{event?.address.city}} </span>
+            <span class="state">{{event?.address.state}}</span>
+            <span class="zip">{{event?.address.zip}}</span>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="location"><a href="mailto:{{event.contactEmail}}">{{event.contactEmail}}</a></div>
+          <div class="location"><a href="mailto:{{event?.contactEmail}}">{{event?.contactEmail}}</a></div>
         </div>
       </div>
 
@@ -49,12 +49,12 @@
           </div>
         </div>
         <div class="detail-item">
-          <div class="phone"><a href="tel:{{event.contactPhone}}">{{event.contactPhone}}</a></div>
+          <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactPhone}}</a></div>
         </div>
       </div>
 
       <div class="short-description">
-        <p>{{event.shortDescription}}</p>
+        <p>{{event?.shortDescription}}</p>
         <a class="waves-effect wave-light btn blue" href="calendar-item.html">Event Details</a>
       </div>
 
