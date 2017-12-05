@@ -480,7 +480,7 @@ describe('MdcEvent', () => {
 
   it('when creating a recurrence array from array of valid date strings, it is converted to array of dates', () => {
 
-    const dates = MdcEvent.fromJSONRecurrence(['2017-07-20T15:00:00Z','2014-05-20T15:00:00Z']);
+    const dates = MdcEvent.fromJSONDates(['2017-07-20T15:00:00Z','2014-05-20T15:00:00Z']);
     expect(dates.length).toBe(2);
     expect(dates[0] instanceof Date).toBe(true);
     expect(dates[1] instanceof Date).toBe(true);
@@ -490,16 +490,16 @@ describe('MdcEvent', () => {
   });
 
   it('when creating an Array of dates from a [], an empty array is created. ', () => {
-    expect(MdcEvent.fromJSONRecurrence([])).toEqual([]);
+    expect(MdcEvent.fromJSONDates([])).toEqual([]);
   });
 
   it('when creating an Array of dates from a null, an empty array is created. ', () => {
-    expect(MdcEvent.fromJSONRecurrence(null)).toEqual([]);
+    expect(MdcEvent.fromJSONDates(null)).toEqual([]);
   });
 
   it('when creating an Array of dates from a json array, bad elements will not be added to the array', () => {
 
-    const dates = MdcEvent.fromJSONRecurrence(['bad date', '2014-05-20T15:00:00Z', 'worst date']);
+    const dates = MdcEvent.fromJSONDates(['bad date', '2014-05-20T15:00:00Z', 'worst date']);
     expect(dates.length).toBe(1);
     expect(dates[0] instanceof Date).toBe(true);
     expect(dates[0].getFullYear()).toBe(2014);
@@ -508,10 +508,33 @@ describe('MdcEvent', () => {
 
 
   it('when trying to create recrring events from an event whose flag isRecurringEvent is false, return empty array ', () => {
-    //expect(MdcEvent.fromJSONRecurrenceTwo(TestEvents.testJsonNonRecurring)).toEqual(null);
-    expect(true).toBe(false);
+    expect(MdcEvent.fromJSONRecurrence(TestEvents.testJsonNonRecurring)).toEqual([]);
+
   });
 
+
+  it('A recurring event should build as many events as dates in the recurrence', () => {
+    let events = MdcEvent.fromJSONRecurrence(TestEvents.testJsonRecurring);
+    expect(events.length).toBe(TestEvents.testJsonRecurring.recurrence.length);
+  });
+
+
+  it('A recurring event should have the start time same as the parent ', () => {
+    let events = MdcEvent.fromJSONRecurrence(TestEvents.testJsonRecurring);
+    expect(events[0].startDate.getUTCHours()).toBe(14);
+    expect(events[0].startDate.getUTCMinutes()).toBe(48);
+    expect(events[0].startDate.getUTCSeconds()).toBe(12);
+    expect(events[0].startDate.getUTCMilliseconds()).toBe(0);
+  });
+
+
+  it('A recurring event should have the end time same as the parent ', () => {
+    let events = MdcEvent.fromJSONRecurrence(TestEvents.testJsonRecurring);
+    expect(events[0].endDate.getUTCHours()).toBe(16);
+    expect(events[0].endDate.getUTCMinutes()).toBe(50);
+    expect(events[0].endDate.getUTCSeconds()).toBe(17);
+    expect(events[0].endDate.getUTCMilliseconds()).toBe(0);
+  });
 
 
 });

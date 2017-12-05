@@ -238,10 +238,49 @@ let jsonEvent9 = {
   address: null
 }
 
+let jsonEvent10 = {
+  "id": 10,
+  "title": "test weekly nov",
+  "startDate": "2017-11-01T14:48:12Z",
+  "endDate": "2017-11-30T16:50:17Z",
+  "categories": null,
+  "type": "Public",
+  "shortDescription": "test",
+  "longDescription": "test of long description",
+  "contactName": "test",
+  "contactPhone": "305-989-3212",
+  "contactEmail": "david@gmail.com",
+  "adaName": "test",
+  "adaPhone": "305-999-4456",
+  "adaEmail": "david@gmail.com",
+  "fee": null,
+  "url": {
+    "url": "http://yahoo.com",
+    "description": "http://yahoo.com"
+  },
+  "recurrence": ["2017-11-01T23:00:00Z", "2017-11-03T23:00:00Z", "2017-11-05T23:00:00Z"],
+  "rsvp": null,
+  "address": {
+    "location": "South Dade Justice Center",
+    "address": "10710 SW 211 Street",
+    "address2": null,
+    "city": null,
+    "state": null,
+    "zip": null
+  },
+  "isRecurringEvent": true,
+  "isClosedToPublic": false,
+  "isAllDayEvent": false,
+  "isClosedToMedia": false,
+  "isFree": false
+}
+
 export class TestEvents {
 
 
   public static testJsonNonRecurring = jsonEvent1;
+
+  public static testJsonRecurring = jsonEvent10;
 
   public static testJsonEventsOne = [jsonEvent3];
 
