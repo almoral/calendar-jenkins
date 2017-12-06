@@ -41,7 +41,7 @@ export class DataStoreService {
    * both events$ and eventsByDate$ are in sync.
    * @param newEvents - The collection of MdcEvent[] representing
    * the master copy of events which will be emited at events$ and
-   * its eventsByDate representation at eventsByDate$
+   * its eventsByDate representation at eventsByDate$ .
    */
   initializeEvents(newEvents: MdcEvent[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
