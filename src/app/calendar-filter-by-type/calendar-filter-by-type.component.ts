@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
-import { FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Category } from '../shared/models/Category';
 
 @Component({
   selector: 'mdc-calendar-filter-by-type',
@@ -10,16 +11,26 @@ import { FormBuilder, ReactiveFormsModule} from '@angular/forms';
 })
 export class CalendarFilterByTypeComponent implements OnInit {
 
-  categories$: Observable<object[]>;
+  categories$: Observable<Category[]>;
+  filterByTypeForm: FormGroup;
 
-  constructor( private dataStoreService: DataStoreService) { }
+  constructor( private dataStoreService: DataStoreService,
+               private fb: FormBuilder) { }
 
   ngOnInit() {
-
+    let allTypes: FormArray = new FormArray([]);
     this.categories$ = this.dataStoreService.categories$;
 
-    this.categories$.subscribe(category => {
-      // console.log('category: ', category);
+    this.dataStoreService.categories$.subscribe( (category) => {
+        console.log('category in service: ', category);
+        let fg = new FormGroup({});
+        fg.addControl(category[0].label, new FormControl(false));
+        allTypes.push(fg);
+
+    });
+
+    this.filterByTypeForm = this.fb.group({
+      'types': allTypes
     });
 
   }

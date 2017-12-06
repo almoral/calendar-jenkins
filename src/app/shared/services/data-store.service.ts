@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import {EventService} from "./event.service";
 import {EventDataService} from "./event-data.service";
 import {CategoriesService} from './categories.service';
+import { Category } from '../models/Category';
 
 @Injectable()
 export class DataStoreService {
@@ -33,7 +34,7 @@ export class DataStoreService {
 
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
-  public categories$: Observable<object[]> = this.categoriesSubject.asObservable();
+  public categories$: Observable<Category[]> = this.categoriesSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -57,7 +58,7 @@ export class DataStoreService {
    * @param newCategories - The collection of object[] representing
    * the master copy of categories which will be emitted at categories$
    */
-  initializeCategories(newCategories: object[]) {
+  initializeCategories(newCategories: Category[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
 
@@ -78,9 +79,8 @@ export class DataStoreService {
   }
 
   getCategories(){
-    let categories$: Observable<object[]> = this.categoriesService.getCategories();
+    let categories$: Observable<Category[]> = this.categoriesService.getCategories();
     categories$.subscribe(categories => {
-        console.log('categories: ', categories);
         this.initializeCategories(categories);
       });
   }
