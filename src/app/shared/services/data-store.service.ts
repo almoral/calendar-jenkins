@@ -4,16 +4,19 @@ import {MdcEventsByDate, MdcEvent} from "../models/mdc-event";
 import * as _ from "lodash";
 import {EventService} from "./event.service";
 import {EventDataService} from "./event-data.service";
-
+import {CategoriesService} from './categories.service';
 
 @Injectable()
 export class DataStoreService {
 
-  constructor(private eventService: EventService, private eventDataService: EventDataService) {
+  constructor(private eventService: EventService,
+              private eventDataService: EventDataService,
+              private categoriesService: CategoriesService) {
     // this.initializeEvents(TestEvents.testEvents);
     //TODO: intitial dates should come from some configuration.
     this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
     this.subscribeTitle();
+    this.getCategories();
   }
 
   // observable collection of events.
@@ -27,6 +30,10 @@ export class DataStoreService {
   // observable title.
   private titleSubject = new BehaviorSubject('');
   private title$: Observable<string> = this.titleSubject.asObservable();
+
+  // observable categories.
+  private categoriesSubject = new BehaviorSubject([]);
+  public categories$: Observable<object[]> = this.categoriesSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -44,6 +51,18 @@ export class DataStoreService {
     this.filterEventsByTitle(this.titleSubject.getValue());
   }
 
+  /** TODO: Update this comment
+   * initializeCategories notifies those observers listening for new emission
+   * of categories$.
+   * @param newCategories - The collection of object[] representing
+   * the master copy of categories which will be emitted at categories$
+   */
+  initializeCategories(newCategories: object[]) {
+    this.categoriesSubject.next(_.cloneDeep(newCategories));
+  }
+
+
+
   /**
    * getEvents fetches all events falling between date:to and
    * date:from, and the state of hte store is initialized with
@@ -56,6 +75,14 @@ export class DataStoreService {
     let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof1', from, to);
     events$.subscribe(events => this.initializeEvents(events));
     // TODO: what happens if an error comes. Who should handle displaying something ?
+  }
+
+  getCategories(){
+    let categories$: Observable<object[]> = this.categoriesService.getCategories();
+    categories$.subscribe(categories => {
+        console.log('categories: ', categories);
+        this.initializeCategories(categories);
+      });
   }
 
 

@@ -42,7 +42,7 @@ export class Category {
   public static fromJSON(json: any): Category {
     // if (MDCEvent.validateJson(json))
     return new Category(
-      json.value,
+      json.id,
       json.label
     );
     // else {

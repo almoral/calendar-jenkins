@@ -17,6 +17,7 @@ export class CategoriesService {
   ) { }
 
   getCategories(): Observable<Array<Object>>{
+
     return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {
 
@@ -29,6 +30,7 @@ export class CategoriesService {
           // console.log('CATEGORIES: ', this.arrCategories);
 
         // return this.arrCategories;
+
         return categories;
       })
       .catch(error => {
@@ -48,12 +50,14 @@ export class CategoriesService {
    * in the response could be converted to an Topic or the response hand an empty body.
    */
   private jsonToCategories = (response: any) => {
-    if (_.isEmpty(response.json())) {
+    if (_.isEmpty(response)) {
+      console.log('is empty');
       return null;
     }
-    let raw: Array<any> = response.json().data.topics;
+    let raw: Array<any> = response.data.topics;
     let model: Array<Category> = raw.reduce(function (accumulator, item) {
       let category = Category.fromJSON(item);
+
       if (category) {
         accumulator.push(category);
       }
