@@ -32,15 +32,25 @@ export class EventService {
 
   filterEventsByTitle(events: MdcEvent[], title: string): MdcEvent[] {
 
-    // filter of null/empty/undefined retuns empty collection.
-
-    // apply title filter
-    //_.matchesProperty('events.title', title)
     return _.filter(events, (event: MdcEvent) => {
       let match = new RegExp(title).test(event.title);
       return match;
     });
 
+  }
+
+  /**
+   * filterEventsByCategory intersects categories with MdcEvent.categories
+   * If intersection is not empty the event passes the filter. As long as an
+   * event contain at least one category in categories, it will pass the filter.
+   * @param events - array of MdcEvent to be filtered.
+   * @param categories - array of strings representing the categories to be intersected.
+   */
+  filterEventsByCategory(events: MdcEvent[], categories: string[]): MdcEvent[] {
+
+    return _.filter(events, (event: MdcEvent) => {
+      return !(_.isEmpty(_.intersection(categories, event.categories)));
+    });
   }
 
 }

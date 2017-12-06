@@ -24,7 +24,7 @@ let jsonEvent1 = {
   isFree: false,
   fee: 3,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: ['animals'],
   url: {'description': 'URL for event', 'url': 'http://www.google.com'},
   address: null
 }
@@ -76,7 +76,7 @@ let jsonEvent3 = {
   isFree: false,
   fee: 5,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: ['public-safety'],
   url: {description: 'URL for event 3', url: 'http://www.google.com'},
   address: null
 }
@@ -103,7 +103,7 @@ let jsonEvent4 = {
   isFree: false,
   fee: 5,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: [],
   url: {'description': 'URL for event 4', 'url': 'http://www.google.com'},
   address: null
 }
@@ -129,7 +129,7 @@ let jsonEvent5 = {
   isFree: false,
   fee: 7,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: null,
   url: {'description': 'URL for event 5', 'url': 'http://www.google.com'},
   address: null
 }
@@ -181,7 +181,7 @@ let jsonEvent7 = {
   isFree: false,
   fee: 3.5,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: null,
   url: {'description': 'URL for event 7', 'url': 'http://www.google.com'},
   address: null
 }
@@ -207,7 +207,7 @@ let jsonEvent8 = {
   isFree: false,
   fee: 3.5,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: ['public-safety'],
   url: {'description': 'URL for event 8', 'url': 'http://www.google.com'},
   address: null
 }
@@ -233,7 +233,7 @@ let jsonEvent9 = {
   isFree: false,
   fee: 3.5,
   rsvp: 'joe bler',
-  categories: ['animals', 'public-safety'],
+  categories: ['animals'],
   url: {'description': 'URL for event 9', 'url': 'http://www.google.com'},
   address: null
 }
@@ -296,6 +296,8 @@ export class TestEvents {
 
   public static testJsonRecurringAndNonEvents = [TestEvents.testJsonRecurring, TestEvents.testJsonNonRecurring];
 
+  public static testJsonEventsCategories = [jsonEvent1, jsonEvent2,jsonEvent3, jsonEvent4, jsonEvent5];
+
   public static testJsonEvents = [
     ...TestEvents.testJsonEventsOne,
     ...TestEvents.testJsonEventsTwo,
@@ -316,6 +318,10 @@ export class TestEvents {
 
   public static testEventsDifferentDates = [
     MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent3)];
+
+  public static testEventsCategories = [
+    MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent3),
+    MdcEvent.fromJSON(jsonEvent4), MdcEvent.fromJSON(jsonEvent5)];
 
   public static testEvents = [
     ...TestEvents.testEventsOne,

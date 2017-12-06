@@ -24,9 +24,13 @@ export class DataStoreService {
   private eventsByDateSubject = new BehaviorSubject([]);
   public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
 
-  // observable title.
+  // observable filter title.
   private titleSubject = new BehaviorSubject('');
   private title$: Observable<string> = this.titleSubject.asObservable();
+
+  // observable filter categories.
+  private categoriesFilterSubject = new BehaviorSubject([]);
+  private categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -75,4 +79,25 @@ export class DataStoreService {
   subscribeTitle() {
     this.title$.subscribe((title) => this.filterEventsByTitle(title));
   }
+
+
+  setCategoriesFilter(categories: string[]) {
+    this.categoriesFilterSubject.next(categories);
+  }
+
+  subscribeCategoriesFilter() {
+    this.categoriesFilter$.subscribe((categories) => this.filterEventsByCategories(categories));
+  }
+
+
+
+  filterEventsByCategories(categories: string[]) {
+    // let eventsByDate = this.eventService.eventsByDate(
+    //   this.eventService.filterEventsByTitle(
+    //     this.eventsSubject.getValue(), title));
+    //
+    // this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+
+  }
+
 }

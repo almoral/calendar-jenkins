@@ -61,4 +61,41 @@ describe('EventService', () => {
   }));
 
 
+
+  it('when filtering events by category, if events are null, return []', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory(null, ['some category']);
+    expect(events).toEqual([]);
+
+  }));
+
+  it('when filtering events by category, if events are [], return []', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory([], ['some category']);
+    expect(events).toEqual([]);
+
+  }));
+
+  it('when I choose categories to be [] when filtering events, return []', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory(TestEvents.testEventsCategories, []);
+    expect(events).toEqual([]);
+
+  }));
+
+
+  it('when I choose several categories to filter events, if they are not contained on any of the events, return []', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory(TestEvents.testEventsCategories, ['no category']);
+    expect(events).toEqual([]);
+
+  }));
+
+  it('when I choose one category to filter events, only events that contain that category should show', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory(TestEvents.testEventsCategories, ['animals']);
+    expect(events.length).toBe(2);
+
+  }));
+
+  it('when I choose several categories to filter events, only events that contain one of those should show', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByCategory(TestEvents.testEventsCategories, ['animals', 'public-safety']);
+    expect(events.length).toBe(3);
+  }));
+
 });
