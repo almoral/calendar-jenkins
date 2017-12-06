@@ -98,4 +98,34 @@ describe('EventService', () => {
     expect(events.length).toBe(3);
   }));
 
+
+  it('when filtering events, only those who pass title and categories contraint should show', inject([EventService], (service: EventService) => {
+    let events = service.filterEvents(TestEvents.testEventsCategories, 'title2', ['animals', 'public-safety']);
+    expect(events.length).toBe(1);
+  }));
+
+  it('when filtering events, if event only match title do not show it', inject([EventService], (service: EventService) => {
+    let events = service.filterEvents(TestEvents.testEventsOne, 'title3', ['no category']);
+    expect(TestEvents.testEventsOne[0].title).toBe('my title3 is big');
+    expect(TestEvents.testEventsOne[0].categories).toEqual(['public-safety']);
+    expect(events.length).toBe(0);
+  }));
+
+
+  it('when filtering events, if event only match category do not show it', inject([EventService], (service: EventService) => {
+    let events = service.filterEvents(TestEvents.testEventsOne, 'small', ['public-safety']);
+    expect(TestEvents.testEventsOne[0].title).toBe('my title3 is big');
+    expect(TestEvents.testEventsOne[0].categories).toEqual(['public-safety']);
+    expect(events.length).toBe(0);
+  }));
+
+  it('when filtering events, if event matches title and at least one category then show it', inject([EventService], (service: EventService) => {
+    let events = service.filterEvents(TestEvents.testEventsOne, 'big', ['public-safety']);
+    expect(TestEvents.testEventsOne[0].title).toBe('my title3 is big');
+    expect(TestEvents.testEventsOne[0].categories).toEqual(['public-safety']);
+    expect(events.length).toBe(1);
+  }));
+
+
+
 });

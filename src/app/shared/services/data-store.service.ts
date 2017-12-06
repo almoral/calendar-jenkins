@@ -14,6 +14,7 @@ export class DataStoreService {
     //TODO: intitial dates should come from some configuration.
     this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
     this.subscribeTitle();
+    this.subscribeCategoriesFilter();
   }
 
   // observable collection of events.
@@ -43,9 +44,7 @@ export class DataStoreService {
    */
   initializeEvents(newEvents: MdcEvent[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
-    //let eventsByDate = this.eventService.eventsByDate(newEvents);
-    //this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
-    this.filterEventsByTitle(this.titleSubject.getValue());
+    this.filterEvents();
   }
 
   /**
@@ -63,6 +62,22 @@ export class DataStoreService {
   }
 
 
+  filterEvents(){
+
+    // filter events master list.
+    let filteredEvents = this.eventService.filterEvents(
+      this.eventsSubject.getValue(),
+      this.titleSubject.getValue(),
+      this.categoriesFilterSubject.getValue());
+
+    // categorize events by date.
+    let eventsByDate = this.eventService.eventsByDate(filteredEvents);
+
+    // refresh subscribers
+    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+  }
+
+
   filterEventsByTitle(title: string) {
     let eventsByDate = this.eventService.eventsByDate(
       this.eventService.filterEventsByTitle(
@@ -77,7 +92,7 @@ export class DataStoreService {
   }
 
   subscribeTitle() {
-    this.title$.subscribe((title) => this.filterEventsByTitle(title));
+    this.title$.subscribe((title) => this.filterEvents());
   }
 
 
@@ -86,18 +101,8 @@ export class DataStoreService {
   }
 
   subscribeCategoriesFilter() {
-    this.categoriesFilter$.subscribe((categories) => this.filterEventsByCategories(categories));
+    this.categoriesFilter$.subscribe((categories) => this.filterEvents());
   }
 
-
-
-  filterEventsByCategories(categories: string[]) {
-    // let eventsByDate = this.eventService.eventsByDate(
-    //   this.eventService.filterEventsByTitle(
-    //     this.eventsSubject.getValue(), title));
-    //
-    // this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
-
-  }
 
 }

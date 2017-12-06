@@ -30,6 +30,24 @@ export class EventService {
   }
 
 
+  /**
+   * filterEvents filter events which meet the filterEventsByTitle
+   * requirements and the filterEventsByCategory requirements.
+   * @param events - array of MdcEvent. Each one meets the title contraints
+   * and the categories contraint
+   * @param title - title to use filterEventByTitle contraint.
+   * @param categories - categories in filterEventsByCategory constraint.
+   */
+  filterEvents(events: MdcEvent[], title: string, categories: string[]): MdcEvent[]  {
+    return this.filterEventsByCategory(this.filterEventsByTitle(events, title), categories);
+  }
+
+
+  /**
+   *
+   * @param events
+   * @param title
+   */
   filterEventsByTitle(events: MdcEvent[], title: string): MdcEvent[] {
 
     return _.filter(events, (event: MdcEvent) => {
