@@ -20,12 +20,16 @@ export class CalendarFilterByTitleComponent implements OnInit {
       title: ['']
     });
 
-    this.onChange();
+    this.initOnChange();
 
   }
 
-  
-  onChange(){
+
+  /**
+   * initOnChange initializes the reactive form
+   * to set the title when it changes.
+   */
+  initOnChange(){
     this.form.valueChanges
       .filter(() => this.form.valid)
       .subscribe(validValue =>
