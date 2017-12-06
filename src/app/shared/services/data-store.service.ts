@@ -15,6 +15,7 @@ export class DataStoreService {
     this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
     this.subscribeTitle();
     this.subscribeCategoriesFilter();
+    this.subscribeEvents();
   }
 
   // observable collection of events.
@@ -44,7 +45,6 @@ export class DataStoreService {
    */
   initializeEvents(newEvents: MdcEvent[]) {
     this.eventsSubject.next(_.cloneDeep(newEvents));
-    this.filterEvents();
   }
 
   /**
@@ -102,6 +102,11 @@ export class DataStoreService {
 
   subscribeCategoriesFilter() {
     this.categoriesFilter$.subscribe((categories) => this.filterEvents());
+  }
+
+
+  subscribeEvents() {
+    this.events$.subscribe((events) => this.filterEvents());
   }
 
 

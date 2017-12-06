@@ -61,11 +61,18 @@ export class EventService {
    * filterEventsByCategory intersects categories with MdcEvent.categories
    * If intersection is not empty the event passes the filter. As long as an
    * event contain at least one category in categories, it will pass the filter.
+   * If the filter is an empty array of categories, avoid filtering and return
+   * all events.
    * @param events - array of MdcEvent to be filtered.
    * @param categories - array of strings representing the categories to be intersected.
    */
   filterEventsByCategory(events: MdcEvent[], categories: string[]): MdcEvent[] {
 
+    // no categories. Return all events.
+    if(_.isEmpty(categories))
+      return events;
+
+    // filter by intersecting categories.
     return _.filter(events, (event: MdcEvent) => {
       return !(_.isEmpty(_.intersection(categories, event.categories)));
     });

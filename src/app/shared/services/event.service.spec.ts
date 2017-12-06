@@ -54,6 +54,15 @@ describe('EventService', () => {
 
   }));
 
+
+  it('when I choose an empty title to filter events, all events should show', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByTitle(TestEvents.testEvents, '');
+    expect(events.length).toBe(9);
+
+  }));
+
+
+
   it('when I choose a title to filter events, only events that contain the string on the title should show', inject([EventService], (service: EventService) => {
     let events = service.filterEventsByTitle(TestEvents.testEvents, 'big');
     expect(events.length).toBe(2);
@@ -74,9 +83,9 @@ describe('EventService', () => {
 
   }));
 
-  it('when I choose categories to be [] when filtering events, return []', inject([EventService], (service: EventService) => {
+  it('when I choose categories to be [], skip filtering and return all events', inject([EventService], (service: EventService) => {
     let events = service.filterEventsByCategory(TestEvents.testEventsCategories, []);
-    expect(events).toEqual([]);
+    expect(events).toEqual(TestEvents.testEventsCategories);
 
   }));
 
