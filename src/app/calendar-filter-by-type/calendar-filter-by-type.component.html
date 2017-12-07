@@ -1,15 +1,19 @@
 <section class="widget" aria-labelledby="filterType">
   <h3 class="widget-title" id="filterType">Filter by Type</h3>
-<form [formGroup]='filterByTypeForm'>
-  <fieldset formGroupName='categories'>
+<!--{{form}}-->
+<form [formGroup]='form'>
+  <fieldset>
     <legend>Choose a type to filter by:</legend>
     <!--<ul>-->
-    <div>
-      <p *ngFor='let topics of categories$ | async' formGroupName='fg'>
-      <input name='{{topics.value}}' formControlName='{{topics.value}}' [(ngModel)]='typeSelections' type="checkbox" class="filled-in" id="typeTitle01" value='{{topics.value}}'>
-      <label for="typeTitle01">{{topics.label}}</label>
-      </p>
-    </div>
+
+      <div *ngFor="let topics of categories$ | async; let i = index">
+        <p [formGroupName]="i">
+      <input [formControlName]="topics.value" type="checkbox" class="filled-in" id="{{i}}"/>
+        <!--<input type="checkbox" class="filled-in" id="typeTitle01" [ngModel]="topics?.value" value='{{topics?.value}}'/>-->
+      <label for="{{i}}">{{topics.label}}</label>
+  </p>
+      </div>
+
     <!--</ul>-->
 
   </fieldset>

@@ -1,8 +1,8 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {AfterContentInit, Component, Input, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Category } from '../shared/models/Category';
+import { FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'mdc-calendar-filter-by-type',
@@ -12,25 +12,33 @@ import { Category } from '../shared/models/Category';
 export class CalendarFilterByTypeComponent implements OnInit {
 
   categories$: Observable<string[]>;
-  filterByTypeForm: FormGroup;
   allCategories: FormArray = new FormArray([]);
-
+  form: FormGroup;
   @Input() categoriesData: string[];
+
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder) { }
 
+  createItem(value: string, label: string): FormGroup {
+    return this.fb.group({
+      value: value,
+      label: label
+    });
+  }
+
   ngOnInit() {
     this.categories$ = this.dataStoreService.categoriesFilter$;
+    // let form: FormGroup = new FormGroup({});
+
     this.categories$.map((category, i) => {
-      let fg = new FormGroup({});
-      fg.addControl(category[i]['value'], new FormControl(false))
-      this.allCategories.push(fg);
+      this.allCategories.push(this.createItem(category[i]['value'], category[i]['label']));
+      console.log('categories mapped: ', category[i]['value']);
     });
 
-    this.filterByTypeForm = this.fb.group({
-      categories: this.allCategories
-  });
+    this.form = this.fb.group({
+      categories: [this.allCategories]
+    });
   }
 
 }
