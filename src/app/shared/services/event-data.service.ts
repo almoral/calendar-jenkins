@@ -38,7 +38,8 @@ export class EventDataService {
    */
   getEventsOnCalendar(calendarId: string, from: Date, to: Date = from): Observable<MdcEvent []> {
 
-    // Setup header
+    // Setup header.
+    // TODO: revisit and inspect headers in the Chrome console
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json');
 
@@ -58,7 +59,7 @@ export class EventDataService {
     // Get the data
     return this.httpClient.get(url, {params})
       .map((rawEvents, index) => {
-        let events = MdcEvent.fromJSONArray(rawEvents['events']);
+        let events = MdcEvent.fromJSONArray(rawEvents['events'], calendarId);
         return events;
       }).catch(this.eventOnCalendarErrorHandler);
 

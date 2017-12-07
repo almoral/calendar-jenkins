@@ -51,8 +51,7 @@ export class EventService {
   filterEventsByTitle(events: MdcEvent[], title: string): MdcEvent[] {
 
     return _.filter(events, (event: MdcEvent) => {
-      let match = new RegExp(title).test(event.title);
-      return match;
+      return  new RegExp(title).test(event.title);
     });
 
   }
@@ -77,6 +76,11 @@ export class EventService {
       return !(_.isEmpty(_.intersection(categories, event.categories)));
     });
   }
+
+  filterEventsByDepartment(events: MdcEvent[], departments: string[]): MdcEvent[] {
+    return null;
+  }
+
 
 }
 
