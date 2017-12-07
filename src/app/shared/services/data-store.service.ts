@@ -16,6 +16,7 @@ export class DataStoreService {
     // this.initializeEvents(TestEvents.testEvents);
     //TODO: intitial dates should come from some configuration.
     this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
+    this.getCategories();
     this.subscribeTitle();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
@@ -35,7 +36,7 @@ export class DataStoreService {
 
   // observable filter categories.
   private categoriesFilterSubject = new BehaviorSubject([]);
-  private categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
+  public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -56,8 +57,8 @@ export class DataStoreService {
    * @param newCategories - The collection of object[] representing
    * the master copy of categories which will be emitted at categories$
    */
-  initializeCategories(newCategories: Category[]) {
-    this.categoriesSubject.next(_.cloneDeep(newCategories));
+  initializeCategories(newCategories: string[]) {
+    this.categoriesFilterSubject.next(_.cloneDeep(newCategories));
   }
 
 
@@ -77,7 +78,7 @@ export class DataStoreService {
   }
 
   getCategories(){
-    let categories$: Observable<Category[]> = this.categoriesService.getCategories();
+    let categories$: Observable<string[]> = this.categoriesService.getCategories();
     categories$.subscribe(categories => {
         this.initializeCategories(categories);
       });
