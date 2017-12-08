@@ -4,18 +4,22 @@ import {MdcEventsByDate, MdcEvent} from "../models/mdc-event";
 import * as _ from "lodash";
 import {EventService} from "./event.service";
 import {EventDataService} from "./event-data.service";
+import {environment} from "../../../environments/environment";
 
 
 @Injectable()
 export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
-    // this.initializeEvents(TestEvents.testEvents);
-    //TODO: intitial dates should come from some configuration.
-    this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
+
     this.subscribeTitle();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
+
+    // this.initializeEvents(TestEvents.testEvents);
+    //TODO: intitial dates should come from some configuration.
+    this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
+
   }
 
   // observable collection of events.
@@ -27,12 +31,12 @@ export class DataStoreService {
   public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
 
   // observable filter title.
-  private titleSubject = new BehaviorSubject('');
-  private title$: Observable<string> = this.titleSubject.asObservable();
+  private titleFilterSubject = new BehaviorSubject('');
+  public titleFilter$: Observable<string> = this.titleFilterSubject.asObservable();
 
   // observable filter categories.
   private categoriesFilterSubject = new BehaviorSubject([]);
-  private categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
+  public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -67,7 +71,7 @@ export class DataStoreService {
     // filter events master list.
     let filteredEvents = this.eventService.filterEvents(
       this.eventsSubject.getValue(),
-      this.titleSubject.getValue(),
+      this.titleFilterSubject.getValue(),
       this.categoriesFilterSubject.getValue());
 
     // categorize events by date.
@@ -87,12 +91,12 @@ export class DataStoreService {
 
   }
 
-  setTitle(title: string) {
-    this.titleSubject.next(title);
+  setTitleFilter(title: string) {
+    this.titleFilterSubject.next(title);
   }
 
   subscribeTitle() {
-    this.title$.subscribe((title) => this.filterEvents());
+    this.titleFilter$.subscribe((title) => this.filterEvents());
   }
 
 

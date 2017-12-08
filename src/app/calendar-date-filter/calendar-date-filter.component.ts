@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
 import {FormsModule} from '@angular/forms';
+import {environment} from "../../environments/environment";
 
 
 @Component({
@@ -31,6 +32,14 @@ export class CalendarDateFilterComponent implements OnInit {
     this.selectedYear = moment().format(DateService.YEAR_FORMAT);
     this.selectedMonth = moment().format(DateService.MONTH_FORMAT);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
+
+    // With 'day' configuration set also the current day.
+    // Only the events for today will show.
+    if(environment.dateFilterType === 'day'){
+      this.selectedDay = moment().format('D');
+    }
+
+    this.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
   /**
