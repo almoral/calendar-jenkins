@@ -36,7 +36,7 @@ export class DataStoreService {
 
   // observable filter calendars.
   private calendarsFilterSubject = new BehaviorSubject([]);
-  private calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
+  public calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
