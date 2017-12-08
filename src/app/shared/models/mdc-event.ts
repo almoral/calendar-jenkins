@@ -54,6 +54,7 @@ export class MdcEvent {
   public rsvp: string;
   public url: object;
   public address: MdcEventAddress;
+  public calendarId: string;
 
 
   public static schema = {
@@ -204,7 +205,8 @@ export class MdcEvent {
               fee: number,
               rsvp: string,
               url: object,
-              address: MdcEventAddress) {
+              address: MdcEventAddress,
+              calendarId: string) {
 
     this.id = id || null;
     this.odataId = odataId || '';
@@ -231,6 +233,7 @@ export class MdcEvent {
     this.rsvp = rsvp || '';
     this.url = url || {};
     this.address = address || new MdcEventAddress();
+    this.calendarId = calendarId || null;
   }
 
 
@@ -240,7 +243,7 @@ export class MdcEvent {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MdcEvent otherwise it throws an error.
    */
-  public static fromJSON(json: any): MdcEvent {
+  public static fromJSON(json: any, calendarId:string = null): MdcEvent {
     if (MdcEvent.validateJson(json)) {
 
       // get address
@@ -278,7 +281,8 @@ export class MdcEvent {
         json.fee,
         json.rsvp,
         json.url,
-        address
+        address,
+        calendarId
       )}
     else {
       console.error('fromJSON: invalid json to build event', json, tv4.error);
@@ -289,10 +293,10 @@ export class MdcEvent {
   };
 
 
-  public static fromJSONRecurrence(json: any): Array<MdcEvent>{
+  public static fromJSONRecurrence(json: any, calendarId:string = null): Array<MdcEvent>{
 
     // Build MdcEvent from json
-    const parentEvent = MdcEvent.fromJSON(json);
+    const parentEvent = MdcEvent.fromJSON(json, calendarId);
 
     // check if it is a reccurring event
     if(!parentEvent.isRecurringEvent)
@@ -342,7 +346,7 @@ export class MdcEvent {
    * @param jsonArray - designed to be used with a json array coming from a service.
    * @returns {any} - Array of MdcEvent objects.
    */
-  public static fromJSONArray(jsonArray: Array<any> = []): Array<MdcEvent> {
+  public static fromJSONArray(jsonArray: Array<any> = [], calendarId:string = null): Array<MdcEvent> {
 
     // no input array is mapped it to an empty array
     if (_.isEmpty(jsonArray)) {
@@ -354,9 +358,9 @@ export class MdcEvent {
 
       try{
         if(!item.isRecurringEvent)
-          accumulator.push(MdcEvent.fromJSON(item));
+          accumulator.push(MdcEvent.fromJSON(item, calendarId));
         else
-          accumulator.push(...MdcEvent.fromJSONRecurrence(item));
+          accumulator.push(...MdcEvent.fromJSONRecurrence(item, calendarId));
 
       } catch(error){
         // skip elements which do not conform to the schema
