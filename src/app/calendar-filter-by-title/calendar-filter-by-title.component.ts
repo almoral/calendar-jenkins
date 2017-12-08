@@ -9,10 +9,10 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CalendarFilterByTitleComponent implements OnInit {
 
+
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private dataStoreService: DataStoreService) {
-
   }
 
   ngOnInit() {
