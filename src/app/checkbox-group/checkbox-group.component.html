@@ -1,0 +1,9 @@
+<p *ngFor="let cbOption of optionsData | async">
+        <input ngClass='filled-in'
+               type="checkbox"
+               id='{{cbOption.value}}'
+               name="{{cbOption.value}}"
+               value="{{cbOption.value}}"
+               (ngModelChange)="checkboxGroupChange($event.target)">
+    <label for='{{cbOption.value}}'>{{cbOption.label}}</label>
+</p>

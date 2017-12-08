@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs/Rx";
-import {MdcEventsByDate, MdcEvent} from "../models/mdc-event";
-import * as _ from "lodash";
-import {EventService} from "./event.service";
-import {EventDataService} from "./event-data.service";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs/Rx';
+import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
+import * as _ from 'lodash';
+import {EventService} from './event.service';
+import {EventDataService} from './event-data.service';
 import {CategoriesService} from './categories.service';
 import { Category } from '../models/Category';
 
@@ -15,7 +15,7 @@ export class DataStoreService {
               private categoriesService: CategoriesService) {
     // this.initializeEvents(TestEvents.testEvents);
     //TODO: intitial dates should come from some configuration.
-    this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
+    this.getEvents(new Date('11/1/2016'), new Date('12/25/2017'));
     this.getCategories();
     this.subscribeTitle();
     this.subscribeCategoriesFilter();
@@ -77,15 +77,15 @@ export class DataStoreService {
     // TODO: what happens if an error comes. Who should handle displaying something ?
   }
 
-  getCategories(){
-    let categories$: Observable<string[]> = this.categoriesService.getCategories();
+  getCategories() {
+    const categories$: Observable<string[]> = this.categoriesService.getCategories();
     categories$.subscribe(categories => {
         this.initializeCategories(categories);
       });
   }
 
 
-  filterEvents(){
+  filterEvents() {
 
     // filter events master list.
     let filteredEvents = this.eventService.filterEvents(
