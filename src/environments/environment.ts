@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   titleFilter: '',
-  dateFilterType: window['selectedDepartment'] ||'day',
+  dateFilterType: window['dateFilterType'] ||'day',
   selectedDepartment: window['selectedDepartment'],
   calendarUrl: {
     //eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
