@@ -4,16 +4,15 @@ import {MdcEventsByDate, MdcEvent} from "../models/mdc-event";
 import * as _ from "lodash";
 import {EventService} from "./event.service";
 import {EventDataService} from "./event-data.service";
+import {environment} from "../../../environments/environment";
 
 
 @Injectable()
 export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
-    // this.initializeEvents(TestEvents.testEvents);
-    //TODO: intitial dates should come from some configuration.
-    this.getEvents(new Date("11/1/2016"), new Date("12/25/2017"));
-    this.subscribeTitle();
+
+    this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
   }
@@ -27,12 +26,12 @@ export class DataStoreService {
   public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
 
   // observable filter title.
-  private titleSubject = new BehaviorSubject('');
-  private title$: Observable<string> = this.titleSubject.asObservable();
+  private titleFilterSubject = new BehaviorSubject('');
+  public titleFilter$: Observable<string> = this.titleFilterSubject.asObservable();
 
   // observable filter categories.
   private categoriesFilterSubject = new BehaviorSubject([]);
-  private categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
+  public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
 
   // observable filter calendars.
@@ -61,7 +60,7 @@ export class DataStoreService {
    */
   getEvents(from: Date, to: Date) {
     // TODO: remove hardcoded calendar by configured set of calendars
-    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof1', from, to);
+    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof2', from, to);
     events$.subscribe(events => this.initializeEvents(events));
     // TODO: what happens if an error comes. Who should handle displaying something ?
   }
@@ -79,7 +78,7 @@ export class DataStoreService {
     // filter events in master list.
     let filteredEvents = this.eventService.filterEvents(
       this.eventsSubject.getValue(),
-      this.titleSubject.getValue(),
+      this.titleFilterSubject.getValue(),
       this.categoriesFilterSubject.getValue(),
       this.calendarsFilterSubject.getValue());
 
@@ -90,21 +89,21 @@ export class DataStoreService {
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
   }
 
-
-  setTitle(title: string) {
-    this.titleSubject.next(title);
-  }
-
   setCategoriesFilter(categories: string[]) {
     this.categoriesFilterSubject.next(categories);
+
+  }
+
+  setTitleFilter(title: string) {
+    this.titleFilterSubject.next(title);
   }
 
   setCalendarsFilter(calendars: string[]) {
     this.calendarsFilterSubject.next(calendars);
   }
 
-  subscribeTitle() {
-    this.title$.subscribe((title) => this.filterEvents());
+  subscribeTitleFilter() {
+    this.titleFilter$.subscribe((title) => this.filterEvents());
   }
 
   subscribeCategoriesFilter() {
