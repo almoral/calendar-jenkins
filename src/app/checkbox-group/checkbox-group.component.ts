@@ -24,8 +24,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     selOptions = [];
     channelArray = [];
     selectedCategories: Array<string> = [];
-  propagateChange = ((_: any) => {
-  });
+    propagateChange = ((_: any) => {});
 
     constructor(private dataStoreService: DataStoreService) {
     }
@@ -77,7 +76,14 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
 
   filterByCategories(category: string) {
-    this.selectedCategories.push(category);
+    if (this.selectedCategories.indexOf(category) > -1) {
+      this.selectedCategories = _.filter(this.selectedCategories, (item) => {
+        return item !== category;
+      });
+    } else {
+      this.selectedCategories.push(category);
+    }
+
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);
   }
 
