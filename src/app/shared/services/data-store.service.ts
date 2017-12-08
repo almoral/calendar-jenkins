@@ -34,6 +34,11 @@ export class DataStoreService {
   private categoriesFilterSubject = new BehaviorSubject([]);
   private categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
+
+  // observable filter calendars.
+  private calendarsFilterSubject = new BehaviorSubject([]);
+  private calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
+
   /**
    * initializeEvents notifies those observers listening for new emision
    * of events$ and eventsByDate$.
@@ -62,48 +67,53 @@ export class DataStoreService {
   }
 
 
+  /**
+   * filterEvents does the following:
+   * 1. Filter events in the master list - eventsSubject -
+   *    using title, categories and calendars.
+   * 2. Categorize the result by date.
+   * 3. Notify subscribers that the categorized events have changed.
+   */
   filterEvents(){
 
-    // filter events master list.
+    // filter events in master list.
     let filteredEvents = this.eventService.filterEvents(
       this.eventsSubject.getValue(),
       this.titleSubject.getValue(),
-      this.categoriesFilterSubject.getValue());
+      this.categoriesFilterSubject.getValue(),
+      this.calendarsFilterSubject.getValue());
 
     // categorize events by date.
     let eventsByDate = this.eventService.eventsByDate(filteredEvents);
 
-    // refresh subscribers
+    // notify subscribers.
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
   }
 
-
-  filterEventsByTitle(title: string) {
-    let eventsByDate = this.eventService.eventsByDate(
-      this.eventService.filterEventsByTitle(
-        this.eventsSubject.getValue(), title));
-
-    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
-
-  }
 
   setTitle(title: string) {
     this.titleSubject.next(title);
+  }
+
+  setCategoriesFilter(categories: string[]) {
+    this.categoriesFilterSubject.next(categories);
+  }
+
+  setCalendarsFilter(calendars: string[]) {
+    this.calendarsFilterSubject.next(calendars);
   }
 
   subscribeTitle() {
     this.title$.subscribe((title) => this.filterEvents());
   }
 
-
-  setCategoriesFilter(categories: string[]) {
-    this.categoriesFilterSubject.next(categories);
-  }
-
   subscribeCategoriesFilter() {
     this.categoriesFilter$.subscribe((categories) => this.filterEvents());
   }
 
+  subscribeCalendarsFilter() {
+    this.calendarsFilter$.subscribe((calendars) => this.filterEvents());
+  }
 
   subscribeEvents() {
     this.events$.subscribe((events) => this.filterEvents());
