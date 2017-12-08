@@ -8,6 +8,7 @@ import {MdcEvent} from "../models/mdc-event";
 import {forkJoin} from "rxjs/observable/forkJoin";
 import * as _ from "lodash";
 import * as moment from "moment";
+import {environment} from "../../../environments/environment";
 
 
 /**
@@ -38,24 +39,21 @@ export class EventDataService {
    */
   getEventsOnCalendar(calendarId: string, from: Date, to: Date = from): Observable<MdcEvent []> {
 
-    // Setup header
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-
-    // Setup query params to and from
+    // Setup url.
+    const url: string = environment.calendarUrl.eventsOnCalendar(calendarId);
     const params = new HttpParams()
       .append('to', moment(to).format('MM/DD/YYYY'))
       .append('from', moment(from).format('MM/DD/YYYY'));
 
-    // Build options object
+    // Setup header.
+    // TODO: revisit and inspect headers in the Chrome console
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    // Build options object.
     const options = {headers, params};
 
-    //TODO: use configurationService to get urls
-    //let url: string = `/api/calendar/${calendarId}/events`;
-    let url: string = `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`;
-    //let url: string = 'api/events';
-
-    // Get the data
+    // Get events.
     return this.httpClient.get(url, {params})
       .map((rawEvents, index) => {
         let events = MdcEvent.fromJSONArray(rawEvents['events']);
