@@ -9,8 +9,8 @@ export const environment = {
   dateFilterType: window['selectedDepartment'] ||'day',
   selectedDepartment: window['selectedDepartment'],
   calendarUrl: {
-    eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
-    //eventsOnCalendar: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`
+    //eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
+    eventsOnCalendar: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`
   }
 
 };
