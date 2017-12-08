@@ -5,5 +5,10 @@
 
 export const environment = {
   production: false,
-  selectedDepartment: window['selectedDepartment']
+  selectedDepartment: window['selectedDepartment'],
+  calendarUrl: {
+    //eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
+    eventsOnCalendar: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`
+  }
+
 };
