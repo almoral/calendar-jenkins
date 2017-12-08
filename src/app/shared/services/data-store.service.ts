@@ -78,7 +78,7 @@ export class DataStoreService {
    */
   getEvents(from: Date, to: Date) {
     // TODO: remove hardcoded calendar by configured set of calendars
-    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof1', from, to);
+    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof2', from, to);
     events$.subscribe(events => this.initializeEvents(events));
     // TODO: what happens if an error comes. Who should handle displaying something ?
   }
