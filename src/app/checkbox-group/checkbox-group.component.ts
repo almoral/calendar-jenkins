@@ -1,6 +1,8 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import * as _ from 'lodash';
+import {DataStoreService} from '../shared/services/data-store.service';
+
 
 @Component({
     selector: 'mdc-checkbox-group',
@@ -21,8 +23,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     // array of selected options to be pushed back to formGroup ---
     selOptions = [];
     channelArray = [];
+    selectedCategories: Array<string> = [];
+  propagateChange = ((_: any) => {
+  });
 
-    constructor() {
+    constructor(private dataStoreService: DataStoreService) {
     }
 
     objectCleanUp (id, channel) {
@@ -69,8 +74,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
         // }
     }
 
-    propagateChange = (_: any) => {
-    }
+
+
+  filterByCategories(category: string) {
+    this.selectedCategories.push(category);
+    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+  }
+
 
     registerOnChange(fn) {
         this.propagateChange = fn;

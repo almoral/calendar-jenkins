@@ -14,16 +14,18 @@ export class CalendarFilterByTypeComponent implements OnInit {
   categories$: Observable<string[]>;
   typeForm: FormGroup;
 
+
   @Input() categoriesData: string[];
 
   constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.categories$ = this.dataStoreService.categoriesFilter$;
+    this.categories$ = this.dataStoreService.categories$;
 
     this.typeForm = this.fb.group({
       categories: []
     });
   }
+
 
 }

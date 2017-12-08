@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {ConfigurationService} from "./configuration.service";
+import {Observable} from 'rxjs/Observable';
+import {ConfigurationService} from './configuration.service';
 import 'rxjs/Rx';
 import {Category} from '../models/Category';
 import * as _ from 'lodash';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class CategoriesService {
@@ -21,7 +21,7 @@ export class CategoriesService {
     return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {
 
-          let categories = this.jsonToCategories(response);
+          const categories = this.jsonToCategories(response);
           // JSON.parse(data.json().topics).map(
           //   (item: any) => {
           //       let category: Category = new Category(item.value, item.label);
@@ -36,7 +36,7 @@ export class CategoriesService {
       .catch(error => {
         console.error('ERROR: ', error);
         return error;
-      })
+      });
   }
 
 
