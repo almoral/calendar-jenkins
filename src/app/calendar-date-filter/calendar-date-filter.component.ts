@@ -34,7 +34,7 @@ export class CalendarDateFilterComponent implements OnInit {
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
     // With 'day' configuration set also the current day.
-    // Only the events for today will show.
+    // Only the events for today will show
     if(environment.dateFilterType === 'day'){
       this.selectedDay = moment().format('D');
     }
