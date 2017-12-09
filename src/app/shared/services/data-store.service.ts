@@ -12,6 +12,8 @@ export class DataStoreService {
 
   constructor(private eventService: EventService, private eventDataService: EventDataService) {
 
+    this.setCalendars(environment.calendars);
+
     this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
@@ -38,18 +40,12 @@ export class DataStoreService {
   private calendarsFilterSubject = new BehaviorSubject([]);
   public calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
 
-  /**
-   * initializeEvents notifies those observers listening for new emision
-   * of events$ and eventsByDate$.
-   * eventsByDate$ will be derived from events$. At this initial point
-   * both events$ and eventsByDate$ are in sync.
-   * @param newEvents - The collection of MdcEvent[] representing
-   * the master copy of events which will be emited at events$ and
-   * its eventsByDate representation at eventsByDate$ .
-   */
-  initializeEvents(newEvents: MdcEvent[]) {
-    this.eventsSubject.next(_.cloneDeep(newEvents));
-  }
+
+  // observable calendars.
+  private calendarsSubject = new BehaviorSubject([]);
+  public calendars$: Observable<string[]> = this.calendarsSubject.asObservable();
+
+
 
   /**
    * getEvents fetches all events falling between date:to and
@@ -60,8 +56,8 @@ export class DataStoreService {
    */
   getEvents(from: Date, to: Date) {
     // TODO: remove hardcoded calendar by configured set of calendars
-    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendar('CalProof2', from, to);
-    events$.subscribe(events => this.initializeEvents(events));
+    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendars(this.calendarsSubject.getValue(), from, to);
+    events$.subscribe(events => this.setEvents(events));
     // TODO: what happens if an error comes. Who should handle displaying something ?
   }
 
@@ -89,6 +85,10 @@ export class DataStoreService {
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
   }
 
+  setEvents(events: MdcEvent[]) {
+    this.eventsSubject.next(_.cloneDeep(events));
+  }
+
   setCategoriesFilter(categories: string[]) {
     this.categoriesFilterSubject.next(categories);
 
@@ -100,6 +100,11 @@ export class DataStoreService {
 
   setCalendarsFilter(calendars: string[]) {
     this.calendarsFilterSubject.next(calendars);
+  }
+
+
+  setCalendars(calendars: string[]) {
+    this.calendarsSubject.next(calendars);
   }
 
   subscribeTitleFilter() {
