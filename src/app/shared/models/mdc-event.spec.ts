@@ -92,7 +92,8 @@ describe('MdcEvent', () => {
         2,
         'rsvpme',
         {'description': 'URL for event', 'url': 'http://www.google.com'},
-        null))
+        null,
+        'CalProof1'))
       .toBeTruthy();
   });
 
@@ -119,8 +120,8 @@ describe('MdcEvent', () => {
       2,
       'rsvpme',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
-      null
-
+      null,
+      'CalProof1'
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.shortDescription).toBe('');
@@ -151,7 +152,8 @@ describe('MdcEvent', () => {
       2,
       'rsvpme',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
-      null
+      null,
+      'CalProof1'
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.id).toBeNull();
@@ -415,6 +417,13 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
+  it('when creating a mdcEvent from json, pass also the calendarId which should populate the calendarId property', () => {
+    let event: MdcEvent = MdcEvent.fromJSON(jsonEvent,'myCalendar');
+    expect(event.calendarId).toEqual('myCalendar')
+  });
+
+
+
   it('when creating a mdcEvent from json, if rsvp is not a string or null, throw Error', () => {
     jsonEvent.rsvp = null;
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
@@ -489,6 +498,15 @@ describe('MdcEvent', () => {
     expect(MdcEvent.fromJSONArray(TestEvents.testJsonRecurringAndNonEvents).length).toBe(4);
   });
 
+  it('when creating an Array of MdcEvents from a json array containing one recurring event and passing the calendarId, each one should have the calendarId setup', () => {
+    let events = MdcEvent.fromJSONArray(TestEvents.testJsonRecurringEvents, 'myCalendar');
+    expect(events.length).toBe(3);
+    expect(events[0].calendarId).toBe('myCalendar');
+    expect(events[1].calendarId).toBe('myCalendar');
+    expect(events[2].calendarId).toBe('myCalendar');
+  });
+
+
   it('when creating a recurrence array from array of valid date strings, it is converted to array of dates', () => {
 
     const dates = MdcEvent.fromJSONDates(['2017-07-20T15:00:00Z','2014-05-20T15:00:00Z']);
@@ -545,6 +563,15 @@ describe('MdcEvent', () => {
     expect(events[0].endDate.getUTCMinutes()).toBe(50);
     expect(events[0].endDate.getUTCSeconds()).toBe(17);
     expect(events[0].endDate.getUTCMilliseconds()).toBe(0);
+  });
+
+
+  it('A recurring event should setup the calendadId in all events created do to the recurrence', () => {
+    let events = MdcEvent.fromJSONRecurrence(TestEvents.testJsonRecurring, 'myCalendar');
+    expect(events.length).toBe(TestEvents.testJsonRecurring.recurrence.length);
+    events.forEach(event => {
+      expect(event.calendarId).toEqual('myCalendar');
+    });
   });
 
 

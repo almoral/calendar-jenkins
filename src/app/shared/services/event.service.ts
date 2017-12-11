@@ -23,7 +23,8 @@ export class EventService {
             event.startDate.getMonth(),
             event.startDate.getDate()
           ))
-      .map((value, key) => new MdcEventsByDate(new Date(key), value))
+      .map((value, key) => new MdcEventsByDate(new Date(key),
+        _.orderBy(value, ['startDate'], ['asc'])))
       .orderBy(['date'], ['asc'])
       .value();
 
@@ -38,8 +39,12 @@ export class EventService {
    * @param title - title to use filterEventByTitle contraint.
    * @param categories - categories in filterEventsByCategory constraint.
    */
-  filterEvents(events: MdcEvent[], title: string, categories: string[]): MdcEvent[]  {
-    return this.filterEventsByCategory(this.filterEventsByTitle(events, title), categories);
+  filterEvents(events: MdcEvent[], title: string, categories: string[], calendars: string[]): MdcEvent[] {
+    return this.filterEventsByCalendar(
+      this.filterEventsByCategory(
+        this.filterEventsByTitle(events, title),
+        categories),
+      calendars);
   }
 
 
@@ -50,9 +55,14 @@ export class EventService {
    */
   filterEventsByTitle(events: MdcEvent[], title: string): MdcEvent[] {
 
+
+    // no title. Return all events.
+    if (_.isEmpty(title))
+      return events;
+
+    // filter any event whose mdcEvent.title contains title.
     return _.filter(events, (event: MdcEvent) => {
-      let match = new RegExp(title).test(event.title);
-      return match;
+      return new RegExp(title).test(event.title);
     });
 
   }
@@ -61,15 +71,14 @@ export class EventService {
    * filterEventsByCategory intersects categories with MdcEvent.categories
    * If intersection is not empty the event passes the filter. As long as an
    * event contain at least one category in categories, it will pass the filter.
-   * If the filter is an empty array of categories, avoid filtering and return
-   * all events.
+   * If the filter is an empty array of categories return all events.
    * @param events - array of MdcEvent to be filtered.
    * @param categories - array of strings representing the categories to be intersected.
    */
   filterEventsByCategory(events: MdcEvent[], categories: string[]): MdcEvent[] {
 
     // no categories. Return all events.
-    if(_.isEmpty(categories))
+    if (_.isEmpty(categories))
       return events;
 
     // filter by intersecting categories.
@@ -77,6 +86,28 @@ export class EventService {
       return !(_.isEmpty(_.intersection(categories, event.categories)));
     });
   }
+
+
+  /**
+   * filterEventsByCalendar returns all events in events whose calendarId is contained
+   * in calendars.
+   * If calendars is empty return all events.
+   * @param events - array of MdcEvent to be filtered.
+   * @param calendars - - array of strings representing the calendarIds to be intersected.
+   * @returns {MdcEvent[]} - Collection of events which belong to on of the calendars.
+   */
+  filterEventsByCalendar(events: MdcEvent[], calendars: string[]): MdcEvent[] {
+
+    // no calendars. Return all events.
+    if (_.isEmpty(calendars))
+      return events;
+
+    // filter by intersecting calendars.
+    return _.filter(events, (event: MdcEvent) => {
+      return !(_.isEmpty(_.intersection(calendars, [event.calendarId])));
+    });
+  }
+
 
 }
 
