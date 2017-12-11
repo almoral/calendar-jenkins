@@ -3,7 +3,7 @@
  */
 import * as tv4 from 'tv4';
 
-export class Category {
+export class Filter {
   public value: string;
   public label: string;
 
@@ -39,9 +39,9 @@ export class Category {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
-  public static fromJSON(json: any): Category {
+  public static fromJSON(json: any): Filter {
     // if (MDCEvent.validateJson(json))
-    return new Category(
+    return new Filter(
       json.id,
       json.label
     );
@@ -62,7 +62,7 @@ export class Category {
    * false otherwise.
    */
   private static validateJson(json: any): boolean {
-    return tv4.validate(json, Category.schema);
+    return tv4.validate(json, Filter.schema);
   };
 
 };

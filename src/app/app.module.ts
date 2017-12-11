@@ -27,6 +27,7 @@ import {MessagesService} from './shared/services/messages.service';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './shared/services/in-memory-data.service';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+import {DepartmentsService} from './shared/services/departments.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
     EventDataService,
     DataStoreService,
     MessagesService,
-    DateService
+    DateService,
+    DepartmentsService
   ],
   bootstrap: [AppComponent]
 })

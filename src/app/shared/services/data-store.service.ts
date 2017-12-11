@@ -5,22 +5,24 @@ import * as _ from 'lodash';
 import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {CategoriesService} from './categories.service';
-import { Category } from '../models/Category';
+import {DepartmentsService} from './departments.service';
+
 
 @Injectable()
 export class DataStoreService {
 
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
-              private categoriesService: CategoriesService) {
+              private categoriesService: CategoriesService,
+              private departmentsService: DepartmentsService) {
     // this.initializeEvents(TestEvents.testEvents);
 
     //TODO: intitial dates should come from some configuration.
     this.getEvents(new Date('11/1/2016'), new Date('12/25/2017'));
     this.getCategories();
+    this.getDepartments();
     this.subscribeTitle();
     this.subscribeCategoriesFilter();
-    // this.subscribeCategories();
     this.subscribeEvents();
   }
 
@@ -43,6 +45,14 @@ export class DataStoreService {
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
+
+  // observable filter departments.
+  private departmentsFilterSubject = new BehaviorSubject([]);
+  private departmentsFilter$: Observable<string[]> = this.departmentsFilterSubject.asObservable();
+
+  // observable departments.
+  private departmentsSubject = new BehaviorSubject([]);
+  public departments$: Observable<string[]> = this.departmentsSubject.asObservable();
 
   /**
    * initializeEvents notifies those observers listening for new emision
@@ -67,7 +77,15 @@ export class DataStoreService {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
 
-
+  /** TODO: Update this comment
+   * initializeDepartments notifies those observers listening for new emission
+   * of categories$.
+   * @param newDepartments - The collection of object[] representing
+   * the master copy of departments which will be emitted at departments$
+   */
+  initializeDepartments(newDepartments: string[]) {
+    this.departmentsSubject.next(_.cloneDeep(newDepartments));
+  }
 
   /**
    * getEvents fetches all events falling between date:to and
@@ -89,6 +107,14 @@ export class DataStoreService {
         this.initializeCategories(categories);
       });
   }
+
+  getDepartments() {
+    const departments$: Observable<string[]> = this.departmentsService.getDepartments();
+    departments$.subscribe(departments => {
+      this.initializeDepartments(departments);
+    });
+  }
+
 
 
   filterEvents() {
@@ -131,6 +157,10 @@ export class DataStoreService {
 
   subscribeCategoriesFilter() {
     this.categoriesFilter$.subscribe((categories) => this.filterEvents());
+  }
+
+  subscribeDepartmentsFilter(departments: string[]) {
+    this.departmentsFilterSubject.next(departments);
   }
 
   subscribeEvents() {

@@ -1,36 +1,29 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {ConfigurationService} from './configuration.service';
-import 'rxjs/Rx';
-import {Filter} from '../models/Filter';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
+import {ConfigurationService} from './configuration.service';
+import {Filter} from '../models/Filter';
 
 @Injectable()
-export class CategoriesService {
+export class DepartmentsService {
 
-  public arrCategories: Array<Filter> = [];
-
-  constructor(
-    private configurationService: ConfigurationService,
-    private httpClient: HttpClient
+  constructor( private httpClient: HttpClient,
+               private configurationService: ConfigurationService
   ) { }
 
-  getCategories(): Observable<Array<Object>> {
+  getDepartments(): Observable<Array<Object>> {
 
-    return this.httpClient.get(this.configurationService.urlCategories)
+    return this.httpClient.get(this.configurationService.urlDepartments)
       .map((response: any) => {
-
-          const categories = this.jsonToCategories(response);
-
-        return categories;
+        const departments = this.jsonToDepartments(response);
+        return departments;
       })
       .catch(error => {
         console.error('ERROR: ', error);
         return error;
       });
   }
-
 
   /**
    * maps the raw array of json topics into an array
@@ -41,18 +34,20 @@ export class CategoriesService {
    * of Filter Objects. It will return an empty array if nothing
    * in the response could be converted to an Topic or the response hand an empty body.
    */
-  private jsonToCategories = (response: any) => {
+  private jsonToDepartments = (response: any) => {
     if (_.isEmpty(response)) {
       console.log('is empty');
       return null;
     }
-    let raw: Array<any> = response.data.topics;
+    let raw: Array<any> = response.data.organizations;
     let model: Array<Filter> = raw.reduce(function (accumulator, item) {
-      let category = Filter.fromJSON(item);
+      let department = Filter.fromJSON(item);
 
-      if (category) {
-        accumulator.push(category);
+      if (department) {
+        accumulator.push(department);
       }
+      console.log('departments accumulator: ', accumulator);
+
       return accumulator;
     }, []);
 
@@ -62,5 +57,4 @@ export class CategoriesService {
 
     return model;
   }
-
 }
