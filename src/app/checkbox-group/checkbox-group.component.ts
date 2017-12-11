@@ -35,12 +35,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     checkboxGroupChange(val) {
 
-        // this.channelArray = [];
-        // // loop through ALL AVAILABLE channel options and set channel selection ---
-        // for (const cc of this.optionsData[0].channels) {
-        //     this.channelArray.push(cc.id);
-        // }
-
         this.selOptions = [];
         this.optionsData.forEach((item, index) => {
             console.log('category option: ', item);
@@ -58,19 +52,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     // control value assessor interface ---
     writeValue(values: any) {
-
-        // if (_.isNil(values)) {
-        //     return false;
-        // }
-        //
-        // for (const cbOption of this.optionsData) {
-        //     if (values.find(x => x.id === cbOption.id)) {
-        //         cbOption.checked = true;
-        //         this.selOptions.push(cbOption);
-        //     } else {
-        //         cbOption.checked = false;
-        //     }
-        // }
     }
 
 
@@ -94,7 +75,5 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     registerOnTouched() {
     }
-
-    // end control value assessor interface ---
 
 }

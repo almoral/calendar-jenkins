@@ -19,9 +19,9 @@ describe('DataStoreService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('when calling initializeEvents the new collection of events are emitted', inject([DataStoreService], (service: DataStoreService) => {
+  it('when calling setEvents the new collection of events are emitted', inject([DataStoreService], (service: DataStoreService) => {
 
-    service.initializeEvents(TestEvents.testEventsTwo)
+    service.setEvents(TestEvents.testEventsTwo)
     let events$ = service.events$
     events$.subscribe(events => {
         expect(events.length).toBe(2);
@@ -31,9 +31,9 @@ describe('DataStoreService', () => {
     )
   }));
 
-  it('when calling initializeEvents the collection of events grouped by date are emitted', inject([DataStoreService], (service: DataStoreService) => {
+  it('when calling setEvents the collection of events grouped by date are emitted', inject([DataStoreService], (service: DataStoreService) => {
 
-    service.initializeEvents(TestEvents.testEventsTwo)
+    service.setEvents(TestEvents.testEventsTwo)
     let eventsByDate$ = service.eventsByDate$
     eventsByDate$.subscribe(events => {
         expect(events.length).toBe(2);

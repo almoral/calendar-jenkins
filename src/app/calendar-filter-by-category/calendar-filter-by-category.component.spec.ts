@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalendarFilterByTypeComponent } from './calendar-filter-by-type.component';
+import { CalendarFilterByTypeComponent } from './calendar-filter-by-category.component';
 
 describe('CalendarFilterByTypeComponent', () => {
   let component: CalendarFilterByTypeComponent;

@@ -9,6 +9,10 @@ import { DataStoreService } from './data-store.service';
 export class DateService {
 
   // Different date formats defined as constants in the date service.
+
+  public static get DAY_FORMAT(): string {
+    return'D';
+  }
   public static get MONTH_FORMAT(): string {
    return'MMMM';
   }
