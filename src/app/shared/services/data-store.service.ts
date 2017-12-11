@@ -67,7 +67,7 @@ export class DataStoreService {
     this.eventsSubject.next(_.cloneDeep(newEvents));
   }
 
-  /** TODO: Update this comment
+  /**
    * initializeCategories notifies those observers listening for new emission
    * of categories$.
    * @param newCategories - The collection of object[] representing
@@ -77,7 +77,7 @@ export class DataStoreService {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
 
-  /** TODO: Update this comment
+  /**
    * initializeDepartments notifies those observers listening for new emission
    * of categories$.
    * @param newDepartments - The collection of object[] representing
