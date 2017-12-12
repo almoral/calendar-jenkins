@@ -374,3 +374,34 @@ textarea.materialize-textarea:focus:not([readonly]) {
 div.bottom-sheet{
   max-height: 100vh;
 }
+
+@media (min-width: 601px) {
+  .top-menu-container,
+  .bottom-menu-container,
+  .modal-overlay {
+    display: none;
+  }
+
+  .mobile-filters-container {
+    background-color: transparent;
+  }
+
+  .mobile-filters {
+    display: block !important;
+    box-shadow: none;
+  }
+
+  .mobile-filters,
+  .middle-container {
+    position: relative;
+  }
+
+  div.bottom-sheet {
+    max-height: none;
+  }
+
+  .middle-body {
+    padding: 0;
+  }
+
+}
