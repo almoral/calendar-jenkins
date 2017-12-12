@@ -1,7 +1,8 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import * as _ from 'lodash';
 import {DataStoreService} from '../shared/services/data-store.service';
+
 
 
 @Component({
@@ -18,12 +19,17 @@ import {DataStoreService} from '../shared/services/data-store.service';
 })
 export class CheckboxGroupComponent implements ControlValueAccessor {
 
-    @Input() optionsData = [];
+
+  @Input() optionsData = [];
+
+  @Output() filterByDepartment: EventEmitter<any> = new EventEmitter<any>();
+  @Output() filterByCategory: EventEmitter<any> = new EventEmitter<any>();
 
     // array of selected options to be pushed back to formGroup ---
     selOptions = [];
     channelArray = [];
     selectedCategories: Array<string> = [];
+    selectedDepartments: Array<string> = [];
     propagateChange = ((_: any) => {});
 
     constructor(private dataStoreService: DataStoreService) {
@@ -34,12 +40,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     }
 
     checkboxGroupChange(val) {
-
-        // this.channelArray = [];
-        // // loop through ALL AVAILABLE channel options and set channel selection ---
-        // for (const cc of this.optionsData[0].channels) {
-        //     this.channelArray.push(cc.id);
-        // }
 
         this.selOptions = [];
         this.optionsData.forEach((item, index) => {
@@ -58,34 +58,38 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     // control value assessor interface ---
     writeValue(values: any) {
-
-        // if (_.isNil(values)) {
-        //     return false;
-        // }
-        //
-        // for (const cbOption of this.optionsData) {
-        //     if (values.find(x => x.id === cbOption.id)) {
-        //         cbOption.checked = true;
-        //         this.selOptions.push(cbOption);
-        //     } else {
-        //         cbOption.checked = false;
-        //     }
-        // }
     }
 
-
-
-  filterByCategories(category: string) {
-    if (this.selectedCategories.indexOf(category) > -1) {
-      this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-        return item !== category;
-      });
-    } else {
-      this.selectedCategories.push(category);
+    onFilter() {
+      // this.filter.emit('test');
     }
 
-    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
-  }
+    public filterEvents(filterType: string, filterValue: string) {
+
+        switch (filterType) {
+          case 'category':
+            this.filterByCategory.emit(filterValue);
+            break;
+
+          case 'department':
+            this.filterByDepartment.emit(filterValue);
+            break;
+
+        }
+    }
+
+    private filterByCategories(category: string) {
+      if (this.selectedCategories.indexOf(category) > -1) {
+        this.selectedCategories = _.filter(this.selectedCategories, (item) => {
+          return item !== category;
+        });
+      } else {
+        this.selectedCategories.push(category);
+      }
+
+      this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+    }
+
 
 
     registerOnChange(fn) {
@@ -94,7 +98,5 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     registerOnTouched() {
     }
-
-    // end control value assessor interface ---
 
 }

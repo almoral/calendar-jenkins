@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {DataStoreService} from "../shared/services/data-store.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'mdc-calendar-filter-by-title',
@@ -9,18 +10,20 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CalendarFilterByTitleComponent implements OnInit {
 
-
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private dataStoreService: DataStoreService) {
   }
 
   ngOnInit() {
+
     this.form = this.fb.group({
       title: ['']
     });
 
     this.initOnChange();
+
+    this.form.get('title').setValue(environment.titleFilter);
 
   }
 
@@ -33,7 +36,7 @@ export class CalendarFilterByTitleComponent implements OnInit {
     this.form.valueChanges
       .filter(() => this.form.valid)
       .subscribe(validValue =>
-        this.dataStoreService.setTitle(validValue.title));
+        this.dataStoreService.setTitleFilter(validValue.title));
   }
 
 

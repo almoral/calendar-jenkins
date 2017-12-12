@@ -25,9 +25,9 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-//const context = require.context('./', true, /\.spec\.ts$/);
+const context = require.context('./', true, /\.spec\.ts$/);
 //const context = require.context('./', true, /\mdc-event.spec\.ts$/);
-const context = require.context('./', true, /\.service.spec\.ts$/);
+//const context = require.context('./', true, /\.service.spec\.ts$/);
 
 
 // And load the modules.

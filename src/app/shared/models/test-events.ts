@@ -306,7 +306,7 @@ export class TestEvents {
   ];
 
 
-  public static testEventsOne = [MdcEvent.fromJSON(jsonEvent3)];
+  public static testEventsOne = [MdcEvent.fromJSON(jsonEvent3, 'calendarId3')];
 
   public static testEventsTwo = [MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2)];
 
@@ -322,6 +322,10 @@ export class TestEvents {
   public static testEventsCategories = [
     MdcEvent.fromJSON(jsonEvent1), MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent3),
     MdcEvent.fromJSON(jsonEvent4), MdcEvent.fromJSON(jsonEvent5)];
+
+  public static testEventsCalendars = [
+    MdcEvent.fromJSON(jsonEvent1, 'calendarOne'), MdcEvent.fromJSON(jsonEvent2), MdcEvent.fromJSON(jsonEvent3),
+    MdcEvent.fromJSON(jsonEvent4, 'calendarFour'), MdcEvent.fromJSON(jsonEvent5, 'calendarOne')];
 
   public static testEvents = [
     ...TestEvents.testEventsOne,

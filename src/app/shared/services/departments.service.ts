@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
 import {ConfigurationService} from './configuration.service';
 import {Filter} from '../models/Filter';
+import {TestDepartments} from '../models/test-departments';
 
 @Injectable()
 export class DepartmentsService {
@@ -14,15 +15,16 @@ export class DepartmentsService {
 
   getDepartments(): Observable<Array<Object>> {
 
-    return this.httpClient.get(this.configurationService.urlDepartments)
-      .map((response: any) => {
-        const departments = this.jsonToDepartments(response);
-        return departments;
-      })
-      .catch(error => {
-        console.error('ERROR: ', error);
-        return error;
-      });
+    // return this.httpClient.get(this.configurationService.urlDepartments)
+    //   .map((response: any) => {
+    //     const departments = this.jsonToDepartments(response);
+    //     return departments;
+    //   })
+    //   .catch(error => {
+    //     console.error('ERROR: ', error);
+    //     return error;
+    //   });
+    return Observable.of(TestDepartments.departments);
   }
 
   /**
