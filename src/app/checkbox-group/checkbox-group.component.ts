@@ -28,8 +28,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     // array of selected options to be pushed back to formGroup ---
     selOptions = [];
     channelArray = [];
-    selectedCategories: Array<string> = [];
-    selectedDepartments: Array<string> = [];
     propagateChange = ((_: any) => {});
 
     constructor(private dataStoreService: DataStoreService) {
@@ -43,7 +41,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
         this.selOptions = [];
         this.optionsData.forEach((item, index) => {
-            console.log('category option: ', item);
             if (item.checked === true) {
 
                 this.selOptions.push(this.objectCleanUp(item. id, this.channelArray));
@@ -60,10 +57,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     writeValue(values: any) {
     }
 
-    onFilter() {
-      // this.filter.emit('test');
-    }
-
     public filterEvents(filterType: string, filterValue: string) {
 
         switch (filterType) {
@@ -77,20 +70,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
         }
     }
-
-    private filterByCategories(category: string) {
-      if (this.selectedCategories.indexOf(category) > -1) {
-        this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-          return item !== category;
-        });
-      } else {
-        this.selectedCategories.push(category);
-      }
-
-      this.dataStoreService.setCategoriesFilter(this.selectedCategories);
-    }
-
-
 
     registerOnChange(fn) {
         this.propagateChange = fn;

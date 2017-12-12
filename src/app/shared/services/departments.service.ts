@@ -13,18 +13,19 @@ export class DepartmentsService {
                private configurationService: ConfigurationService
   ) { }
 
+
   getDepartments(): Observable<Array<Object>> {
 
     // return this.httpClient.get(this.configurationService.urlDepartments)
-    //   .map((response: any) => {
-    //     const departments = this.jsonToDepartments(response);
-    //     return departments;
-    //   })
-    //   .catch(error => {
-    //     console.error('ERROR: ', error);
-    //     return error;
-    //   });
-    return Observable.of(TestDepartments.departments);
+    return Observable.of(TestDepartments.departments)
+      .map((response: any) => {
+        const departments = this.jsonToDepartments(response);
+        return departments;
+      })
+      .catch(error => {
+        console.error('ERROR: ', error);
+        return error;
+      });
   }
 
   /**
@@ -41,14 +42,13 @@ export class DepartmentsService {
       console.log('is empty');
       return null;
     }
-    let raw: Array<any> = response.data.organizations;
+    let raw: Array<any> = response;
     let model: Array<Filter> = raw.reduce(function (accumulator, item) {
       let department = Filter.fromJSON(item);
 
       if (department) {
         accumulator.push(department);
       }
-      console.log('departments accumulator: ', accumulator);
 
       return accumulator;
     }, []);

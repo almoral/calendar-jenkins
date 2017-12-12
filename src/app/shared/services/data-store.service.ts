@@ -57,6 +57,11 @@ export class DataStoreService {
   public calendars$: Observable<string[]> = this.calendarsSubject.asObservable();
 
 
+  // observable departments.
+  private departmentsSubject = new BehaviorSubject([]);
+  public departments$: Observable<string[]> = this.departmentsSubject.asObservable();
+
+
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
@@ -80,11 +85,11 @@ export class DataStoreService {
     });
   }
 
-
   getDepartments() {
     const departments$: Observable<string[]> = this.departmentsService.getDepartments();
+    // const departments$: Observable<string[]> = Observable.of(['CalProof1', 'CalProof2', 'CalProof3']);
     departments$.subscribe(departments => {
-      this.setCalendars(departments);
+      this.setDepartments(departments);
     });
   }
 
@@ -126,6 +131,7 @@ export class DataStoreService {
   }
 
   setCalendarsFilter(calendars: string[]) {
+    console.log('calendars filters: ', calendars);
     this.calendarsFilterSubject.next(calendars);
   }
 
@@ -143,6 +149,17 @@ export class DataStoreService {
   setCategories(newCategories: string[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
+
+  /**
+   * setDepartments notifies those observers listening for new emission
+   * of departments$.
+   * @param newDepartments - The collection of object[] representing
+   * the master copy of departments which will be emitted at categories$
+   */
+  setDepartments(newDepartments: string[]) {
+    this.departmentsSubject.next(_.cloneDeep(newDepartments));
+  }
+
 
   subscribeTitleFilter() {
     this.titleFilter$.subscribe((title) => this.filterEvents());

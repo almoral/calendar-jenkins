@@ -18,7 +18,7 @@ export class CalendarFilterByDepartmentComponent implements OnInit {
   constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.departments$ = this.dataStoreService.calendars$;
+    this.departments$ = this.dataStoreService.departments$;
 
     this.departmentForm = this.fb.group({
       departments: []
@@ -26,7 +26,6 @@ export class CalendarFilterByDepartmentComponent implements OnInit {
   }
 
   filterByDepartments(event) {
-    console.log('event emitted value: ', event);
     if (this.selectedDepartments.indexOf(event) > -1) {
       this.selectedDepartments = _.filter(this.selectedDepartments, (item) => {
         return item !== event;
