@@ -4,7 +4,7 @@ import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
-import {CategoriesService} from './categories.service';
+import {CategoryService} from './category.service';
 import {environment} from "../../../environments/environment";
 
 
@@ -14,7 +14,7 @@ export class DataStoreService {
 
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
-              private categoriesService: CategoriesService) {
+              private categoriesService: CategoryService) {
 
 
     this.setCalendars(environment.calendars);

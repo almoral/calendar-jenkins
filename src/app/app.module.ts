@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ConfigurationService } from './shared/services/configuration.service';
-import { CategoriesService } from './shared/services/categories.service';
+import { CategoryService } from './shared/services/category.service';
 import { EventDataService } from './shared/services/event-data.service';
 import { DateService } from './shared/services/date.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -58,7 +58,7 @@ import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.componen
   ],
   providers: [
     ConfigurationService,
-    CategoriesService,
+    CategoryService,
     EventService,
     EventDataService,
     DataStoreService,

@@ -6,7 +6,7 @@
 
 </ul>
 
-
-<!--<pagination-controls (pageChange)="p = $event" [autoHide]='true'></pagination-controls>-->
-<mdc-pagination (pageChange)='page = $event'></mdc-pagination>
+<mdc-pagination (pageChange)='page = $event'
+                screenReaderPageLabel="page"
+                screenReaderCurrentLabel="You're on page"></mdc-pagination>
 

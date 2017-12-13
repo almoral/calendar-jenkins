@@ -16,14 +16,12 @@ export class MdcPaginationComponent implements OnInit {
   set autoHide(value: boolean) {
     this._autoHide = !!value && <any>value !== 'false';
   }
-  @Input() previousLabel: string = 'Previous';
-  @Input() nextLabel: string = 'Next';
-  @Input() screenReaderPaginationLabel: string = 'Pagination';
-  @Input() screenReaderPageLabel: string = 'page';
-  @Input() screenReaderCurrentLabel: string = `You're on page`;
+  @Input() screenReaderPaginationLabel = 'Pagination';
+  @Input() screenReaderPageLabel = 'page';
+  @Input() screenReaderCurrentLabel = `You're on page`;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  private _autoHide: boolean = false;
+  private _autoHide = false;
 
   constructor() { }
 

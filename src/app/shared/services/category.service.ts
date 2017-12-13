@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class CategoriesService {
+export class CategoryService {
 
   public arrCategories: Array<Category> = [];
 
