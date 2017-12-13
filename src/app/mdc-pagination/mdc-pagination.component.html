@@ -6,13 +6,10 @@
     </div>
     <div class="column center-align">
       <ul class="pages">
-        <li *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" class="active">
-          <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+        <li *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" [ngClass]="(p.getCurrent() === page.value) ? 'active': ''">
+          <a (click)="p.setCurrent(page.value)" *ngIf="p.pages.length > 1">
             {{ page.label }}
           </a>
-          <div *ngIf="p.getCurrent() === page.value">
-            <span>{{ page.label }}</span>
-          </div>
         </li>
       </ul>
     </div>
