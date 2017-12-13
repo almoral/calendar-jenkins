@@ -1,6 +1,6 @@
 
 <ul>
-  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async">
+  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: 1}">
     <mdc-calendar-event-date  [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
   </li>
 
@@ -8,22 +8,22 @@
 
 
 
-<!--<div class="pagination">-->
-  <!--<div class="column left-align hide-on-small-only">-->
-    <!--<a class="waves-effect wave-light btn white disabled"><i class="material-icons">arrow_back</i>Previous</a>-->
-  <!--</div>-->
-  <!--<div class="column center-align">-->
-    <!--<ul class="pages">-->
-      <!--<li class="active"><a href="#">1</a></li>-->
-      <!--<li><a href="">2</a></li>-->
-      <!--<li><a href="">3</a></li>-->
-      <!--<li><a href="">4</a></li>-->
-      <!--<li>...</li>-->
-      <!--<li><a href="">12</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-  <!--<div class="column right-align hide-on-small-only">-->
-    <!--<a class="waves-effect wave-light btn white">Next<i class="material-icons">arrow_forward</i></a>-->
-  <!--</div>-->
+<div class="pagination">
+  <div class="column left-align hide-on-small-only">
+    <a class="waves-effect wave-light btn white disabled"><i class="material-icons">arrow_back</i>Previous</a>
+  </div>
+  <div class="column center-align">
+    <ul class="pages">
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="">2</a></li>
+      <li><a href="">3</a></li>
+      <li><a href="">4</a></li>
+      <li>...</li>
+      <li><a href="">12</a></li>
+    </ul>
+  </div>
+  <div class="column right-align hide-on-small-only">
+    <a class="waves-effect wave-light btn white">Next<i class="material-icons">arrow_forward</i></a>
+  </div>
 
-<!--</div>-->
+</div>
