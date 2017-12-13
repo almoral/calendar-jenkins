@@ -14,6 +14,7 @@ export class CalendarFilterByDepartmentComponent implements OnInit {
   departmentForm: FormGroup;
   public departments$: Observable<string[]>;
   selectedDepartments: Array<string> = [];
+  filterType = 'department';
 
   constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
 
@@ -25,7 +26,7 @@ export class CalendarFilterByDepartmentComponent implements OnInit {
     });
   }
 
-  filterByDepartments(event) {
+  filterEvents(event) {
     if (this.selectedDepartments.indexOf(event) > -1) {
       this.selectedDepartments = _.filter(this.selectedDepartments, (item) => {
         return item !== event;

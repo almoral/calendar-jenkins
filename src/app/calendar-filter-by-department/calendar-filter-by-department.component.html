@@ -3,7 +3,7 @@
   <form [formGroup]="departmentForm">
   <fieldset>
     <legend>Choose a department to filter by:</legend>
-      <mdc-checkbox-group formControlName="departments" [optionsData]="departments$" (filterByDepartment)="filterByDepartments($event)">
+      <mdc-checkbox-group formControlName="departments" [optionsData]="departments$" (filter)="filterEvents($event)" [filterType]='filterType'>
       </mdc-checkbox-group>
   </fieldset>
   </form>

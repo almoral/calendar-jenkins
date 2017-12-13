@@ -15,6 +15,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
   categories$: Observable<string[]>;
   typeForm: FormGroup;
   selectedCategories: Array<string> = [];
+  filterType = 'category';
 
   @Input() categoriesData: string[];
 
@@ -28,7 +29,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
     });
   }
 
-  filterByCategories(event) {
+  filterEvents(event) {
     if (this.selectedCategories.indexOf(event) > -1) {
       this.selectedCategories = _.filter(this.selectedCategories, (item) => {
         return item !== event;

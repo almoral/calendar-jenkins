@@ -21,9 +21,9 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
 
   @Input() optionsData = [];
+  @Input() filterType = '';
 
-  @Output() filterByDepartment: EventEmitter<any> = new EventEmitter<any>();
-  @Output() filterByCategory: EventEmitter<any> = new EventEmitter<any>();
+  @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
     // array of selected options to be pushed back to formGroup ---
     selOptions = [];
@@ -58,14 +58,14 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     }
 
     public filterEvents(filterType: string, filterValue: string) {
-
+        filterType = this.filterType;
         switch (filterType) {
           case 'category':
-            this.filterByCategory.emit(filterValue);
+            this.filter.emit(filterValue);
             break;
 
           case 'department':
-            this.filterByDepartment.emit(filterValue);
+            this.filter.emit(filterValue);
             break;
 
         }
