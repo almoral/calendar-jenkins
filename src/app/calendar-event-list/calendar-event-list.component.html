@@ -1,21 +1,13 @@
 
 <ul>
-  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | paginate: { itemsPerPage: 3, currentPage: p } | async ">
+  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: p } ">
     <mdc-calendar-event-date  [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
   </li>
 
 </ul>
 
 
-<pagination-controls id="some_id"
-                     (pageChange)="p = $event"
-                     maxSize="9"
-                     directionLinks="true"
-                     previousLabel="Previous"
-                     nextLabel="Next"
-                     screenReaderPaginationLabel="Pagination"
-                     screenReaderPageLabel="page"
-                     screenReaderCurrentLabel="You're on page"></pagination-controls>
+<pagination-controls (pageChange)="p = $event" [autoHide]='true'></pagination-controls>
 
 <!--<pagination-template #p="paginationApi"-->
                      <!--(pageChange)="pageChange.emit($event)">-->
