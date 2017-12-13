@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataStoreService} from "../shared/services/data-store.service";
-import {MdcEvent, MdcEventsByDate} from "../shared/models/mdc-event";
-import {Observable} from "rxjs";
+import {DataStoreService} from '../shared/services/data-store.service';
+import {MdcEvent, MdcEventsByDate} from '../shared/models/mdc-event';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'mdc-calendar-event-list',
@@ -11,7 +11,7 @@ import {Observable} from "rxjs";
 export class CalendarEventListComponent implements OnInit {
 
   events$: Observable<MdcEventsByDate[]>;
-  p = 1;
+  page = 1;
 
   constructor(private dataStore: DataStoreService) { }
 
