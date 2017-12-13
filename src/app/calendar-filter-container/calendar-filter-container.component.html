@@ -1,5 +1,5 @@
 <div class="col s12 m3">
-  <div class="mobile-filters active modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false, opacity: 0}]" [materializeActions]="modalActions">
+  <div class="mobile-filters" [ngClass]="{'active' : isActive}">
     <div class="mobile-filters-container">
 
       <!--Top Container-->
