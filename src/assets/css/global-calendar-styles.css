@@ -1,0 +1,8 @@
+@media (max-width: 991px) {
+  .row .col.m8.calendar-events {
+      width: 100%;
+      margin-left: auto;
+      left: auto;
+      right: auto;
+  }
+}

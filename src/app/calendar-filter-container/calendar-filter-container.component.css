@@ -375,7 +375,7 @@ div.bottom-sheet{
   max-height: 100vh;
 }
 
-@media (min-width: 601px) {
+@media (min-width: 992px) {
   .top-menu-container,
   .bottom-menu-container,
   .modal-overlay {
