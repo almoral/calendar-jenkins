@@ -6,7 +6,7 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class DataStoreService {
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
               private categoriesService: CategoriesDataService,
-              private departmentsService: CalendarDataService) {
+              private calendarDataService: CalendarDataService) {
 
 
     this.setCalendars(environment.calendars);
@@ -89,7 +89,7 @@ export class DataStoreService {
   }
 
   getCalendars() {
-    const calendars$: Observable<string[]> = this.departmentsService.getCalendars();
+    const calendars$: Observable<string[]> = this.calendarDataService.getCalendars();
     // const departments$: Observable<string[]> = Observable.of(['CalProof1', 'CalProof2', 'CalProof3']);
     calendars$.subscribe(calendars => {
       this.setCalendars(calendars);

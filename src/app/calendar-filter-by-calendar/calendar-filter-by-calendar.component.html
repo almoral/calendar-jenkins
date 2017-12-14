@@ -1,8 +1,8 @@
 <section class="widget" aria-labelledby="filterCalendar">
-  <h3 class="widget-title" id="filterCalendar">Select a calendar</h3>
+  <h3 class="widget-title" id="filterCalendar">Select a department</h3>
   <form [formGroup]="calendarsForm">
   <fieldset>
-    <legend>Choose a calendar to view:</legend>
+    <legend>Choose a department to filter by:</legend>
       <mdc-checkbox-group formControlName="calendars" [optionsData]="calendars$" (filter)="filterEvents($event)">
       </mdc-checkbox-group>
   </fieldset>
