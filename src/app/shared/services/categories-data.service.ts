@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ConfigurationService} from './configuration.service';
 import 'rxjs/Rx';
-import {Filter} from '../models/Filter';
+import {Filter} from '../models/filter';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class CategoriesService {
+export class CategoriesDataService {
 
   public arrCategories: Array<Filter> = [];
 

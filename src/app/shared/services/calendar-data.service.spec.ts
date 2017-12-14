@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DepartmentsService } from './departments.service';
+import { CalendarDataService } from './calendar-data.service';
 
 describe('DepartmentsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DepartmentsService]
+      providers: [CalendarDataService]
     });
   });
 
-  it('should be created', inject([DepartmentsService], (service: DepartmentsService) => {
+  it('should be created', inject([CalendarDataService], (service: CalendarDataService) => {
     expect(service).toBeTruthy();
   }));
 });

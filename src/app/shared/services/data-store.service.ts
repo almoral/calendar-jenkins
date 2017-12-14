@@ -4,8 +4,8 @@ import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
-import {CategoriesService} from './categories.service';
-import {DepartmentsService} from './departments.service';
+import {CategoriesDataService} from './categories-data.service';
+import {CalendarDataService} from './calendar-data.service';
 import {environment} from "../../../environments/environment";
 
 
@@ -15,8 +15,8 @@ export class DataStoreService {
 
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
-              private categoriesService: CategoriesService,
-              private departmentsService: DepartmentsService) {
+              private categoriesService: CategoriesDataService,
+              private departmentsService: CalendarDataService) {
 
 
     this.setCalendars(environment.calendars);
@@ -27,7 +27,7 @@ export class DataStoreService {
     this.subscribeCalendarsFilter();
 
     this.getCategories();
-    this.getDepartments();
+    this.getCalendars();
   }
 
   // observable collection of events.
@@ -47,19 +47,19 @@ export class DataStoreService {
   public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
 
-  // observable filter calendars.
+  // observable filter calendars. This is the list of filters the user has chosen from the checkboxes.
   private calendarsFilterSubject = new BehaviorSubject([]);
   public calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
 
 
-  // observable calendars.
+  // observable calendars. This is the list that populates the checkboxes used to filter events by calendar.
   private calendarsSubject = new BehaviorSubject([]);
   public calendars$: Observable<string[]> = this.calendarsSubject.asObservable();
 
 
   // observable departments.
-  private departmentsSubject = new BehaviorSubject([]);
-  public departments$: Observable<string[]> = this.departmentsSubject.asObservable();
+  // private departmentsSubject = new BehaviorSubject([]);
+  // public departments$: Observable<string[]> = this.departmentsSubject.asObservable();
 
 
   // observable categories.
@@ -85,11 +85,11 @@ export class DataStoreService {
     });
   }
 
-  getDepartments() {
-    const departments$: Observable<string[]> = this.departmentsService.getDepartments();
+  getCalendars() {
+    const calendars$: Observable<string[]> = this.departmentsService.getCalendars();
     // const departments$: Observable<string[]> = Observable.of(['CalProof1', 'CalProof2', 'CalProof3']);
-    departments$.subscribe(departments => {
-      this.setDepartments(departments);
+    calendars$.subscribe(calendars => {
+      this.setCalendars(calendars);
     });
   }
 
@@ -149,17 +149,6 @@ export class DataStoreService {
   setCategories(newCategories: string[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
-
-  /**
-   * setDepartments notifies those observers listening for new emission
-   * of departments$.
-   * @param newDepartments - The collection of object[] representing
-   * the master copy of departments which will be emitted at categories$
-   */
-  setDepartments(newDepartments: string[]) {
-    this.departmentsSubject.next(_.cloneDeep(newDepartments));
-  }
-
 
   subscribeTitleFilter() {
     this.titleFilter$.subscribe((title) => this.filterEvents());
