@@ -9,7 +9,7 @@ export class CalendarDataService {
   constructor() { }
 
 
-  getCalendars(): Observable<Array<Object>> {
+  getCalendars(): Observable<Array<Calendar>> {
 
     return Observable.of(environment.calendars)
       .map((calendar: any) => {

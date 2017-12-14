@@ -16,7 +16,7 @@ export class CategoriesDataService {
     private httpClient: HttpClient
   ) { }
 
-  getCategories(): Observable<Array<Object>> {
+  getCategories(): Observable<Array<Category>> {
 
     return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {

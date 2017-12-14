@@ -7,6 +7,8 @@ import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
 import {environment} from '../../../environments/environment';
+import {Calendar} from "../models/calendar";
+import {Category} from "../models/category";
 
 
 @Injectable()
@@ -75,14 +77,14 @@ export class DataStoreService {
   }
 
   getCategories() {
-    const categories$: Observable<string[]> = this.categoriesService.getCategories();
+    const categories$: Observable<Category[]> = this.categoriesService.getCategories();
     categories$.subscribe(categories => {
       this.setCategories(categories);
     });
   }
 
   getCalendars() {
-    const calendars$: Observable<string[]> = this.calendarDataService.getCalendars();
+    const calendars$: Observable<Calendar[]> = this.calendarDataService.getCalendars();
     calendars$.subscribe(calendars => {
       this.setCalendars(calendars);
     });
@@ -118,7 +120,6 @@ export class DataStoreService {
 
   setCategoriesFilter(categories: string[]) {
     this.categoriesFilterSubject.next(categories);
-
   }
 
   setTitleFilter(title: string) {
@@ -131,7 +132,7 @@ export class DataStoreService {
   }
 
 
-  setCalendars(calendars: string[]) {
+  setCalendars(calendars: Calendar[]) {
     this.calendarsSubject.next(calendars);
   }
 
@@ -141,7 +142,7 @@ export class DataStoreService {
    * @param newCategories - The collection of object[] representing
    * the master copy of categories which will be emitted at categories$
    */
-  setCategories(newCategories: string[]) {
+  setCategories(newCategories: Category[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
 
