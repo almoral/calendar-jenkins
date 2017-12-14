@@ -19,8 +19,6 @@ export class DataStoreService {
               private calendarDataService: CalendarDataService) {
 
 
-    this.setCalendars(environment.calendars);
-
     this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
@@ -57,11 +55,6 @@ export class DataStoreService {
   public calendars$: Observable<string[]> = this.calendarsSubject.asObservable();
 
 
-  // observable departments.
-  // private departmentsSubject = new BehaviorSubject([]);
-  // public departments$: Observable<string[]> = this.departmentsSubject.asObservable();
-
-
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
@@ -90,7 +83,6 @@ export class DataStoreService {
 
   getCalendars() {
     const calendars$: Observable<string[]> = this.calendarDataService.getCalendars();
-    // const departments$: Observable<string[]> = Observable.of(['CalProof1', 'CalProof2', 'CalProof3']);
     calendars$.subscribe(calendars => {
       this.setCalendars(calendars);
     });
