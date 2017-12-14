@@ -4,7 +4,7 @@
   <fieldset>
     <legend>Choose a category to filter by:</legend>
         <mdc-checkbox-group formControlName="categories" [optionsData]="categories$"
-                            (filter)="filterEvents($event)" [filterType]='filterType'>
+                            (filter)="filterEvents($event)">
         </mdc-checkbox-group>
   </fieldset>
   </form>

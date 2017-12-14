@@ -21,7 +21,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
 
   @Input() optionsData = [];
-  @Input() filterType = '';
+
 
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
@@ -57,18 +57,10 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     writeValue(values: any) {
     }
 
-    public filterEvents(filterType: string, filterValue: string) {
-        filterType = this.filterType;
-        switch (filterType) {
-          case 'category':
-            this.filter.emit(filterValue);
-            break;
+    public filterEvents(filterValue: string) {
 
-          case 'department':
-            this.filter.emit(filterValue);
-            break;
+      this.filter.emit(filterValue);
 
-        }
     }
 
     registerOnChange(fn) {

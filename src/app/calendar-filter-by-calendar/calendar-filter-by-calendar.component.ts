@@ -14,7 +14,6 @@ export class CalendarFilterByCalendarComponent implements OnInit {
   calendarsForm: FormGroup;
   public calendars$: Observable<string[]>;
   selectedCalendars: Array<string> = [];
-  filterType = 'department';
 
   constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
 

@@ -15,7 +15,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
   categories$: Observable<string[]>;
   typeForm: FormGroup;
   selectedCategories: Array<string> = [];
-  filterType = 'category';
+
 
   @Input() categoriesData: string[];
 
