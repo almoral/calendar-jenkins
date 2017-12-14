@@ -9,8 +9,8 @@ export class Category {
 
 
   public static schema = {
-    'title': 'MDCEvent',
-    'description': 'Schema to validate event retrieved from Sharepoint.',
+    'title': 'Category',
+    'description': 'Schema to validate categories.',
     'type': 'object',
     'required': ['value', 'label'],
     'properties': {
@@ -40,15 +40,12 @@ export class Category {
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
   public static fromJSON(json: any): Category {
-    // if (MDCEvent.validateJson(json))
+
     return new Category(
       json.id,
       json.label
     );
-    // else {
-    //   console.error('error: invalid json to build event', json);
-    //   return null;
-    // }
+
 
 
   };
