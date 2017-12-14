@@ -74,7 +74,12 @@ export class DataStoreService {
    * @param from - end Date.
    */
   getEvents(from: Date, to: Date) {
-    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendars(this.calendarsSubject.getValue(), from, to);
+
+    const calendars = _.flatMap(this.calendarsSubject.getValue(), (item) => {
+      return item.value;
+    });
+
+    const events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendars(calendars, from, to);
     events$.subscribe(events => this.setEvents(events));
   }
 

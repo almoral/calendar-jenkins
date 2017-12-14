@@ -39,9 +39,6 @@ export class EventDataService {
    */
   getEventsOnCalendar(calendarId: string, from: Date, to: Date = from): Observable<MdcEvent []> {
 
-    // Adding this to deal with the fact that the value passed for CalendarId is the calendars$ observable in the dataStoreService. Could this be a bug?
-    calendarId = calendarId['label'];
-
     // Setup url.
     const url: string = environment.calendarUrl.eventsOnCalendar(calendarId);
     const params = new HttpParams()

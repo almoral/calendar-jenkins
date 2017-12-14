@@ -40,15 +40,12 @@ export class Category {
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
   public static fromJSON(json: any): Category {
-    // if (MDCEvent.validateJson(json))
+
     return new Category(
       json.id,
       json.label
     );
-    // else {
-    //   console.error('error: invalid json to build event', json);
-    //   return null;
-    // }
+
 
 
   };
