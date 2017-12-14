@@ -14,35 +14,33 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
         }
     ]
 })
-export class CheckboxGroupComponent implements ControlValueAccessor {
 
+export class CheckboxGroupComponent implements ControlValueAccessor {
 
   @Input() optionsData = [];
   @Input() disabled = false;
-
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
-
-    constructor() {
-    }
+  constructor() {
+  }
 
   public filterEvents(filterValue: string) {
     this.filter.emit(filterValue);
   }
 
-    // control value accessor interface ---
-    writeValue(values: any) {
-    }
+  // control value accessor interface ---
+  writeValue(values: any) {
+  }
 
-    registerOnChange(fn) {
-    }
+  registerOnChange(fn) {
+  }
 
-    registerOnTouched() {
-    }
+  registerOnTouched() {
+  }
 
-    // Allows Angular to disable the input.
-    setDisabledState(isDisabled: boolean): void {
-      this.disabled = isDisabled;
-    }
+  // Allows Angular to disable the input.
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 
 }
