@@ -1,16 +1,13 @@
-/**
- * Created by almoral on 8/17/17.
- */
 import * as tv4 from 'tv4';
 
-export class Filter {
+export class Calendar {
   public value: string;
   public label: string;
 
 
   public static schema = {
-    'title': 'MDCEvent',
-    'description': 'Schema to validate event retrieved from Sharepoint.',
+    'title': 'Calendar',
+    'description': 'Schema to validate calendars.',
     'type': 'object',
     'required': ['value', 'label'],
     'properties': {
@@ -39,9 +36,9 @@ export class Filter {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
-  public static fromJSON(json: any): Filter {
+  public static fromJSON(json: any): Calendar {
     // if (MDCEvent.validateJson(json))
-    return new Filter(
+    return new Calendar(
       json.id,
       json.label
     );
@@ -62,7 +59,7 @@ export class Filter {
    * false otherwise.
    */
   private static validateJson(json: any): boolean {
-    return tv4.validate(json, Filter.schema);
+    return tv4.validate(json, Calendar.schema);
   };
 
 };
