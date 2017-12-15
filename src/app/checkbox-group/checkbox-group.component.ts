@@ -1,7 +1,5 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import * as _ from 'lodash';
-import {DataStoreService} from '../shared/services/data-store.service';
 
 
 @Component({
@@ -16,64 +14,33 @@ import {DataStoreService} from '../shared/services/data-store.service';
         }
     ]
 })
+
 export class CheckboxGroupComponent implements ControlValueAccessor {
 
-    @Input() optionsData = [];
+  @Input() optionsData = [];
+  @Input() disabled = false;
+  @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
-    // array of selected options to be pushed back to formGroup ---
-    selOptions = [];
-    channelArray = [];
-    selectedCategories: Array<string> = [];
-    propagateChange = ((_: any) => {});
-
-    constructor(private dataStoreService: DataStoreService) {
-    }
-
-    objectCleanUp (id, channel) {
-        return {'id': id, 'channels': channel }
-    }
-
-    checkboxGroupChange(val) {
-
-        this.selOptions = [];
-        this.optionsData.forEach((item, index) => {
-            console.log('category option: ', item);
-            if (item.checked === true) {
-
-                this.selOptions.push(this.objectCleanUp(item. id, this.channelArray));
-            }
-
-        });
-
-        // push values out to formGroup ---
-        this.propagateChange(this.selOptions);
-
-    }
-
-    // control value assessor interface ---
-    writeValue(values: any) {
-    }
-
-
-
-  filterByCategories(category: string) {
-    if (this.selectedCategories.indexOf(category) > -1) {
-      this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-        return item !== category;
-      });
-    } else {
-      this.selectedCategories.push(category);
-    }
-
-    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+  constructor() {
   }
 
+  public filterEvents(filterValue: string) {
+    this.filter.emit(filterValue);
+  }
 
-    registerOnChange(fn) {
-        this.propagateChange = fn;
-    }
+  // control value accessor interface ---
+  writeValue(values: any) {
+  }
 
-    registerOnTouched() {
-    }
+  registerOnChange(fn) {
+  }
+
+  registerOnTouched() {
+  }
+
+  // Allows Angular to disable the input.
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 
 }

@@ -4,7 +4,6 @@
                id='{{cbOption.value}}'
                name="{{cbOption.value}}"
                value="{{cbOption.label}}"
-               (ngModelChange)="checkboxGroupChange($event.target)"
-                (click)='filterByCategories(cbOption.value)'>
+        (click)="filterEvents(cbOption.value)">
     <label for='{{cbOption.value}}'>{{cbOption.label}}</label>
 </p>
