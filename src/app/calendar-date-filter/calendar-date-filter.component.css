@@ -1,54 +1,6 @@
 /* --------------------------
-CALENDAR PICKER
+CALENDAR DATE FILTER
 -------------------------- */
-
-.picker__table {
-  border-collapse: separate;
-  border-spacing: 6px;
-}
-
-.picker__weekday-display {
-  font-size: 14px;
-  background-color: #0277bd;
-}
-
-.picker__date-display {
-  background-color: #03a9f4;
-}
-
-.picker__year-display {
-  color: #fff;
-}
-
-.picker__table {
-  font-size: 14px;
-}
-
-.picker__day--selected,
-.picker__day--selected:hover,
-.picker--focused .picker__day--selected {
-  background-color: #03a9f4;
-}
-
-.picker__close,
-.picker__today,
-.picker__day.picker__day--today {
-  color: #03a9f4;
-}
-
-.picker__close,
-.picker__today {
-  font-size: 16px;
-}
-
-button.picker__today:focus,
-button.picker__clear:focus,
-button.picker__close:focus,
-.picker__nav--prev:hover,
-.picker__nav--next:hover {
-  background-color: #a1cede;
-}
-
 
 .widget-title {
   margin-bottom: 20px;
@@ -72,35 +24,13 @@ button.picker__close:focus,
   background-color: #46BCEB;
 }
 
-/*--Date Selector/Dropdowns --*/
-
-.date-container {
-  background-color: #9E9E9E;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 50px;
-}
-
-.date-container h2 {
+.btn.blue {
+  background-color: #03a9f4 !important;
+  border: 1px solid #0d94d0;
   color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 0;
+  width: 100%;
 }
 
+.widget label { color: #333; }
 
-.date-container label {
-  color: #fff;
-}
-
-.calendar-content h2:not(:nth-of-type(1)) { margin-top: 75px; }
-
-.date-container select {
-  height: 30px;
-}
-
-.date-container .btn.light-blue-text { 
-  font-size: 13px;
-  font-weight: 500;
-}
-
+.widget select { margin-bottom: 10px; }

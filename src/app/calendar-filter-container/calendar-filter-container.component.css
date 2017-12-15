@@ -375,10 +375,9 @@ div.bottom-sheet{
   max-height: 100vh;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1250px) {
   .top-menu-container,
-  .bottom-menu-container,
-  .modal-overlay {
+  .bottom-menu-container {
     display: none;
   }
 
@@ -394,6 +393,11 @@ div.bottom-sheet{
   .mobile-filters,
   .middle-container {
     position: relative;
+  }
+
+  .middle-container {
+    top: 0;
+    bottom: 0;
   }
 
   div.bottom-sheet {
