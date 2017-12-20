@@ -16,7 +16,7 @@ export class MessagesComponent implements OnInit {
   ngOnInit() {
 
     this.errors$ = this.messagesService.errors$
-    this.messagesService.error('there was a terrible error');
+    //this.messagesService.error('there was a terrible error');
 
   }
 
