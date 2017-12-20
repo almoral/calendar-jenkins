@@ -383,6 +383,7 @@ div.bottom-sheet{
 
   .mobile-filters-container {
     background-color: transparent;
+    border-top: none;
   }
 
   .mobile-filters {
