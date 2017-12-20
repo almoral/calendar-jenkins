@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {DataStoreService} from "../shared/services/data-store.service";
-import {MdcEvent, MdcEventsByDate} from "../shared/models/mdc-event";
-import {Observable} from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import {DataStoreService} from '../shared/services/data-store.service';
+import {MdcEventsByDate} from '../shared/models/mdc-event';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'mdc-calendar-event-list',
@@ -15,8 +15,7 @@ export class CalendarEventListComponent implements OnInit {
   constructor(private dataStore: DataStoreService) { }
 
   ngOnInit() {
-
     this.events$ = this.dataStore.eventsByDate$;
-
   }
+
 }
