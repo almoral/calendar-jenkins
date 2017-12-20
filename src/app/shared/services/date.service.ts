@@ -74,7 +74,9 @@ export class DateService {
    * @param day - selected day.
    */
   public filterByDate(year: string, month: string, day: string): void {
-    let filterDate: string = '' + month + '/' + day + '/' + year;
+    let filterDate: string = '' + year + '-' + month + '-' + day + '';
+
+    filterDate = moment(filterDate, 'YYYY-MMMM-DD').format('MM/DD/YYYY');
 
     this.dataStoreService.getEvents(new Date(filterDate), new Date(filterDate));
   }
@@ -90,6 +92,9 @@ export class DateService {
     let numberOfDays: string[] = this.getNumberOfDays(year, month);
     let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
 
+    fromDate = moment(fromDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
+    toDate = moment(toDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
+
     this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
 
   }
@@ -102,6 +107,9 @@ export class DateService {
   public filterByYear(year: string): void  {
     let fromDate: string = '1/1/' + year;
     let toDate: string = '12/31/' + year;
+
+    fromDate = moment(fromDate, 'MM/D/YYYY').format('MM/DD/YYYY');
+    toDate = moment(toDate, 'MM/D/YYYY').format('MM/DD/YYYY');
 
     this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
 

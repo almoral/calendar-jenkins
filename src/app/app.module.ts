@@ -27,7 +27,9 @@ import {MessagesService} from './shared/services/messages.service';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './shared/services/in-memory-data.service';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {CalendarDataService} from './shared/services/calendar-data.service';
     CalendarFilterByCalendarComponent,
     CalendarFilterContainerComponent,
     MessagesComponent,
-    CheckboxGroupComponent
+    CheckboxGroupComponent,
+    MdcPaginationComponent
   ],
   imports: [
     BrowserModule,

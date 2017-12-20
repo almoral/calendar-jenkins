@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Observable';
 export class CalendarEventListComponent implements OnInit {
 
   events$: Observable<MdcEventsByDate[]>;
+  page = 1;
 
   constructor(private dataStore: DataStoreService) { }
 
