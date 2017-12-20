@@ -1,12 +1,25 @@
+.navbar-fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
 .widget  {
 	margin-bottom: 30px;
 }
 
-
-
 @media(min-width: 1250px) {
 	.hide-on-1250-up {
 		display: none;
+	}
+
+	.mobile-filters[_ngcontent-c4],
+	.mobile-filters-container[_ngcontent-c4] {
+		z-index: auto;
+	}
+
+	.middle-container {
+		overflow: hidden;
 	}
 }
 

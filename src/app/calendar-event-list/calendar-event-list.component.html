@@ -1,12 +1,15 @@
 
 <ul>
-  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async">
+  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: page  } ">
     <mdc-calendar-event-date  [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
   </li>
-
   <p *ngIf="(events$ | async)?.length === 0">
     No matching results found.
   </p>
 
 </ul>
+
+<mdc-pagination (pageChange)='page = $event'
+                screenReaderPageLabel="page"
+                screenReaderCurrentLabel="You're on page"></mdc-pagination>
 
