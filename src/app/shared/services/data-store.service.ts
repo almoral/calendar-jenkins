@@ -4,8 +4,12 @@ import {MdcEventsByDate, MdcEvent} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
-import {CategoryService} from './category.service';
-import {environment} from "../../../environments/environment";
+import {CategoriesDataService} from './categories-data.service';
+import {CalendarDataService} from './calendar-data.service';
+import {environment} from '../../../environments/environment';
+import {Calendar} from "../models/calendar";
+import {Category} from "../models/category";
+
 
 
 @Injectable()
@@ -14,16 +18,17 @@ export class DataStoreService {
 
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
-              private categoriesService: CategoryService) {
+              private categoriesService: CategoriesDataService,
+              private calendarDataService: CalendarDataService) {
 
-
-    this.setCalendars(environment.calendars);
 
     this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
+    this.subscribeCalendarsFilter();
 
     this.getCategories();
+    this.getCalendars();
   }
 
   // observable collection of events.
@@ -43,12 +48,12 @@ export class DataStoreService {
   public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
 
-  // observable filter calendars.
+  // observable filter calendars. This is the list of filters the user has chosen from the checkboxes.
   private calendarsFilterSubject = new BehaviorSubject([]);
   public calendarsFilter$: Observable<string[]> = this.calendarsFilterSubject.asObservable();
 
 
-  // observable calendars.
+  // observable calendars. This is the list that populates the checkboxes used to filter events by calendar.
   private calendarsSubject = new BehaviorSubject([]);
   public calendars$: Observable<string[]> = this.calendarsSubject.asObservable();
 
@@ -56,7 +61,6 @@ export class DataStoreService {
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
-
 
   /**
    * getEvents fetches all events falling between date:to and
@@ -66,15 +70,25 @@ export class DataStoreService {
    * @param from - end Date.
    */
   getEvents(from: Date, to: Date) {
-    let events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendars(this.calendarsSubject.getValue(), from, to);
+
+    const calendars = _.flatMap(this.calendarsSubject.getValue(), (item) => item.value);
+
+    const events$: Observable <MdcEvent[]> = this.eventDataService.getEventsOnCalendars(calendars, from, to);
     events$.subscribe(events => this.setEvents(events));
   }
 
   getCategories() {
-    const categories$: Observable<string[]> = this.categoriesService.getCategories();
+    const categories$: Observable<Category[]> = this.categoriesService.getCategories();
     categories$.subscribe(categories => {
-        this.setCategories(categories);
-      });
+      this.setCategories(categories);
+    });
+  }
+
+  getCalendars() {
+    const calendars$: Observable<Calendar[]> = this.calendarDataService.getCalendars();
+    calendars$.subscribe(calendars => {
+      this.setCalendars(calendars);
+    });
   }
 
 
@@ -107,7 +121,6 @@ export class DataStoreService {
 
   setCategoriesFilter(categories: string[]) {
     this.categoriesFilterSubject.next(categories);
-
   }
 
   setTitleFilter(title: string) {
@@ -115,11 +128,12 @@ export class DataStoreService {
   }
 
   setCalendarsFilter(calendars: string[]) {
+    console.log('calendars filters: ', calendars);
     this.calendarsFilterSubject.next(calendars);
   }
 
 
-  setCalendars(calendars: string[]) {
+  setCalendars(calendars: Calendar[]) {
     this.calendarsSubject.next(calendars);
   }
 
@@ -129,7 +143,7 @@ export class DataStoreService {
    * @param newCategories - The collection of object[] representing
    * the master copy of categories which will be emitted at categories$
    */
-  setCategories(newCategories: string[]) {
+  setCategories(newCategories: Category[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
 

@@ -1,0 +1,38 @@
+.widget  {
+	margin-bottom: 30px;
+}
+
+
+
+@media(min-width: 1250px) {
+	.hide-on-1250-up {
+		display: none;
+	}
+}
+
+@media (min-width: 601px) {
+	.row .col.offset-m1.calendar-events {
+		margin-left: 4.3333333333%;
+	}
+
+	.row .col.m8.calendar-events {
+		width: 70.6666666667%;
+	}
+
+	.widget  {
+		margin-bottom: 70px;
+	}
+}
+
+@media (max-width: 1249px) {
+  .row .col.m8.calendar-events {
+    width: 100%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+  }
+
+  .sidebar .btn.blue {
+  	display: none;
+  }
+}

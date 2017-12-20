@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ConfigurationService } from './shared/services/configuration.service';
-import { CategoryService } from './shared/services/category.service';
+import { CategoriesDataService } from './shared/services/categories-data.service';
 import { EventDataService } from './shared/services/event-data.service';
 import { DateService } from './shared/services/date.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -15,7 +15,7 @@ import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-dat
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
-import { CalendarFilterByDepartmentComponent } from './calendar-filter-by-department/calendar-filter-by-department.component';
+import { CalendarFilterByCalendarComponent } from './calendar-filter-by-calendar/calendar-filter-by-calendar.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
@@ -28,6 +28,8 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './shared/services/in-memory-data.service';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
+import {CalendarDataService} from './shared/services/calendar-data.service';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.componen
     CalendarHeaderComponent,
     CalendarFilterByTitleComponent,
     CalendarFilterByTypeComponent,
-    CalendarFilterByDepartmentComponent,
+    CalendarFilterByCalendarComponent,
     CalendarFilterContainerComponent,
     MessagesComponent,
     CheckboxGroupComponent,
@@ -58,12 +60,13 @@ import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.componen
   ],
   providers: [
     ConfigurationService,
-    CategoryService,
+    CategoriesDataService,
     EventService,
     EventDataService,
     DataStoreService,
     MessagesService,
-    DateService
+    DateService,
+    CalendarDataService
   ],
   bootstrap: [AppComponent]
 })

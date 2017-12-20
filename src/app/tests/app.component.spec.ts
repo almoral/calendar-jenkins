@@ -7,7 +7,7 @@ import { CalendarEventComponent} from '../calendar-event/calendar-event.componen
 import { CalendarHeaderComponent } from '../calendar-header/calendar-header.component';
 import { CalendarFilterContainerComponent} from '../calendar-filter-container/calendar-filter-container.component';
 import { CalendarDateFilterComponent} from '../calendar-date-filter/calendar-date-filter.component';
-import { CalendarFilterByDepartmentComponent} from '../calendar-filter-by-department/calendar-filter-by-department.component';
+import { CalendarFilterByCalendarComponent} from '../calendar-filter-by-calendar/calendar-filter-by-calendar.component';
 import { CalendarFilterByTypeComponent} from '../calendar-filter-by-category/calendar-filter-by-category.component';
 import { CalendarFilterByTitleComponent} from '../calendar-filter-by-title/calendar-filter-by-title.component';
 
@@ -23,7 +23,7 @@ describe('AppComponent', () => {
         CalendarHeaderComponent,
         CalendarFilterContainerComponent,
         CalendarDateFilterComponent,
-        CalendarFilterByDepartmentComponent,
+        CalendarFilterByCalendarComponent,
         CalendarFilterByTypeComponent,
         CalendarFilterByTitleComponent
       ],

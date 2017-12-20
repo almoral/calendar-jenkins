@@ -12,7 +12,7 @@ const routes: Routes = [
   //     {path: 'test', component: TestViewComponent}
   //   ]
   // },
-  // {path: '**', component: CalendarComponent}
+  {path: '**', component: CalendarComponent}
   // {path: '', redirectTo: 'events', pathMatch: 'full'},
   // {path: 'events', component: EventsComponent},
   // {path: 'test', component: TestViewComponent},
