@@ -5,7 +5,7 @@ import {CalendarComponent} from '../calendar/calendar.component';
 import {CalendarEventDetailsComponent} from '../calendar-event-details/calendar-event-details.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'calendar', pathMatch: 'full' },
+  // {path: '', redirectTo: 'calendar', pathMatch: 'full' },
   {
     path: 'calendar',
     component: CalendarComponent
@@ -29,7 +29,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes)
   ],
   exports: [
     RouterModule
