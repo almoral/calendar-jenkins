@@ -399,6 +399,7 @@ div.bottom-sheet{
   .middle-container {
     top: 0;
     bottom: 0;
+    z-index: auto;
   }
 
   div.bottom-sheet {
