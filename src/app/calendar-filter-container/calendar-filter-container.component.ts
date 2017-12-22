@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-
+import {DataStoreService} from '../shared/services/data-store.service';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -9,17 +9,26 @@ import {Component, OnInit} from '@angular/core';
 export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
+  titleText: string = null;
+  categories: boolean[];
 
-  constructor() { }
+
+  constructor(private dataStoreService: DataStoreService) { }
 
   openModal() {
     this.isActive = true;
+    this.titleText = null;
   }
   closeModal() {
     this.isActive = false;
   }
 
   ngOnInit() {
+  }
+
+  resetValues() {
+    this.dataStoreService.setTitleFilter('');
+    this.titleText = '';
   }
 
 }

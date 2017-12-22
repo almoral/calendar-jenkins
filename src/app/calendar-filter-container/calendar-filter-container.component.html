@@ -13,7 +13,7 @@
           <span>Filters</span>
         </div>
         <div class="column right-align">
-          <button id="reset-filters"><span>Reset</span></button>
+          <button id="reset-filters" (click)='resetValues()'><span>Reset</span></button>
         </div>
       </div>
 
@@ -24,7 +24,7 @@
             <!--Filter by Dates-->
             <mdc-calendar-date-filter></mdc-calendar-date-filter>
             <!--Filter by Title-->
-            <mdc-calendar-filter-by-title></mdc-calendar-filter-by-title>
+            <mdc-calendar-filter-by-title [titleText]='titleText'></mdc-calendar-filter-by-title>
             <!--Filter by category-->
             <mdc-calendar-filter-by-category></mdc-calendar-filter-by-category>
             <!--Filter by Calendar-->
