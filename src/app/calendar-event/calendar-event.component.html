@@ -53,8 +53,8 @@
         </div>
       </div>
 
-      <div class="short-description">
-        <p>{{event?.description}}</p>
+      <div class="short-description" [innerHTML]='event?.description'>
+
         <!--<a class="waves-effect wave-light btn blue" href="calendar-item.html">Event Details</a>-->
       </div>
 
