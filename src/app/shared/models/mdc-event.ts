@@ -39,8 +39,7 @@ export class MdcEvent {
   public recurrence: Date[];
   public categories: string [];
   public type: string;
-  public shortDescription: string;
-  public longDescription: string;
+  public description: string;
   public contactName: string;
   public contactPhone: string;
   public contactEmail: string;
@@ -114,10 +113,7 @@ export class MdcEvent {
       'isAllDayEvent': {
         'type': ['boolean', 'null']
       },
-      'shortDescription': {
-        'type': ['string', 'null']
-      },
-      'longDescription': {
+      'description': {
         'type': ['string', 'null']
       },
       'isClosedToMedia': {
@@ -191,8 +187,7 @@ export class MdcEvent {
               isAllDayEvent: boolean,
               categories: string [],
               type: string,
-              shortDescription: string,
-              longDescription: string,
+              description: string,
               contactName: string,
               contactPhone: string,
               contactEmail: string,
@@ -218,8 +213,7 @@ export class MdcEvent {
     this.isAllDayEvent = isAllDayEvent || false;
     this.categories = categories || [];
     this.type = type || '';
-    this.shortDescription = shortDescription || '';
-    this.longDescription = longDescription || '';
+    this.description = description || '';
     this.contactName = contactName || '';
     this.contactPhone = contactPhone || '';
     this.contactEmail = contactEmail || '';
@@ -267,8 +261,7 @@ export class MdcEvent {
         json.isAllDayEvent,
         json.categories,
         json.type,
-        json.shortDescription,
-        json.longDescription,
+        json.description,
         json.contactName,
         json.contactPhone,
         json.contactEmail,
