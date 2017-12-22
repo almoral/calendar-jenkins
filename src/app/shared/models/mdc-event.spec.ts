@@ -124,7 +124,7 @@ describe('MdcEvent', () => {
       'CalProof1'
     );
     expect(mdcEvent).toBeTruthy();
-    expect(mdcEvent.shortDescription).toBe('');
+    expect(mdcEvent.description).toBe('');
   });
 
 
