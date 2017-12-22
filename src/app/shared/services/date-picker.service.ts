@@ -1,45 +1,32 @@
-import {Injectable, Input, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class DatePickerService implements OnInit{
+export class DatePickerService {
 
   constructor() { }
 
-  private _yearSubject = new BehaviorSubject<Number>(null);
-  private _monthSubject = new BehaviorSubject<Number>(null);
-  private _daySubject = new BehaviorSubject<Number>(null);
+  public _yearSubject = new BehaviorSubject<Number>(null);
+  // public year$: Observable<Number> = this._yearSubject.asObservable();
+
+  public _monthSubject = new BehaviorSubject<Number>(null);
+  // public month$: Observable<Number> = this._monthSubject.asObservable();
+
+  public _daySubject = new BehaviorSubject<Number>(null);
+  // public day$: Observable<Number> = this._daySubject.asObservable();
 
 
-  @Input()
-  set yearSubject(value) {
+  setYearSubject(value) {
     this._yearSubject.next(value);
   }
 
-  get yearSubject() {
-    return this._yearSubject.getValue();
-  }
-
-  @Input()
-  set monthSubject(value) {
+  setMonthSubject(value) {
     this._monthSubject.next(value);
   }
 
-  get monthSubject() {
-    return this._monthSubject.getValue();
-  }
-
-  @Input()
-  set daySubject(value) {
+  setDaySubject(value) {
     this._daySubject.next(value);
-  }
-
-  get daySubject() {
-    return this._daySubject.getValue();
-  }
-
-  ngOnInit() {
-
   }
 
 

@@ -26,7 +26,6 @@ export class DataStoreService {
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
     this.subscribeCalendarsFilter();
-
     this.getCategories();
     this.getCalendars();
   }

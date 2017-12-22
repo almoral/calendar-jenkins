@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
-import {FormsModule} from '@angular/forms';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
+import {DatePickerService} from '../shared/services/date-picker.service';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class CalendarDateFilterComponent implements OnInit {
   private days: string[];
   private disableDayField = false;
 
-  constructor( private dateService: DateService ) {}
+
+  constructor( private dateService: DateService,
+               private datePickerService: DatePickerService) {}
 
   ngOnInit() {
 
@@ -33,6 +36,7 @@ export class CalendarDateFilterComponent implements OnInit {
     this.selectedMonth = moment().format(DateService.MONTH_FORMAT);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
+
     // With 'day' configuration set also the current day.
     // Only the events for today will show
     if(environment.dateFilterType === 'day'){
@@ -40,6 +44,28 @@ export class CalendarDateFilterComponent implements OnInit {
     }
 
     this.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+  }
+
+  /**
+   * updateValues updates the values in the picker fields with the values from the picker service.
+   * @param year - selected year.
+   * @param month - selected month.
+   * @param day - selected day (optional)
+   */
+  public updateValues(year: string, month: string, day?: string): void {
+
+    if (month === '' && !_.isUndefined(day)) {
+      this.selectedDay = '';
+      this.disableDayField = true;
+    } else {
+      this.disableDayField = false;
+    }
+
+    this.datePickerService.setYearSubject(this.selectedYear);
+    this.datePickerService.setMonthSubject(this.selectedMonth);
+    this.datePickerService.setDaySubject(this.selectedDay);
+
+    this.days = this.dateService.getNumberOfDays(year, month);
   }
 
   /**

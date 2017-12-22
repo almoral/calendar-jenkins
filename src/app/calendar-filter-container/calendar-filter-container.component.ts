@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
+import {DatePickerService} from '../shared/services/date-picker.service';
+import {DateService} from '../shared/services/date.service';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -13,7 +15,9 @@ export class CalendarFilterContainerComponent implements OnInit {
   categories: boolean[];
 
 
-  constructor(private dataStoreService: DataStoreService) { }
+  constructor(private dataStoreService: DataStoreService,
+              private datePickerService: DatePickerService,
+              private dateService: DateService) { }
 
   openModal() {
     this.isActive = true;
@@ -21,6 +25,7 @@ export class CalendarFilterContainerComponent implements OnInit {
   }
   closeModal() {
     this.isActive = false;
+    this.dataStoreService.getEvents(this.datePickerService)
   }
 
   ngOnInit() {
