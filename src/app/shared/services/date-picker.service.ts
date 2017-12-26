@@ -1,32 +1,41 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import {DateService} from './date.service';
 
 @Injectable()
 export class DatePickerService {
 
-  constructor() { }
+  constructor(private dateService: DateService) { }
 
-  public _yearSubject = new BehaviorSubject<Number>(null);
-  // public year$: Observable<Number> = this._yearSubject.asObservable();
-
-  public _monthSubject = new BehaviorSubject<Number>(null);
-  // public month$: Observable<Number> = this._monthSubject.asObservable();
-
-  public _daySubject = new BehaviorSubject<Number>(null);
-  // public day$: Observable<Number> = this._daySubject.asObservable();
-
+  public yearSubject = new BehaviorSubject<string>(null);
+  public monthSubject = new BehaviorSubject<string>(null);
+  public daySubject = new BehaviorSubject<string>(null);
 
   setYearSubject(value) {
-    this._yearSubject.next(value);
+    this.yearSubject.next(value);
   }
 
   setMonthSubject(value) {
-    this._monthSubject.next(value);
+    this.monthSubject.next(value);
   }
 
   setDaySubject(value) {
-    this._daySubject.next(value);
+    this.daySubject.next(value);
+  }
+
+
+  public filterEventsByDate(year: string, month: string = '', day: string = '') {
+
+    if (day === '' && month === '') {
+      this.dateService.filterByYear(year);
+    }
+    if (month !== '' && day === '') {
+      this.dateService.filterByMonth(year, month);
+    }
+    if (day !== '' && month !== '') {
+      this.dateService.filterByDate(year, month, day);
+    }
+
   }
 
 

@@ -31,42 +31,33 @@ export class CalendarDateFilterComponent implements OnInit {
 
   ngOnInit() {
 
+    // Setting the initial values for the date picker service.
+    this.datePickerService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
+    this.datePickerService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
+
     // Initial values used to populate dropdowns in date filter.
-    this.selectedYear = moment().format(DateService.YEAR_FORMAT);
-    this.selectedMonth = moment().format(DateService.MONTH_FORMAT);
+    this.datePickerService.yearSubject.subscribe(year => this.selectedYear = year);
+    this.datePickerService.monthSubject.subscribe( month => this.selectedMonth = month);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
+
 
 
     // With 'day' configuration set also the current day.
     // Only the events for today will show
-    if(environment.dateFilterType === 'day'){
-      this.selectedDay = moment().format('D');
+    if (environment.dateFilterType === 'day'){
+      this.datePickerService.setDaySubject(moment().format('D'));
+      this.datePickerService.daySubject.subscribe( day => this.selectedDay = day);
+
     }
 
-    this.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+    this.datePickerService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
-  /**
-   * updateValues updates the values in the picker fields with the values from the picker service.
-   * @param year - selected year.
-   * @param month - selected month.
-   * @param day - selected day (optional)
-   */
-  public updateValues(year: string, month: string, day?: string): void {
+  filterEventsByDate() {
 
-    if (month === '' && !_.isUndefined(day)) {
-      this.selectedDay = '';
-      this.disableDayField = true;
-    } else {
-      this.disableDayField = false;
-    }
+    this.datePickerService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
 
-    this.datePickerService.setYearSubject(this.selectedYear);
-    this.datePickerService.setMonthSubject(this.selectedMonth);
-    this.datePickerService.setDaySubject(this.selectedDay);
-
-    this.days = this.dateService.getNumberOfDays(year, month);
-  }
+}
 
   /**
    * updateDays calculates and returns the number of days in the selected month
@@ -84,20 +75,20 @@ export class CalendarDateFilterComponent implements OnInit {
     }
 
     this.days = this.dateService.getNumberOfDays(year, month);
+    this.updatePickerService(this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
+  /**
+   * updatePickerService updates the values in the picker service with the values from the picker fields.
+   * @param year - selected year.
+   * @param month - selected month.
+   * @param day - selected day (optional)
+   */
+  private updatePickerService(year: string, month: string, day: string) {
 
-  public filterEventsByDate(year: string, month: string = '', day: string = '') {
-
-    if (day === '' && month === '') {
-      this.dateService.filterByYear(year);
-    }
-    if (month !== '' && day === '') {
-      this.dateService.filterByMonth(year, month);
-    }
-    if (day !== '' && month !== '') {
-      this.dateService.filterByDate(year, month, day);
-    }
-
+    this.datePickerService.setYearSubject(year);
+    this.datePickerService.setMonthSubject(month);
+    this.datePickerService.setDaySubject(day);
   }
+
 }
