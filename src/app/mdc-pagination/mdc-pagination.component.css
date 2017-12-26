@@ -70,3 +70,9 @@ CALENDAR PAGINATION
 .btn.white{
   color: #333;
 }
+
+button.prev:focus,
+button.next:focus {
+  background-color: #03a9f4 !important;
+  color: #fff;
+}
