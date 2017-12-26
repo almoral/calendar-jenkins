@@ -1,9 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
-import {DatePickerService} from '../shared/services/date-picker.service';
+import {FilterService} from '../shared/services/filter.service';
 import {DateService} from '../shared/services/date.service';
 import * as moment from 'moment';
 import {environment} from '../../environments/environment';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -13,28 +14,28 @@ import {environment} from '../../environments/environment';
 export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
-  titleText: string = null;
   categories: boolean[];
+  year = '';
+  month = '';
+  day = '';
 
 
   constructor(private dataStoreService: DataStoreService,
-              private datePickerService: DatePickerService) { }
+              private filterService: FilterService) { }
 
   openModal() {
     this.isActive = true;
-    this.titleText = null;
   }
 
   closeModal() {
-    this.resetValues();
-    this.isActive = false;
+    this.submitValues();
   }
 
   submitValues() {
-    const year: string = this.datePickerService.yearSubject.getValue();
-    const month: string = this.datePickerService.monthSubject.getValue();
-    const day: string = this.datePickerService.daySubject.getValue();
-    this.datePickerService.filterEventsByDate(year, month, day);
+    this.filterService.year$.subscribe( year => this.year = year );
+    this.filterService.month$.subscribe( month => this.month = month );
+    this.filterService.day$.subscribe( day => this.day = day );
+    this.filterService.filterEventsByDate(this.year, this.month, this.day);
 
     this.isActive = false;
   }
@@ -43,16 +44,21 @@ export class CalendarFilterContainerComponent implements OnInit {
   }
 
   resetValues() {
-    this.dataStoreService.setTitleFilter('');
-    this.titleText = null;
-    this.datePickerService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
-    this.datePickerService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
 
+    // This handles resetting the title.
+    this.filterService.setTitleSubject('tarantula');
+
+    // These handle resetting the date filter.
+    this.filterService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
+    this.filterService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
     if (environment.dateFilterType === 'day') {
-      this.datePickerService.setDaySubject(moment().format('D'));
+      this.filterService.setDaySubject(moment().format('D'));
     } else {
-      this.datePickerService.setDaySubject('');
+      this.filterService.setDaySubject('');
     }
+
+    // This handles the checkboxes
+
   }
 
 }

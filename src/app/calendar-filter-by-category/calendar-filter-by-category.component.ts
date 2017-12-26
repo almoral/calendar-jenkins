@@ -3,6 +3,7 @@ import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+import {FilterService} from '../shared/services/filter.service';
 
 
 @Component({
@@ -19,23 +20,37 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   @Input() categoriesData: string[];
 
-  constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
+  constructor( private dataStoreService: DataStoreService,
+               private fb: FormBuilder,
+               private filterService: FilterService) { }
 
   ngOnInit() {
+    // This populates the checkboxes
     this.categories$ = this.dataStoreService.categories$;
+
+    // this.selectedCategories = this.filterService.categories$.slice();
 
     this.typeForm = this.fb.group({
       categories: []
     });
   }
 
-  filterEvents(event) {
-    if (this.selectedCategories.indexOf(event) > -1) {
+  filterEvents(selection) {
+
+    this.selectedCategories = this.selectedCategories.filter( category => category !== selection);
+
+    console.log('selected categories: ', this.selectedCategories);
+
+    // Check to see if the checkbox has already been checked.
+    if (this.selectedCategories.indexOf(selection) > -1) {
+      // If it was checked then return array of unique values.
       this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-        return item !== event;
+        return item !== selection;
       });
     } else {
-      this.selectedCategories.push(event);
+
+      // If it wasn't checked then add to existing array.
+      this.selectedCategories.push(selection);
     }
 
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);

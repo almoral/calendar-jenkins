@@ -29,7 +29,7 @@ import {InMemoryDataService} from './shared/services/in-memory-data.service';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
-import {DatePickerService} from './shared/services/date-picker.service';
+import {FilterService} from './shared/services/filter.service';
 
 
 @NgModule({
@@ -68,7 +68,7 @@ import {DatePickerService} from './shared/services/date-picker.service';
     MessagesService,
     DateService,
     CalendarDataService,
-    DatePickerService
+    FilterService
   ],
   bootstrap: [AppComponent]
 })

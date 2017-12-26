@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
 import {environment} from '../../environments/environment';
-import {DatePickerService} from '../shared/services/date-picker.service';
+import {FilterService} from '../shared/services/filter.service';
 import {Observable} from 'rxjs/Observable';
 
 
@@ -27,37 +27,37 @@ export class CalendarDateFilterComponent implements OnInit {
 
 
   constructor( private dateService: DateService,
-               private datePickerService: DatePickerService) {}
+               private filterService: FilterService) {}
 
   ngOnInit() {
 
     // Setting the initial values for the date picker service.
-    this.datePickerService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
-    this.datePickerService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
+    this.filterService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
+    this.filterService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
 
     // Initial values used to populate dropdowns in date filter.
-    this.datePickerService.yearSubject.subscribe(year => this.selectedYear = year);
-    this.datePickerService.monthSubject.subscribe( month => this.selectedMonth = month);
+    this.filterService.year$.subscribe(year => this.selectedYear = year);
+    this.filterService.month$.subscribe( month => this.selectedMonth = month);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
 
 
     // With 'day' configuration set also the current day.
     // Only the events for today will show
-    if (environment.dateFilterType === 'day'){
-      this.datePickerService.setDaySubject(moment().format('D'));
-      this.datePickerService.daySubject.subscribe( day => this.selectedDay = day);
+    if (environment.dateFilterType === 'day') {
+      this.filterService.setDaySubject(moment().format('D'));
+      this.filterService.day$.subscribe( day => this.selectedDay = day);
 
     }
 
-    this.datePickerService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+    this.filterService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
   filterEventsByDate() {
 
-    this.datePickerService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+    this.filterService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
 
-}
+  }
 
   /**
    * updateDays calculates and returns the number of days in the selected month
@@ -86,9 +86,9 @@ export class CalendarDateFilterComponent implements OnInit {
    */
   private updatePickerService(year: string, month: string, day: string) {
 
-    this.datePickerService.setYearSubject(year);
-    this.datePickerService.setMonthSubject(month);
-    this.datePickerService.setDaySubject(day);
+    this.filterService.setYearSubject(year);
+    this.filterService.setMonthSubject(month);
+    this.filterService.setDaySubject(day);
   }
 
 }
