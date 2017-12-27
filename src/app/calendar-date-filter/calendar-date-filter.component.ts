@@ -32,8 +32,8 @@ export class CalendarDateFilterComponent implements OnInit {
   ngOnInit() {
 
     // Setting the initial values for the date picker service.
-    this.filterService.setYearSubject(moment().format(DateService.YEAR_FORMAT));
-    this.filterService.setMonthSubject(moment().format(DateService.MONTH_FORMAT));
+    this.filterService.setYear(moment().format(DateService.YEAR_FORMAT));
+    this.filterService.setMonth(moment().format(DateService.MONTH_FORMAT));
 
     // Initial values used to populate dropdowns in date filter.
     this.filterService.year$.subscribe(year => this.selectedYear = year);
@@ -45,17 +45,17 @@ export class CalendarDateFilterComponent implements OnInit {
     // With 'day' configuration set also the current day.
     // Only the events for today will show
     if (environment.dateFilterType === 'day') {
-      this.filterService.setDaySubject(moment().format('D'));
+      this.filterService.setDay(moment().format('D'));
       this.filterService.day$.subscribe( day => this.selectedDay = day);
 
     }
 
-    this.filterService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+    this.filterService.filterEventsByDate();
   }
 
   filterEventsByDate() {
 
-    this.filterService.filterEventsByDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+    this.filterService.filterEventsByDate();
 
   }
 
@@ -86,9 +86,9 @@ export class CalendarDateFilterComponent implements OnInit {
    */
   private updatePickerService(year: string, month: string, day: string) {
 
-    this.filterService.setYearSubject(year);
-    this.filterService.setMonthSubject(month);
-    this.filterService.setDaySubject(day);
+    this.filterService.setYear(year);
+    this.filterService.setMonth(month);
+    this.filterService.setDay(day);
   }
 
 }

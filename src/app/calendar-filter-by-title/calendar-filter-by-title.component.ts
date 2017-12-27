@@ -27,7 +27,7 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
     this.initOnChange();
 
-    this.filterService.setTitleSubject(environment.titleFilter);
+    this.filterService.setTitle(environment.titleFilter);
 
     this.filterService.title$.subscribe( value => this.form.get('title').setValue(value));
 

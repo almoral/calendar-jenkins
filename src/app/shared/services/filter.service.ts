@@ -1,53 +1,60 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {DateService} from './date.service';
+import {environment} from '../../../environments/environment';
+import * as moment from 'moment';
 
 @Injectable()
 export class FilterService {
 
   constructor(private dateService: DateService) { }
 
-  private yearSubject = new BehaviorSubject<string>(null);
-  private monthSubject = new BehaviorSubject<string>(null);
-  private daySubject = new BehaviorSubject<string>(null);
+  private year = new BehaviorSubject<string>(null);
+  private month = new BehaviorSubject<string>(null);
+  private day = new BehaviorSubject<string>(null);
 
 
-  private titleSubject = new BehaviorSubject<string>(null);
-  private categorySubject = new BehaviorSubject<Array<string>>(['']);
-  private calendarSubject = new BehaviorSubject<Array<string>>(['']);
+  private title = new BehaviorSubject<string>(null);
+  private category = new BehaviorSubject<Array<string>>(['']);
+  private calendar = new BehaviorSubject<Array<string>>(['']);
 
-  year$ = this.yearSubject.asObservable();
-  month$ = this.monthSubject.asObservable();
-  day$ = this.daySubject.asObservable();
-  title$ = this.titleSubject.asObservable();
-  categories$ = this.categorySubject.asObservable();
-  calendars$ = this.calendarSubject.asObservable();
+  year$ = this.year.asObservable();
+  month$ = this.month.asObservable();
+  day$ = this.day.asObservable();
+  title$ = this.title.asObservable();
+  categories$ = this.category.asObservable();
+  calendars$ = this.calendar.asObservable();
 
-  setYearSubject(value) {
-    this.yearSubject.next(value);
+  setYear(value) {
+    this.year.next(value);
   }
 
-  setMonthSubject(value) {
-    this.monthSubject.next(value);
+
+  setMonth(value) {
+    this.month.next(value);
   }
 
-  setDaySubject(value) {
-    this.daySubject.next(value);
+  setDay(value) {
+    this.day.next(value);
   }
 
-  setTitleSubject(value) {
-    this.titleSubject.next(value);
+  setTitle(value) {
+    this.title.next(value);
   }
 
-  setCategoriesValue(value) {
-    this.categorySubject.next(value);
+  setCategories(value) {
+    this.category.next(value);
   }
 
-  setCalendarsValue(value) {
-    this.calendarSubject.next(value);
+  setCalendars(value) {
+    this.calendar.next(value);
   }
 
-  public filterEventsByDate(year: string, month: string = '', day: string = '') {
+  public filterEventsByDate() {
+
+    const year = this.year.getValue();
+    const month = this.month.getValue();
+    const day = this.day.getValue();
 
     if (day === '' && month === '') {
       this.dateService.filterByYear(year);
@@ -58,6 +65,23 @@ export class FilterService {
     if (day !== '' && month !== '') {
       this.dateService.filterByDate(year, month, day);
     }
+
+  }
+
+  public reset() {
+    // This handles resetting the title.
+    this.title.next('');
+
+    // These handle resetting the date filter.
+    this.year.next(moment().format(DateService.YEAR_FORMAT));
+    this.month.next(moment().format(DateService.MONTH_FORMAT));
+    if (environment.dateFilterType === 'day') {
+      this.day.next(moment().format('D'));
+    } else {
+      this.day.next('');
+    }
+
+    // This handles the checkboxes
 
   }
 
