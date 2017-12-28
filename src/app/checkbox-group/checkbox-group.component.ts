@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 
@@ -15,25 +15,24 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
     ]
 })
 
-export class CheckboxGroupComponent implements ControlValueAccessor {
+export class CheckboxGroupComponent implements ControlValueAccessor, OnInit {
 
-  checkedValue: boolean;
+isChecked = false;
 
   @Input() optionsData = [];
   @Input() disabled = false;
-  @Input() isChecked = false;
+  @Input() resetCategories = false;
   @Output() selectItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
 
   public makeSelection(selection) {
-    this.selectItem.emit({event: event, selection: selection});
+    this.selectItem.emit(selection);
   }
 
   // control value accessor interface ---
-  writeValue(value: boolean) {
-    this.isChecked = value;
+  writeValue(value: any) {
   }
 
   registerOnChange(fn) {
@@ -42,9 +41,14 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
   registerOnTouched() {
   }
 
+
   // Allows Angular to disable the input.
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  ngOnInit() {
+
   }
 
 }

@@ -3,8 +3,10 @@
   <form [formGroup]="typeForm">
   <fieldset>
     <legend>Choose a category to selectItem by:</legend>
-        <mdc-checkbox-group formControlName="categories" [optionsData]="categories$"
-                            [isChecked]='isChecked'
+    {{resetCategories}}
+        <mdc-checkbox-group formControlName="categories"
+                            [optionsData]="categories$"
+                            [resetCategories]="resetCategories"
                             (selectItem)="filterEvents($event)">
         </mdc-checkbox-group>
 

@@ -17,7 +17,7 @@ export class FilterService {
   private day = new BehaviorSubject<string>(null);
   private title = new BehaviorSubject<string>(null);
   private categories = new BehaviorSubject<string[]>(['']);
-  private isChecked = new BehaviorSubject<boolean>(false);
+  private resetCategories = new BehaviorSubject<boolean>(null);
 
   selectedCategories: Array<string> = [];
 
@@ -26,8 +26,7 @@ export class FilterService {
   month$ = this.month.asObservable();
   day$ = this.day.asObservable();
   title$ = this.title.asObservable();
-  categories$ = this.categories.asObservable();
-  isChecked$ = this.isChecked.asObservable();
+  resetCategories$ = this.resetCategories.asObservable();
 
   setYear(value) {
     this.year.next(value);
@@ -49,8 +48,8 @@ export class FilterService {
     this.categories.next(value);
   }
 
-  setIsChecked(value) {
-    this.isChecked.next(value);
+  setResetCategories(value) {
+    this.resetCategories.next(value);
   }
 
 
@@ -97,7 +96,7 @@ export class FilterService {
 
     // This handles the checkboxes. It looks like the subject in the data store is subscribed to this array?
     this.selectedCategories.length = 0;
-    this.isChecked.next(false);
+    this.resetCategories.next(true);
   }
 
 

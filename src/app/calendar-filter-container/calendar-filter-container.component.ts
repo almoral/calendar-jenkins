@@ -9,12 +9,12 @@ import {FilterService} from '../shared/services/filter.service';
 export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
-  checkedValue = false;
+  resetCategories: boolean;
 
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
-    this.filterService.isChecked$.subscribe( value => this.checkedValue = value);
+    this.filterService.resetCategories$.subscribe(value => this.resetCategories = value);
   }
 
   openModal() {

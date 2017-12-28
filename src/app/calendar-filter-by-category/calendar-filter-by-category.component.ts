@@ -15,10 +15,9 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   categories$: Observable<string[]>;
   typeForm: FormGroup;
-  isChecked: boolean;
 
   @Input() categoriesData: string[];
-  @Input() checkedValue: boolean;
+  @Input() resetCategories: boolean;
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,
@@ -32,13 +31,11 @@ export class CalendarFilterByTypeComponent implements OnInit {
       categories: []
     });
 
-    // this.filterService.categories$ = this.categories$;
-    this.filterService.isChecked$.subscribe( value => this.isChecked = value);
+    this.filterService.resetCategories$.subscribe(value => this.resetCategories = value);
   }
 
-  filterEvents($event) {
-
-    this.filterService.filterCategories($event.selection);
+  filterEvents(selection) {
+    this.filterService.filterCategories(selection);
   }
 
 
