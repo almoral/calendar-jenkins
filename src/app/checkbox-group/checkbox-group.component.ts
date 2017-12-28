@@ -17,11 +17,11 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export class CheckboxGroupComponent implements ControlValueAccessor, OnInit {
 
-isChecked = false;
+  isChecked = false;
 
   @Input() optionsData = [];
   @Input() disabled = false;
-  @Input() resetCategories = false;
+  @Input() resetCategories = true;
   @Output() selectItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {

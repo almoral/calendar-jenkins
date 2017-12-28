@@ -21,7 +21,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,
-               private filterService: FilterService) { }
+               private filterService: FilterService) {}
 
   ngOnInit() {
     // This populates the checkboxes
@@ -32,6 +32,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
     });
 
     this.filterService.resetCategories$.subscribe(value => this.resetCategories = value);
+
   }
 
   filterEvents(selection) {

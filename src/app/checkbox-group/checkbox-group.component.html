@@ -4,7 +4,7 @@
                id='{{cbOption.value}}'
                name="{{cbOption.value}}"
                value="{{cbOption.label}}"
-               [checked]="!isChecked"
+               [checked]="!resetCategories"
         (click)="makeSelection(cbOption.value)">
     <label for='{{cbOption.value}}'>{{cbOption.label}}</label>
 </p>
