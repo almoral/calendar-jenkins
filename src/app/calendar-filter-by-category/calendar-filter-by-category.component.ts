@@ -15,8 +15,6 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   categories$: Observable<string[]>;
   typeForm: FormGroup;
-  selectedCategories: Array<string> = [];
-
 
   @Input() categoriesData: string[];
 
@@ -28,32 +26,15 @@ export class CalendarFilterByTypeComponent implements OnInit {
     // This populates the checkboxes
     this.categories$ = this.dataStoreService.categories$;
 
-    // this.selectedCategories = this.filterService.categories$.slice();
-
     this.typeForm = this.fb.group({
       categories: []
     });
+
+    this.filterService.checked$.subscribe( value => this.typeForm.get('categories').setValue(value));
   }
 
   filterEvents(selection) {
-
-    this.selectedCategories = this.selectedCategories.filter( category => category !== selection);
-
-    console.log('selected categories: ', this.selectedCategories);
-
-    // Check to see if the checkbox has already been checked.
-    if (this.selectedCategories.indexOf(selection) > -1) {
-      // If it was checked then return array of unique values.
-      this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-        return item !== selection;
-      });
-    } else {
-
-      // If it wasn't checked then add to existing array.
-      this.selectedCategories.push(selection);
-    }
-
-    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+    this.filterService.filterCategories(selection);
   }
 
 

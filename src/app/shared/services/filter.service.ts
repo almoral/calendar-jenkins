@@ -3,32 +3,33 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {DateService} from './date.service';
 import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
+import * as _ from 'lodash';
+import {DataStoreService} from './data-store.service';
 
 @Injectable()
 export class FilterService {
 
-  constructor(private dateService: DateService) { }
+  constructor(private dateService: DateService,
+              private dataStoreService: DataStoreService) { }
 
   private year = new BehaviorSubject<string>(null);
   private month = new BehaviorSubject<string>(null);
   private day = new BehaviorSubject<string>(null);
-
-
   private title = new BehaviorSubject<string>(null);
-  private category = new BehaviorSubject<Array<string>>(['']);
-  private calendar = new BehaviorSubject<Array<string>>(['']);
+  private checked = new BehaviorSubject<boolean>(false);
 
+  selectedCategories: Array<string> = [];
+
+  // Creating observables as getters to keep the subjects private.
   year$ = this.year.asObservable();
   month$ = this.month.asObservable();
   day$ = this.day.asObservable();
   title$ = this.title.asObservable();
-  categories$ = this.category.asObservable();
-  calendars$ = this.calendar.asObservable();
+  checked$ = this.checked.asObservable();
 
   setYear(value) {
     this.year.next(value);
   }
-
 
   setMonth(value) {
     this.month.next(value);
@@ -42,12 +43,19 @@ export class FilterService {
     this.title.next(value);
   }
 
-  setCategories(value) {
-    this.category.next(value);
+  setChecked(value) {
+    this.checked.next(value);
   }
 
-  setCalendars(value) {
-    this.calendar.next(value);
+  public filterCategories(selection: string) {
+
+    if ( _.indexOf(this.selectedCategories, selection) === -1) {
+      this.selectedCategories.push(selection);
+    } else {
+       _.remove(this.selectedCategories, category => category === selection);
+    }
+
+    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
   }
 
   public filterEventsByDate() {
@@ -82,6 +90,8 @@ export class FilterService {
     }
 
     // This handles the checkboxes
+    this.selectedCategories.length = 0;
+    this.checked.next(false);
 
   }
 

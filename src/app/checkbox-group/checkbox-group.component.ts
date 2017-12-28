@@ -24,8 +24,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
   constructor() {
   }
 
-  public filterEvents(filterValue: string) {
-    this.filter.emit(filterValue);
+  public makeSelection(selection: string) {
+    this.filter.emit(selection);
   }
 
   // control value accessor interface ---
