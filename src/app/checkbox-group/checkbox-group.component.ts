@@ -19,13 +19,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
   @Input() optionsData = [];
   @Input() disabled = false;
-  @Output() filter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
 
   public makeSelection(selection: string) {
-    this.filter.emit(selection);
+    this.selectItem.emit(selection);
   }
 
   // control value accessor interface ---
