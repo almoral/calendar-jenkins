@@ -17,19 +17,23 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export class CheckboxGroupComponent implements ControlValueAccessor {
 
+  checkedValue: boolean;
+
   @Input() optionsData = [];
   @Input() disabled = false;
+  @Input() isChecked = false;
   @Output() selectItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
 
-  public makeSelection(selection: string) {
-    this.selectItem.emit(selection);
+  public makeSelection(selection) {
+    this.selectItem.emit({event: event, selection: selection});
   }
 
   // control value accessor interface ---
-  writeValue(values: any) {
+  writeValue(value: boolean) {
+    this.isChecked = value;
   }
 
   registerOnChange(fn) {

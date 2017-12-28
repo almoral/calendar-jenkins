@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FilterService} from '../shared/services/filter.service';
 
 @Component({
@@ -6,11 +6,16 @@ import {FilterService} from '../shared/services/filter.service';
   templateUrl: 'calendar-filter-container.component.html',
   styleUrls: ['calendar-filter-container.component.css']
 })
-export class CalendarFilterContainerComponent {
+export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
+  checkedValue = false;
 
   constructor(private filterService: FilterService) { }
+
+  ngOnInit() {
+    this.filterService.isChecked$.subscribe( value => this.checkedValue = value);
+  }
 
   openModal() {
     this.isActive = true;
