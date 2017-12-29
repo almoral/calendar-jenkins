@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import {FilterService} from '../shared/services/filter.service';
+import {InitializeService} from '../shared/services/initialize.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,
-               private filterService: FilterService) {}
+               private filterService: FilterService,
+               private initializeService: InitializeService) {}
 
   ngOnInit() {
     // This populates the checkboxes
@@ -31,7 +33,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
       categories: []
     });
 
-    this.filterService.resetCategories$.subscribe(value => this.resetCategories = value);
+    this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
 
   }
 

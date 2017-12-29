@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {DateService} from './date.service';
-import {environment} from '../../../environments/environment';
-import * as moment from 'moment';
 import * as _ from 'lodash';
 import {DataStoreService} from './data-store.service';
 
@@ -17,7 +15,6 @@ export class FilterService {
   private day = new BehaviorSubject<string>(null);
   private title = new BehaviorSubject<string>(null);
 
-  private resetCategories = new BehaviorSubject<boolean>(null);
 
   selectedCategories: Array<string> = [];
 
@@ -26,7 +23,6 @@ export class FilterService {
   month$ = this.month.asObservable();
   day$ = this.day.asObservable();
   title$ = this.title.asObservable();
-  resetCategories$ = this.resetCategories.asObservable();
 
   setYear(value) {
     this.year.next(value);
@@ -50,7 +46,7 @@ export class FilterService {
     if ( _.indexOf(this.selectedCategories, selection) === -1) {
       this.selectedCategories.push(selection);
     } else {
-       _.remove(this.selectedCategories, category => category === selection);
+      _.remove(this.selectedCategories, category => category === selection);
     }
 
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);
@@ -73,28 +69,6 @@ export class FilterService {
     }
   }
 
-  public reset() {
-    // This handles resetting the title.
-    this.title.next('');
-
-    // These handle resetting the date filter.
-    this.year.next(moment().format(DateService.YEAR_FORMAT));
-    this.month.next(moment().format(DateService.MONTH_FORMAT));
-    if (environment.dateFilterType === 'day') {
-      this.day.next(moment().format('D'));
-    } else {
-      this.day.next('');
-    }
-
-    // This handles the checkboxes. It looks like the subject in the data store is subscribed to this array?
-      if (this.selectedCategories.length > 0) {
-        this.resetCategories.next(true);
-        this.dataStoreService.setCategoriesFilter([]);
-      }
-
-
-    // this.resetCategories.next(true);
-  }
 
 
 }

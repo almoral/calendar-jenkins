@@ -30,6 +30,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
 import {FilterService} from './shared/services/filter.service';
+import {InitializeService} from './shared/services/initialize.service';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {FilterService} from './shared/services/filter.service';
     MessagesService,
     DateService,
     CalendarDataService,
-    FilterService
+    FilterService,
+    InitializeService
   ],
   bootstrap: [AppComponent]
 })

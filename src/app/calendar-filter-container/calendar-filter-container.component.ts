@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FilterService} from '../shared/services/filter.service';
+import {InitializeService} from '../shared/services/initialize.service';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -11,10 +12,11 @@ export class CalendarFilterContainerComponent implements OnInit {
   isActive = false;
   resetCategories: boolean;
 
-  constructor(private filterService: FilterService) { }
+  constructor(private filterService: FilterService,
+              private initializeService: InitializeService) { }
 
   ngOnInit() {
-    this.filterService.resetCategories$.subscribe(value => this.resetCategories = value);
+    this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
   }
 
   openModal() {
@@ -31,7 +33,7 @@ export class CalendarFilterContainerComponent implements OnInit {
   }
 
   resetValues() {
-    this.filterService.reset();
+    this.initializeService.reset();
   }
 
 }
