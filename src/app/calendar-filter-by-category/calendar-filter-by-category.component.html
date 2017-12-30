@@ -6,7 +6,6 @@
     {{resetCategories}}
         <mdc-checkbox-group formControlName="categories"
                             [optionsData]="categories$"
-                            [resetCategories]="resetCategories"
                             (selectItem)="filterEvents($event)">
         </mdc-checkbox-group>
 

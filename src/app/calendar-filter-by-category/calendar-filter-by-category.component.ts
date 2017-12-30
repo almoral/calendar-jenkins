@@ -1,10 +1,11 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
+import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
 
 
 @Component({
@@ -12,10 +13,12 @@ import {InitializeService} from '../shared/services/initialize.service';
   templateUrl: 'calendar-filter-by-category.component.html',
   styleUrls: ['calendar-filter-by-category.component.css']
 })
-export class CalendarFilterByTypeComponent implements OnInit {
+export class CalendarFilterByCategoryComponent implements OnInit {
 
   categories$: Observable<string[]>;
   typeForm: FormGroup;
+
+  @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
   @Input() categoriesData: string[];
   @Input() resetCategories: boolean;
@@ -33,7 +36,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
       categories: []
     });
 
-    this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
+    // this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
 
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
 
@@ -7,10 +7,13 @@ import {InitializeService} from '../shared/services/initialize.service';
   templateUrl: 'calendar-filter-container.component.html',
   styleUrls: ['calendar-filter-container.component.css']
 })
+
+
 export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
   resetCategories: boolean;
+
 
   constructor(private filterService: FilterService,
               private initializeService: InitializeService) { }
