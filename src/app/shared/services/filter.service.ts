@@ -44,6 +44,7 @@ export class FilterService {
   public filterCategories(selection: string) {
 
     if ( _.indexOf(this.selectedCategories, selection) === -1) {
+
       this.selectedCategories.push(selection);
     } else {
       _.remove(this.selectedCategories, category => category === selection);

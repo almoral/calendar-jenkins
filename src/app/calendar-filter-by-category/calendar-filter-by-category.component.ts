@@ -17,6 +17,8 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
   categories$: Observable<string[]>;
   typeForm: FormGroup;
+  checked = false;
+
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
@@ -36,10 +38,16 @@ export class CalendarFilterByCategoryComponent implements OnInit {
       categories: []
     });
 
+    this.initializeService.resetCategories$.subscribe(value => this.checked = value);
 
   }
 
+  onChanges() {
+    this.checkboxes.isChecked = this.checked;
+  }
+
   filterEvents(selection) {
+
     this.filterService.filterCategories(selection);
   }
 

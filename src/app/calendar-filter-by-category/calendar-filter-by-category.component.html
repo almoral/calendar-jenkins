@@ -3,9 +3,11 @@
   <form [formGroup]="typeForm">
   <fieldset>
     <legend>Choose a category to selectItem by:</legend>
-    {{resetCategories}}
+
         <mdc-checkbox-group formControlName="categories"
                             [optionsData]="categories$"
+                            [(ngModel)]='checked'
+                            (ngModelChange)='onChanges()'
                             (selectItem)="filterEvents($event)">
         </mdc-checkbox-group>
 

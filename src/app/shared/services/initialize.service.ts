@@ -12,11 +12,13 @@ export class InitializeService {
 
   private resetCategories = new BehaviorSubject<boolean>(null);
   resetCategories$ = this.resetCategories.asObservable();
-  selectedCategories = [];
+
+  setResetCategories (value) {
+    this.resetCategories.next(value);
+  }
 
   constructor( private filterService: FilterService,
                private dataStoreService: DataStoreService) { }
-
 
   public reset() {
     // This handles resetting the title.
@@ -32,10 +34,16 @@ export class InitializeService {
     }
 
     // This handles the checkboxes. It looks like the subject in the data store is subscribed to this array?
-    if (this.selectedCategories.length > 0) {
-      this.resetCategories.next(true);
-      this.dataStoreService.setCategoriesFilter([]);
+    // if (this.selectedCategories.length > 0) {
+    if (this.resetCategories.getValue() === false) {
+      this.resetCategories.next(null);
+    } else {
+      this.resetCategories.next(false);
     }
+      this.filterService.selectedCategories.length = 0;
+      this.dataStoreService.setCategoriesFilter(this.filterService.selectedCategories);
+      // this.resetCategories.next(null);
+    // }
 
 
     // this.resetCategories.next(true);
