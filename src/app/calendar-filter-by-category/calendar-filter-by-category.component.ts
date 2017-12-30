@@ -36,7 +36,6 @@ export class CalendarFilterByCategoryComponent implements OnInit {
       categories: []
     });
 
-    // this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
 
   }
 
