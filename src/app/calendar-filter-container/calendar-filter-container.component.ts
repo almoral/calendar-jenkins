@@ -7,14 +7,11 @@ import {FilterService} from '../shared/services/filter.service';
   styleUrls: ['calendar-filter-container.component.css']
 })
 
-
 export class CalendarFilterContainerComponent {
 
   isActive = false;
 
-
   constructor(private filterService: FilterService) { }
-
 
   openModal() {
     this.isActive = true;
@@ -28,6 +25,4 @@ export class CalendarFilterContainerComponent {
     this.filterService.filterEventsByDate();
     this.isActive = false;
   }
-
-
 }
