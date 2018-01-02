@@ -23,7 +23,6 @@ export class CalendarFilterByCategoryComponent implements OnInit {
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
   @Input() categoriesData: string[];
-  @Input() resetCategories: boolean;
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,

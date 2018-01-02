@@ -17,6 +17,7 @@ export class FilterService {
 
 
   selectedCategories: Array<string> = [];
+  selectedCalendars: Array<string> = [];
 
   // Creating observables as getters to keep the subjects private.
   year$ = this.year.asObservable();
@@ -39,6 +40,20 @@ export class FilterService {
   setTitle(value) {
     this.title.next(value);
   }
+
+
+  public filterCalendars(selection: string) {
+
+    if ( _.indexOf(this.selectedCalendars, selection) === -1) {
+
+      this.selectedCalendars.push(selection);
+    } else {
+      _.remove(this.selectedCalendars, type => type === selection);
+    }
+
+    this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
+  }
+
 
 
   public filterCategories(selection: string) {

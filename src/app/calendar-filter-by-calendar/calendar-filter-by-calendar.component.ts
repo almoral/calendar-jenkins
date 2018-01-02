@@ -1,8 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
+import {FilterService} from '../shared/services/filter.service';
+import {InitializeService} from '../shared/services/initialize.service';
+import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
 
 @Component({
   selector: 'mdc-calendar-filter-by-calendar',
@@ -14,8 +17,14 @@ export class CalendarFilterByCalendarComponent implements OnInit {
   calendarsForm: FormGroup;
   public calendars$: Observable<string[]>;
   selectedCalendars: Array<string> = [];
+  checked = false;
 
-  constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
+  @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
+
+  constructor( private dataStoreService: DataStoreService,
+               private fb: FormBuilder,
+               private filterService: FilterService,
+               private initializeService: InitializeService) { }
 
   // TODO: Fix issue where calendar observable is being overwritten by observable used here for the calendar filters.
   ngOnInit() {
@@ -24,18 +33,16 @@ export class CalendarFilterByCalendarComponent implements OnInit {
     this.calendarsForm = this.fb.group({
       calendars: []
     });
+
+    this.initializeService.resetCalendars$.subscribe( value => this.checked = value );
   }
 
-  filterEvents(event) {
-    if (this.selectedCalendars.indexOf(event) > -1) {
-      this.selectedCalendars = _.filter(this.selectedCalendars, (item) => {
-        return item !== event;
-      });
-    } else {
-      this.selectedCalendars.push(event);
-    }
+  onChanges() {
+    this.checkboxes.isChecked = this.checked;
+  }
 
-    this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
+  filterEvents(selection) {
+    this.filterService.filterCalendars(selection);
   }
 
 

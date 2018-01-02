@@ -11,6 +11,9 @@ export class InitializeService {
 
 
   private resetCategories = new BehaviorSubject<boolean>(null);
+  private resetCalendars = new BehaviorSubject<boolean>(null);
+
+  resetCalendars$ = this.resetCalendars.asObservable();
   resetCategories$ = this.resetCategories.asObservable();
 
   setResetCategories (value) {
@@ -33,20 +36,29 @@ export class InitializeService {
       this.filterService.setDay('');
     }
 
-    // This handles the checkboxes. It looks like the subject in the data store is subscribed to this array?
-    // if (this.selectedCategories.length > 0) {
+    // This handles the categories checkboxes.
     if (this.resetCategories.getValue() === false) {
       this.resetCategories.next(null);
     } else {
       this.resetCategories.next(false);
     }
+    // The behavior subject creates a pointer to the array so we can update the array and the subject will behave correctly.
       this.filterService.selectedCategories.length = 0;
-      this.dataStoreService.setCategoriesFilter(this.filterService.selectedCategories);
-      // this.resetCategories.next(null);
-    // }
+      // this.dataStoreService.setCategoriesFilter(this.filterService.selectedCategories);
+
+  //  This handles the calendar checkboxes.
+    if (this.resetCalendars.getValue() === false) {
+      this.resetCalendars.next(null);
+    } else {
+      this.resetCalendars.next(false);
+    }
+    // The behavior subject creates a pointer to the array so we can update the array and the subject will behave correctly.
+    this.filterService.selectedCalendars.length = 0;
 
 
-    // this.resetCategories.next(true);
+
+
+
   }
 
 }
