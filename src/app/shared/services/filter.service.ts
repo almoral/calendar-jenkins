@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {DateService} from './date.service';
 
-
 @Injectable()
 export class FilterService {
 
@@ -11,7 +10,6 @@ export class FilterService {
   private year = new BehaviorSubject<string>(null);
   private month = new BehaviorSubject<string>(null);
   private day = new BehaviorSubject<string>(null);
-
 
   // Creating observables as getters to keep the subjects private.
   year$ = this.year.asObservable();
@@ -30,7 +28,6 @@ export class FilterService {
   setDay(value) {
     this.day.next(value);
   }
-
 
   public filterEventsByDate() {
 
