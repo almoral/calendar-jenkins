@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {DataStoreService} from '../shared/services/data-store.service';
 import {Observable} from 'rxjs/Observable';
 import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
@@ -14,20 +13,17 @@ import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component
 export class CalendarFilterByCalendarComponent implements OnInit {
 
   calendarsForm: FormGroup;
-  public calendars$: Observable<string[]>;
+  @Input() calendars$: Observable<string[]>;
   checked = false;
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
-  constructor( private dataStoreService: DataStoreService,
-               private fb: FormBuilder,
+  constructor( private fb: FormBuilder,
                private filterService: FilterService,
                private initializeService: InitializeService) { }
 
   // TODO: Fix issue where calendar observable is being overwritten by observable used here for the calendar filters.
   ngOnInit() {
-    this.calendars$ = this.dataStoreService.calendars$;
-
     this.calendarsForm = this.fb.group({
       calendars: []
     });

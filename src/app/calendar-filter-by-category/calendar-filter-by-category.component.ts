@@ -14,10 +14,9 @@ import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component
 })
 export class CalendarFilterByCategoryComponent implements OnInit {
 
-  categories$: Observable<string[]>;
   typeForm: FormGroup;
   checked = false;
-
+  @Input() categories$: Observable<string[]>;
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
@@ -29,8 +28,6 @@ export class CalendarFilterByCategoryComponent implements OnInit {
                private initializeService: InitializeService) {}
 
   ngOnInit() {
-    // This populates the checkboxes
-    this.categories$ = this.dataStoreService.categories$;
 
     this.typeForm = this.fb.group({
       categories: []
