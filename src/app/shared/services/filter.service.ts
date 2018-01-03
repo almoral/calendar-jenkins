@@ -41,7 +41,6 @@ export class FilterService {
     this.title.next(value);
   }
 
-
   public filterCalendars(selection: string) {
 
     if ( _.indexOf(this.selectedCalendars, selection) === -1) {
@@ -53,8 +52,6 @@ export class FilterService {
 
     this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
   }
-
-
 
   public filterCategories(selection: string) {
 
@@ -84,7 +81,4 @@ export class FilterService {
       this.dateService.filterByDate(year, month, day);
     }
   }
-
-
-
 }
