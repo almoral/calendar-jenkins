@@ -6,7 +6,7 @@
 
         <mdc-checkbox-group formControlName="categories"
                             [optionsData]="categories$"
-                            [(ngModel)]='checked'
+                            [ngModel]='checked'
                             (ngModelChange)='onChanges()'
                             (selectItem)="filterEvents($event)">
         </mdc-checkbox-group>

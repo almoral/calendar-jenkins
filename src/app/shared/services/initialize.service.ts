@@ -4,11 +4,9 @@ import * as moment from 'moment';
 import {DateService} from './date.service';
 import {environment} from '../../../environments/environment';
 import {FilterService} from './filter.service';
-import {DataStoreService} from './data-store.service';
 
 @Injectable()
 export class InitializeService {
-
 
   private resetCategories = new BehaviorSubject<boolean>(null);
   private resetCalendars = new BehaviorSubject<boolean>(null);
@@ -16,12 +14,8 @@ export class InitializeService {
   resetCalendars$ = this.resetCalendars.asObservable();
   resetCategories$ = this.resetCategories.asObservable();
 
-  setResetCategories (value) {
-    this.resetCategories.next(value);
-  }
 
-  constructor( private filterService: FilterService,
-               private dataStoreService: DataStoreService) { }
+  constructor( private filterService: FilterService) { }
 
   public reset() {
     // This handles resetting the title.
@@ -44,7 +38,7 @@ export class InitializeService {
     }
     // The behavior subject creates a pointer to the array so we can update the array and the subject will behave correctly.
       this.filterService.selectedCategories.length = 0;
-      // this.dataStoreService.setCategoriesFilter(this.filterService.selectedCategories);
+
 
   //  This handles the calendar checkboxes.
     if (this.resetCalendars.getValue() === false) {

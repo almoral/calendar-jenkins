@@ -2,7 +2,6 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import * as _ from 'lodash';
 import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
 import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';

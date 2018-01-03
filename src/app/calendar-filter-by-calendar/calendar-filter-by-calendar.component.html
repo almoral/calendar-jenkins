@@ -5,7 +5,7 @@
     <legend>Choose a department to selectItem by:</legend>
       <mdc-checkbox-group formControlName="calendars"
                           [optionsData]="calendars$"
-                          [(ngModel)]='checked'
+                          [ngModel]='checked'
                           (ngModelChange)='onChanges()'
                           (selectItem)="filterEvents($event)">
       </mdc-checkbox-group>
