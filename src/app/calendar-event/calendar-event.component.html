@@ -1,9 +1,9 @@
 <article>
 
   <!--Calendar Item-->
-  <div class="calendar-title-container" (click)="showHide($event)">
+  <div class="calendar-title-container" tabindex="0" (click)="showHide($event)">
     <div class="column">
-      <h3 class="calendar-subtitle" tabindex="0">{{event?.title}}</h3>
+      <h3 class="calendar-subtitle">{{event?.title}}</h3>
     </div>
     <div class="column">
       <span class="calendar-date">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
