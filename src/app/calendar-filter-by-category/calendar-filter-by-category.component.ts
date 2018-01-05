@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
 import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
   typeForm: FormGroup;
   checked = false;
+  selectedCategories: Array<string> = [];
+
   @Input() categories$: Observable<string[]>;
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
@@ -43,7 +46,14 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
   filterEvents(selection) {
 
-    this.filterService.filterCategories(selection);
+    if ( _.indexOf(this.selectedCategories, selection) === -1) {
+
+      this.selectedCategories.push(selection);
+    } else {
+      _.remove(this.selectedCategories, category => category === selection);
+    }
+
+    this.dataStoreService.setCategoriesFilter(this.selectedCategories);
   }
 
 

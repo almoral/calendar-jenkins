@@ -15,19 +15,20 @@ export class InitializeService {
   resetCategories$ = this.resetCategories.asObservable();
 
 
-  constructor( private filterService: FilterService) { }
+  constructor( private dateService: DateService,
+               private filterService: FilterService) { }
 
   public reset() {
     // This handles resetting the title.
     this.filterService.setTitle('');
 
     // These handle resetting the date filter.
-    this.filterService.setYear(moment().format(DateService.YEAR_FORMAT));
-    this.filterService.setMonth(moment().format(DateService.MONTH_FORMAT));
+    this.dateService.setYear(moment().format(DateService.YEAR_FORMAT));
+    this.dateService.setMonth(moment().format(DateService.MONTH_FORMAT));
     if (environment.dateFilterType === 'day') {
-      this.filterService.setDay(moment().format('D'));
+      this.dateService.setDay(moment().format('D'));
     } else {
-      this.filterService.setDay('');
+      this.dateService.setDay('');
     }
 
     // This handles the categories checkboxes.

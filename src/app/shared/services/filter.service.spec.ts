@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FilterService } from './filter.service';
+import { DateService } from './filter.service';
 
-describe('FilterService', () => {
+describe('DateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FilterService]
+      providers: [DateService]
     });
   });
 
-  it('should be created', inject([FilterService], (service: FilterService) => {
+  it('should be created', inject([DateService], (service: DateService) => {
     expect(service).toBeTruthy();
   }));
 });

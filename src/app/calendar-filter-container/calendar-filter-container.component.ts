@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {Observable} from 'rxjs/Observable';
+import {Component, OnInit} from '@angular/core';
+import {DateService} from '../shared/services/date.service';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -11,7 +11,7 @@ import {Observable} from 'rxjs/Observable';
 })
 
 
-export class CalendarFilterContainerComponent implements OnInit {
+export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
   resetCategories: boolean;
@@ -19,7 +19,7 @@ export class CalendarFilterContainerComponent implements OnInit {
   private categories$: Observable<string[]>;
 
 
-  constructor(private filterService: FilterService,
+  constructor(private dateService: DateService,
               private initializeService: InitializeService,
               private dataStoreService: DataStoreService) { }
 
@@ -39,12 +39,11 @@ export class CalendarFilterContainerComponent implements OnInit {
   }
 
   submitValues() {
-    this.filterService.filterEventsByDate();
+    this.dateService.filterEventsByDate();
     this.isActive = false;
   }
 
   resetValues() {
     this.initializeService.reset();
   }
-
 }

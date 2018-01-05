@@ -4,26 +4,29 @@ import {DateService} from './date.service';
 import * as _ from 'lodash';
 import {DataStoreService} from './data-store.service';
 
+
 @Injectable()
 export class FilterService {
+
+
 
   constructor(private dateService: DateService,
               private dataStoreService: DataStoreService) { }
 
-  private year = new BehaviorSubject<string>(null);
-  private month = new BehaviorSubject<string>(null);
-  private day = new BehaviorSubject<string>(null);
   private title = new BehaviorSubject<string>(null);
 
 
   selectedCategories: Array<string> = [];
   selectedCalendars: Array<string> = [];
 
+
   // Creating observables as getters to keep the subjects private.
   year$ = this.year.asObservable();
   month$ = this.month.asObservable();
   day$ = this.day.asObservable();
+
   title$ = this.title.asObservable();
+
 
   setYear(value) {
     this.year.next(value);
@@ -36,6 +39,7 @@ export class FilterService {
   setDay(value) {
     this.day.next(value);
   }
+
 
   setTitle(value) {
     this.title.next(value);
@@ -65,6 +69,7 @@ export class FilterService {
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);
   }
 
+
   public filterEventsByDate() {
 
     const year = this.year.getValue();
@@ -81,4 +86,5 @@ export class FilterService {
       this.dateService.filterByDate(year, month, day);
     }
   }
+
 }
