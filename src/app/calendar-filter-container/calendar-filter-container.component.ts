@@ -24,7 +24,7 @@ export class CalendarFilterContainerComponent implements OnInit{
               private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
-    this.initializeService.resetCategories$.subscribe(value => this.resetCategories = value);
+    this.initializeService.categoriesFilter$.subscribe(value => this.resetCategories = value);
 
     this.calendars$ = this.dataStoreService.calendars$;
     this.categories$ = this.dataStoreService.categories$;

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {InitializeService} from '../shared/services/initialize.service';
@@ -15,8 +15,8 @@ import {DataStoreService} from '../shared/services/data-store.service';
 export class CalendarFilterByCalendarComponent implements OnInit {
 
   calendarsForm: FormGroup;
-  @Input() calendars$: Observable<string[]>;
   checked = false;
+  calendars$: Observable<string[]>;
   selectedCalendars: Array<string> = [];
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
@@ -27,11 +27,17 @@ export class CalendarFilterByCalendarComponent implements OnInit {
 
   // TODO: Fix issue where calendar observable is being overwritten by observable used here for the calendar filters.
   ngOnInit() {
+    this.calendars$ = this.dataStoreService.calendars$;
+
     this.calendarsForm = this.fb.group({
       calendars: []
     });
 
-    this.initializeService.resetCalendars$.subscribe( value => this.checked = value );
+    this.initializeService.calendarsFilter$.subscribe(value => {
+      this.checked = value;
+      this.selectedCalendars.length = 0;
+      this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
+    } );
   }
 
   onChanges() {
@@ -39,6 +45,7 @@ export class CalendarFilterByCalendarComponent implements OnInit {
   }
 
   filterEvents(selection) {
+
     if ( _.indexOf(this.selectedCalendars, selection) === -1) {
 
       this.selectedCalendars.push(selection);

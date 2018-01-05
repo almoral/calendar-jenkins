@@ -3,24 +3,32 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 import {DateService} from './date.service';
 import {environment} from '../../../environments/environment';
-import {FilterService} from './filter.service';
+import {DataStoreService} from './data-store.service';
 
 @Injectable()
 export class InitializeService {
 
-  private resetCategories = new BehaviorSubject<boolean>(null);
-  private resetCalendars = new BehaviorSubject<boolean>(null);
+  private categoriesFilterSubject = new BehaviorSubject<boolean>(null);
+  private calendarsFilterSubject = new BehaviorSubject<boolean>(null);
+  private titleSubject = new BehaviorSubject<string>(null);
 
-  resetCalendars$ = this.resetCalendars.asObservable();
-  resetCategories$ = this.resetCategories.asObservable();
 
+  calendarsFilter$ = this.calendarsFilterSubject.asObservable();
+  categoriesFilter$ = this.categoriesFilterSubject.asObservable();
+
+  title$ = this.titleSubject.asObservable();
 
   constructor( private dateService: DateService,
-               private filterService: FilterService) { }
+               private dataStoreService: DataStoreService) { }
+
+  setTitle(value) {
+    this.titleSubject.next(value);
+  }
+
 
   public reset() {
     // This handles resetting the title.
-    this.filterService.setTitle('');
+    this.setTitle('');
 
     // These handle resetting the date filter.
     this.dateService.setYear(moment().format(DateService.YEAR_FORMAT));
@@ -32,27 +40,21 @@ export class InitializeService {
     }
 
     // This handles the categories checkboxes.
-    if (this.resetCategories.getValue() === false) {
-      this.resetCategories.next(null);
+    if (this.categoriesFilterSubject.getValue() === false) {
+      this.categoriesFilterSubject.next(null);
     } else {
-      this.resetCategories.next(false);
+      this.categoriesFilterSubject.next(false);
     }
-    // The behavior subject creates a pointer to the array so we can update the array and the subject will behave correctly.
-      this.filterService.selectedCategories.length = 0;
+    // this.dataStoreService.setCategoriesFilter([]);
 
 
   //  This handles the calendar checkboxes.
-    if (this.resetCalendars.getValue() === false) {
-      this.resetCalendars.next(null);
+    if (this.calendarsFilterSubject.getValue() === false) {
+      this.calendarsFilterSubject.next(null);
     } else {
-      this.resetCalendars.next(false);
+      this.calendarsFilterSubject.next(false);
     }
-    // The behavior subject creates a pointer to the array so we can update the array and the subject will behave correctly.
-    this.filterService.selectedCalendars.length = 0;
-
-
-
-
+    // this.dataStoreService.setCalendarsFilter([]);
 
   }
 

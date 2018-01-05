@@ -2,7 +2,6 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {FilterService} from '../shared/services/filter.service';
 import {InitializeService} from '../shared/services/initialize.service';
 import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
 import * as _ from 'lodash';
@@ -19,7 +18,7 @@ export class CalendarFilterByCategoryComponent implements OnInit {
   checked = false;
   selectedCategories: Array<string> = [];
 
-  @Input() categories$: Observable<string[]>;
+  categories$: Observable<string[]>;
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
@@ -27,16 +26,21 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,
-               private filterService: FilterService,
                private initializeService: InitializeService) {}
 
   ngOnInit() {
+
+    this.categories$ = this.dataStoreService.categories$;
 
     this.typeForm = this.fb.group({
       categories: []
     });
 
-    this.initializeService.resetCategories$.subscribe(value => this.checked = value);
+    this.initializeService.categoriesFilter$.subscribe(value => {
+      this.checked = value;
+      this.selectedCategories.length = 0;
+      this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+    });
 
   }
 
