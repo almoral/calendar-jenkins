@@ -20,25 +20,8 @@ export class FilterService {
   selectedCalendars: Array<string> = [];
 
 
-  // Creating observables as getters to keep the subjects private.
-  year$ = this.year.asObservable();
-  month$ = this.month.asObservable();
-  day$ = this.day.asObservable();
-
   title$ = this.title.asObservable();
 
-
-  setYear(value) {
-    this.year.next(value);
-  }
-
-  setMonth(value) {
-    this.month.next(value);
-  }
-
-  setDay(value) {
-    this.day.next(value);
-  }
 
 
   setTitle(value) {
@@ -69,22 +52,5 @@ export class FilterService {
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);
   }
 
-
-  public filterEventsByDate() {
-
-    const year = this.year.getValue();
-    const month = this.month.getValue();
-    const day = this.day.getValue();
-
-    if (day === '' && month === '') {
-      this.dateService.filterByYear(year);
-    }
-    if (month !== '' && day === '') {
-      this.dateService.filterByMonth(year, month);
-    }
-    if (day !== '' && month !== '') {
-      this.dateService.filterByDate(year, month, day);
-    }
-  }
 
 }
