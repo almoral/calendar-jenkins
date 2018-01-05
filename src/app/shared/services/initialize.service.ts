@@ -45,8 +45,6 @@ export class InitializeService {
     } else {
       this.categoriesFilterSubject.next(false);
     }
-    // this.dataStoreService.setCategoriesFilter([]);
-
 
   //  This handles the calendar checkboxes.
     if (this.calendarsFilterSubject.getValue() === false) {
@@ -54,7 +52,6 @@ export class InitializeService {
     } else {
       this.calendarsFilterSubject.next(false);
     }
-    // this.dataStoreService.setCalendarsFilter([]);
 
   }
 
