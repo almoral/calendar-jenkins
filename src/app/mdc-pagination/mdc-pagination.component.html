@@ -2,11 +2,11 @@
 (pageChange)="pageChange.emit($event)">
   <div class="pagination" aria-label='Pagination'>
     <div class="column left-align hide-on-small-only" [class.disabled]='p.isFirstPage()'>
-      <a *ngIf='!p.isFirstPage()' (click)='p.previous()' class="waves-effect wave-light btn white"><i class="material-icons">arrow_back</i></a>
+      <button *ngIf='!p.isFirstPage()' (click)='p.previous()' class="waves-effect wave-light btn white prev" tabindex="0"><i class="material-icons">arrow_back</i>Previous</button>
     </div>
     <div class="column center-align" *ngIf="p.pages.length > 1">
       <ul class="pages">
-        <li *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" [ngClass]="(p.getCurrent() === page.value) ? 'active': ''">
+        <li *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" [ngClass]="(p.getCurrent() === page.value) ? 'active': ''" tabindex="0">
           <a (click)="p.setCurrent(page.value)">
             {{ page.label }}
           </a>
@@ -14,7 +14,7 @@
       </ul>
     </div>
     <div class="column right-align hide-on-small-only" [class.disabled]="p.isLastPage()">
-      <a class="waves-effect wave-light btn white" *ngIf="!p.isLastPage()" (click)="p.next()"><i class="material-icons">arrow_forward</i></a>
+      <button class="waves-effect wave-light btn white next" *ngIf="!p.isLastPage()" (click)="p.next()" tabindex="0">Next<i class="material-icons">arrow_forward</i></button>
     </div>
 
   </div>

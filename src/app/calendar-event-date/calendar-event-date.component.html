@@ -1,5 +1,5 @@
 <div class="event-date">
-<h2 class="group-title">{{eventDateCollection?.date | date:'fullDate'}}</h2>
+<h2 class="group-title" tabindex="0">{{eventDateCollection?.date | date:'fullDate'}}</h2>
   <ul>
     <li *ngFor="let event of eventDateCollection?.events">
       <mdc-calendar-event [event] = "event"></mdc-calendar-event>

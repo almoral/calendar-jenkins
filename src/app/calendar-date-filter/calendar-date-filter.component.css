@@ -25,12 +25,20 @@ CALENDAR DATE FILTER
 }
 
 .btn.blue {
-  background-color: #03a9f4 !important;
+  background-color: #027abb !important;
   border: 1px solid #0d94d0;
   color: #fff;
   width: 100%;
 }
 
+.btn.blue:focus {
+  background-color: #03a9f4 !important;
+}
+
 .widget label { color: #333; }
 
 .widget select { margin-bottom: 10px; }
+
+select:focus {
+  border: 1px solid #03a9f4;
+}
