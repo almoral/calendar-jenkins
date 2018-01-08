@@ -1,5 +1,4 @@
 import {InitializeService} from '../shared/services/initialize.service';
-import {Observable} from 'rxjs/Observable';
 import {Component, OnInit} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
 
@@ -13,13 +12,11 @@ import {DateService} from '../shared/services/date.service';
 export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
-  resetCategories: boolean;
 
   constructor(private dateService: DateService,
               private initializeService: InitializeService) { }
 
   ngOnInit() {
-    this.initializeService.categoriesFilter$.subscribe(value => this.resetCategories = value);
 
   }
 
