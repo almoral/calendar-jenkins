@@ -1,7 +1,9 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {InitializeService} from '../shared/services/initialize.service';
+import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
 import * as _ from 'lodash';
 
 
@@ -10,32 +12,49 @@ import * as _ from 'lodash';
   templateUrl: 'calendar-filter-by-category.component.html',
   styleUrls: ['calendar-filter-by-category.component.css']
 })
-export class CalendarFilterByTypeComponent implements OnInit {
+export class CalendarFilterByCategoryComponent implements OnInit {
 
-  categories$: Observable<string[]>;
   typeForm: FormGroup;
+  checked = false;
   selectedCategories: Array<string> = [];
 
+  categories$: Observable<string[]>;
+
+  @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
   @Input() categoriesData: string[];
 
-  constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
+  constructor( private dataStoreService: DataStoreService,
+               private fb: FormBuilder,
+               private initializeService: InitializeService) {}
 
   ngOnInit() {
+
     this.categories$ = this.dataStoreService.categories$;
 
     this.typeForm = this.fb.group({
       categories: []
     });
+
+    this.initializeService.categoriesFilter$.subscribe(value => {
+      this.checked = value;
+      this.selectedCategories.length = 0;
+      this.dataStoreService.setCategoriesFilter(this.selectedCategories);
+    });
+
   }
 
-  filterEvents(event) {
-    if (this.selectedCategories.indexOf(event) > -1) {
-      this.selectedCategories = _.filter(this.selectedCategories, (item) => {
-        return item !== event;
-      });
+  onChanges() {
+    this.checkboxes.isChecked = this.checked;
+  }
+
+  filterEvents(selection) {
+
+    if ( _.indexOf(this.selectedCategories, selection) === -1) {
+
+      this.selectedCategories.push(selection);
     } else {
-      this.selectedCategories.push(event);
+      _.remove(this.selectedCategories, category => category === selection);
     }
 
     this.dataStoreService.setCategoriesFilter(this.selectedCategories);

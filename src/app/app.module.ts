@@ -14,7 +14,7 @@ import { CalendarEventListComponent } from './calendar-event-list/calendar-event
 import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-date-filter.component';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
-import { CalendarFilterByTypeComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
+import { CalendarFilterByCategoryComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
 import { CalendarFilterByCalendarComponent } from './calendar-filter-by-calendar/calendar-filter-by-calendar.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
 import { NgxPaginationModule} from 'ngx-pagination';
@@ -29,6 +29,7 @@ import {InMemoryDataService} from './shared/services/in-memory-data.service';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
+import {InitializeService} from './shared/services/initialize.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import {CalendarDataService} from './shared/services/calendar-data.service';
     CalendarDateFilterComponent,
     CalendarHeaderComponent,
     CalendarFilterByTitleComponent,
-    CalendarFilterByTypeComponent,
+    CalendarFilterByCategoryComponent,
     CalendarFilterByCalendarComponent,
     CalendarFilterContainerComponent,
     MessagesComponent,
@@ -66,7 +67,8 @@ import {CalendarDataService} from './shared/services/calendar-data.service';
     DataStoreService,
     MessagesService,
     DateService,
-    CalendarDataService
+    CalendarDataService,
+    InitializeService
   ],
   bootstrap: [AppComponent]
 })

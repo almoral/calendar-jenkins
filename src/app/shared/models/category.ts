@@ -6,6 +6,7 @@ import * as tv4 from 'tv4';
 export class Category {
   public value: string;
   public label: string;
+  public selected: boolean;
 
 
   public static schema = {
@@ -19,17 +20,22 @@ export class Category {
       },
       'label': {
         'type': 'string'
+      },
+      'selected': {
+        'type': 'boolean'
       }
     }
   }
 
 
   constructor(value: string,
-              label: string
+              label: string,
+              selected: boolean
   ) {
 
     this.value = value || '';
     this.label = label || '';
+    this.selected = selected || false;
   }
 
 
@@ -43,7 +49,8 @@ export class Category {
 
     return new Category(
       json.id,
-      json.label
+      json.label,
+      false
     );
 
 

@@ -26,7 +26,6 @@ export class DataStoreService {
     this.subscribeCategoriesFilter();
     this.subscribeEvents();
     this.subscribeCalendarsFilter();
-
     this.getCategories();
     this.getCalendars();
   }
@@ -128,7 +127,7 @@ export class DataStoreService {
   }
 
   setCalendarsFilter(calendars: string[]) {
-    console.log('calendars filters: ', calendars);
+    // console.log('calendars filters: ', calendars);
     this.calendarsFilterSubject.next(calendars);
   }
 
