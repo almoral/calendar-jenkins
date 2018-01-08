@@ -1,7 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import {DataStoreService} from "../shared/services/data-store.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {environment} from "../../environments/environment";
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {DataStoreService} from '../shared/services/data-store.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {environment} from '../../environments/environment';
+import {InitializeService} from '../shared/services/initialize.service';
 
 @Component({
   selector: 'mdc-calendar-filter-by-title',
@@ -12,7 +13,10 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private dataStoreService: DataStoreService) {
+
+  constructor(private fb: FormBuilder,
+              private dataStoreService: DataStoreService,
+              private initializeService: InitializeService) {
   }
 
   ngOnInit() {
@@ -23,20 +27,25 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
     this.initOnChange();
 
-    this.form.get('title').setValue(environment.titleFilter);
+    this.initializeService.setTitle(environment.titleFilter);
+
+    this.initializeService.title$.subscribe( value => this.form.get('title').setValue(value));
 
   }
+
 
 
   /**
    * initOnChange initializes the reactive form
    * to set the title when it changes.
    */
-  initOnChange(){
+  initOnChange() {
     this.form.valueChanges
       .filter(() => this.form.valid)
-      .subscribe(validValue =>
-        this.dataStoreService.setTitleFilter(validValue.title));
+      .subscribe(validValue => {
+          this.dataStoreService.setTitleFilter(validValue.title);
+        }
+      );
   }
 
 

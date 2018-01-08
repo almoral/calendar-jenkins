@@ -13,7 +13,7 @@
           <span>Filters</span>
         </div>
         <div class="column right-align">
-          <button id="reset-filters"><span>Reset</span></button>
+          <button id="reset-filters" (click)='resetValues()'><span>Reset</span></button>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
 
       <!--Bottom Container-->
       <div class="bottom-menu-container">
-        <button id="see-results" (click)="closeModal()">See results</button>
+        <button id="see-results" (click)="submitValues()">See results</button>
       </div>
 
     </div>
@@ -45,21 +45,21 @@
 <div class="mobile-fixed hide-on-1250-up">
   <button (click)="openModal()">
 
-  	<span>
-  		<div class="mobile-table">
-  			<div class="column">
-  				<span>Filters</span>
-  			</div>
-  			<div class="column">
-  				<svg viewBox="0 0 12 12" role="presentation" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M2.5.25a.75.75 0 0 0-.75.75v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 2.5.25zm0 4a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm3.5-4a.75.75 0 0 0-.75.75v5.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0v-.378a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 6 .25zm0 9a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm4.25-7.872V1a.75.75 0 0 0-1.5 0v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244zM9.5 4.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"></path></svg>
-  			</div>
-  		</div>
-  	</span>
+    <span>
+      <div class="mobile-table">
+        <div class="column">
+          <span>Filters</span>
+        </div>
+        <div class="column">
+          <svg viewBox="0 0 12 12" role="presentation" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M2.5.25a.75.75 0 0 0-.75.75v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 2.5.25zm0 4a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm3.5-4a.75.75 0 0 0-.75.75v5.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0v-.378a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 6 .25zm0 9a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm4.25-7.872V1a.75.75 0 0 0-1.5 0v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244zM9.5 4.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"></path></svg>
+        </div>
+      </div>
+    </span>
 
     <span>
-  		<div class="filter-applied">
-  		</div>
-  	</span>
+      <div class="filter-applied">
+      </div>
+    </span>
   </button>
 
 </div>

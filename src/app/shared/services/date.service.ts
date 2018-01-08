@@ -4,9 +4,35 @@ import * as _ from 'lodash';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { DataStoreService } from './data-store.service';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DateService {
+
+
+  private yearSubject = new BehaviorSubject<string>(null);
+  private monthSubject = new BehaviorSubject<string>(null);
+  private daySubject = new BehaviorSubject<string>(null);
+
+
+  // Creating observables as getters to keep the subjects private.
+  year$ = this.yearSubject.asObservable();
+  month$ = this.monthSubject.asObservable();
+  day$ = this.daySubject.asObservable();
+
+
+  setYear(value) {
+    this.yearSubject.next(value);
+  }
+
+  setMonth(value) {
+    this.monthSubject.next(value);
+  }
+
+  setDay(value) {
+    this.daySubject.next(value);
+  }
+
 
   // Different date formats defined as constants in the date service.
 
@@ -114,5 +140,29 @@ export class DateService {
     this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
 
   }
+
+  /**
+   * filterEventsByDate generates the date value for a search by year.
+   * It then passes the date to the getEvents function in the dataStoreService.
+   */
+  public filterEventsByDate() {
+
+    const year = this.yearSubject.getValue();
+    const month = this.monthSubject.getValue();
+    const day = this.daySubject.getValue();
+
+    if (day === '' && month === '') {
+      this.filterByYear(year);
+    }
+    if (month !== '' && day === '') {
+      this.filterByMonth(year, month);
+    }
+    if (day !== '' && month !== '') {
+      this.filterByDate(year, month, day);
+    }
+  }
+
+
+
 
 }
