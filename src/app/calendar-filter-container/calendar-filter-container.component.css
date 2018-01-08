@@ -89,6 +89,7 @@ CALENDAR MOBILE FILTERS
 /*--Overlay Filter --*/
 .mobile-filters {
   position: fixed;
+  display: none;
   top: 101%;
   right: 0;
   bottom: 0;
@@ -101,7 +102,10 @@ CALENDAR MOBILE FILTERS
   z-index: 2000;
 }
 
-.mobile-filters.active { top: 0;}
+.mobile-filters.active { 
+  top: 0;
+  display: block;
+}
 
 .mobile-filters-container {
   pointer-events: auto;
