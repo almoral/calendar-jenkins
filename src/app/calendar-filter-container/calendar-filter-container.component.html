@@ -5,15 +5,15 @@
       <!--Top Container-->
       <div class="top-menu-container">
         <div class="column left-align">
-          <button (click)="closeModal()">
-            <svg viewBox="0 0 12 12" role="img" aria-label="Close" focusable="false" style="height: 15px; width: 15px; display: block; fill: rgb(72, 72, 72);"><path fill-rule="evenodd" d="M11.5 10.5c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L6 7.1l-4.5 4.5c-.3.3-.8.3-1.1 0-.3-.3-.3-.8 0-1.1L4.9 6 .5 1.5C.2 1.2.2.7.5.4c.3-.3.8-.3 1.1 0L6 4.9 10.5.4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1L7.1 6l4.4 4.5z"></path></svg>
+          <button (click)="closeModal()" tabindex="0" class="top-menu-container__x-close">
+            <svg viewBox="0 0 12 12" role="img" aria-label="Close" focusable="false"><path fill-rule="evenodd" d="M11.5 10.5c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L6 7.1l-4.5 4.5c-.3.3-.8.3-1.1 0-.3-.3-.3-.8 0-1.1L4.9 6 .5 1.5C.2 1.2.2.7.5.4c.3-.3.8-.3 1.1 0L6 4.9 10.5.4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1L7.1 6l4.4 4.5z"></path></svg>
           </button>
         </div>
         <div class="column center-align">
           <span>Filters</span>
         </div>
         <div class="column right-align">
-          <button id="reset-filters"><span>Reset</span></button>
+          <button id="reset-filters" tabindex="0"><span>Reset</span></button>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
 
       <!--Bottom Container-->
       <div class="bottom-menu-container">
-        <button id="see-results" (click)="closeModal()">See results</button>
+        <button id="see-results" (click)="closeModal()" tabindex="0">See results</button>
       </div>
 
     </div>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="mobile-fixed hide-on-1250-up">
-  <button (click)="openModal()">
+  <button (click)="openModal()" tabindex="0">
 
   	<span>
   		<div class="mobile-table">

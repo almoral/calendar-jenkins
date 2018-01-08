@@ -37,6 +37,12 @@ CALENDAR MOBILE FILTERS
   text-transform: uppercase;
 }
 
+.mobile-fixed button:focus,
+.bottom-menu-container button:focus {
+  background-color: #03a9f4;
+  color: #fff;
+}
+
 .mobile-fixed > button > span {
   display: inline-block;
   vertical-align: middle;
@@ -136,7 +142,7 @@ CALENDAR MOBILE FILTERS
 }
 
 .top-menu-container button {
-  color: #03a9f4;
+  color: #027abb;
   font: inherit;
   text-decoration: none;
   -webkit-appearance: none;
@@ -151,6 +157,21 @@ CALENDAR MOBILE FILTERS
   -moz-user-select: auto;
   -ms-user-select: auto;
   user-select: auto;
+}
+
+.top-menu-container__x-close {
+  height: 15px;
+  width: 15px;
+  display: block;
+  fill: rgb(72, 72, 72);
+}
+
+.top-menu-container__x-close:focus {
+  fill: rgb(3, 169, 244);
+}
+
+#reset-filters:focus {
+  color: #03a9f4;
 }
 
 /*--Middle Container/Results--*/
@@ -214,7 +235,7 @@ CALENDAR MOBILE FILTERS
 }
 
 .bottom-menu-container button {
-  background-color: #03a9f4;
+  background-color: #027abb;
   border: none;
   border-radius: 4px;
   cursor: pointer;
