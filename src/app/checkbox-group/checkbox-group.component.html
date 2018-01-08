@@ -4,6 +4,7 @@
                id='{{cbOption.value}}'
                name="{{cbOption.value}}"
                value="{{cbOption.label}}"
-        (click)="filterEvents(cbOption.value)">
+               [checked]="isChecked"
+        (click)="makeSelection(cbOption.value)">
     <label for='{{cbOption.value}}'>{{cbOption.label}}</label>
 </p>
