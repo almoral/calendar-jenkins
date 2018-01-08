@@ -431,4 +431,8 @@ div.bottom-sheet{
     padding: 0;
   }
 
+  .sidebar {
+    overflow: hidden;
+  }
+
 }
