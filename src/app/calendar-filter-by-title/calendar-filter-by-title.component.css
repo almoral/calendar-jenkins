@@ -92,4 +92,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
+@media (max-width: 1249px) {
+  input[type=text].form-control.browser-default {
+    font-size: 16px;
+  }
+}
+
 
