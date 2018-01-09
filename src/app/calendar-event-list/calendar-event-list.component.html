@@ -1,6 +1,6 @@
 
 <ul>
-  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: page  } ">
+  <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: page}">
     <mdc-calendar-event-date  [eventDateCollection] = "eventDateCollection"></mdc-calendar-event-date>
   </li>
   <p *ngIf="(events$ | async)?.length === 0">

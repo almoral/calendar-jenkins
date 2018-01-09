@@ -17,7 +17,8 @@ export class CalendarDataService {
         const calendars: Calendar = calendar.map( r => {
           return {
             value: r,
-            label: r
+            label: r,
+            picked: false
           };
         });
 

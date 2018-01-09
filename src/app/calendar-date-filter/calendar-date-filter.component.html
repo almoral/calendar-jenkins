@@ -22,13 +22,13 @@
             </select>
           </div>
 
-          <div class="col s12">
-            <label for="filterDay">Day</label>
-            <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField">
-              <option value=""></option>
-              <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
-            </select>
-          </div>
+    <div class="col s12">
+      <label for="filterDay">Day</label>
+      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField" (change)='updateDays(selectedYear, selectedMonth, selectedDay)'>
+        <option value=""></option>
+        <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
+      </select>
+    </div>
 
         </div>
 

@@ -1,20 +1,16 @@
 <section class="widget" aria-labelledby="filterType">
-	<ul class="accordion-filters">
-		<li>
-			<input type="checkbox" checked/>
-			<i aria-hidden="true"></i>
-			<h3 class="widget-title" id="filterType">Filter by category</h3>
-			<div class="accordion-content">
-			  <form [formGroup]="typeForm">
-				  <fieldset>
-				    <legend>Choose a category to filter by:</legend>
-				        <mdc-checkbox-group formControlName="categories" [optionsData]="categories$"
-				                            (filter)="filterEvents($event)">
-				        </mdc-checkbox-group>
-				  </fieldset>
-			  </form>
-			</div>
-		</li>
-	</ul>
-  
+  <h3 class="widget-title" id="filterType">Filter by category</h3>
+  <form [formGroup]="typeForm">
+  <fieldset>
+    <legend>Choose a category to selectItem by:</legend>
+
+        <mdc-checkbox-group formControlName="categories"
+                            [optionsData]="categories$"
+                            [ngModel]='checked'
+                            (ngModelChange)='onChanges()'
+                            (selectItem)="filterEvents($event)">
+        </mdc-checkbox-group>
+
+  </fieldset>
+  </form>
 </section>

@@ -1,8 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {DataStoreService} from '../shared/services/data-store.service';
 import {Observable} from 'rxjs/Observable';
+import {InitializeService} from '../shared/services/initialize.service';
+import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
 import * as _ from 'lodash';
+import {DataStoreService} from '../shared/services/data-store.service';
+
 
 @Component({
   selector: 'mdc-calendar-filter-by-calendar',
@@ -12,10 +15,15 @@ import * as _ from 'lodash';
 export class CalendarFilterByCalendarComponent implements OnInit {
 
   calendarsForm: FormGroup;
-  public calendars$: Observable<string[]>;
+  checked = false;
+  calendars$: Observable<string[]>;
   selectedCalendars: Array<string> = [];
 
-  constructor( private dataStoreService: DataStoreService, private fb: FormBuilder) { }
+  @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
+
+  constructor( private fb: FormBuilder,
+               private initializeService: InitializeService,
+               private dataStoreService: DataStoreService) { }
 
   // TODO: Fix issue where calendar observable is being overwritten by observable used here for the calendar filters.
   ngOnInit() {
@@ -24,15 +32,25 @@ export class CalendarFilterByCalendarComponent implements OnInit {
     this.calendarsForm = this.fb.group({
       calendars: []
     });
+
+    this.initializeService.calendarsFilter$.subscribe(value => {
+      this.checked = value;
+      this.selectedCalendars.length = 0;
+      this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
+    } );
   }
 
-  filterEvents(event) {
-    if (this.selectedCalendars.indexOf(event) > -1) {
-      this.selectedCalendars = _.filter(this.selectedCalendars, (item) => {
-        return item !== event;
-      });
+  onChanges() {
+    this.checkboxes.isChecked = this.checked;
+  }
+
+  filterEvents(selection) {
+
+    if ( _.indexOf(this.selectedCalendars, selection) === -1) {
+
+      this.selectedCalendars.push(selection);
     } else {
-      this.selectedCalendars.push(event);
+      _.remove(this.selectedCalendars, type => type === selection);
     }
 
     this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
