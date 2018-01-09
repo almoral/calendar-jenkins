@@ -31,10 +31,6 @@
 	.row .col.m8.calendar-events {
 		width: 70.6666666667%;
 	}
-
-	.widget  {
-		margin-bottom: 70px;
-	}
 }
 
 @media (max-width: 1249px) {
