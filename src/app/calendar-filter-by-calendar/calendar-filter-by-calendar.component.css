@@ -97,6 +97,8 @@ ACCORDION
   transform: translate(0, 0);
   margin: 20px 0;
   z-index: 2;
+
+  display: block;  
 }
 
 .accordion-filters {
@@ -142,6 +144,15 @@ ACCORDION
   height: 4px;
 }
 
+.accordion-filters > li > input:focus + i:before,
+.accordion-filters > li > input:focus + i:after {
+  background-color: #027abb;
+}
+
+.accordion-filters > li > input:focus ~ h3.widget-title {
+  color: #027abb;
+}
+
 /*
 By making the open state default for when :checked isn't detected, we make this accessable for browsers that don't recognize :checked. The fallback is simply an open accordion.
  */
@@ -161,6 +172,7 @@ By making the open state default for when :checked isn't detected, we make this 
   max-height: 0;
   opacity: 0;
   transform: translate(0, 50%);
+  display: none;
 }
 
 .accordion-filters > li > input[type=checkbox]:checked ~ i:before {
