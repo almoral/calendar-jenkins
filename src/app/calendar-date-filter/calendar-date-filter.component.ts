@@ -36,6 +36,7 @@ export class CalendarDateFilterComponent implements OnInit {
     // Initial values used to populate dropdowns in date filter.
     this.dateService.year$.subscribe(year => this.selectedYear = year);
     this.dateService.month$.subscribe( month => this.selectedMonth = month);
+    this.dateService.day$.subscribe( day => this.selectedDay = day);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
 
@@ -44,8 +45,10 @@ export class CalendarDateFilterComponent implements OnInit {
     // Only the events for today will show
     if (environment.dateFilterType === 'day') {
       this.dateService.setDay(moment().format('D'));
-      this.dateService.day$.subscribe( day => this.selectedDay = day);
+    }
 
+    if (environment.dateFilterType === 'month') {
+      this.dateService.setDay('');
     }
 
     this.dateService.filterEventsByDate();
