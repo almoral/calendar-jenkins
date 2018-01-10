@@ -296,15 +296,15 @@ export class MdcEvent {
       return [];
 
     // Compute start and end times.
-    const startHours = parentEvent.startDate.getUTCHours();
-    const startMinutes = parentEvent.startDate.getUTCMinutes();
-    const startSeconds = parentEvent.startDate.getUTCSeconds();
-    const startMilliseconds = parentEvent.startDate.getUTCMilliseconds();
+    const startHours = parentEvent.startDate.getHours();
+    const startMinutes = parentEvent.startDate.getMinutes();
+    const startSeconds = parentEvent.startDate.getSeconds();
+    const startMilliseconds = parentEvent.startDate.getMilliseconds();
 
-    const endHours = parentEvent.endDate.getUTCHours();
-    const endMinutes = parentEvent.endDate.getUTCMinutes();
-    const endSeconds = parentEvent.endDate.getUTCSeconds();
-    const endMilliseconds = parentEvent.endDate.getUTCMilliseconds();
+    const endHours = parentEvent.endDate.getHours();
+    const endMinutes = parentEvent.endDate.getMinutes();
+    const endSeconds = parentEvent.endDate.getSeconds();
+    const endMilliseconds = parentEvent.endDate.getMilliseconds();
 
 
     // Loop through the set of dates and build the recurring events
@@ -312,10 +312,10 @@ export class MdcEvent {
 
       // replace start time and end time with that of the parent.
       let startDate = new Date(date.getTime());
-      startDate.setUTCHours(startHours, startMinutes, startSeconds, startMilliseconds);
+      startDate.setHours(startHours, startMinutes, startSeconds, startMilliseconds);
 
       let endDate = new Date(date.getTime());
-      endDate.setUTCHours(endHours, endMinutes, endSeconds, endMilliseconds);
+      endDate.setHours(endHours, endMinutes, endSeconds, endMilliseconds);
 
       let recurrenceEvent = _.cloneDeep(parentEvent);
       recurrenceEvent.startDate = startDate;
