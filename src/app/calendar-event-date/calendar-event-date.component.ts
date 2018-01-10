@@ -7,8 +7,8 @@ import {MdcEventsByDate} from "../shared/models/mdc-event";
 
 @Component({
   selector: 'mdc-calendar-event-date',
-  templateUrl: './calendar-event-date.component.html',
-  styleUrls: ['./calendar-event-date.component.css']
+  templateUrl: 'calendar-event-date.component.html',
+  styleUrls: ['calendar-event-date.component.css']
 })
 export class CalendarEventDateComponent implements OnInit {
 
