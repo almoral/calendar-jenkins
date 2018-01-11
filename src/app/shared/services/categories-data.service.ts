@@ -16,14 +16,14 @@ export class CategoriesDataService {
     private httpClient: HttpClient
   ) { }
 
-  getCategories(): Observable<Array<Category>> {
+  getCategories(): any {
 
     return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {
 
-          const categories = this.jsonToCategories(response);
+          // const categories = this.jsonToCategories(response);
 
-        return categories;
+        return this.jsonToCategories(response);
       })
       .catch(error => {
         console.error('ERROR: ', error);
@@ -46,9 +46,9 @@ export class CategoriesDataService {
       console.log('is empty');
       return null;
     }
-    let raw: Array<any> = response.data.topics;
-    let model: Array<Category> = raw.reduce(function (accumulator, item) {
-      let category = Category.fromJSON(item);
+    const raw: Array<any> = response.data.topics;
+    const model: Array<Category> = raw.reduce(function (accumulator, item) {
+      const category = Category.fromJSON(item);
 
       if (category) {
         accumulator.push(category);

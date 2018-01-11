@@ -14,15 +14,15 @@ import {environment} from '../../environments/environment';
 
 export class CalendarDateFilterComponent implements OnInit {
 
-  private selectedYear: string;
-  private selectedMonth: string;
-  private selectedDay: string;
+  public selectedYear: string;
+  public selectedMonth: string;
+  public selectedDay: string;
   public selectedDate: string;
-  private years: string[] = ['2014', '2015', '2016', '2017', '2018'];
+  public years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
-  private months: string[] = moment.months();
-  private days: string[];
-  private disableDayField = false;
+  public months: string[] = moment.months();
+  public days: string[];
+  public disableDayField = false;
 
 
   constructor( private dateService: DateService) {}
@@ -36,6 +36,7 @@ export class CalendarDateFilterComponent implements OnInit {
     // Initial values used to populate dropdowns in date filter.
     this.dateService.year$.subscribe(year => this.selectedYear = year);
     this.dateService.month$.subscribe( month => this.selectedMonth = month);
+    this.dateService.day$.subscribe( day => this.selectedDay = day);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
 
@@ -44,8 +45,10 @@ export class CalendarDateFilterComponent implements OnInit {
     // Only the events for today will show
     if (environment.dateFilterType === 'day') {
       this.dateService.setDay(moment().format('D'));
-      this.dateService.day$.subscribe( day => this.selectedDay = day);
+    }
 
+    if (environment.dateFilterType === 'month') {
+      this.dateService.setDay('');
     }
 
     this.dateService.filterEventsByDate();
