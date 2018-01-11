@@ -97,16 +97,14 @@ h2.group-title::after {
   background-color: #f3f3f3;
   padding: 15px;
   display: none;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .calendar-quick-view-container .content-container {
   background-color: #fff;
-  padding: 15px;
+  padding: 25px 25px 5px 25px;
   border-radius: 10px;
 }
-
-.calendar-quick-view-container h3 { margin: 0; }
 
 .list-item {
   display: table;
@@ -121,9 +119,44 @@ h2.group-title::after {
 
 .list-item.middle .detail-item{ vertical-align: middle; }
 
-.calendar-quick-view-container .list-item .detail-item:first-child,
-.nav-right-calendar .list-item .detail-item:first-child {
+.calendar-quick-view-container .content-main-calendar .list-item .detail-item:first-child {
+  width: 120px;
+}
+
+.calendar-quick-view-container .content-main-calendar .list-item .detail-item:last-child {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.calendar-quick-view-container .content-main-calendar .short-description,
+.calendar-quick-view-container .right-content-calendar {
+  margin-bottom: 35px;
+}
+
+
+.calendar-quick-view-container .right-content-calendar .list-item .detail-item:first-child {
   width: 60px;
+}
+
+h4.right-content-calendar--title {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 17px;
+  border-bottom: solid 1px #ddd;
+  position: relative;
+  margin: 0 0 20px 0;
+}
+
+h4.right-content-calendar--title:after {
+  content: " ";
+  display: block;
+  height: 3px;
+  width: 42px;
+  position: absolute;
+  bottom: -2px;
+  z-index: 999;
+  background-color: #46BCEB;
 }
 
 .icon-container {
@@ -158,6 +191,20 @@ h2.group-title::after {
   padding-right: 100px;
   font-size: 16px;
 }
+
 .btn {
   width: 100%;
+}
+
+.btn.blue {
+  background-color: #027abb !important;
+  border: 1px solid #0d94d0;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.ada-text {
+  font-size: 12px;
+  font-style: italic;
 }

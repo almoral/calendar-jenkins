@@ -14,49 +14,74 @@
   <div class="calendar-quick-view-container" aria-expanded="false" style="display: none;">
     <div class="content-container">
 
-      <div class="list-item">
-        <div class="detail-item">
-          <div class="icon-container">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
+      <div class="row">
+        <div class="col m7 content-main-calendar">
+          <div class="short-description" [innerHTML]='event?.description'>
+
+          </div>
+
+          <div class="list-item">
+            <div class="detail-item">
+              <span>Location:</span>
+            </div>
+            <div class="detail-item">
+              <div class="location">{{event?.address.location}}</div>
+              <div class="street-address">{{event?.address.address1}}</div>
+              <div class="address">
+                <span class="city">{{event?.address.city}} </span>
+                <span class="state">{{event?.address.state}}</span>
+                <span class="zip">{{event?.address.zip}}</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="list-item">
+            <div class="detail-item">
+              <span>Price</span>
+            </div>
+            <div class="detail-item">
+              <div class="prive">$38.00</div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col m4 offset-m1 right-content-calendar">
+          <h4 class="right-content-calendar--title">General Contact</h4>
+
+          <div class="list-item middle">
+            <div class="detail-item">
+              <div class="icon-container">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="event-name"><a href="mailto:{{event?.contactEmail}}">Jim Bob</a></div>
+            </div>
+          </div>
+
+          <div class="list-item middle">
+            <div class="detail-item">
+              <div class="icon-container">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactPhone}}</a></div>
+            </div>
           </div>
         </div>
-        <div class="detail-item">
-          <div class="location">{{event?.address.location}}</div>
-          <div class="street-address">{{event?.address.address1}}</div>
-          <div class="address">
-            <span class="city">{{event?.address.city}} </span>
-            <span class="state">{{event?.address.state}}</span>
-            <span class="zip">{{event?.address.zip}}</span>
-          </div>
-        </div>
+
+
+        <a class="waves-effect wave-light btn blue" href="#">Event Details</a>
+
+        <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="#">3056665885</a></span> or email <span class="email"><a href="#">ecoadventures@miamidade.gov</a></span> at least five days in advance of the meeting.</span>
+        
+
+
       </div>
 
-      <div class="list-item middle">
-        <div class="detail-item">
-          <div class="icon-container">
-            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-          </div>
-        </div>
-        <div class="detail-item">
-          <div class="location"><a href="mailto:{{event?.contactEmail}}">{{event?.contactEmail}}</a></div>
-        </div>
-      </div>
-
-      <div class="list-item middle">
-        <div class="detail-item">
-          <div class="icon-container">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-          </div>
-        </div>
-        <div class="detail-item">
-          <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactPhone}}</a></div>
-        </div>
-      </div>
-
-      <div class="short-description" [innerHTML]='event?.description'>
-
-        <!--<a class="waves-effect wave-light btn blue" href="calendar-item.html">Event Details</a>-->
-      </div>
 
     </div>
   </div>
