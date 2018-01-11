@@ -11,6 +11,7 @@ export const environment = {
   calendarUrl: {
     // eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
     eventsOnCalendar: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`
-  }
+  },
+  showCalendarsFilter: window['showCalendarsFilter'] || false
 
 };

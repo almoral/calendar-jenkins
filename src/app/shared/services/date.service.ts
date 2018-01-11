@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { DataStoreService } from './data-store.service';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
