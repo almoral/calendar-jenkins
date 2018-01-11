@@ -102,9 +102,10 @@ CALENDAR MOBILE FILTERS
   z-index: 2000;
 }
 
-.mobile-filters.active { 
+.mobile-filters.active {
   top: 0;
   display: block;
+  will-change: transform;
 }
 
 .mobile-filters-container {
@@ -115,7 +116,7 @@ CALENDAR MOBILE FILTERS
   height: 100%;
   overflow-y: hidden;
   position: relative;
-  will-change: transform;
+
 
   z-index: 2001;
 }

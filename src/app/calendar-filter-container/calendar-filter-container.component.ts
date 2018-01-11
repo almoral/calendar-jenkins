@@ -1,6 +1,7 @@
 import {InitializeService} from '../shared/services/initialize.service';
 import {Component, OnInit} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
+import {FilterState} from '../shared/models/filter-state';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -14,7 +15,8 @@ export class CalendarFilterContainerComponent implements OnInit{
   isActive = false;
 
   constructor(private dateService: DateService,
-              private initializeService: InitializeService) { }
+              private initializeService: InitializeService,
+              private filterState: FilterState) { }
 
   ngOnInit() {
 
@@ -22,6 +24,7 @@ export class CalendarFilterContainerComponent implements OnInit{
 
   openModal() {
     this.isActive = true;
+    this.filterState.openAll();
   }
 
   closeModal() {
