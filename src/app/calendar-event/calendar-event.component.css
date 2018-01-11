@@ -139,7 +139,7 @@ h2.group-title::after {
 }
 
 h4.right-content-calendar--title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   padding-bottom: 17px;
@@ -176,10 +176,6 @@ h4.right-content-calendar--title:after {
 
 .calendar-title-container { display: table; }
 
-.calendar-title-container > .column {
-  display: table-cell;
-  vertical-align: middle;
-}
 
 .calendar-title-container > .column:first-child {
   width: 60%;
@@ -187,9 +183,8 @@ h4.right-content-calendar--title:after {
 }
 
 .calendar-title-container > .column:last-child {
-  text-align: right;
   padding-right: 100px;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .btn {
@@ -204,7 +199,34 @@ h4.right-content-calendar--title:after {
   margin-bottom: 10px;
 }
 
+.btn.blue:focus {
+  background-color: #03a9f4 !important; 
+}
+
 .ada-text {
   font-size: 12px;
   font-style: italic;
+}
+
+@media (min-width: 601px) {
+
+  .calendar-title-container > .column {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .calendar-title-container > .column:last-child {
+    text-align: right;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .calendar-subtitle {
+    margin-bottom: 5px;
+  }
+
+  .content-main-calendar {
+    margin-bottom: 25px;
+  }
 }
