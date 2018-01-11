@@ -9,7 +9,6 @@ import {environment} from '../../environments/environment';
   styleUrls: ['calendar-filter-container.component.css']
 })
 
-
 export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
