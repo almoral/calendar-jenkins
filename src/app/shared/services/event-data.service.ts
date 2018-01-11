@@ -1,14 +1,14 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpParams, HttpHeaders} from "@angular/common/http";
-import {ConfigurationService} from "./configuration.service";
-import {Observable} from "rxjs";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-import {MdcEvent} from "../models/mdc-event";
-import {forkJoin} from "rxjs/observable/forkJoin";
-import * as _ from "lodash";
-import * as moment from "moment";
-import {environment} from "../../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpHeaders} from '@angular/common/http';
+import {ConfigurationService} from './configuration.service';
+import {Observable} from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import {MdcEvent} from '../models/mdc-event';
+import {forkJoin} from 'rxjs/observable/forkJoin';
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import {environment} from '../../../environments/environment';
 
 
 /**
@@ -89,7 +89,7 @@ export class EventDataService {
       accumulator.push(this.getEventsOnCalendar(calendarId, from, to)
         .catch((error) => {
           console.error('getEventsOnCalendars: error while processing calendarId', calendarId);
-          return Observable.of([])
+          return Observable.of([]);
         }));
       return accumulator;
     }, []);

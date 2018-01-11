@@ -1,6 +1,7 @@
 import {InitializeService} from '../shared/services/initialize.service';
 import {Component, OnInit} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -12,12 +13,15 @@ import {DateService} from '../shared/services/date.service';
 export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
+  showCalendarsFilter = false;
 
   constructor(private dateService: DateService,
               private initializeService: InitializeService) { }
 
   ngOnInit() {
-
+    if (environment.showCalendarsFilter) {
+      this.showCalendarsFilter = true;
+    }
   }
 
   openModal() {
