@@ -9,7 +9,7 @@ export class CalendarDataService {
   constructor() { }
 
 
-  getCalendars(): any {
+  getCalendars(): Observable<Calendar[]> {
 
     return Observable.of(environment.calendars)
       .map((calendar: any) => {
@@ -26,7 +26,7 @@ export class CalendarDataService {
       })
       .catch(error => {
         console.error('ERROR: ', error);
-        return error;
+        return Observable.of(error);
       });
   }
 

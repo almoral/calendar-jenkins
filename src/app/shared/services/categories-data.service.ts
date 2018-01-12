@@ -9,25 +9,21 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class CategoriesDataService {
 
-  public arrCategories: Array<Category> = [];
-
   constructor(
     private configurationService: ConfigurationService,
     private httpClient: HttpClient
   ) { }
 
-  getCategories(): any {
+  getCategories(): Observable<Category[]> {
 
     return this.httpClient.get(this.configurationService.urlCategories)
       .map((response: any) => {
-
-          // const categories = this.jsonToCategories(response);
 
         return this.jsonToCategories(response);
       })
       .catch(error => {
         console.error('ERROR: ', error);
-        return error;
+        return Observable.of(error);
       });
   }
 
