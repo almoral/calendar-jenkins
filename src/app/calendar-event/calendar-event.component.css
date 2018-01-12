@@ -121,44 +121,9 @@ h2.group-title::after {
 
 .list-item.middle .detail-item{ vertical-align: middle; }
 
-.calendar-quick-view-container .content-main-calendar .list-item .detail-item:first-child {
-  width: 120px;
-}
-
-.calendar-quick-view-container .content-main-calendar .list-item .detail-item:last-child {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.calendar-quick-view-container .content-main-calendar .short-description,
-.calendar-quick-view-container .right-content-calendar {
-  margin-bottom: 35px;
-}
-
-
-.calendar-quick-view-container .right-content-calendar .list-item .detail-item:first-child {
+.calendar-quick-view-container .list-item .detail-item:first-child,
+.nav-right-calendar .list-item .detail-item:first-child {
   width: 60px;
-}
-
-h4.right-content-calendar--title {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding-bottom: 17px;
-  border-bottom: solid 1px #ddd;
-  position: relative;
-  margin: 0 0 20px 0;
-}
-
-h4.right-content-calendar--title:after {
-  content: " ";
-  display: block;
-  height: 3px;
-  width: 42px;
-  position: absolute;
-  bottom: -2px;
-  z-index: 999;
-  background-color: #46BCEB;
 }
 
 .icon-container {
@@ -178,6 +143,10 @@ h4.right-content-calendar--title:after {
 
 .calendar-title-container { display: table; }
 
+.calendar-title-container > .column {
+  display: table-cell;
+  vertical-align: middle;
+}
 
 .calendar-title-container > .column:first-child {
   width: 60%;
@@ -185,50 +154,10 @@ h4.right-content-calendar--title:after {
 }
 
 .calendar-title-container > .column:last-child {
+  text-align: right;
   padding-right: 100px;
-  font-size: 13px;
+  font-size: 16px;
 }
-
 .btn {
   width: 100%;
-}
-
-.btn.blue {
-  background-color: #027abb !important;
-  border: 1px solid #0d94d0;
-  color: #fff;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.btn.blue:focus {
-  background-color: #03a9f4 !important; 
-}
-
-.ada-text {
-  font-size: 12px;
-  font-style: italic;
-}
-
-@media (min-width: 601px) {
-
-  .calendar-title-container > .column {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .calendar-title-container > .column:last-child {
-    text-align: right;
-  }
-
-}
-
-@media (max-width: 600px) {
-  .calendar-subtitle {
-    margin-bottom: 5px;
-  }
-
-  .content-main-calendar {
-    margin-bottom: 25px;
-  }
 }
