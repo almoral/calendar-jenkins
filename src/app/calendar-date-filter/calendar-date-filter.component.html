@@ -15,7 +15,7 @@
           </div>
 
           <div class="col s12">
-            <label for="filtermonth">Month</label>
+            <label for="filterMonth">Month</label>
             <select [(ngModel)]="selectedMonth" (change)="updateDays(selectedYear, selectedMonth, selectedDay)" class="browser-default" id="filterMonth">
               <option value=""></option>
               <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
