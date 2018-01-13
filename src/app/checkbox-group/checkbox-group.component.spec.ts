@@ -6,11 +6,12 @@ import {CalendarDateFilterComponent} from '../calendar-date-filter/calendar-date
 import {EventService} from '../shared/services/event.service';
 import {DateService} from '../shared/services/date.service';
 import {EventDataService} from '../shared/services/event-data.service';
-import {Http} from '@angular/http';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormsModule} from '@angular/forms';
 import {ConfigurationService} from '../shared/services/configuration.service';
+import {HttpClient} from '@angular/common/http';
+
 
 
 describe('Component: CheckboxGroup', () => {
@@ -21,7 +22,7 @@ describe('Component: CheckboxGroup', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        Http,
+        HttpClient,
         DateService,
         DataStoreService,
         EventService,

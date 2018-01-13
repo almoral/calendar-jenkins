@@ -10,6 +10,7 @@ describe('MdcEvent', () => {
 
   let jsonEvent, jsonEvent2;
 
+
   beforeEach(function () {
     jsonEvent = {
       id: 1,
@@ -87,10 +88,9 @@ describe('MdcEvent', () => {
         'contact@email.com',
         'ADAName',
         '305-555-1234',
-        'ADA@email.com',
-        false,false,true,
-        2,
-        'rsvpme',
+        false,
+        false,false,0,
+        '',
         {'description': 'URL for event', 'url': 'http://www.google.com'},
         null,
         'CalProof1'))
@@ -115,10 +115,9 @@ describe('MdcEvent', () => {
       'contact@email.com',
       'ADAName',
       '305-555-1234',
-      'ADA@email.com',
-      false,false,true,
-      2,
-      'rsvpme',
+      false,
+      false,false,0,
+      '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
       'CalProof1'
@@ -147,10 +146,9 @@ describe('MdcEvent', () => {
       'contact@email.com',
       'ADAName',
       '305-555-1234',
-      'ADA@email.com',
-      false,false,true,
-      2,
-      'rsvpme',
+       false,
+      false,false,0,
+      '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
       'CalProof1'
