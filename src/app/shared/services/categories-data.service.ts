@@ -18,7 +18,7 @@ export class CategoriesDataService {
 
   getCategories(): Observable<Array<Category>> {
 
-    return this.httpClient.get(this.configurationService.urlCategories)
+    return this.httpClient.get(this.configurationService.calendarUrls.categoriesUrl)
       .map((response: any) => {
 
           const categories = this.jsonToCategories(response);

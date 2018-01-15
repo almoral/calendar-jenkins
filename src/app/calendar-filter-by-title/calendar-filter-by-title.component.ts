@@ -1,7 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {environment} from '../../environments/environment';
 import {InitializeService} from '../shared/services/initialize.service';
 
 @Component({
@@ -26,9 +25,6 @@ export class CalendarFilterByTitleComponent implements OnInit {
     });
 
     this.initOnChange();
-
-    this.initializeService.setTitle(environment.titleFilter);
-
     this.initializeService.title$.subscribe( value => this.form.get('title').setValue(value));
 
   }

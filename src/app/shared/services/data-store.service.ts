@@ -6,7 +6,6 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
-import {environment} from '../../../environments/environment';
 import {Calendar} from "../models/calendar";
 import {Category} from "../models/category";
 

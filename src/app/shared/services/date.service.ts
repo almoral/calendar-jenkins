@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import 'rxjs/add/observable/of';
 import { DataStoreService } from './data-store.service';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {ConfigurationService} from "./configuration.service";
 
 @Injectable()
 export class DateService {
@@ -53,7 +54,29 @@ export class DateService {
   }
 
 
-  constructor( private dataStoreService: DataStoreService) { }
+  constructor( private dataStoreService: DataStoreService,
+               private configurationService: ConfigurationService) {
+
+    this.initializeService();
+  }
+
+  public initializeService(){
+
+    this.setYear(moment().format(DateService.YEAR_FORMAT));
+    this.setMonth(moment().format(DateService.MONTH_FORMAT));
+    this.initializeDay();
+  }
+
+  public initializeDay(){
+
+    if (this.configurationService.dateFilterType === 'day') {
+      this.setDay(moment().format('D'));
+    } else {
+      this.setDay('');
+    }
+
+  }
+
 
   /**
    * createDateString concatenates the year and month that are passed in

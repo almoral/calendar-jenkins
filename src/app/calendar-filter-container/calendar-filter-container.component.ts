@@ -1,7 +1,7 @@
 import {InitializeService} from '../shared/services/initialize.service';
 import {Component, OnInit} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
-import {environment} from '../../environments/environment';
+import {ConfigurationService} from "../shared/services/configuration.service";
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -15,10 +15,11 @@ export class CalendarFilterContainerComponent implements OnInit{
   showCalendarsFilter = false;
 
   constructor(private dateService: DateService,
-              private initializeService: InitializeService) { }
+              private initializeService: InitializeService,
+              private configurationService: ConfigurationService) { }
 
   ngOnInit() {
-    if (environment.showCalendarsFilter) {
+    if (this.configurationService.showCalendarsFilter) {
       this.showCalendarsFilter = true;
     }
   }
