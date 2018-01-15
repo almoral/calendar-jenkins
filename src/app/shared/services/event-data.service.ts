@@ -8,7 +8,6 @@ import {MdcEvent} from '../models/mdc-event';
 import {forkJoin} from 'rxjs/observable/forkJoin';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import {environment} from '../../../environments/environment';
 
 
 /**
@@ -40,7 +39,7 @@ export class EventDataService {
   getEventsOnCalendar(calendarId: string, from: Date, to: Date = from): Observable<MdcEvent []> {
 
     // Setup url.
-    const url: string = environment.calendarUrl.eventsOnCalendar(calendarId);
+    const url: string = this.configurationService.calendarUrls.eventsOnCalendarUrl(calendarId);
     const params = new HttpParams()
       .append('to', moment(to).format('MM/DD/YYYY'))
       .append('from', moment(from).format('MM/DD/YYYY'));

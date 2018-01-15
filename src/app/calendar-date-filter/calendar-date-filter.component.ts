@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
-import {environment} from '../../environments/environment';
-
 
 
 @Component({
@@ -29,10 +27,6 @@ export class CalendarDateFilterComponent implements OnInit {
 
   ngOnInit() {
 
-    // Setting the initial values for the date picker service.
-    this.dateService.setYear(moment().format(DateService.YEAR_FORMAT));
-    this.dateService.setMonth(moment().format(DateService.MONTH_FORMAT));
-
     // Initial values used to populate dropdowns in date filter.
     this.dateService.year$.subscribe(year => this.selectedYear = year);
     this.dateService.month$.subscribe( month => this.selectedMonth = month);
@@ -40,24 +34,11 @@ export class CalendarDateFilterComponent implements OnInit {
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
 
-
-    // With 'day' configuration set also the current day.
-    // Only the events for today will show
-    if (environment.dateFilterType === 'day') {
-      this.dateService.setDay(moment().format('D'));
-    }
-
-    if (environment.dateFilterType === 'month') {
-      this.dateService.setDay('');
-    }
-
     this.dateService.filterEventsByDate();
   }
 
   filterEventsByDate() {
-
     this.dateService.filterEventsByDate();
-
   }
 
   /**

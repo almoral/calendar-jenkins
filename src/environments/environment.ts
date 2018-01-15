@@ -5,13 +5,14 @@
 
 export const environment = {
   production: false,
-  titleFilter: '',
+
+  // Configurations coming from the container ie: Teamsite component wrapper.
   dateFilterType: window['dateFilterType'] || 'day',
   calendars: window['calendars'] || ['CalProof1', 'CalProof2', 'CalProof3'],
-  calendarUrl: {
-    // eventsOnCalendar: (calendarId) => `/api/calendar/${calendarId}/events`
-    eventsOnCalendar: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`
-  },
-  showCalendarsFilter: window['showCalendarsFilter'] || false
+  showCalendarsFilter: window['showCalendarsFilter'] || true,
 
+  calendarUrls: {
+    eventsOnCalendarUrl: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`,
+    categoriesUrl: 'https://s0144821.miamidade.gov:7000/registration/api/topics'
+  }
 };
