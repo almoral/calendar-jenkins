@@ -200,13 +200,14 @@ h4.right-content-calendar--title:after {
 }
 
 .btn.blue:focus {
-  background-color: #03a9f4 !important; 
+  background-color: #03a9f4 !important;
 }
 
 .ada-text {
   font-size: 12px;
   font-style: italic;
 }
+
 
 @media (min-width: 601px) {
 

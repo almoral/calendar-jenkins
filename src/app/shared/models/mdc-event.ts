@@ -6,20 +6,20 @@ import * as _ from "lodash";
 
 export class MdcEventAddress {
   location: string;
-  address1: string;
+  address: string;
   address2: string;
   city:     string;
   state:    string;
   zip:      string;
 
   constructor(location = '',
-              address1 = '',
+              address = '',
               address2 = '',
               city = '',
               state = '',
-              zip = ''){
+              zip = '') {
     this.location = location || '';
-    this.address1 = address1 || '';
+    this.address = address || '';
     this.address2 = address2 || '';
     this.city = city || '';
     this.state = state || '';
@@ -243,7 +243,7 @@ export class MdcEvent {
       // get address
       let address = new MdcEventAddress(
         json.address && json.address.location,
-        json.address && json.address.address1,
+        json.address && json.address.address,
         json.address && json.address.address2,
         json.address && json.address.city,
         json.address && json.address.state,
