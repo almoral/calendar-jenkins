@@ -17,6 +17,7 @@ export class CalendarFilterContainerComponent implements OnInit{
   showCalendarsFilter = false;
 
   categories$: Observable<string[]>;
+  calendars$: Observable<string[]>;
 
   constructor(private dateService: DateService,
               private initializeService: InitializeService,
@@ -26,9 +27,11 @@ export class CalendarFilterContainerComponent implements OnInit{
   ngOnInit() {
     if (this.configurationService.showCalendarsFilter) {
       this.showCalendarsFilter = true;
-
-      this.categories$ = this.dataStoreService.categories$;
     }
+
+    this.categories$ = this.dataStoreService.categories$;
+    this.calendars$ = this.dataStoreService.calendars$;
+
   }
 
   openModal() {

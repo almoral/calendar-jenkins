@@ -28,9 +28,9 @@
             <!--Filter by Title-->
             <mdc-calendar-filter-by-title></mdc-calendar-filter-by-title>
             <!--Filter by category-->
-            <mdc-calendar-filter-by-category *ngIf="(categories$ | async).length > 0"></mdc-calendar-filter-by-category>
+            <mdc-calendar-filter-by-category *ngIf="(categories$ | async)?.length > 0"></mdc-calendar-filter-by-category>
             <!--Filter by Calendar-->
-            <mdc-calendar-filter-by-calendar *ngIf="showCalendarsFilter"></mdc-calendar-filter-by-calendar>
+            <mdc-calendar-filter-by-calendar *ngIf="showCalendarsFilter && (calendars$ | async)?.length > 0"></mdc-calendar-filter-by-calendar>
           </aside>
         </div>
       </div>
