@@ -52,7 +52,7 @@ import {InitializeService} from './shared/services/initialize.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase:'api/calendar/ASD', passThruUnknownUrl: true}),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase: 'api/calendar/ASD', passThruUnknownUrl: true}),
     AppRoutingModule,
     NgxPaginationModule,
     MaterializeModule,

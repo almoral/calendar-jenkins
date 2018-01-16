@@ -10,4 +10,5 @@ export const environment = {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
     categoriesUrl: 'https://accounts.miamidade.gov/myaccount/api/topics'
   }
+
 };

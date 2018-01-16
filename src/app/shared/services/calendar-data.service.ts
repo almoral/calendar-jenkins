@@ -9,7 +9,7 @@ export class CalendarDataService {
   constructor(private configurationService: ConfigurationService) { }
 
 
-  getCalendars(): Observable<Array<Calendar>> {
+  getCalendars(): Observable<Calendar[]> {
 
     return Observable.of(this.configurationService.calendars)
       .map((calendar: any) => {
@@ -26,7 +26,7 @@ export class CalendarDataService {
       })
       .catch(error => {
         console.error('ERROR: ', error);
-        return error;
+        return Observable.of(error);
       });
   }
 

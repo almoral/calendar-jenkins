@@ -9,25 +9,21 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class CategoriesDataService {
 
-  public arrCategories: Array<Category> = [];
-
   constructor(
     private configurationService: ConfigurationService,
     private httpClient: HttpClient
   ) { }
 
-  getCategories(): Observable<Array<Category>> {
+  getCategories(): Observable<Category[]> {
 
     return this.httpClient.get(this.configurationService.calendarUrls.categoriesUrl)
       .map((response: any) => {
 
-          const categories = this.jsonToCategories(response);
-
-        return categories;
+        return this.jsonToCategories(response);
       })
       .catch(error => {
         console.error('ERROR: ', error);
-        return error;
+        return Observable.of(error);
       });
   }
 
@@ -46,9 +42,9 @@ export class CategoriesDataService {
       console.log('is empty');
       return null;
     }
-    let raw: Array<any> = response.data.topics;
-    let model: Array<Category> = raw.reduce(function (accumulator, item) {
-      let category = Category.fromJSON(item);
+    const raw: Array<any> = response.data.topics;
+    const model: Array<Category> = raw.reduce(function (accumulator, item) {
+      const category = Category.fromJSON(item);
 
       if (category) {
         accumulator.push(category);

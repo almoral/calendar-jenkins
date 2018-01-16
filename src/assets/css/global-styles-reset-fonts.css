@@ -63,7 +63,7 @@ nav .button-collapse {
   color: #333;
 }
 
-#mobile-menu { 
+#mobile-menu {
   color: #333;
   display: flex;
   float: right;
@@ -368,9 +368,6 @@ nav ul a, nav .brand-logo {
   left: 50%;
 }
 
-
-
-/
 
 /*START OF MEGA */
 
@@ -1418,7 +1415,7 @@ MOBILE
 
   /*--- Secondary nav ---*/
 
-  .secondary-menu { 
+  .secondary-menu {
     display: flex;
     flex-flow: row wrap;
   }

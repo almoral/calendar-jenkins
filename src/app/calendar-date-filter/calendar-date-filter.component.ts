@@ -12,15 +12,15 @@ import * as _ from 'lodash';
 
 export class CalendarDateFilterComponent implements OnInit {
 
-  private selectedYear: string;
-  private selectedMonth: string;
-  private selectedDay: string;
+  public selectedYear: string;
+  public selectedMonth: string;
+  public selectedDay: string;
   public selectedDate: string;
-  private years: string[] = ['2014', '2015', '2016', '2017', '2018'];
+  public years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
-  private months: string[] = moment.months();
-  private days: string[];
-  private disableDayField = false;
+  public months: string[] = moment.months();
+  public days: string[];
+  public disableDayField = false;
 
 
   constructor( private dateService: DateService) {}
@@ -32,7 +32,6 @@ export class CalendarDateFilterComponent implements OnInit {
     this.dateService.month$.subscribe( month => this.selectedMonth = month);
     this.dateService.day$.subscribe( day => this.selectedDay = day);
     this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
-
 
     this.dateService.filterEventsByDate();
   }
