@@ -55,7 +55,7 @@ export class EventDataService {
     // Get events.
     return this.httpClient.get(url, {params})
       .map((rawEvents, index) => {
-        let events = MdcEvent.fromJSONArray(rawEvents['events'], calendarId);
+        const events = MdcEvent.fromJSONArray(rawEvents['events'], calendarId);
         return events;
       }).catch(this.eventOnCalendarErrorHandler);
 

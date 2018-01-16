@@ -1,18 +1,18 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { EventDataService } from './event-data.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {ConfigurationService} from "./configuration.service";
-import {MdcEvent} from "../models/mdc-event";
-import {TestEvents} from "../models/test-events";
-import * as _ from "lodash";
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {ConfigurationService} from './configuration.service';
+import {MdcEvent} from '../models/mdc-event';
+import {TestEvents} from '../models/test-events';
+import * as _ from 'lodash';
 
 
 describe('EventDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [EventDataService, ConfigurationService],
-      imports:[HttpClientTestingModule]
+      imports: [HttpClientTestingModule]
 
     });
   });
@@ -26,8 +26,9 @@ describe('EventDataService', () => {
 
   it('when making a call to get events, to and from query params should be passed in the url ', inject([HttpTestingController, EventDataService],
     (httpMock: HttpTestingController, service: EventDataService) => {
-      service.getEventsOnCalendar("ASD", new Date("11/21/2017"), new Date("11/25/2017"))
+      service.getEventsOnCalendar('ASD', new Date('11/21/2017'), new Date('11/25/2017'))
         .subscribe(data => {
+          console.log('data returned: ', data);
           expect(data.length).toBe(2);
           expect(data[0] instanceof MdcEvent).toBe(true);
           expect(data[1] instanceof MdcEvent).toBe(true);
@@ -37,7 +38,7 @@ describe('EventDataService', () => {
         .expectOne(req => req.method === 'GET' && req.url === '/api/calendar/ASD/events');
       expect(req.request.params.get('from')).toEqual('11/21/2017');
       expect(req.request.params.get('to')).toEqual('11/25/2017');
-      req.flush({events:TestEvents.testJsonEventsTwo});
+      req.flush({events: TestEvents.testJsonEventsTwo});
       httpMock.verify();
 
     }));
