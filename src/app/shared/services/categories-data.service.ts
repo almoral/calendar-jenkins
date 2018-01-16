@@ -22,8 +22,8 @@ export class CategoriesDataService {
         return this.jsonToCategories(response);
       })
       .catch(error => {
-        console.error('ERROR: ', error);
-        return Observable.of(error);
+        console.error('getCategories: error while getting list of categories: ', error);
+        return Observable.of([]);
       });
   }
 
