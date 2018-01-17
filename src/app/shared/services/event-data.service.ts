@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpHeaders} from '@angular/common/http';
 import {ConfigurationService} from './configuration.service';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {MdcEvent} from '../models/mdc-event';
@@ -81,7 +81,7 @@ export class EventDataService {
     }
 
     // call each calendar on calendars
-    let events$: Array<Observable <MdcEvent[]> > = calendars.reduce((accumulator, calendarId) => {
+    const events$: Array<Observable <MdcEvent[]> > = calendars.reduce((accumulator, calendarId) => {
 
       // push each observable into array and
       // handle errors by providing an empty array for that call.

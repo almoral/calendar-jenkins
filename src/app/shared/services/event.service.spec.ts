@@ -73,6 +73,12 @@ describe('EventService', () => {
   }));
 
 
+  it('should only return events that have a type not equal to "Private"', inject([EventService], (service: EventService) => {
+    let events = service.filterEventsByType(TestEvents.testEventsTwo);
+    expect(events.length).toBe(1);
+
+  }));
+
 
   it('when I choose a title to filter events, only events that contain the string on the title should show', inject([EventService], (service: EventService) => {
     let events = service.filterEventsByTitle(TestEvents.testEvents, 'big');

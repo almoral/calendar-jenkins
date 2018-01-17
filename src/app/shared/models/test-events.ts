@@ -6,7 +6,7 @@ import {MdcEvent} from "./mdc-event";
 let jsonEvent1 = {
   id: 1,
   title: 'my title',
-  type: 'public',
+  type: 'Private',
   startDate: '2017-07-19T15:00:00Z',
   endDate: '2017-07-21T15:00:00Z',
   contactName: 'my contactName',
