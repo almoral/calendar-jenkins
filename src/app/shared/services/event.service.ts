@@ -42,7 +42,9 @@ export class EventService {
   filterEvents(events: MdcEvent[], title: string, categories: string[], calendars: string[]): MdcEvent[] {
     return this.filterEventsByCalendar(
       this.filterEventsByCategory(
-        this.filterEventsByTitle(events, title),
+        this.filterEventsByTitle(
+          this.filterEventsByType(events, 'Public'),
+          title),
         categories),
       calendars);
   }
@@ -107,6 +109,16 @@ export class EventService {
       return !(_.isEmpty(_.intersection(calendars, [event.calendarId])));
     });
   }
+
+
+  // This keeps private events from displaying. Will be set up as a configuration later.
+
+  filterEventsByType(events: MdcEvent[], eventType: string) {
+    return _.filter(events, (event: MdcEvent) => {
+      return event.type === eventType;
+    });
+  }
+
 
 
 }
