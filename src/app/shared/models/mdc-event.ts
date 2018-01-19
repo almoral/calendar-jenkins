@@ -82,24 +82,28 @@ export class MdcEvent {
         'format': 'date-time'
       },
       'contactName': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'contactPhone': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'contactEmail': {
-        'type': 'string',
-        'format': 'email'
+        "anyOf":[
+            {'type': 'null'},
+            {'type': 'string', 'format': 'email'}
+        ]
       },
       'adaName': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'adaPhone': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'adaEmail': {
-        'type': 'string',
-        'format': 'email'
+        "anyOf":[
+          {'type': 'null'},
+          {'type': 'string', 'format': 'email'}
+        ]
       },
       'isRecurringEvent': {
         'type': ['boolean', 'null']
@@ -138,8 +142,10 @@ export class MdcEvent {
             'type': ['string', 'null']
           },
           'url': {
-            'type': ['string', 'null'],
-            'format': 'url'
+            "anyOf":[
+              {'type': 'null'},
+              {'type': 'string', 'format': 'url'}
+            ]
           }
         }
       },
