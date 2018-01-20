@@ -60,9 +60,9 @@ export class MdcEvent {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'title', 'type', 'startDate', 'endDate',
-      'contactName', 'contactPhone', 'contactEmail',
-      'adaName', 'adaPhone', 'adaEmail'],
+    'required': ['id', 'title', 'type',
+                  'startDate', 'endDate',
+                  'adaName', 'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
