@@ -62,7 +62,7 @@ export class MdcEvent {
     'type': 'object',
     'required': ['id', 'title', 'type',
                   'startDate', 'endDate',
-                  'adaName', 'adaPhone', 'adaEmail'],
+                  'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
