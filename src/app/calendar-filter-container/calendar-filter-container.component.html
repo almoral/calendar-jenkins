@@ -23,10 +23,10 @@
       <div class="middle-container">
         <div class="middle-body">
           <aside class="sidebar">
-            <!--Filter by Dates-->
-            <mdc-calendar-date-filter></mdc-calendar-date-filter>
             <!--Filter by Title-->
             <mdc-calendar-filter-by-title></mdc-calendar-filter-by-title>
+            <!--Filter by Dates-->
+            <mdc-calendar-date-filter></mdc-calendar-date-filter>
             <!--Filter by category-->
             <mdc-calendar-filter-by-category *ngIf="(categories$ | async)?.length > 0"></mdc-calendar-filter-by-category>
             <!--Filter by Calendar-->
