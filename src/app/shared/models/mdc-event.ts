@@ -50,7 +50,6 @@ export class MdcEvent {
   public isClosedToPublic: boolean;
   public isFree: boolean;
   public fee: number;
-  public rsvp: string;
   public url: object;
   public address: MdcEventAddress;
   public calendarId: string;
@@ -132,9 +131,6 @@ export class MdcEvent {
       'fee': {
         'type': ['number', 'null']
       },
-      'rsvp': {
-        'type': ['string', 'null']
-      },
       'url': {
         'type': ['object', 'null'],
         'properties': {
@@ -204,7 +200,6 @@ export class MdcEvent {
               isClosedToPublic: boolean,
               isFree: boolean,
               fee: number,
-              rsvp: string,
               url: object,
               address: MdcEventAddress,
               calendarId: string) {
@@ -230,7 +225,6 @@ export class MdcEvent {
     this.isClosedToPublic = isClosedToPublic || false;
     this.isFree = isFree || true;
     this.fee = fee || null;
-    this.rsvp = rsvp || '';
     this.url = url || {};
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
@@ -278,7 +272,6 @@ export class MdcEvent {
         json.isClosedToPublic,
         json.isFree,
         json.fee,
-        json.rsvp,
         json.url,
         address,
         calendarId

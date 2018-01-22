@@ -33,7 +33,6 @@ describe('MdcEvent', () => {
       isClosedToPublic: false,
       isFree: false,
       fee: 21,
-      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event', 'url': 'http://www.google.com'},
       address: null
@@ -60,7 +59,6 @@ describe('MdcEvent', () => {
       isClosedToPublic: false,
       isFree: false,
       fee: 22,
-      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
       address: null
@@ -418,17 +416,6 @@ describe('MdcEvent', () => {
   it('when creating a mdcEvent from json, pass also the calendarId which should populate the calendarId property', () => {
     let event: MdcEvent = MdcEvent.fromJSON(jsonEvent,'myCalendar');
     expect(event.calendarId).toEqual('myCalendar')
-  });
-
-
-
-  it('when creating a mdcEvent from json, if rsvp is not a string or null, throw Error', () => {
-    jsonEvent.rsvp = null;
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
-    jsonEvent.rsvp =  1;
-    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.rsvp =  "rsvp";
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
   });
 
 
