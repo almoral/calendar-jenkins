@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
@@ -22,6 +22,7 @@ export class CalendarDateFilterComponent implements OnInit {
   public days: string[];
   public disableDayField = false;
 
+  @Input() toggleContainer = true;
 
   constructor( private dateService: DateService) {}
 

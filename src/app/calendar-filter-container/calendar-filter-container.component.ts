@@ -15,6 +15,7 @@ export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
   showCalendarsFilter = false;
+  toggleContainer = true;
 
   categories$: Observable<string[]>;
   calendars$: Observable<string[]>;
@@ -36,15 +37,18 @@ export class CalendarFilterContainerComponent implements OnInit{
 
   openModal() {
     this.isActive = true;
+    this.toggleContainer = false;
   }
 
   closeModal() {
     this.submitValues();
+    this.toggleContainer = true;
   }
 
   submitValues() {
     this.dateService.filterEventsByDate();
     this.isActive = false;
+    this.toggleContainer = true;
   }
 
   resetValues() {
