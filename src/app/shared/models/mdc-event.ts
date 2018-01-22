@@ -138,8 +138,7 @@ export class MdcEvent {
             'type': ['string', 'null']
           },
           'url': {
-            'type': ['string', 'null'],
-            'format': 'url'
+            'type': ['string', 'null']
           }
         }
       },
