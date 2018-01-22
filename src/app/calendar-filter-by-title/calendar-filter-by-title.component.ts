@@ -12,6 +12,7 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
   form: FormGroup;
 
+  @Input() toggleContainer = true;
 
   constructor(private fb: FormBuilder,
               private dataStoreService: DataStoreService,

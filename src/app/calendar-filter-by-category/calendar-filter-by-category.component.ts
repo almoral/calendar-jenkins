@@ -22,6 +22,8 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
+  @Input() toggleContainer = true;
+
   constructor( private dataStoreService: DataStoreService,
                private fb: FormBuilder,
                private initializeService: InitializeService) {}

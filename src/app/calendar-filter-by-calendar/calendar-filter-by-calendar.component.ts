@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {InitializeService} from '../shared/services/initialize.service';
@@ -18,6 +18,8 @@ export class CalendarFilterByCalendarComponent implements OnInit {
   checked = false;
   calendars$: Observable<string[]>;
   selectedCalendars: Array<string> = [];
+
+  @Input() toggleContainer = true;
 
   @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
