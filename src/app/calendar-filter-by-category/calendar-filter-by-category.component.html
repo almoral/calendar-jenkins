@@ -8,14 +8,12 @@
         <form [formGroup]="typeForm">
           <fieldset>
             <legend>Choose a type to filter by:</legend>
-
                 <mdc-checkbox-group formControlName="categories"
                                     [optionsData]="categories$"
                                     [ngModel]='checked'
                                     (ngModelChange)='onChanges()'
                                     (selectItem)="filterEvents($event)">
                 </mdc-checkbox-group>
-
           </fieldset>
         </form>
       </div>
