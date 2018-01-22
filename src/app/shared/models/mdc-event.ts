@@ -60,9 +60,9 @@ export class MdcEvent {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'title', 'type', 'startDate', 'endDate',
-      'contactName', 'contactPhone', 'contactEmail',
-      'adaName', 'adaPhone', 'adaEmail'],
+    'required': ['id', 'title', 'type',
+                  'startDate', 'endDate',
+                  'adaPhone', 'adaEmail'],
     'properties': {
       'id': {
         'type': 'number'
@@ -82,24 +82,28 @@ export class MdcEvent {
         'format': 'date-time'
       },
       'contactName': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'contactPhone': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'contactEmail': {
-        'type': 'string',
-        'format': 'email'
+        "anyOf":[
+            {'type': 'null'},
+            {'type': 'string', 'format': 'email'}
+        ]
       },
       'adaName': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'adaPhone': {
-        'type': 'string'
+        'type': ['string', 'null']
       },
       'adaEmail': {
-        'type': 'string',
-        'format': 'email'
+        "anyOf":[
+          {'type': 'null'},
+          {'type': 'string', 'format': 'email'}
+        ]
       },
       'isRecurringEvent': {
         'type': ['boolean', 'null']
@@ -138,7 +142,10 @@ export class MdcEvent {
             'type': ['string', 'null']
           },
           'url': {
-            'type': ['string', 'null']
+            "anyOf":[
+              {'type': 'null'},
+              {'type': 'string', 'format': 'url'}
+            ]
           }
         }
       },
