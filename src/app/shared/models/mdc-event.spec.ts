@@ -36,7 +36,8 @@ describe('MdcEvent', () => {
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event', 'url': 'http://www.google.com'},
-      address: null
+      address: null,
+      isDepartmentOnly: false
     }
 
     jsonEvent2 = {
@@ -63,7 +64,8 @@ describe('MdcEvent', () => {
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
-      address: null
+      address: null,
+      isDepartmentOnly: true
     }
 
 
@@ -93,7 +95,7 @@ describe('MdcEvent', () => {
         '',
         {'description': 'URL for event', 'url': 'http://www.google.com'},
         null,
-        'CalProof1'))
+        'CalProof1', false))
       .toBeTruthy();
   });
 
@@ -120,7 +122,8 @@ describe('MdcEvent', () => {
       '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
-      'CalProof1'
+      'CalProof1',
+      true
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.description).toBe('');
@@ -151,7 +154,8 @@ describe('MdcEvent', () => {
       '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
-      'CalProof1'
+      'CalProof1',
+      false
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.id).toBeNull();
@@ -484,6 +488,14 @@ describe('MdcEvent', () => {
     delete jsonEvent.id;
     expect(MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]).length).toBe(1);
   });
+
+  it('only lists events that have isDepartmentOnly set to false', () => {
+    let events: MdcEvent[] = MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]);
+    events = events.filter(event => event.isDepartmentOnly === false);
+    expect(events).toContain(jasmine.objectContaining({isDepartmentOnly: false}));
+    expect(events.length).toBe(1);
+  });
+
 
 
   it('when creating an Array of MdcEvents from a json array containing one recurring event, independent recurring events will be created for each recurring date', () => {

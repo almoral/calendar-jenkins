@@ -25,6 +25,7 @@ let jsonEvent1 = {
   fee: 3,
   rsvp: 'joe bler',
   categories: ['animals'],
+  isDepartmentOnly: false,
   url: {'description': 'URL for event', 'url': 'http://www.google.com'},
   address: null
 }
@@ -52,7 +53,8 @@ let jsonEvent2 = {
   rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
-  address: null
+  address: null,
+  isDepartmentOnly: true,
 }
 
 let jsonEvent3 = {
