@@ -54,6 +54,7 @@ export class MdcEvent {
   public url: object;
   public address: MdcEventAddress;
   public calendarId: string;
+  public isDepartmentOnly: boolean;
 
 
   public static schema = {
@@ -106,6 +107,9 @@ export class MdcEvent {
         ]
       },
       'isRecurringEvent': {
+        'type': ['boolean', 'null']
+      },
+      'isDepartmentOnly': {
         'type': ['boolean', 'null']
       },
       'recurrence': {
@@ -207,7 +211,8 @@ export class MdcEvent {
               rsvp: string,
               url: object,
               address: MdcEventAddress,
-              calendarId: string) {
+              calendarId: string,
+              isDepartmentOnly: boolean) {
 
     this.id = id || null;
     this.odataId = odataId || '';
@@ -234,6 +239,7 @@ export class MdcEvent {
     this.url = url || {};
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
+    this.isDepartmentOnly = isDepartmentOnly || false;
   }
 
 
@@ -281,9 +287,10 @@ export class MdcEvent {
         json.rsvp,
         json.url,
         address,
-        calendarId
-      )}
-    else {
+        calendarId,
+        json.isDepartmentOnly
+      );
+    } else {
       console.error('fromJSON: invalid json to build event', json, tv4.error);
       throw new Error('error: invalid json to build event');
     }
