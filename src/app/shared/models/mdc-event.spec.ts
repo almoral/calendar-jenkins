@@ -36,7 +36,8 @@ describe('MdcEvent', () => {
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event', 'url': 'http://www.google.com'},
-      address: null
+      address: null,
+      isDepartmentOnly: false
     }
 
     jsonEvent2 = {
@@ -63,7 +64,8 @@ describe('MdcEvent', () => {
       rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
-      address: null
+      address: null,
+      isDepartmentOnly: true
     }
 
 
@@ -80,7 +82,7 @@ describe('MdcEvent', () => {
         null,
         false,
         ['animals', 'public-safety'],
-        'type',
+        ['Public'],
         'This is a short description.',
         'This is a long description.',
         'contactName',
@@ -93,7 +95,7 @@ describe('MdcEvent', () => {
         '',
         {'description': 'URL for event', 'url': 'http://www.google.com'},
         null,
-        'CalProof1'))
+        'CalProof1', false))
       .toBeTruthy();
   });
 
@@ -107,7 +109,7 @@ describe('MdcEvent', () => {
       null,
       false,
       ['animals', 'public-safety'],
-      'type',
+      ['Public'],
       null,
       'This is a long description.',
       'contactName',
@@ -120,7 +122,8 @@ describe('MdcEvent', () => {
       '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
-      'CalProof1'
+      'CalProof1',
+      true
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.description).toBe('');
@@ -138,7 +141,7 @@ describe('MdcEvent', () => {
       null,
       false,
       ['animals', 'public-safety'],
-      'type',
+      ['Private'],
       null,
       'This is a long description.',
       'contactName',
@@ -151,7 +154,8 @@ describe('MdcEvent', () => {
       '',
       {'description': 'URL for event', 'url': 'http://www.google.com'},
       null,
-      'CalProof1'
+      'CalProof1',
+      false
     );
     expect(mdcEvent).toBeTruthy();
     expect(mdcEvent.id).toBeNull();

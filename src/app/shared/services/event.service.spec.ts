@@ -73,9 +73,11 @@ describe('EventService', () => {
   }));
 
 
-  it('should only return events that have a type not equal to "Private"', inject([EventService], (service: EventService) => {
+  it('should only return events that have isDepartmentOnly equal to environment.excludeDepartmentOnly', inject([EventService], (service: EventService) => {
     let events = service.filterEventsByType(TestEvents.testEventsTwo);
     expect(events.length).toBe(1);
+
+    console.log('test events: ', events);
 
   }));
 

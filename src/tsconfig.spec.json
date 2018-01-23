@@ -14,7 +14,7 @@
     "test.ts"
   ],
   "include": [
-    "**/*.spec.ts",
+    "app/shared/services/*.spec.ts",
     "**/*.d.ts"
   ]
 }
