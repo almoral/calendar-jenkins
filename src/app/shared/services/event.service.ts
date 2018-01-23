@@ -112,13 +112,13 @@ export class EventService {
   }
 
 
-  // This keeps private events from displaying. Will be set up as a configuration later.
-
+  // This keeps department only events from displaying.
   filterEventsByType(events: MdcEvent[]) {
     return _.filter(events, (event: MdcEvent) => {
-      return event.type !== 'Private';
+      return _.filter(event.eventTypes, item => item === false);
     });
   }
+
 
 
 
