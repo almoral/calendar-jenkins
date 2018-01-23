@@ -38,7 +38,7 @@ export class MdcEvent {
   public isRecurringEvent: boolean;
   public recurrence: Date[];
   public categories: string [];
-  public type: string;
+  public eventTypes: string[];
   public description: string;
   public contactName: string;
   public contactPhone: string;
@@ -60,7 +60,7 @@ export class MdcEvent {
     'title': 'MDCEvent',
     'description': 'Schema to validate event retrieved from Sharepoint.',
     'type': 'object',
-    'required': ['id', 'title', 'type',
+    'required': ['id', 'title',
                   'startDate', 'endDate',
                   'adaPhone', 'adaEmail'],
     'properties': {
@@ -70,8 +70,8 @@ export class MdcEvent {
       'title': {
         'type': 'string'
       },
-      'type': {
-        'type': 'string'
+      'eventTypes': {
+        'type': ['array', 'null']
       },
       'startDate': {
         'type': 'string',
@@ -192,7 +192,7 @@ export class MdcEvent {
               recurrence: Date[],
               isAllDayEvent: boolean,
               categories: string [],
-              type: string,
+              eventTypes: string[],
               description: string,
               contactName: string,
               contactPhone: string,
@@ -218,7 +218,7 @@ export class MdcEvent {
     this.recurrence = recurrence || null;
     this.isAllDayEvent = isAllDayEvent || false;
     this.categories = categories || [];
-    this.type = type || '';
+    this.eventTypes = eventTypes || [];
     this.description = description || '';
     this.contactName = contactName || '';
     this.contactPhone = contactPhone || '';
@@ -266,7 +266,7 @@ export class MdcEvent {
         MdcEvent.fromJSONDates(json.recurrence),
         json.isAllDayEvent,
         json.categories,
-        json.type,
+        json.eventTypes,
         json.description,
         json.contactName,
         json.contactPhone,
