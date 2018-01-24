@@ -223,7 +223,7 @@ export class MdcEvent {
     this.adaEmail = adaEmail || '';
     this.isClosedToMedia = isClosedToMedia || false;
     this.isClosedToPublic = isClosedToPublic || false;
-    this.isFree = isFree || true;
+    this.isFree = _.isNil(isFree) || isFree;
     this.url = url || {};
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
