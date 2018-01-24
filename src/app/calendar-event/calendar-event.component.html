@@ -78,7 +78,10 @@
               </div>
             </div>
             <div class="detail-item" >
-              <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactEmail}}</a></div>
+              <div class="phone">
+                <a *ngIf="!event?.contactName" href="mailto:{{event?.contactEmail}}">{{event?.contactEmail}}</a>
+                <a *ngIf="event?.contactName" href="mailto:{{event?.contactEmail}}">{{event?.contactName}}</a>
+              </div>
             </div>
           </div>
 
