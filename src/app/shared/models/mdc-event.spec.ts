@@ -33,7 +33,6 @@ describe('MdcEvent', () => {
       isClosedToPublic: false,
       isFree: false,
       fee: 21,
-      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event', 'url': 'http://www.google.com'},
       address: null,
@@ -61,7 +60,6 @@ describe('MdcEvent', () => {
       isClosedToPublic: false,
       isFree: false,
       fee: 22,
-      rsvp: 'joe bler',
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
       address: null,
@@ -425,17 +423,6 @@ describe('MdcEvent', () => {
   });
 
 
-
-  it('when creating a mdcEvent from json, if rsvp is not a string or null, throw Error', () => {
-    jsonEvent.rsvp = null;
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
-    jsonEvent.rsvp =  1;
-    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.rsvp =  "rsvp";
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
-  });
-
-
   it('when creating a mdcEvent from json, if fee is not a number or null, throw Error', () => {
     jsonEvent.fee = null;
     expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
@@ -488,6 +475,14 @@ describe('MdcEvent', () => {
     delete jsonEvent.id;
     expect(MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]).length).toBe(1);
   });
+
+  it('only lists events that have isDepartmentOnly set to false', () => {
+    let events: MdcEvent[] = MdcEvent.fromJSONArray([jsonEvent, jsonEvent2]);
+    events = events.filter(event => event.isDepartmentOnly === false);
+    expect(events).toContain(jasmine.objectContaining({isDepartmentOnly: false}));
+    expect(events.length).toBe(1);
+  });
+
 
 
   it('when creating an Array of MdcEvents from a json array containing one recurring event, independent recurring events will be created for each recurring date', () => {
