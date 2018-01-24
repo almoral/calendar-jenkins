@@ -23,7 +23,6 @@ let jsonEvent1 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 3,
-  rsvp: 'joe bler',
   categories: ['animals'],
   url: {'description': 'URL for event', 'url': 'http://www.google.com'},
   address: null
@@ -49,7 +48,6 @@ let jsonEvent2 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 4,
-  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
   address: null
@@ -75,7 +73,6 @@ let jsonEvent3 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 5,
-  rsvp: 'joe bler',
   categories: ['public-safety'],
   url: {description: 'URL for event 3', url: 'http://www.google.com'},
   address: null
@@ -102,7 +99,6 @@ let jsonEvent4 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 5,
-  rsvp: 'joe bler',
   categories: [],
   url: {'description': 'URL for event 4', 'url': 'http://www.google.com'},
   address: null
@@ -128,7 +124,6 @@ let jsonEvent5 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 7,
-  rsvp: 'joe bler',
   categories: null,
   url: {'description': 'URL for event 5', 'url': 'http://www.google.com'},
   address: null
@@ -154,7 +149,6 @@ let jsonEvent6 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 3.5,
-  rsvp: 'joe bler',
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 6', 'url': 'http://www.google.com'},
   address: null
@@ -180,7 +174,6 @@ let jsonEvent7 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 3.5,
-  rsvp: 'joe bler',
   categories: null,
   url: {'description': 'URL for event 7', 'url': 'http://www.google.com'},
   address: null
@@ -206,7 +199,6 @@ let jsonEvent8 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 3.5,
-  rsvp: 'joe bler',
   categories: ['public-safety'],
   url: {'description': 'URL for event 8', 'url': 'http://www.google.com'},
   address: null
@@ -232,7 +224,6 @@ let jsonEvent9 = {
   isClosedToPublic: false,
   isFree: false,
   fee: 3.5,
-  rsvp: 'joe bler',
   categories: ['animals'],
   url: {'description': 'URL for event 9', 'url': 'http://www.google.com'},
   address: null
@@ -259,7 +250,6 @@ let jsonEvent10 = {
     "description": "http://yahoo.com"
   },
   "recurrence": ["2017-11-01T23:00:00Z", "2017-11-03T23:00:00Z", "2017-11-05T23:00:00Z"],
-  "rsvp": null,
   "address": {
     "location": "South Dade Justice Center",
     "address": "10710 SW 211 Street",
