@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {MdcEvent, MdcEventsByDate} from "../models/mdc-event";
-import * as _ from "lodash";
-import {environment} from '../../../environments/environment.prod';
+import {Injectable} from '@angular/core';
+import {MdcEvent, MdcEventsByDate} from '../models/mdc-event';
+import * as _ from 'lodash';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class EventService {
@@ -123,6 +123,8 @@ export class EventService {
             return event;
           }
         });
+      } else {
+        return event;
       }
       });
   }
