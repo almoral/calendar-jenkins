@@ -26,7 +26,7 @@ export class CalendarEventComponent implements OnInit {
     // For ADA Compliance
     var expanded = $(event.currentTarget).next().attr('aria-expanded');
 
-    if(expanded === 'true') {
+    if (expanded === 'true') {
       expanded = 'false';
     } else {
       expanded  = 'true';
