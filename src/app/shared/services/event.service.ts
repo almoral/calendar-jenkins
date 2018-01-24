@@ -1,6 +1,7 @@
-import {Injectable} from "@angular/core";
-import {MdcEvent, MdcEventsByDate} from "../models/mdc-event";
-import * as _ from "lodash";
+import {Injectable} from '@angular/core';
+import {MdcEvent, MdcEventsByDate} from '../models/mdc-event';
+import * as _ from 'lodash';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class EventService {
@@ -8,6 +9,7 @@ export class EventService {
   constructor() {
   }
 
+  public excludeDepartmentOnly = environment.excludeDepartmentOnly;
 
   /**
    * eventsByDate takes an list of MdcEvent events and group
@@ -67,7 +69,6 @@ export class EventService {
     return _.filter(events, (event: MdcEvent) => {
       return new RegExp(title).test(event.title);
     });
-
   }
 
   /**
@@ -115,12 +116,17 @@ export class EventService {
   // This keeps department only events from displaying.
   filterEventsByType(events: MdcEvent[]) {
     return _.filter(events, (event: MdcEvent) => {
-      return _.filter(event.eventTypes, item => item === false);
-    });
+      if (this.excludeDepartmentOnly) {
+        return _.filter(event.eventTypes, isDepartmentOnlyValue => {
+          if (!isDepartmentOnlyValue) {
+            return event;
+          }
+        });
+      } else {
+        return event;
+      }
+      });
   }
-
-
-
 
 }
 
