@@ -69,7 +69,6 @@ export class EventService {
     return _.filter(events, (event: MdcEvent) => {
       return new RegExp(title).test(event.title);
     });
-
   }
 
   /**
