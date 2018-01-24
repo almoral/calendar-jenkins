@@ -15,7 +15,7 @@ export class CalendarFilterContainerComponent implements OnInit{
 
   isActive = false;
   showCalendarsFilter = false;
-  toggleTitleFilter = true;
+  toggleTitleFilter = false;
   toggleDateFilter = true;
   toggleCategoryFilter = true;
   toggleCalendarFilter = true;
