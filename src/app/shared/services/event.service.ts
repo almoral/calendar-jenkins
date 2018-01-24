@@ -9,6 +9,7 @@ export class EventService {
   constructor() {
   }
 
+  public excludeDepartmentOnly = environment.excludeDepartmentOnly;
 
   /**
    * eventsByDate takes an list of MdcEvent events and group
@@ -116,12 +117,14 @@ export class EventService {
   // This keeps department only events from displaying.
   filterEventsByType(events: MdcEvent[]) {
     return _.filter(events, (event: MdcEvent) => {
-      return _.filter(event.eventTypes, type => {
-        if (type === environment.excludeDepartmentOnly) {
-          return event;
-        }
+      if (this.excludeDepartmentOnly) {
+        return _.filter(event.eventTypes, isDepartmentOnlyValue => {
+          if (!isDepartmentOnlyValue) {
+            return event;
+          }
+        });
+      }
       });
-    });
   }
 
 }

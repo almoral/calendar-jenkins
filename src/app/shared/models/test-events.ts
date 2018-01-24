@@ -80,7 +80,8 @@ let jsonEvent3 = {
   rsvp: 'joe bler',
   categories: ['public-safety'],
   url: {description: 'URL for event 3', url: 'http://www.google.com'},
-  address: null
+  address: null,
+  isDepartmentOnly: true
 }
 
 
@@ -107,7 +108,8 @@ let jsonEvent4 = {
   rsvp: 'joe bler',
   categories: [],
   url: {'description': 'URL for event 4', 'url': 'http://www.google.com'},
-  address: null
+  address: null,
+  isDepartmentOnly: true
 }
 
 let jsonEvent5 = {
