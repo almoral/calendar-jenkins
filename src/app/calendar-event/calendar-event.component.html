@@ -46,7 +46,7 @@
           </div>
         </div>
 
-        <div class="col s12 m4 offset-m1 right-content-calendar">
+        <div class="col s12 m4 offset-m1 right-content-calendar" *ngIf="(event?.contactEmail || event?.contactName || event?.contactPhone)">
           <h4 class="right-content-calendar--title">General Contact</h4>
 
           <div class="list-item middle" *ngIf="event?.contactName">
@@ -71,7 +71,7 @@
             </div>
           </div>
 
-          <div class="list-item middle" *ngIf="event?.contactEmail">
+          <div class="list-item middle" *ngIf="(event?.contactEmail && !event?.contactName)">
             <div class="detail-item">
               <div class="icon-container">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -79,8 +79,7 @@
             </div>
             <div class="detail-item" >
               <div class="phone">
-                <a *ngIf="!event?.contactName" href="mailto:{{event?.contactEmail}}">{{event?.contactEmail}}</a>
-                <a *ngIf="event?.contactName" href="mailto:{{event?.contactEmail}}">{{event?.contactName}}</a>
+                <a href="mailto:{{event?.contactEmail}}">{{event?.contactEmail}}</a>
               </div>
             </div>
           </div>
