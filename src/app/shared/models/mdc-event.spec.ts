@@ -32,7 +32,6 @@ describe('MdcEvent', () => {
       isClosedToMedia: false,
       isClosedToPublic: false,
       isFree: false,
-      fee: 21,
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event', 'url': 'http://www.google.com'},
       address: null,
@@ -59,7 +58,6 @@ describe('MdcEvent', () => {
       isClosedToMedia: false,
       isClosedToPublic: false,
       isFree: false,
-      fee: 22,
       categories: ['animals', 'public-safety'],
       url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
       address: null,
@@ -422,15 +420,6 @@ describe('MdcEvent', () => {
     expect(event.calendarId).toEqual('myCalendar')
   });
 
-
-  it('when creating a mdcEvent from json, if fee is not a number or null, throw Error', () => {
-    jsonEvent.fee = null;
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
-    jsonEvent.fee =  'one';
-    expect( function(){ MdcEvent.fromJSON(jsonEvent); } ).toThrow(new Error("error: invalid json to build event"));
-    jsonEvent.fee =  1;
-    expect(MdcEvent.fromJSON(jsonEvent)).toBeTruthy();
-  });
 
   it('when creating a mdcEvent from json, if recurrence is not an array of strings, or null, or empty array, throw Error', () => {
     jsonEvent.recurrence = null;

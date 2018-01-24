@@ -22,7 +22,6 @@ let jsonEvent1 = {
   isClosedToMedia: false,
   isClosedToPublic: false,
   isFree: false,
-  fee: 3,
   categories: ['animals'],
   isDepartmentOnly: false,
   url: {'description': 'URL for event', 'url': 'http://www.google.com'},
@@ -48,7 +47,6 @@ let jsonEvent2 = {
   isClosedToMedia: false,
   isClosedToPublic: false,
   isFree: false,
-  fee: 4,
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
   address: null,
@@ -74,7 +72,6 @@ let jsonEvent3 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 5,
   categories: ['public-safety'],
   url: {description: 'URL for event 3', url: 'http://www.google.com'},
   address: null
@@ -100,7 +97,6 @@ let jsonEvent4 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 5,
   categories: [],
   url: {'description': 'URL for event 4', 'url': 'http://www.google.com'},
   address: null
@@ -125,7 +121,6 @@ let jsonEvent5 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 7,
   categories: null,
   url: {'description': 'URL for event 5', 'url': 'http://www.google.com'},
   address: null
@@ -150,7 +145,6 @@ let jsonEvent6 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 3.5,
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 6', 'url': 'http://www.google.com'},
   address: null
@@ -175,7 +169,6 @@ let jsonEvent7 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 3.5,
   categories: null,
   url: {'description': 'URL for event 7', 'url': 'http://www.google.com'},
   address: null
@@ -200,7 +193,6 @@ let jsonEvent8 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 3.5,
   categories: ['public-safety'],
   url: {'description': 'URL for event 8', 'url': 'http://www.google.com'},
   address: null
@@ -225,7 +217,6 @@ let jsonEvent9 = {
   isClosedToMedia: true,
   isClosedToPublic: false,
   isFree: false,
-  fee: 3.5,
   categories: ['animals'],
   url: {'description': 'URL for event 9', 'url': 'http://www.google.com'},
   address: null
@@ -246,7 +237,6 @@ let jsonEvent10 = {
   "adaName": "test",
   "adaPhone": "305-999-4456",
   "adaEmail": "david@gmail.com",
-  "fee": null,
   "url": {
     "url": "http://yahoo.com",
     "description": "http://yahoo.com"

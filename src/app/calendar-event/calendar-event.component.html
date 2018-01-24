@@ -40,7 +40,7 @@
               <span>Price</span>
             </div>
             <div class="detail-item">
-              <div class="prive" *ngIf='!event?.isFree'>{{event?.fee}}</div>
+              <div class="prive" *ngIf='event?.isFree === false'>$</div>
               <div class="prive" *ngIf='event?.isFree'>This event is free.</div>
             </div>
           </div>
