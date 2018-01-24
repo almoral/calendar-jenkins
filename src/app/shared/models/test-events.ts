@@ -24,6 +24,7 @@ let jsonEvent1 = {
   isFree: false,
   fee: 3,
   categories: ['animals'],
+  isDepartmentOnly: false,
   url: {'description': 'URL for event', 'url': 'http://www.google.com'},
   address: null
 }
@@ -50,7 +51,8 @@ let jsonEvent2 = {
   fee: 4,
   categories: ['animals', 'public-safety'],
   url: {'description': 'URL for event 2', 'url': 'http://www.google.com'},
-  address: null
+  address: null,
+  isDepartmentOnly: true,
 }
 
 let jsonEvent3 = {
