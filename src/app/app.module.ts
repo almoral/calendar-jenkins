@@ -31,6 +31,7 @@ import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.componen
 import {CalendarDataService} from './shared/services/calendar-data.service';
 import {InitializeService} from './shared/services/initialize.service';
 import { PhonePipe } from './shared/pipes/phone.pipe';
+import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PhonePipe } from './shared/pipes/phone.pipe';
     MessagesComponent,
     CheckboxGroupComponent,
     MdcPaginationComponent,
-    PhonePipe
+    PhonePipe,
+    InternationalPhonePipe
   ],
   imports: [
     BrowserModule,
