@@ -67,7 +67,7 @@
               </div>
             </div>
             <div class="detail-item">
-              <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactPhone}}</a></div>
+              <div class="phone"><a href="tel:{{event?.contactPhone}}">{{event?.contactPhone | phone}}</a></div>
             </div>
           </div>
 
@@ -88,7 +88,7 @@
 
       </div>
 
-      <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="tel:{{event?.adaPhone}}">{{event?.adaPhone}}</a></span> or email <span class="email"><a href="mailto:{{event?.adaEmail}}" *ngIf="!event?.adaName">{{event?.adaEmail}}</a><a href="mailto:{{event?.adaEmail}}" *ngIf="event?.adaName">{{event?.adaName}}</a></span> at least five days in advance of the meeting.</span>
+      <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="tel:{{event?.adaPhone}}">{{event?.adaPhone | phone}}</a></span> or email <span class="email"><a href="mailto:{{event?.adaEmail}}" *ngIf="!event?.adaName">{{event?.adaEmail}}</a><a href="mailto:{{event?.adaEmail}}" *ngIf="event?.adaName">{{event?.adaName}}</a></span> at least five days in advance of the meeting.</span>
 
       <a *ngIf='event?.url["url"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.url['url']}}" tabindex="0">Event Details</a>
 
