@@ -10,6 +10,10 @@ export class PhonePipe implements PipeTransform {
     if (!value) {
       return value;
     }
+
+    // set textMask mask for telephone number...
+    // this.telephoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
     return format(value, 'US', 'National');
   }
 }
