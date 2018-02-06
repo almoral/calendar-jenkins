@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { format } from 'libphonenumber-js';
 
  @Pipe ({
   name: 'phone'
@@ -11,9 +10,6 @@ export class PhonePipe implements PipeTransform {
       return value;
     }
 
-    // set textMask mask for telephone number...
-    // this.telephoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
-    return format(value, 'US', 'National');
+    return value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
   }
 }

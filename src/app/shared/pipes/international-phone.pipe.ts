@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {format} from "libphonenumber-js";
 
 @Pipe({
   name: 'internationalPhone'
@@ -11,7 +10,7 @@ export class InternationalPhonePipe implements PipeTransform {
       return value;
     }
 
-    return format(value, 'US', 'International').replace(/\s+/g, '-');
+    return '+1-' + value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
   }
 
 }
