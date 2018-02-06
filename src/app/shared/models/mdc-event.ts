@@ -237,7 +237,7 @@ export class MdcEvent {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MdcEvent otherwise it throws an error.
    */
-  public static fromJSON(json: any, calendarId:string = null): MdcEvent {
+  public static fromJSON(json: any, calendarId: string = null): MdcEvent {
     if (MdcEvent.validateJson(json)) {
 
       // get address
