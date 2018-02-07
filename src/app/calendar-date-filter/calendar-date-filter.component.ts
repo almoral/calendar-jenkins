@@ -57,9 +57,51 @@ export class CalendarDateFilterComponent implements OnInit {
     }
 
     this.days = this.dateService.getNumberOfDays(year, month);
-    this.dateService.setYear(this.selectedYear);
-    this.dateService.setMonth(this.selectedMonth);
-    this.dateService.setDay(this.selectedDay);
+    this.updateServiceDate(this.selectedYear, this.selectedMonth, this.selectedDay);
+  }
+
+  private updateServiceDate (year: string, month: string, day: string): void {
+    this.dateService.setYear(year);
+    this.dateService.setMonth(month);
+    this.dateService.setDay(day);
+  }
+
+  public getPreviousDay() {
+
+    if (this.selectedDay === '') {
+      this.selectedDay = '1';
+    }
+
+      const currentSelectedDate: string = this.selectedYear + '-' +  this.selectedMonth + '-' + this.selectedDay;
+
+      const previousDate = moment(currentSelectedDate, 'YYYY-MMMM-DD').subtract(1, 'days').format();
+
+      this.selectedYear = moment(previousDate).format('YYYY');
+      this.selectedMonth = moment(previousDate).format('MMMM');
+      this.selectedDay = moment(previousDate).format('DD');
+
+      this.updateServiceDate(moment(previousDate).format('YYYY'), moment(previousDate).format('MMMM'), moment(previousDate).format('DD'));
+
+      this.filterEventsByDate();
+  }
+
+  public getNextDay() {
+
+
+    if (this.selectedDay === '') {
+      this.selectedDay = '1';
+    }
+
+    const currentSelectedDate: string = this.selectedYear + '-' +  this.selectedMonth + '-' + this.selectedDay;
+
+    const nextDate = moment(currentSelectedDate, 'YYYY-MMMM-DD').add(1, 'days').format();
+
+    this.updateDays( moment(nextDate).format('YYYY'), moment(nextDate).format('MMMM'), moment(nextDate).format('DD'));
+
+    this.updateServiceDate(moment(nextDate).format('YYYY'), moment(nextDate).format('MMMM'), moment(nextDate).format('DD'));
+
+    this.filterEventsByDate();
+
   }
 
 }

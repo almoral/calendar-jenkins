@@ -9,10 +9,6 @@ import {CalendarDataService} from './calendar-data.service';
 import {Calendar} from "../models/calendar";
 import {Category} from "../models/category";
 
-export interface DateRange {
-  startDate: Date;
-  endDate: Date;
-}
 
 @Injectable()
 export class DataStoreService {
@@ -62,10 +58,6 @@ export class DataStoreService {
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
 
-  // observable DateRange
-  private dateRangeSubject = new BehaviorSubject([]);
-  public dateRange$: Observable<DateRange[]> = this.dateRangeSubject.asObservable();
-
   /**
    * getEvents fetches all events falling between date:to and
    * date:from, and the state of hte store is initialized with
@@ -74,8 +66,6 @@ export class DataStoreService {
    * @param from - end Date.
    */
   getEvents(from: Date, to: Date) {
-
-    this.dateRangeSubject.next([{startDate: from, endDate: to}]);
 
     const calendars = _.flatMap(this.calendarsSubject.getValue(), (item) => item.value);
 

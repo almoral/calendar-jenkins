@@ -67,7 +67,7 @@ export class DateService {
     this.initializeDay();
   }
 
-  public initializeDay(){
+  public initializeDay() {
 
     if (this.configurationService.dateFilterType === 'day') {
       this.setDay(moment().format('D'));
@@ -87,6 +87,7 @@ export class DateService {
   private static createDateString(year: string, month: string): string {
     return year + '-' + month;
   }
+
 
   /**
    * getNumberOfDays calculates the number of days in a given month.

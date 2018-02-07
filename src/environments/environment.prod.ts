@@ -2,8 +2,8 @@ export const environment = {
   production: true,
 
   // Configurations coming from the container ie: Teamsite component wrapper.
-  dateFilterType: window['dateFilterType'] || 'day',
-  calendars: window['calendars'] || [],
+  dateFilterType: window['dateFilterType'] || 'month',
+  calendars: window['calendars'] || ['global'],
   showCalendarsFilter: window['showCalendarsFilter'] || false,
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   calendarUrls: {
