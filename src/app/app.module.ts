@@ -30,6 +30,8 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
 import {InitializeService} from './shared/services/initialize.service';
+import { PhonePipe } from './shared/pipes/phone.pipe';
+import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import {InitializeService} from './shared/services/initialize.service';
     CalendarFilterContainerComponent,
     MessagesComponent,
     CheckboxGroupComponent,
-    MdcPaginationComponent
+    MdcPaginationComponent,
+    PhonePipe,
+    InternationalPhonePipe
   ],
   imports: [
     BrowserModule,
