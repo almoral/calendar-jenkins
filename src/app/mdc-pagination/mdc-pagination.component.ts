@@ -36,21 +36,21 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
     // Create observable from click events in order to throttle API calls.
     const past = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     past.filter((element: any) => element.target.id === 'previousDay')
-      .throttleTime(1000)
+      .throttleTime(700)
       .subscribe( () => this.getPreviousDay());
 
     const next = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     next.filter((element: any) => element.target.id === 'nextDay')
-      .throttleTime(1000)
+      .throttleTime(700)
       .subscribe( () => this.getNextDay());
   }
 
   getNextDay() {
-    this.dateService.paginateByDay('forward');
+    this.dateService.getNextDay();
   }
 
   getPreviousDay() {
-    this.dateService.paginateByDay('backward');
+    this.dateService.getPreviousDay();
   }
 
 }

@@ -188,26 +188,28 @@ export class DateService {
     }
   }
 
-  /**
-   * getPreviousDay makes a call to the service to get events for the day before the current date that is displaying.
-   * @param direction - Direction to paginate. Has two possible values, 'forward' for one day in the future and 'backward' for one day in the past.
-   */
-  public paginateByDay(direction: string) {
-
+  getNextDay() {
     // This pulls the current date from the behavior subjects.
     const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
-    let newDate = '';
 
-    // Switch statement to handle what direction the user wants to move in.
-    switch (direction) {
-      case 'forward':
-        newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').add(1, 'days').format();
-        break;
+    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').add(1, 'days').format();
 
-      case 'backward':
-        newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').subtract(1, 'days').format();
-        break;
-    }
+    // Update the state to match the new value based on the direction the user chose.
+    this.setYear(moment(newDate).format('YYYY'));
+    this.setMonth(moment(newDate).format('MMMM'));
+    this.setDay(moment(newDate).format('D'));
+
+    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
+
+    this.filterEventsByDate();
+
+  }
+
+  getPreviousDay() {
+    // This pulls the current date from the behavior subjects.
+    const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
+
+    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').subtract(1, 'days').format();
 
     // Update the state to match the new value based on the direction the user chose.
     this.setYear(moment(newDate).format('YYYY'));
@@ -218,6 +220,7 @@ export class DateService {
 
     this.filterEventsByDate();
   }
+
 
 
 }
