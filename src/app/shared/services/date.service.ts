@@ -5,6 +5,7 @@ import 'rxjs/add/observable/of';
 import { DataStoreService } from './data-store.service';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {ConfigurationService} from "./configuration.service";
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class DateService {
@@ -13,12 +14,14 @@ export class DateService {
   private yearSubject = new BehaviorSubject<string>(null);
   private monthSubject = new BehaviorSubject<string>(null);
   private daySubject = new BehaviorSubject<string>(null);
+  private numberOfDaysSubject = new BehaviorSubject<string[]>([]);
 
 
   // Creating observables as getters to keep the subjects private.
   year$ = this.yearSubject.asObservable();
   month$ = this.monthSubject.asObservable();
   day$ = this.daySubject.asObservable();
+  numberOfDaysInMonth$ = this.numberOfDaysSubject.asObservable();
 
 
   setYear(value) {
@@ -60,14 +63,14 @@ export class DateService {
     this.initializeService();
   }
 
-  public initializeService(){
+  public initializeService() {
 
     this.setYear(moment().format(DateService.YEAR_FORMAT));
     this.setMonth(moment().format(DateService.MONTH_FORMAT));
     this.initializeDay();
   }
 
-  public initializeDay(){
+  public initializeDay() {
 
     if (this.configurationService.dateFilterType === 'day') {
       this.setDay(moment().format('D'));
@@ -88,15 +91,16 @@ export class DateService {
     return year + '-' + month;
   }
 
+
   /**
    * getNumberOfDays calculates the number of days in a given month.
    * @param year - selected year.
    * @param month - selected month.
    */
-  public getNumberOfDays(year: string, month: string): string[] {
+  public getNumberOfDays(year: string, month: string) {
     let selectedDate = DateService.createDateString(year, month);
     let newNumberOfDays: number = moment(selectedDate, DateService.YEAR_AND_MONTH_FORMAT).daysInMonth();
-    return this.generateDaysInMonth(newNumberOfDays);
+    this.numberOfDaysSubject.next(this.generateDaysInMonth(newNumberOfDays));
   }
 
   /**
@@ -137,7 +141,7 @@ export class DateService {
    */
   public filterByMonth(year: string, month: string): void {
     let fromDate: string = month + '/1/' + year;
-    let numberOfDays: string[] = this.getNumberOfDays(year, month);
+    const numberOfDays = this.numberOfDaysSubject.getValue();
     let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
 
     fromDate = moment(fromDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
@@ -184,6 +188,38 @@ export class DateService {
     }
   }
 
+  filterEventsByNextDate() {
+    // This pulls the current date from the behavior subjects.
+    const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
+
+    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').add(1, 'days').format();
+
+    // Update the state to match the new value based on the direction the user chose.
+    this.setYear(moment(newDate).format('YYYY'));
+    this.setMonth(moment(newDate).format('MMMM'));
+    this.setDay(moment(newDate).format('D'));
+
+    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
+
+    this.filterEventsByDate();
+
+  }
+
+  filterEventsByPreviousDate() {
+    // This pulls the current date from the behavior subjects.
+    const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
+
+    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').subtract(1, 'days').format();
+
+    // Update the state to match the new value based on the direction the user chose.
+    this.setYear(moment(newDate).format('YYYY'));
+    this.setMonth(moment(newDate).format('MMMM'));
+    this.setDay(moment(newDate).format('D'));
+
+    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
+
+    this.filterEventsByDate();
+  }
 
 
 
