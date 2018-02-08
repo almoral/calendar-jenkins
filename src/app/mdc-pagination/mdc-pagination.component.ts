@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DateService} from '../shared/services/date.service';
 
 @Component({
   selector: 'mdc-pagination',
@@ -23,9 +24,17 @@ export class MdcPaginationComponent implements OnInit {
 
   private _autoHide = false;
 
-  constructor() { }
+  constructor(private dateService: DateService) { }
 
   ngOnInit() {
+  }
+
+  getNextDay() {
+    this.dateService.paginateByDay('forward');
+  }
+
+  getPreviousDay() {
+    this.dateService.paginateByDay('backward');
   }
 
 }

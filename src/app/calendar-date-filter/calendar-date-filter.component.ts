@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/services/date.service';
 import * as _ from 'lodash';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -15,7 +16,6 @@ export class CalendarDateFilterComponent implements OnInit {
   public selectedYear: string;
   public selectedMonth: string;
   public selectedDay: string;
-  public selectedDate: string;
   public years: string[] = ['2014', '2015', '2016', '2017', '2018'];
   // We can use the months function but it's deprecated in momentjs v2.0.
   public months: string[] = moment.months();
@@ -32,7 +32,10 @@ export class CalendarDateFilterComponent implements OnInit {
     this.dateService.year$.subscribe(year => this.selectedYear = year);
     this.dateService.month$.subscribe( month => this.selectedMonth = month);
     this.dateService.day$.subscribe( day => this.selectedDay = day);
-    this.days = this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
+
+    this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
+
+    this.dateService.numberOfDaysInMonth$.subscribe( numberOfDays => this.days = numberOfDays );
 
     this.dateService.filterEventsByDate();
   }
@@ -55,8 +58,7 @@ export class CalendarDateFilterComponent implements OnInit {
     } else {
       this.disableDayField = false;
     }
-
-    this.days = this.dateService.getNumberOfDays(year, month);
+    this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
     this.updateServiceDate(this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
@@ -66,42 +68,7 @@ export class CalendarDateFilterComponent implements OnInit {
     this.dateService.setDay(day);
   }
 
-  public getPreviousDay() {
-
-    if (this.selectedDay === '') {
-      this.selectedDay = '1';
-    }
-
-      const currentSelectedDate: string = this.selectedYear + '-' +  this.selectedMonth + '-' + this.selectedDay;
-
-      const previousDate = moment(currentSelectedDate, 'YYYY-MMMM-DD').subtract(1, 'days').format();
-
-      this.selectedYear = moment(previousDate).format('YYYY');
-      this.selectedMonth = moment(previousDate).format('MMMM');
-      this.selectedDay = moment(previousDate).format('DD');
-
-      this.updateServiceDate(moment(previousDate).format('YYYY'), moment(previousDate).format('MMMM'), moment(previousDate).format('DD'));
-
-      this.filterEventsByDate();
-  }
-
-  public getNextDay() {
 
 
-    if (this.selectedDay === '') {
-      this.selectedDay = '1';
-    }
-
-    const currentSelectedDate: string = this.selectedYear + '-' +  this.selectedMonth + '-' + this.selectedDay;
-
-    const nextDate = moment(currentSelectedDate, 'YYYY-MMMM-DD').add(1, 'days').format();
-
-    this.updateDays( moment(nextDate).format('YYYY'), moment(nextDate).format('MMMM'), moment(nextDate).format('DD'));
-
-    this.updateServiceDate(moment(nextDate).format('YYYY'), moment(nextDate).format('MMMM'), moment(nextDate).format('DD'));
-
-    this.filterEventsByDate();
-
-  }
 
 }
