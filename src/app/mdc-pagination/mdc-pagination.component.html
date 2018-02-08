@@ -23,11 +23,11 @@
 
   <div class="pagination" aria-label='Pagination' *ngIf="p.pages.length === 1">
     <div class="column left-align hide-on-small-only">
-      <button (click)='this.getPreviousDay()' class="waves-effect wave-light btn white prev" tabindex="0"><i class="material-icons">arrow_back</i>Previous</button>
+      <button id="previousDay" class="waves-effect wave-light btn white prev" tabindex="0"><i class="material-icons">arrow_back</i>Previous</button>
     </div>
 
     <div class="column right-align hide-on-small-only">
-      <button class="waves-effect wave-light btn white next"  (click)="this.getNextDay()" tabindex="0">Next<i class="material-icons">arrow_forward</i></button>
+      <button class="waves-effect wave-light btn white next" id="nextDay" tabindex="0">Next<i class="material-icons">arrow_forward</i></button>
     </div>
 
   </div>

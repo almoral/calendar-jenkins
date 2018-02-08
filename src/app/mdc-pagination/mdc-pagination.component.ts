@@ -1,12 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'mdc-pagination',
   templateUrl: './mdc-pagination.component.html',
   styleUrls: ['./mdc-pagination.component.css']
 })
-export class MdcPaginationComponent implements OnInit {
+export class MdcPaginationComponent implements OnInit, AfterViewInit {
 
   @Input() id: string;
   @Input() maxSize: number;
@@ -24,9 +25,24 @@ export class MdcPaginationComponent implements OnInit {
 
   private _autoHide = false;
 
-  constructor(private dateService: DateService) { }
+  constructor(private dateService: DateService, private elementRef: ElementRef) { }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+
+    // Create observable from click events in order to throttle API calls.
+    const past = Observable.fromEvent(this.elementRef.nativeElement, 'click');
+    past.filter((element: any) => element.target.id === 'previousDay')
+      .throttleTime(1000)
+      .subscribe( () => this.getPreviousDay());
+
+    const next = Observable.fromEvent(this.elementRef.nativeElement, 'click');
+    next.filter((element: any) => element.target.id === 'nextDay')
+      .throttleTime(1000)
+      .subscribe( () => this.getNextDay());
   }
 
   getNextDay() {
