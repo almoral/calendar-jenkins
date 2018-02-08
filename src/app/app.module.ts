@@ -30,6 +30,10 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { MdcPaginationComponent } from './mdc-pagination/mdc-pagination.component';
 import {CalendarDataService} from './shared/services/calendar-data.service';
 import {InitializeService} from './shared/services/initialize.service';
+import { PhonePipe } from './shared/pipes/phone.pipe';
+import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe';
+import {NgHttpLoaderServicesModule} from "ng-http-loader/services/ng-http-loader-services.module";
+import {NgHttpLoaderComponentsModule} from "ng-http-loader/components/ng-http-loader-components.module";
 
 
 @NgModule({
@@ -47,11 +51,15 @@ import {InitializeService} from './shared/services/initialize.service';
     CalendarFilterContainerComponent,
     MessagesComponent,
     CheckboxGroupComponent,
-    MdcPaginationComponent
+    MdcPaginationComponent,
+    PhonePipe,
+    InternationalPhonePipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgHttpLoaderServicesModule,
+    NgHttpLoaderComponentsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase: 'api/calendar/ASD', passThruUnknownUrl: true}),
     AppRoutingModule,
     NgxPaginationModule,
