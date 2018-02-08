@@ -188,7 +188,7 @@ export class DateService {
     }
   }
 
-  getNextDay() {
+  filterEventsByNextDate() {
     // This pulls the current date from the behavior subjects.
     const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
 
@@ -205,7 +205,7 @@ export class DateService {
 
   }
 
-  getPreviousDay() {
+  filterEventsByPreviousDate() {
     // This pulls the current date from the behavior subjects.
     const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
 

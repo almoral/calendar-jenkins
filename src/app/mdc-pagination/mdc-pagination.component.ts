@@ -37,20 +37,20 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
     const past = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     past.filter((element: any) => element.target.id === 'previousDay')
       .throttleTime(700)
-      .subscribe( () => this.getPreviousDay());
+      .subscribe( () => this.filterEventsByPreviousDate());
 
     const next = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     next.filter((element: any) => element.target.id === 'nextDay')
       .throttleTime(700)
-      .subscribe( () => this.getNextDay());
+      .subscribe( () => this.filterEventsByNextDate());
   }
 
-  getNextDay() {
-    this.dateService.getNextDay();
+  filterEventsByNextDate() {
+    this.dateService.filterEventsByNextDate();
   }
 
-  getPreviousDay() {
-    this.dateService.getPreviousDay();
+  filterEventsByPreviousDate() {
+    this.dateService.filterEventsByPreviousDate();
   }
 
 }
