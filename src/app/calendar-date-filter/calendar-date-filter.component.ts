@@ -67,8 +67,4 @@ export class CalendarDateFilterComponent implements OnInit {
     this.dateService.setMonth(month);
     this.dateService.setDay(day);
   }
-
-
-
-
 }
