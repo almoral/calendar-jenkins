@@ -419,6 +419,7 @@ div.bottom-sheet{
   .mobile-filters,
   .middle-container {
     position: relative;
+    z-index: 0;
   }
 
   .middle-container {
