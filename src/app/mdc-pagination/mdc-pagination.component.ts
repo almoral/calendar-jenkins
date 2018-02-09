@@ -24,11 +24,12 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
   private _autoHide = false;
+  public isFilteredBySingleDate = false;
 
   constructor(private dateService: DateService, private elementRef: ElementRef) { }
 
   ngOnInit() {
-
+    this.dateService.day$.subscribe( day => this.isFilteredBySingleDate = day !== '');
   }
 
   ngAfterViewInit() {

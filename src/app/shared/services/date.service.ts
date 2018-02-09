@@ -10,7 +10,6 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class DateService {
 
-
   private yearSubject = new BehaviorSubject<string>(null);
   private monthSubject = new BehaviorSubject<string>(null);
   private daySubject = new BehaviorSubject<string>(null);
@@ -126,6 +125,7 @@ export class DateService {
    * @param day - selected day.
    */
   public filterByDate(year: string, month: string, day: string): void {
+
     let filterDate: string = '' + year + '-' + month + '-' + day + '';
 
     filterDate = moment(filterDate, 'YYYY-MMMM-DD').format('MM/DD/YYYY');
