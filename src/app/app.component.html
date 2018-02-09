@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="main-body-content-container">
   <!--Main Body -->
-  <spinner backgroundColor="#ff0000" spinner="sk-wave" debounceDelay="200"></spinner>
+  <spinner [debounceDelay]="200" [entryComponent]="loader">
+  </spinner>
   <mdc-calendar></mdc-calendar>
 </div>

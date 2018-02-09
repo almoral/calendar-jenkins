@@ -32,8 +32,9 @@ import {CalendarDataService} from './shared/services/calendar-data.service';
 import {InitializeService} from './shared/services/initialize.service';
 import { PhonePipe } from './shared/pipes/phone.pipe';
 import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe';
-import {NgHttpLoaderServicesModule} from "ng-http-loader/services/ng-http-loader-services.module";
-import {NgHttpLoaderComponentsModule} from "ng-http-loader/components/ng-http-loader-components.module";
+import { NgHttpLoaderServicesModule } from "ng-http-loader/services/ng-http-loader-services.module";
+import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-loader-components.module";
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -53,7 +54,9 @@ import {NgHttpLoaderComponentsModule} from "ng-http-loader/components/ng-http-lo
     CheckboxGroupComponent,
     MdcPaginationComponent,
     PhonePipe,
-    InternationalPhonePipe
+    InternationalPhonePipe,
+    LoaderComponent
+
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,9 @@ import {NgHttpLoaderComponentsModule} from "ng-http-loader/components/ng-http-lo
     CalendarDataService,
     InitializeService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoaderComponent
+  ]
 })
 export class AppModule { }

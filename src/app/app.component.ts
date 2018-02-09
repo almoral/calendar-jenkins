@@ -1,4 +1,7 @@
 import {Component, NgModule} from '@angular/core';
+import {LoaderComponent} from "./loader/loader.component";
+
+
 @Component({
   selector: 'mdc-app-root',
   templateUrl: './app.component.html',
@@ -6,4 +9,5 @@ import {Component, NgModule} from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  public loader = LoaderComponent;
 }
