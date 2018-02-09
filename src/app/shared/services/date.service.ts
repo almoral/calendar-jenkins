@@ -10,9 +10,6 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class DateService {
 
-
-  public isFilteredBySingleDate = false;
-
   private yearSubject = new BehaviorSubject<string>(null);
   private monthSubject = new BehaviorSubject<string>(null);
   private daySubject = new BehaviorSubject<string>(null);
@@ -128,8 +125,6 @@ export class DateService {
    * @param day - selected day.
    */
   public filterByDate(year: string, month: string, day: string): void {
-
-    this.isFilteredBySingleDate = true;
 
     let filterDate: string = '' + year + '-' + month + '-' + day + '';
 
