@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
 import {Observable} from 'rxjs/Observable';
-import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-pagination',
@@ -26,14 +25,11 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
 
   private _autoHide = false;
   public isFilteredBySingleDate = false;
-  public isSetToDayView = false;
 
   constructor(private dateService: DateService, private elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.isFilteredBySingleDate = this.dateService.isFilteredBySingleDate;
-    this.isSetToDayView = environment.dateFilterType === 'day';
-
+    this.dateService.day$.subscribe( day => this.isFilteredBySingleDate = day !== '');
   }
 
   ngAfterViewInit() {

@@ -1,6 +1,6 @@
 <pagination-template #p="paginationApi"
 (pageChange)="pageChange.emit($event)">
-  <div class="pagination" aria-label='Pagination'>
+  <div class="pagination" aria-label='Pagination' *ngIf="!isFilteredBySingleDate">
     <div class="column left-align hide-on-small-only" [class.disabled]='p.isFirstPage()'>
       <button *ngIf='!p.isFirstPage()' (click)='p.previous()' class="waves-effect wave-light btn white prev" tabindex="0"><i class="material-icons">arrow_back</i>Previous</button>
     </div>
@@ -21,7 +21,7 @@
 
 
 
-  <div class="pagination" aria-label='Pagination' *ngIf="isFilteredBySingleDate || isSetToDayView">
+  <div class="pagination" aria-label='Pagination' *ngIf="isFilteredBySingleDate">
     <div class="column left-align">
       <button id="previousDay" class="waves-effect wave-light btn white prev" tabindex="0"><i class="material-icons">arrow_back</i>Previous</button>
     </div>
