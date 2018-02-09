@@ -16,7 +16,7 @@ export class CalendarDateFilterComponent implements OnInit {
   public selectedYear: string;
   public selectedMonth: string;
   public selectedDay: string;
-  public years: string[] = ['2014', '2015', '2016', '2017', '2018'];
+  public years: string[] = ['2014', '2015', '2016', '2017', '2018', '2019', '2020'];
   // We can use the months function but it's deprecated in momentjs v2.0.
   public months: string[] = moment.months();
   public days: string[];
