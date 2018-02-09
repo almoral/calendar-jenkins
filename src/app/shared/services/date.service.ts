@@ -66,6 +66,7 @@ export class DateService {
 
     this.setYear(moment().format(DateService.YEAR_FORMAT));
     this.setMonth(moment().format(DateService.MONTH_FORMAT));
+    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
     this.initializeDay();
   }
 
