@@ -9,6 +9,10 @@ CALENDAR PAGINATION
   margin-top: 75px;
 }
 
+.pagination.singleDay {
+  margin-top: -75px;
+}
+
 .pagination > .column {
   display: table-cell;
   padding-top: 16px;
