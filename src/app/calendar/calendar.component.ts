@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'mdc-calendar',
@@ -11,5 +11,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

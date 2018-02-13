@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
-import {MdcEventsByDate} from '../shared/models/mdc-event';
+import {MdcEvent, MdcEventsByDate} from '../shared/models/mdc-event';
 import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'mdc-calendar-event-list',
@@ -10,13 +11,26 @@ import {Observable} from 'rxjs/Observable';
 })
 export class CalendarEventListComponent implements OnInit {
 
-  events$: Observable<MdcEventsByDate[]>;
+  eventsSubject = new BehaviorSubject([]);
+  events$: Observable<MdcEventsByDate[]> = this.eventsSubject.asObservable();
   page = 1;
+  isLoading = new BehaviorSubject(true);
+  loadStatus  = this.isLoading.asObservable();
 
   constructor(private dataStore: DataStoreService) { }
 
   ngOnInit() {
-    this.events$ = this.dataStore.eventsByDate$;
+
+    this.dataStore.eventsByDate$
+      .finally(() => {
+        console.log('finally called!');
+        this.isLoading.next(false);
+      })
+      .subscribe( events => {
+      this.eventsSubject.next(events);
+    },
+      error => console.log('error occurred: ', error)
+      );
   }
 
 }

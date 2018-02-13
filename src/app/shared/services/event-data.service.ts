@@ -8,6 +8,7 @@ import {MdcEvent} from '../models/mdc-event';
 import {forkJoin} from 'rxjs/observable/forkJoin';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 
 /**
@@ -20,10 +21,10 @@ import * as moment from 'moment';
 @Injectable()
 export class EventDataService {
 
+
   constructor(private httpClient: HttpClient,
               private configurationService: ConfigurationService) {
   }
-
 
   /**
    * getEventsOnCalendar will get all the events belonging to a calendar
