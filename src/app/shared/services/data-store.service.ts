@@ -43,6 +43,10 @@ export class DataStoreService {
   private categoriesFilterSubject = new BehaviorSubject([]);
   public categoriesFilter$: Observable<string[]> = this.categoriesFilterSubject.asObservable();
 
+  // observable filter types.
+  private typesFilterSubject = new BehaviorSubject([]);
+  public typesFilter$: Observable<string[]> = this.typesFilterSubject.asObservable();
+
 
   // observable filter calendars. This is the list of filters the user has chosen from the checkboxes.
   private calendarsFilterSubject = new BehaviorSubject([]);
@@ -57,6 +61,10 @@ export class DataStoreService {
   // observable categories.
   private categoriesSubject = new BehaviorSubject([]);
   public categories$: Observable<string[]> = this.categoriesSubject.asObservable();
+
+  // observable types.
+  private typesSubject = new BehaviorSubject([]);
+  public types$: Observable<string[]> = this.typesSubject.asObservable();
 
   /**
    * getEvents fetches all events falling between date:to and
@@ -91,7 +99,7 @@ export class DataStoreService {
   /**
    * filterEvents does the following:
    * 1. Filter events in the master list - eventsSubject -
-   *    using title, categories and calendars.
+   *    using title, categories, types, and calendars.
    * 2. Categorize the result by date.
    * 3. Notify subscribers that the categorized events have changed.
    */
@@ -102,6 +110,7 @@ export class DataStoreService {
       this.eventsSubject.getValue(),
       this.titleFilterSubject.getValue(),
       this.categoriesFilterSubject.getValue(),
+      this.typesFilterSubject.getValue(),
       this.calendarsFilterSubject.getValue());
 
     // categorize events by date.
@@ -117,6 +126,10 @@ export class DataStoreService {
 
   setCategoriesFilter(categories: string[]) {
     this.categoriesFilterSubject.next(categories);
+  }
+
+  setTypesFilter(types: string[]) {
+    this.typesFilterSubject.next(types);
   }
 
   setTitleFilter(title: string) {
