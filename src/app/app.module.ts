@@ -35,6 +35,7 @@ import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe'
 import { NgHttpLoaderServicesModule } from "ng-http-loader/services/ng-http-loader-services.module";
 import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-loader-components.module";
 import { LoaderComponent } from './loader/loader.component';
+import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { LoaderComponent } from './loader/loader.component';
     MdcPaginationComponent,
     PhonePipe,
     InternationalPhonePipe,
-    LoaderComponent
+    LoaderComponent,
+    CalendarFilterByTypeComponent
 
   ],
   imports: [
