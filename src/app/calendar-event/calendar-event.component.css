@@ -120,7 +120,7 @@ h2.group-title::after {
 .list-item.middle .detail-item{ vertical-align: middle; }
 
 .calendar-quick-view-container .content-main-calendar .list-item .detail-item:first-child {
-  width: 120px;
+  width: 80px;
 }
 
 .calendar-quick-view-container .content-main-calendar .list-item .detail-item:last-child {
