@@ -40,13 +40,17 @@ export class EventService {
    * and the categories contraint
    * @param title - title to use filterEventByTitle contraint.
    * @param categories - categories in filterEventsByCategory constraint.
+   * @param types - types in filterEventsByType constraint.
+   * @param calendars - calendars in filterEventsByCalendar constraint.
    */
-  filterEvents(events: MdcEvent[], title: string, categories: string[], calendars: string[]): MdcEvent[] {
+  filterEvents(events: MdcEvent[], title: string, categories: string[], types: string[], calendars: string[]): MdcEvent[] {
     return this.filterEventsByCalendar(
       this.filterEventsByCategory(
+        this.filterEventsByType(
         this.filterEventsByTitle(
-          this.filterEventsByType(events),
+          this.filterDepartmentsOnlyEvents(events),
           title),
+        types),
         categories),
       calendars);
   }
@@ -91,6 +95,26 @@ export class EventService {
     });
   }
 
+  /**
+   * filterEventsByType intersects types with MdcEvent.types
+   * If intersection is not empty the event passes the filter. As long as an
+   * event contain at least one type in types, it will pass the filter.
+   * If the filter is an empty array of types return all events.
+   * @param events - array of MdcEvent to be filtered.
+   * @param types - array of strings representing the types to be intersected.
+   */
+  filterEventsByType(events: MdcEvent[], types: string[]): MdcEvent[] {
+
+    // no categories. Return all events.
+    if (_.isEmpty(types))
+      return events;
+
+    // filter by intersecting categories.
+    return _.filter(events, (event: MdcEvent) => {
+      return !(_.isEmpty(_.intersection(types, event.eventTypes)));
+    });
+  }
+
 
   /**
    * filterEventsByCalendar returns all events in events whose calendarId is contained
@@ -114,7 +138,7 @@ export class EventService {
 
 
   // This keeps department only events from displaying.
-  filterEventsByType(events: MdcEvent[]) {
+  filterDepartmentsOnlyEvents(events: MdcEvent[]) {
     return _.filter(events, (event: MdcEvent) => {
       if (this.excludeDepartmentOnly) {
         return _.filter(event.eventTypes, isDepartmentOnlyValue => {

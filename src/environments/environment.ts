@@ -13,6 +13,7 @@ export const environment = {
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`,
-    categoriesUrl: 'https://s0144821.miamidade.gov:7000/registration/api/topics'
+    categoriesUrl: 'https://s0144821.miamidade.gov:7000/registration/api/topics',
+    typesUrl: 'https://s0144821.miamidade.gov:7009/calendar/api/configuration/types'
   }
 };

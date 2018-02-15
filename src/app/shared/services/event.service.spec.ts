@@ -75,14 +75,14 @@ describe('EventService', () => {
 
   it('should only return events that have isDepartmentOnly equal to false', inject([EventService], (service: EventService) => {
     service.excludeDepartmentOnly = false;
-    const events = service.filterEventsByType(TestEvents.testEventsTwo);
+    const events = service.filterDepartmentsOnlyEvents(TestEvents.testEventsTwo);
     expect(events.length).toBe(1);
   }));
 
 
   it('should only return events that have isDepartmentOnly equal to true', inject([EventService], (service: EventService) => {
     service.excludeDepartmentOnly = true;
-    const events = service.filterEventsByType(TestEvents.testEventsOne);
+    const events = service.filterDepartmentsOnlyEvents(TestEvents.testEventsOne);
     expect(events.length).toBe(0);
   }));
 

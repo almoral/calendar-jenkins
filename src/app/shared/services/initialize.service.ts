@@ -6,12 +6,14 @@ import {DateService} from './date.service';
 export class InitializeService {
 
   private categoriesFilterSubject = new BehaviorSubject<boolean>(null);
+  private typesFilterSubject = new BehaviorSubject<boolean>(null);
   private calendarsFilterSubject = new BehaviorSubject<boolean>(null);
   private titleSubject = new BehaviorSubject<string>('');
 
 
   calendarsFilter$ = this.calendarsFilterSubject.asObservable();
   categoriesFilter$ = this.categoriesFilterSubject.asObservable();
+  typesFilter$ = this.typesFilterSubject.asObservable();
 
   title$ = this.titleSubject.asObservable();
 
@@ -35,6 +37,13 @@ export class InitializeService {
       this.categoriesFilterSubject.next(null);
     } else {
       this.categoriesFilterSubject.next(false);
+    }
+
+    // Reset the types checkboxes.
+    if (this.typesFilterSubject.getValue() === false) {
+      this.typesFilterSubject.next(null);
+    } else {
+      this.typesFilterSubject.next(false);
     }
 
     // Reset the calendar checkboxes.
