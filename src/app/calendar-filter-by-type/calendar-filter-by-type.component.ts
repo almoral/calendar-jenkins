@@ -29,16 +29,16 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.types$ = this.dataStoreService.categories$;
+    this.types$ = this.dataStoreService.types$;
 
     this.typeForm = this.fb.group({
       types: []
     });
 
-    this.initializeService.categoriesFilter$.subscribe(value => {
+    this.initializeService.typesFilter$.subscribe(value => {
       this.checked = value;
       this.selectedTypes.length = 0;
-      this.dataStoreService.setCategoriesFilter(this.selectedTypes);
+      this.dataStoreService.setTypesFilter(this.selectedTypes);
     });
 
   }
@@ -53,10 +53,10 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
       this.selectedTypes.push(selection);
     } else {
-      _.remove(this.selectedTypes, category => category === selection);
+      _.remove(this.selectedTypes, selectedType => selectedType === selection);
     }
 
-    this.dataStoreService.setCategoriesFilter(this.selectedTypes);
+    this.dataStoreService.setTypesFilter(this.selectedTypes);
   }
 
 }

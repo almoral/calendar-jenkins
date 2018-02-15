@@ -10,7 +10,8 @@ export class ConfigurationService {
 
   calendarUrls = {
     eventsOnCalendarUrl: environment.calendarUrls.eventsOnCalendarUrl,
-    categoriesUrl: environment.calendarUrls.categoriesUrl
+    categoriesUrl: environment.calendarUrls.categoriesUrl,
+    typesUrl: environment.calendarUrls.typesUrl
   }
 
   constructor() {

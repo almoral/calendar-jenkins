@@ -1,9 +1,9 @@
 import {InitializeService} from '../shared/services/initialize.service';
 import {Component, OnInit} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
-import {ConfigurationService} from "../shared/services/configuration.service";
-import {Observable} from "rxjs";
-import {DataStoreService} from "../shared/services/data-store.service";
+import {ConfigurationService} from '../shared/services/configuration.service';
+import {Observable} from 'rxjs/Observable';
+import {DataStoreService} from '../shared/services/data-store.service';
 
 @Component({
   selector: 'mdc-calendar-filter-container',
@@ -18,9 +18,11 @@ export class CalendarFilterContainerComponent implements OnInit{
   toggleTitleFilter = false;
   toggleDateFilter = true;
   toggleCategoryFilter = true;
+  toggleTypeFilter = true;
   toggleCalendarFilter = true;
 
   categories$: Observable<string[]>;
+  types$: Observable<string[]>;
   calendars$: Observable<string[]>;
 
   constructor(private dateService: DateService,
@@ -34,6 +36,7 @@ export class CalendarFilterContainerComponent implements OnInit{
     }
 
     this.categories$ = this.dataStoreService.categories$;
+    this.types$ = this.dataStoreService.types$;
     this.calendars$ = this.dataStoreService.calendars$;
 
   }
@@ -44,6 +47,7 @@ export class CalendarFilterContainerComponent implements OnInit{
     this.toggleDateFilter = false;
     this.toggleCategoryFilter = false;
     this.toggleCalendarFilter = false;
+    this.toggleTypeFilter = false;
   }
 
   closeModal() {
@@ -51,6 +55,7 @@ export class CalendarFilterContainerComponent implements OnInit{
     this.toggleTitleFilter = true;
     this.toggleDateFilter = true;
     this.toggleCategoryFilter = true;
+    this.toggleTypeFilter = true;
     this.toggleCalendarFilter = true;
   }
 
@@ -60,6 +65,7 @@ export class CalendarFilterContainerComponent implements OnInit{
     this.toggleTitleFilter = true;
     this.toggleDateFilter = true;
     this.toggleCategoryFilter = true;
+    this.toggleTypeFilter = true;
     this.toggleCalendarFilter = true;
   }
 

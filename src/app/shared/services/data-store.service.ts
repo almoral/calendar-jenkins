@@ -6,8 +6,9 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
-import {Calendar} from "../models/calendar";
-import {Category} from "../models/category";
+import {Calendar} from '../models/calendar';
+import {Category} from '../models/category';
+import {TypesDataService} from './types-data.service';
 
 
 @Injectable()
@@ -16,13 +17,16 @@ export class DataStoreService {
   constructor(private eventService: EventService,
               private eventDataService: EventDataService,
               private categoriesService: CategoriesDataService,
-              private calendarDataService: CalendarDataService) {
+              private calendarDataService: CalendarDataService,
+              private typesService: TypesDataService) {
 
 
     this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
+    this.subscribeTypesFilter();
     this.subscribeEvents();
     this.subscribeCalendarsFilter();
+    this.getTypes();
     this.getCategories();
     this.getCalendars();
   }
@@ -88,6 +92,13 @@ export class DataStoreService {
     });
   }
 
+  getTypes() {
+    const types$: Observable<Category[]> = this.typesService.getTypes();
+    types$.subscribe(categories => {
+      this.setTypes(categories);
+    });
+  }
+
   getCalendars() {
     const calendars$: Observable<Calendar[]> = this.calendarDataService.getCalendars();
     calendars$.subscribe(calendars => {
@@ -106,7 +117,7 @@ export class DataStoreService {
   filterEvents() {
 
     // filter events in master list.
-    let filteredEvents = this.eventService.filterEvents(
+    const filteredEvents = this.eventService.filterEvents(
       this.eventsSubject.getValue(),
       this.titleFilterSubject.getValue(),
       this.categoriesFilterSubject.getValue(),
@@ -114,7 +125,7 @@ export class DataStoreService {
       this.calendarsFilterSubject.getValue());
 
     // categorize events by date.
-    let eventsByDate = this.eventService.eventsByDate(filteredEvents);
+    const eventsByDate = this.eventService.eventsByDate(filteredEvents);
 
     // notify subscribers.
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
@@ -155,6 +166,15 @@ export class DataStoreService {
   setCategories(newCategories: Category[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
+  /**
+   * setTypes notifies those observers listening for new emission
+   * of types$.
+   * @param newTypes - The collection of object[] representing
+   * the master copy of types which will be emitted at types$
+   */
+  setTypes(newTypes: Category[]) {
+    this.typesSubject.next(_.cloneDeep(newTypes));
+  }
 
   subscribeTitleFilter() {
     this.titleFilter$.subscribe((title) => this.filterEvents());
@@ -162,6 +182,10 @@ export class DataStoreService {
 
   subscribeCategoriesFilter() {
     this.categoriesFilter$.subscribe((categories) => this.filterEvents());
+  }
+
+  subscribeTypesFilter() {
+    this.typesFilter$.subscribe((types) => this.filterEvents());
   }
 
   subscribeCalendarsFilter() {

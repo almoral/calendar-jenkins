@@ -46,10 +46,12 @@ export class EventService {
   filterEvents(events: MdcEvent[], title: string, categories: string[], types: string[], calendars: string[]): MdcEvent[] {
     return this.filterEventsByCalendar(
       this.filterEventsByCategory(
+        this.filterEventsByType(
         this.filterEventsByTitle(
           this.filterDepartmentsOnlyEvents(events),
           title),
         categories),
+        types),
       calendars);
   }
 

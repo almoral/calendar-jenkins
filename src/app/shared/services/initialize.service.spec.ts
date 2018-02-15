@@ -7,7 +7,7 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {ConfigurationService} from './configuration.service';
-import {CategoriesDataService} from './categories-data.service';
+import {FilterOptionsDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
 
 describe('InitializeService', () => {
@@ -22,7 +22,7 @@ describe('InitializeService', () => {
         HttpClient,
         HttpHandler,
         ConfigurationService,
-        CategoriesDataService,
+        FilterOptionsDataService,
         CalendarDataService
       ]
     });

@@ -5,7 +5,7 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ConfigurationService} from './configuration.service';
-import {CategoriesDataService} from './categories-data.service';
+import {FilterOptionsDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
 
 describe('DateService', () => {
@@ -18,7 +18,7 @@ describe('DateService', () => {
         EventDataService,
         HttpClientTestingModule,
         ConfigurationService,
-        CategoriesDataService,
+        FilterOptionsDataService,
         CalendarDataService
       ]
       ,

@@ -36,6 +36,7 @@ import { NgHttpLoaderServicesModule } from "ng-http-loader/services/ng-http-load
 import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-loader-components.module";
 import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
+import {TypesDataService} from "./shared/services/types-data.service";
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calenda
   providers: [
     ConfigurationService,
     CategoriesDataService,
+    TypesDataService,
     EventService,
     EventDataService,
     DataStoreService,
