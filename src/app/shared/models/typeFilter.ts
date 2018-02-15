@@ -46,7 +46,6 @@ export class TypeFilter {
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
   public static fromJSON(json: any): TypeFilter {
-
     return new TypeFilter(
       json.value,
       json.label,

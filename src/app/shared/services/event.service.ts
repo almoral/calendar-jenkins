@@ -50,8 +50,8 @@ export class EventService {
         this.filterEventsByTitle(
           this.filterDepartmentsOnlyEvents(events),
           title),
-        categories),
         types),
+        categories),
       calendars);
   }
 
