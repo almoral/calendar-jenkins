@@ -3,7 +3,8 @@ import {DataStoreService} from '../shared/services/data-store.service';
 import {MdcEventsByDate} from '../shared/models/mdc-event';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import * as _ from 'lodash';
+import {Subject} from 'rxjs/Subject';
+import {share} from 'rxjs/operators';
 
 
 @Component({
@@ -14,19 +15,33 @@ import * as _ from 'lodash';
 export class CalendarEventListComponent implements OnInit {
 
   events$: Observable<MdcEventsByDate[]>;
-  eventsSubject = new BehaviorSubject([]);
+  eventsSubject = new Subject<MdcEventsByDate[]>();
   page = 1;
+  eventsAreLoading = true;
 
   constructor(private dataStore: DataStoreService) { }
 
   ngOnInit() {
-    // this.events$ = this.dataStore.eventsByDate$;
-    this.dataStore.eventsByDate$.subscribe( events => {
-      this.events$ = Observable.of(events);
+
+    const sharedEvents = this.dataStore.eventsByDate$.pipe(share());
+
+    this.events$ = sharedEvents;
+
+    sharedEvents.subscribe( events => {
+      this.eventsSubject.next(events);
+    });
+
+    this.eventsSubject.subscribe( events => {
+      if (events.length > 0) {
+        console.log('events date in events subject: ', events);
+        this.eventsSubject.complete();
+      }
     },
       error => console.log('error: ', error),
-      () => console.log('events loaded completely'));
-
+      () => {
+      console.log('***************Events Subject completed!!');
+      this.eventsAreLoading = false;
+      });
 
   }
 

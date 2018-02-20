@@ -33,16 +33,15 @@ export class DataStoreService {
 
   // observable collection of events.
   private eventsSubject = new BehaviorSubject([]);
-  public events$: Observable<MdcEvent[]> = this.eventsSubject;
+  public events$: Observable<MdcEvent[]> = this.eventsSubject.asObservable();
 
   // observable collection of events grouped by date.
   private eventsByDateSubject = new BehaviorSubject([]);
-  public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject;
-  public testEvents$: Observable<MdcEventsByDate[]>;
+  public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
 
   // observable filter title.
   private titleFilterSubject = new BehaviorSubject('');
-  public titleFilter$: Observable<string> = this.titleFilterSubject;
+  public titleFilter$: Observable<string> = this.titleFilterSubject.asObservable();
 
   // observable filter categories.
   private categoriesFilterSubject = new BehaviorSubject([]);
@@ -129,13 +128,15 @@ export class DataStoreService {
     // const eventsByDate = this.eventService.eventsByDate(filteredEvents);
 
     this.eventService.eventsByDate(filteredEvents).subscribe( events => {
+
       this.eventsByDateSubject.next(events);
     },
       error => console.log('error getting events by date: ', error),
       () => {
       // Performs a check to see if the values have been returned from the api call.
       if (this.eventsByDateSubject.getValue().length > 0) {
-        this.eventsByDateSubject.complete();
+        // this.eventsByDateSubject.complete();
+        // this.eventsByDateSubject = new BehaviorSubject([]);
       }
       });
 
