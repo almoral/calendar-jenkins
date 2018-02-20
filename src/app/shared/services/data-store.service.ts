@@ -125,20 +125,11 @@ export class DataStoreService {
       this.calendarsFilterSubject.getValue());
 
     // categorize events by date.
-    // const eventsByDate = this.eventService.eventsByDate(filteredEvents);
+    // categorize events by date.
+    const eventsByDate = this.eventService.eventsByDate(filteredEvents);
 
-    this.eventService.eventsByDate(filteredEvents).subscribe( events => {
-
-      this.eventsByDateSubject.next(events);
-    },
-      error => console.log('error getting events by date: ', error),
-      () => {
-      // Performs a check to see if the values have been returned from the api call.
-      if (this.eventsByDateSubject.getValue().length > 0) {
-        // this.eventsByDateSubject.complete();
-        // this.eventsByDateSubject = new BehaviorSubject([]);
-      }
-      });
+    // notify subscribers.
+    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
 
   }
 

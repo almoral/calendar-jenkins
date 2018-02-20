@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {MdcEvent, MdcEventsByDate} from '../models/mdc-event';
 import * as _ from 'lodash';
 import {environment} from '../../../environments/environment';
-import {Observable} from "rxjs/Observable";
+
 
 @Injectable()
 export class EventService {
@@ -18,8 +18,8 @@ export class EventService {
    * @param events - array of MdcEvent to be grouped and ordered.
    * @returns {MdcEventsByDate[]} - group and ordered events.
    */
-  eventsByDate(events: MdcEvent[]): Observable<MdcEventsByDate[]> {
-    return Observable.of(_.chain(events)
+  eventsByDate(events: MdcEvent[]): MdcEventsByDate[] {
+    return _.chain(events)
       .groupBy(
         event =>
           new Date(event.startDate.getFullYear(),
@@ -29,7 +29,7 @@ export class EventService {
       .map((value, key) => new MdcEventsByDate(new Date(key),
         _.orderBy(value, ['startDate'], ['asc'])))
       .orderBy(['date'], ['asc'])
-      .value());
+      .value();
 
   }
 
