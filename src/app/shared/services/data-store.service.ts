@@ -106,7 +106,6 @@ export class DataStoreService {
     });
   }
 
-
   /**
    * filterEvents does the following:
    * 1. Filter events in the master list - eventsSubject -
@@ -148,7 +147,6 @@ export class DataStoreService {
   }
 
   setCalendarsFilter(calendars: string[]) {
-    // console.log('calendars filters: ', calendars);
     this.calendarsFilterSubject.next(calendars);
   }
 
