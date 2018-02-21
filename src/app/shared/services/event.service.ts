@@ -71,7 +71,7 @@ export class EventService {
 
     // filter any event whose mdcEvent.title contains title.
     return _.filter(events, (event: MdcEvent) => {
-      return new RegExp(title).test(event.title);
+      return new RegExp(title, 'i').test(event.title);
     });
   }
 

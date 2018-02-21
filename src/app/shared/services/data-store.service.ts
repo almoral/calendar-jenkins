@@ -148,7 +148,6 @@ export class DataStoreService {
   }
 
   setCalendarsFilter(calendars: string[]) {
-    // console.log('calendars filters: ', calendars);
     this.calendarsFilterSubject.next(calendars);
   }
 
