@@ -27,10 +27,10 @@
             <mdc-calendar-filter-by-title [toggleContainer]="toggleTitleFilter"></mdc-calendar-filter-by-title>
             <!--Filter by Dates-->
             <mdc-calendar-date-filter [toggleContainer]="toggleDateFilter"></mdc-calendar-date-filter>
-            <!--Filter by category-->
-            <mdc-calendar-filter-by-category [toggleContainer]="toggleCategoryFilter" *ngIf="(categories$ | async)?.length > 0"></mdc-calendar-filter-by-category>
             <!--Filter by type-->
             <mdc-calendar-filter-by-type [toggleContainer]="toggleTypeFilter" *ngIf="(types$ | async)?.length > 0"></mdc-calendar-filter-by-type>
+            <!--Filter by category-->
+            <mdc-calendar-filter-by-category [toggleContainer]="toggleCategoryFilter" *ngIf="(categories$ | async)?.length > 0"></mdc-calendar-filter-by-category>
             <!--Filter by Calendar-->
             <mdc-calendar-filter-by-calendar [toggleContainer]="toggleCalendarFilter" *ngIf="showCalendarsFilter && (calendars$ | async)?.length > 0"></mdc-calendar-filter-by-calendar>
           </aside>
