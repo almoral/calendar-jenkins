@@ -8,6 +8,7 @@ export const environment = {
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
-    categoriesUrl: 'https://accounts.miamidade.gov/myaccount/api/topics'
+    categoriesUrl: 'https://accounts.miamidade.gov/myaccount/api/topics',
+    typesUrl: 'https://api2.miamidade.gov/calendar/api/configuration/types'
   }
 };
