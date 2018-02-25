@@ -106,6 +106,7 @@ export class DataStoreService {
       });
   }
 
+  
   /**
    * filterEvents does the following:
    * 1. Filter events in the master list - eventsSubject -
