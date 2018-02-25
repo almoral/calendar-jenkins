@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ConfigurationService} from './configuration.service';
 import 'rxjs/Rx';
-import {TypeFilter} from '../models/typeFilter';
+import {Type} from '../models/type';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
 
@@ -14,7 +14,7 @@ export class TypesDataService {
     private httpClient: HttpClient
   ) { }
 
-  getTypes(): Observable<TypeFilter[]> {
+  getTypes(): Observable<Type[]> {
 
     return this.httpClient.get(this.configurationService.calendarUrls.typesUrl)
       .map((response: any) => {
@@ -43,8 +43,9 @@ export class TypesDataService {
       return null;
     }
     const raw: Array<any> = response;
-    const model: Array<TypeFilter> = raw.reduce(function (accumulator, item) {
-      const filterType = TypeFilter.fromJSON(item);
+
+    const model: Array<Type> = raw.reduce(function (accumulator, item) {
+      const filterType = Type.fromJSON(item);
 
       if (filterType) {
         accumulator.push(filterType);
