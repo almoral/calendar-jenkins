@@ -3,14 +3,14 @@
  */
 import * as tv4 from 'tv4';
 
-export class Type {
+export class TypeFilter {
   public value: string;
   public label: string;
   public selected: boolean;
 
 
   public static schema = {
-    'title': 'Type',
+    'title': 'TypeFilter',
     'description': 'Schema to validate categories.',
     'type': 'object',
     'required': ['value', 'label'],
@@ -45,8 +45,8 @@ export class Type {
    * @param json - designed to be used with a json coming from a service.
    * @returns {any} if json validates returns an MDCEvent otherwise it returns null.
    */
-  public static fromJSON(json: any): Type {
-    return new Type(
+  public static fromJSON(json: any): TypeFilter {
+    return new TypeFilter(
       json.value,
       json.label,
       false
@@ -65,7 +65,7 @@ export class Type {
    * false otherwise.
    */
   private static validateJson(json: any): boolean {
-    return tv4.validate(json, Type.schema);
+    return tv4.validate(json, TypeFilter.schema);
   };
 
 };

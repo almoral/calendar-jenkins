@@ -86,24 +86,24 @@ export class DataStoreService {
   }
 
   getCategories() {
-    this.categoriesService.getCategories()
-      .subscribe(categories => {
-        this.setCategories(categories);
-      });
+    const categories$: Observable<Category[]> = this.categoriesService.getCategories();
+    categories$.subscribe(categories => {
+      this.setCategories(categories);
+    });
   }
 
   getTypes() {
-    this.typesService.getTypes()
-      .subscribe(types => {
-        this.setTypes(types);
-      });
+    const types$: Observable<Category[]> = this.typesService.getTypes();
+    types$.subscribe(categories => {
+      this.setTypes(categories);
+    });
   }
 
   getCalendars() {
-    this.calendarDataService.getCalendars()
-      .subscribe(calendars => {
-        this.setCalendars(calendars);
-      });
+    const calendars$: Observable<Calendar[]> = this.calendarDataService.getCalendars();
+    calendars$.subscribe(calendars => {
+      this.setCalendars(calendars);
+    });
   }
 
   /**
@@ -140,8 +140,6 @@ export class DataStoreService {
 
   setTypesFilter(types: string[]) {
     this.typesFilterSubject.next(types);
-
-
   }
 
   setTitleFilter(title: string) {
