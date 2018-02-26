@@ -6,6 +6,7 @@ export const environment = {
   calendars: window['calendars'] || ['global'],
   showCalendarsFilter: window['showCalendarsFilter'] || false,
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
+  skipLegacy: window['skipLegacy'] || true,
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
     categoriesUrl: 'https://accounts.miamidade.gov/myaccount/api/topics',

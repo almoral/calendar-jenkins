@@ -8,6 +8,7 @@ import {MdcEvent} from '../models/mdc-event';
 import {forkJoin} from 'rxjs/observable/forkJoin';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {environment} from '../../../environments/environment';
 
 
 /**
@@ -42,7 +43,8 @@ export class EventDataService {
     const url: string = this.configurationService.calendarUrls.eventsOnCalendarUrl(calendarId);
     const params = new HttpParams()
       .append('to', moment(to).format('MM/DD/YYYY'))
-      .append('from', moment(from).format('MM/DD/YYYY'));
+      .append('from', moment(from).format('MM/DD/YYYY'))
+      .append('skipLegacy', environment.skipLegacy);
 
     // Setup header.
     // TODO: revisit and inspect headers in the Chrome console
