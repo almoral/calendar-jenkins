@@ -1,10 +1,6 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {InitializeService} from '../shared/services/initialize.service';
-import {CheckboxGroupComponent} from '../checkbox-group/checkbox-group.component';
-import * as _ from 'lodash';
-import {DataStoreService} from '../shared/services/data-store.service';
+import {Component, Input, OnInit} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {DataStoreService} from "../shared/services/data-store.service";
 
 
 @Component({
@@ -14,49 +10,27 @@ import {DataStoreService} from '../shared/services/data-store.service';
 })
 export class CalendarFilterByCalendarComponent implements OnInit {
 
-  calendarsForm: FormGroup;
-  checked = false;
-  calendars$: Observable<string[]>;
-  selectedCalendars: Array<string> = [];
+
+
+  options$: Observable<Array<Object>>;
+  currentSelectedOptions$: Observable<Array<Object>>;
 
   @Input() toggleContainer = true;
 
-  @ViewChild(CheckboxGroupComponent) checkboxes: CheckboxGroupComponent;
 
-  constructor( private fb: FormBuilder,
-               private initializeService: InitializeService,
-               private dataStoreService: DataStoreService) { }
+  constructor( private dataStoreService: DataStoreService) {}
 
-  // TODO: Fix issue where calendar observable is being overwritten by observable used here for the calendar filters.
   ngOnInit() {
-    this.calendars$ = this.dataStoreService.calendars$;
 
-    this.calendarsForm = this.fb.group({
-      calendars: []
-    });
+    this.options$ = this.dataStoreService.calendars$;
+    this.currentSelectedOptions$ = this.dataStoreService.calendarsFilter$;
 
-    this.initializeService.calendarsFilter$.subscribe(value => {
-      this.checked = value;
-      this.selectedCalendars.length = 0;
-      this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
-    } );
   }
 
-  onChanges() {
-    this.checkboxes.isChecked = this.checked;
+  onOptionsSelected(options:Array<string>) {
+    this.dataStoreService.setCalendarsFilter(options);
   }
 
-  filterEvents(selection) {
-
-    if ( _.indexOf(this.selectedCalendars, selection) === -1) {
-
-      this.selectedCalendars.push(selection);
-    } else {
-      _.remove(this.selectedCalendars, type => type === selection);
-    }
-
-    this.dataStoreService.setCalendarsFilter(this.selectedCalendars);
-  }
 
 
 }
