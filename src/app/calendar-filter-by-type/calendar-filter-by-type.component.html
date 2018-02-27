@@ -8,12 +8,12 @@
 
         <legend>Choose a type to filter by:</legend>
 
-        <mdc-checkbox2-group
+        <mdc-checkbox-group
           [options]="options$ | async"
           [currentSelectedOptions]="currentSelectedOptions$ | async"
           (optionsSelected)="onOptionsSelected($event)">
 
-        </mdc-checkbox2-group>
+        </mdc-checkbox-group>
 
 
 

@@ -1,54 +1,41 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
-    selector: 'mdc-checkbox-group',
-    templateUrl: './checkbox-group.component.html',
-    styleUrls: ['./checkbox-group.component.css'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => CheckboxGroupComponent),
-            multi: true
-        }
-    ]
+  selector: 'mdc-checkbox-group',
+  templateUrl: 'checkbox-group.component.html',
+  styleUrls: ['checkbox-group.component.css']
 })
+export class CheckboxGroupComponent implements OnInit {
 
-export class CheckboxGroupComponent implements ControlValueAccessor, OnInit {
+  @Input()
+  options: Array<Object>;
 
-  isChecked = false;
-
-  @Input() optionsData = [];
-  @Input() disabled = false;
-  @Input() resetCategories = true;
-  @Output() selectItem: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() {
-  }
-
-  public makeSelection(selection) {
-    this.selectItem.emit(selection);
-  }
-
-  // control value accessor interface ---
-  writeValue(value: any) {
-  }
-
-  registerOnChange(fn) {
-  }
-
-  registerOnTouched() {
-  }
+  @Input()
+  currentSelectedOptions:Array<string>;
 
 
-  // Allows Angular to disable the input.
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
+  @Output()
+  optionsSelected = new EventEmitter();
+
+
+  constructor() { }
 
   ngOnInit() {
-
   }
+
+  selectOption(option:string) {
+
+    if ( this.currentSelectedOptions.indexOf(option) === -1) {
+
+      this.currentSelectedOptions.push(option);
+    } else {
+      _.remove(this.currentSelectedOptions, selectedOption => selectedOption === option);
+    }
+
+
+    this.optionsSelected.next(this.currentSelectedOptions);
+  }
+
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ConfigurationService} from "./configuration.service";
 import {Option} from "../models/option";
+import * as _ from 'lodash';
 
 @Injectable()
 export class CalendarDataService {

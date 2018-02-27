@@ -8,11 +8,11 @@
 
         <legend>Choose a department to selectItem by:</legend>
 
-        <mdc-checkbox2-group
+        <mdc-checkbox-group
           [options]="options$ | async"
           [currentSelectedOptions]="currentSelectedOptions$ | async"
           (optionsSelected)="onOptionsSelected($event)">
-        </mdc-checkbox2-group>
+        </mdc-checkbox-group>
 
 
       </div>
