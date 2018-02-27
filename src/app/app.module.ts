@@ -37,6 +37,7 @@ import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-
 import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import {TypesDataService} from "./shared/services/types-data.service";
+import { Checkbox2GroupComponent } from './checkbox2-group/checkbox2-group.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {TypesDataService} from "./shared/services/types-data.service";
     PhonePipe,
     InternationalPhonePipe,
     LoaderComponent,
-    CalendarFilterByTypeComponent
+    CalendarFilterByTypeComponent,
+    Checkbox2GroupComponent
 
   ],
   imports: [

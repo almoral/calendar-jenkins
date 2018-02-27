@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ConfigurationService} from './configuration.service';
 import 'rxjs/Rx';
-import {Category} from '../models/category';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
+import {Option} from "../models/option";
+import {Category} from "../models/category";
 
 @Injectable()
 export class CategoriesDataService {
@@ -14,7 +15,7 @@ export class CategoriesDataService {
     private httpClient: HttpClient
   ) { }
 
-  getCategories(): Observable<Category[]> {
+  getCategories(): Observable<Option[]> {
 
     return this.httpClient.get(this.configurationService.calendarUrls.categoriesUrl)
       .map((response: any) => {
@@ -29,25 +30,23 @@ export class CategoriesDataService {
 
 
   /**
-   * maps the raw array of json topics into an array
-   * of Filter Objects. If any of the elements in the
+   * maps the raw array of json categories into an array
+   * of options. If any of the elements in the
    * array can not be mapped, it is ignored.
-   * @param response - Response object containing a body equal to json array representing raw topics
-   * @returns {Array<Category>} Converted response into an array
-   * of Filter Objects. It will return an empty array if nothing
-   * in the response could be converted to an Topic or the response hand an empty body.
+   * @param response - Response object containing a body equal to json array representing raw categories
+   * @returns {Array<Option>} Converted response into an array
+   * of Option Objects.
    */
   private jsonToCategories = (response: any) => {
     if (_.isEmpty(response)) {
-      console.log('is empty');
       return null;
     }
     const raw: Array<any> = response.data.topics;
-    const model: Array<Category> = raw.reduce(function (accumulator, item) {
-      const category = Category.fromJSON(item);
+    const model: Array<Option> = raw.reduce(function (accumulator, item) {
+      const option = Category.fromJSON(item);
 
-      if (category) {
-        accumulator.push(category);
+      if (option) {
+        accumulator.push(option);
       }
       return accumulator;
     }, []);

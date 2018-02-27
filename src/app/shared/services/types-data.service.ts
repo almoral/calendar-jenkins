@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import {Type} from '../models/type';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
+import {Option} from "../models/option";
 
 @Injectable()
 export class TypesDataService {
@@ -14,7 +15,7 @@ export class TypesDataService {
     private httpClient: HttpClient
   ) { }
 
-  getTypes(): Observable<Type[]> {
+  getTypes(): Observable<Option[]> {
 
     return this.httpClient.get(this.configurationService.calendarUrls.typesUrl)
       .map((response: any) => {
@@ -29,26 +30,25 @@ export class TypesDataService {
 
 
   /**
-   * maps the raw array of json topics into an array
-   * of Filter Objects. If any of the elements in the
+   * maps the raw array of json types into an array
+   * of options. If any of the elements in the
    * array can not be mapped, it is ignored.
-   * @param response - Response object containing a body equal to json array representing raw topics
-   * @returns {Array<Category>} Converted response into an array
-   * of Filter Objects. It will return an empty array if nothing
-   * in the response could be converted to an Topic or the response hand an empty body.
+   * @param response - Response object containing a body equal to json array representing raw types
+   * @returns {Array<Option>} Converted response into an array
+   * of Option Objects.
    */
   private jsonToTypes = (response: any) => {
     if (_.isEmpty(response)) {
-      console.log('is empty');
       return null;
     }
+
     const raw: Array<any> = response;
 
-    const model: Array<Type> = raw.reduce(function (accumulator, item) {
-      const filterType = Type.fromJSON(item);
+    const model: Array<Option> = raw.reduce(function (accumulator, item) {
+      const option = Type.fromJSON(item);
 
-      if (filterType) {
-        accumulator.push(filterType);
+      if (option) {
+        accumulator.push(option);
       }
       return accumulator;
     }, []);

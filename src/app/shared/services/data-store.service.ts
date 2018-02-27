@@ -6,9 +6,8 @@ import {EventService} from './event.service';
 import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
-import {Calendar} from '../models/calendar';
-import {Category} from '../models/category';
 import {TypesDataService} from './types-data.service';
+import {Option} from "../models/option";
 
 
 @Injectable()
@@ -106,7 +105,7 @@ export class DataStoreService {
       });
   }
 
-  
+
   /**
    * filterEvents does the following:
    * 1. Filter events in the master list - eventsSubject -
@@ -154,7 +153,7 @@ export class DataStoreService {
   }
 
 
-  setCalendars(calendars: Calendar[]) {
+  setCalendars(calendars: Option[]) {
     this.calendarsSubject.next(calendars);
   }
 
@@ -164,7 +163,7 @@ export class DataStoreService {
    * @param newCategories - The collection of object[] representing
    * the master copy of categories which will be emitted at categories$
    */
-  setCategories(newCategories: Category[]) {
+  setCategories(newCategories: Option[]) {
     this.categoriesSubject.next(_.cloneDeep(newCategories));
   }
   /**
@@ -173,7 +172,7 @@ export class DataStoreService {
    * @param newTypes - The collection of object[] representing
    * the master copy of types which will be emitted at types$
    */
-  setTypes(newTypes: Category[]) {
+  setTypes(newTypes: Option[]) {
     this.typesSubject.next(_.cloneDeep(newTypes));
   }
 
