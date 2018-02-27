@@ -11,8 +11,8 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
 
 
-  private options$: Observable<Array<Object>>;
-  private currentSelectedOptions$: Observable<Array<Object>>;
+  options$: Observable<Array<Object>>;
+  currentSelectedOptions$: Observable<Array<Object>>;
 
   @Input() toggleContainer = true;
 
