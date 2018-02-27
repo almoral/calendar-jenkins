@@ -33,8 +33,7 @@ export class CheckboxGroupComponent implements OnInit {
       _.remove(this.currentSelectedOptions, selectedOption => selectedOption === option);
     }
 
-
-    this.optionsSelected.next(this.currentSelectedOptions);
+        this.optionsSelected.emit(this.currentSelectedOptions);
   }
 
 

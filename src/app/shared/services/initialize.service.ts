@@ -11,7 +11,9 @@ export class InitializeService {
 
   title$ = this.titleSubject.asObservable();
 
-  constructor( private dateService: DateService, private dataStoreService: DataStoreService) { }
+  constructor( private dateService: DateService,
+               private dataStoreService: DataStoreService) {
+  }
 
   setTitle(value) {
     this.titleSubject.next(value);
@@ -20,7 +22,7 @@ export class InitializeService {
   public reset() {
 
     // Reset the title.
-    //this.setTitle('');
+    this.setTitle('');
 
     this.dataStoreService.setTitleFilter('');
 
@@ -37,5 +39,5 @@ export class InitializeService {
     this.dataStoreService.setCalendarsFilter([]);
 
   }
-
+  
 }
