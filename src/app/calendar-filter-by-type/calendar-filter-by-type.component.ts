@@ -13,7 +13,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
   options$: Observable<Array<Object>>;
   currentSelectedOptions$: Observable<Array<Object>>;
 
-  @Input() hideFilterContainer = true;
+  @Input() toggleContainer = true;
 
   constructor( private dataStoreService: DataStoreService,
                private route: ActivatedRoute) {}
@@ -26,7 +26,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
     this.route.queryParams
       .filter(params => params.typefilter)
       .subscribe( param => {
-        this.hideFilterContainer = false;
+        this.toggleContainer = false;
         this.onOptionsSelected(param.typefilter.split(','));
       });
 
