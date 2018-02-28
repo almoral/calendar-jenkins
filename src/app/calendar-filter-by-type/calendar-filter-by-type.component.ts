@@ -26,7 +26,7 @@ export class CalendarFilterByTypeComponent implements OnInit {
     this.route.queryParams
       .subscribe( params => {
         this.toggleContainer = false;
-        this.onOptionsSelected(params.typefilter.split(','));
+        this.onOptionsSelected(params.eventTypesFilter.split(','));
       });
 
 

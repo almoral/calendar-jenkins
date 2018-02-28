@@ -30,7 +30,7 @@ export class CalendarFilterByCalendarComponent implements OnInit {
     this.route.queryParams
       .subscribe( params => {
         this.toggleContainer = false;
-        this.onOptionsSelected(params.departmentfilter.split(','));
+        this.onOptionsSelected(params.departmentFilter.split(','));
       });
   }
 
