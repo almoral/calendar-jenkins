@@ -11,7 +11,7 @@ import {DataStoreService} from '../shared/services/data-store.service';
   styleUrls: ['calendar-filter-container.component.css']
 })
 
-export class CalendarFilterContainerComponent implements OnInit{
+export class CalendarFilterContainerComponent implements OnInit {
 
   isActive = false;
   showCalendarsFilter = false;

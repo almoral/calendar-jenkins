@@ -24,10 +24,9 @@ export class CalendarFilterByCategoryComponent implements OnInit {
 
     this.options$ = this.dataStoreService.categories$;
     this.currentSelectedOptions$ = this.dataStoreService.categoriesFilter$;
-
   }
 
-  onOptionsSelected(options:Array<string>) {
+  onOptionsSelected(options: Array<string>) {
     this.dataStoreService.setCategoriesFilter(options);
   }
 

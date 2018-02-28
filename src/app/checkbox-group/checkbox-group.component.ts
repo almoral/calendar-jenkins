@@ -12,7 +12,7 @@ export class CheckboxGroupComponent implements OnInit {
   options: Array<Object>;
 
   @Input()
-  currentSelectedOptions:Array<string>;
+  currentSelectedOptions: Array<string>;
 
 
   @Output()

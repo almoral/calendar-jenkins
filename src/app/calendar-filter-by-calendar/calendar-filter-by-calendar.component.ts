@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {DataStoreService} from "../shared/services/data-store.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {DataStoreService} from '../shared/services/data-store.service';
 
 
 @Component({
@@ -24,10 +24,9 @@ export class CalendarFilterByCalendarComponent implements OnInit {
 
     this.options$ = this.dataStoreService.calendars$;
     this.currentSelectedOptions$ = this.dataStoreService.calendarsFilter$;
-
   }
 
-  onOptionsSelected(options:Array<string>) {
+  onOptionsSelected(options: Array<string>) {
     this.dataStoreService.setCalendarsFilter(options);
   }
 

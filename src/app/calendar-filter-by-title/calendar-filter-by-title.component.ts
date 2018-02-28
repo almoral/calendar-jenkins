@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from "rxjs/Observable";
+
 
 @Component({
   selector: 'mdc-calendar-filter-by-title',
@@ -13,7 +13,6 @@ export class CalendarFilterByTitleComponent implements OnInit {
   form: FormGroup;
 
   @Input() toggleContainer = true;
-  titleFilter$: Observable<string>;
 
   constructor(private fb: FormBuilder,
               private dataStoreService: DataStoreService) {
@@ -27,8 +26,11 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
     this.initOnChange();
     this.dataStoreService.titleFilter$.subscribe( value => {
-      if(this.form.get('title').value !== value)
-        this.form.get('title').setValue(value)});
+        if (this.form.get('title').value !== value) {
+          this.form.get('title').setValue(value);
+        }
+      }
+    );
   }
 
   /**

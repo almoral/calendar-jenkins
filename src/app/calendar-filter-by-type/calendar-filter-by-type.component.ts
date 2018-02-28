@@ -9,13 +9,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CalendarFilterByTypeComponent implements OnInit {
 
-
-
   options$: Observable<Array<Object>>;
   currentSelectedOptions$: Observable<Array<Object>>;
 
   @Input() toggleContainer = true;
-
 
   constructor( private dataStoreService: DataStoreService) {}
 
@@ -23,10 +20,9 @@ export class CalendarFilterByTypeComponent implements OnInit {
 
     this.options$ = this.dataStoreService.types$;
     this.currentSelectedOptions$ = this.dataStoreService.typesFilter$;
-
   }
 
-  onOptionsSelected(options:Array<string>) {
+  onOptionsSelected(options: Array<string>) {
     this.dataStoreService.setTypesFilter(options);
   }
 
