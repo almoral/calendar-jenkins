@@ -1,7 +1,7 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {InitializeService} from '../shared/services/initialize.service';
+import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -17,7 +17,6 @@ export class CalendarFilterByTitleComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private dataStoreService: DataStoreService,
-              private initializeService: InitializeService,
               private route: ActivatedRoute) {
   }
 
@@ -32,11 +31,13 @@ export class CalendarFilterByTitleComponent implements OnInit {
       .subscribe( param => this.form.get('title').setValue(param.titlefilter));
 
     this.initOnChange();
-    this.initializeService.title$.subscribe( value => this.form.get('title').setValue(value));
-
+    this.dataStoreService.titleFilter$.subscribe( value => {
+        if (this.form.get('title').value !== value) {
+          this.form.get('title').setValue(value);
+        }
+      }
+    );
   }
-
-
 
   /**
    * initOnChange initializes the reactive form
