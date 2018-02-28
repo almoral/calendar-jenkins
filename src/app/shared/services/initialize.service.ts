@@ -15,15 +15,9 @@ export class InitializeService {
                private dataStoreService: DataStoreService) {
   }
 
-  setTitle(value) {
-    this.titleSubject.next(value);
-  }
-
   public reset() {
 
     // Reset the title.
-    this.setTitle('');
-
     this.dataStoreService.setTitleFilter('');
 
     // Reset the date filter.
@@ -39,5 +33,5 @@ export class InitializeService {
     this.dataStoreService.setCalendarsFilter([]);
 
   }
-  
+
 }
