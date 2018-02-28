@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outpu
 import {DateService} from '../shared/services/date.service';
 import {Observable} from 'rxjs/Observable';
 
+
 @Component({
   selector: 'mdc-pagination',
   templateUrl: './mdc-pagination.component.html',
@@ -38,12 +39,16 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
     const past = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     past.filter((element: any) => element.target.id === 'previousDay')
       .throttleTime(700)
-      .subscribe( () => this.filterEventsByPreviousDate());
+      .subscribe( () => {
+        this.filterEventsByPreviousDate();
+      });
 
     const next = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     next.filter((element: any) => element.target.id === 'nextDay')
       .throttleTime(700)
-      .subscribe( () => this.filterEventsByNextDate());
+      .subscribe( () => {
+        this.filterEventsByNextDate();
+      });
   }
 
   filterEventsByNextDate() {

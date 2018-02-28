@@ -37,6 +37,7 @@ import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-
 import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import {TypesDataService} from "./shared/services/types-data.service";
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import {TypesDataService} from "./shared/services/types-data.service";
     NgxPaginationModule,
     MaterializeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     ConfigurationService,
