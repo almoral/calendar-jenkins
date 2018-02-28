@@ -35,15 +35,6 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    const paginationScroll = Observable.fromEvent(this.elementRef.nativeElement, 'click');
-    paginationScroll.filter((element: any): any => {
-      // element.target.className('pagination');
-      console.log('target: ', element);
-    })
-      .subscribe(() => {
-        console.log('pagination clicked');
-      });
-
     // Create observable from click events in order to throttle API calls.
     const past = Observable.fromEvent(this.elementRef.nativeElement, 'click');
     past.filter((element: any) => element.target.id === 'previousDay')
