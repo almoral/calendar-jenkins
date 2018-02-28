@@ -24,10 +24,9 @@ export class CalendarFilterByTypeComponent implements OnInit {
     this.currentSelectedOptions$ = this.dataStoreService.typesFilter$;
 
     this.route.queryParams
-      .filter(params => params.typefilter)
-      .subscribe( param => {
+      .subscribe( params => {
         this.toggleContainer = false;
-        this.onOptionsSelected(param.typefilter.split(','));
+        this.onOptionsSelected(params.typefilter.split(','));
       });
 
 

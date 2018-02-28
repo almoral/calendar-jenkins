@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import { Observable } from 'rxjs/Observable';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'mdc-calendar-filter-by-category',
@@ -18,16 +19,23 @@ export class CalendarFilterByCategoryComponent implements OnInit {
   @Input() toggleContainer = true;
 
 
-  constructor( private dataStoreService: DataStoreService) {}
+  constructor( private dataStoreService: DataStoreService,
+               private route: ActivatedRoute) {}
 
   ngOnInit() {
 
     this.options$ = this.dataStoreService.categories$;
     this.currentSelectedOptions$ = this.dataStoreService.categoriesFilter$;
 
+    this.route.queryParams
+      .subscribe( params => {
+        this.toggleContainer = false;
+        this.onOptionsSelected(params.categoryfilter.split(','));
+      });
+
   }
 
-  onOptionsSelected(options:Array<string>) {
+  onOptionsSelected(options: Array<string>) {
     this.dataStoreService.setCategoriesFilter(options);
   }
 

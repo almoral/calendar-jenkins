@@ -27,7 +27,6 @@ export class CalendarFilterByTitleComponent implements OnInit {
     });
 
     this.route.queryParams
-      .filter(params => params.titlefilter)
       .subscribe( param => this.form.get('title').setValue(param.titlefilter));
 
     this.initOnChange();
