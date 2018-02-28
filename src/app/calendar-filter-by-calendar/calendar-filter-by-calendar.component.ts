@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {DataStoreService} from '../shared/services/data-store.service';
-import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -19,20 +18,12 @@ export class CalendarFilterByCalendarComponent implements OnInit {
   @Input() toggleContainer = true;
 
 
-  constructor( private dataStoreService: DataStoreService,
-               private route: ActivatedRoute) {}
+  constructor( private dataStoreService: DataStoreService) {}
 
   ngOnInit() {
 
     this.options$ = this.dataStoreService.calendars$;
     this.currentSelectedOptions$ = this.dataStoreService.calendarsFilter$;
-
-    this.route.queryParams
-      .filter( params => params.departmentFilter)
-      .subscribe( params => {
-        this.toggleContainer = false;
-        this.onOptionsSelected(params.departmentFilter.split(','));
-      });
   }
 
   onOptionsSelected(options: Array<string>) {

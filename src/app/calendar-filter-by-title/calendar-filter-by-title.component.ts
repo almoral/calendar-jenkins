@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'mdc-calendar-filter-by-title',
@@ -16,8 +15,7 @@ export class CalendarFilterByTitleComponent implements OnInit {
   @Input() toggleContainer = true;
 
   constructor(private fb: FormBuilder,
-              private dataStoreService: DataStoreService,
-              private route: ActivatedRoute) {
+              private dataStoreService: DataStoreService) {
   }
 
   ngOnInit() {
@@ -25,9 +23,6 @@ export class CalendarFilterByTitleComponent implements OnInit {
     this.form = this.fb.group({
       title: ['']
     });
-
-    this.route.queryParams
-      .subscribe( param => this.form.get('title').setValue(param.titlefilter));
 
     this.initOnChange();
     this.dataStoreService.titleFilter$.subscribe( value => {
