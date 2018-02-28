@@ -28,6 +28,7 @@ export class CalendarFilterByCalendarComponent implements OnInit {
     this.currentSelectedOptions$ = this.dataStoreService.calendarsFilter$;
 
     this.route.queryParams
+      .filter( params => params.departmentFilter)
       .subscribe( params => {
         this.toggleContainer = false;
         this.onOptionsSelected(params.departmentFilter.split(','));
