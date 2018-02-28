@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'mdc-calendar-filter-by-title',
