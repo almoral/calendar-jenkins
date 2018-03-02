@@ -235,13 +235,14 @@ export class MdcEvent {
    * fromJson creates an instance of the MdcEvent object from
    * a json. If the json does not validate correctly, an Error is thrown.
    * @param json - designed to be used with a json coming from a service.
+   * @param calendarId - id of the calendar the event belongs to.
    * @returns {any} if json validates returns an MdcEvent otherwise it throws an error.
    */
   public static fromJSON(json: any, calendarId: string = null): MdcEvent {
     if (MdcEvent.validateJson(json)) {
 
       // get address
-      let address = new MdcEventAddress(
+      const address = new MdcEventAddress(
         json.address && json.address.location,
         json.address && json.address.address,
         json.address && json.address.address2,
@@ -249,6 +250,32 @@ export class MdcEvent {
         json.address && json.address.state,
         json.address && json.address.zip
       );
+
+      if (!_.isNil(json.title)) {
+        json.title = json.title.trim();
+      }
+      if (!_.isNil(json.description)) {
+        json.description = json.description.trim();
+      }
+      if (!_.isNil(json.contactName)) {
+        json.contactName = json.contactName.trim();
+      }
+      if (!_.isNil(json.contactPhone)) {
+        json.contactPhone = json.contactPhone.trim();
+      }
+      if (!_.isNil(json.contactEmail)) {
+        json.contactEmail = json.contactEmail.trim();
+      }
+      if (!_.isNil(json.adaName)) {
+        json.adaName = json.adaName.trim();
+      }
+      if (!_.isNil(json.adaPhone)) {
+        json.adaPhone = json.adaPhone.trim();
+      }
+      if (!_.isNil(json.adaPhone)) {
+        json.adaPhone = json.adaPhone.trim();
+      }
+
 
       return new MdcEvent(
         json.id,
@@ -411,9 +438,9 @@ export class MdcEvent {
   public static validateJson(json: any): boolean {
     tv4.addFormat(tv4format);
     return tv4.validate(json, MdcEvent.schema);
-  };
+  }
 
-};
+}
 
 
 /**
