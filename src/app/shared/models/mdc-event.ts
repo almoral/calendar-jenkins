@@ -276,7 +276,6 @@ export class MdcEvent {
         json.adaPhone = json.adaPhone.trim();
       }
 
-
       return new MdcEvent(
         json.id,
         json.odataId,
