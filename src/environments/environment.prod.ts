@@ -9,7 +9,7 @@ export const environment = {
   skipLegacy: window['skipLegacy'] || false,
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
-    categoriesUrl: 'https://accounts.miamidade.gov/myaccount/api/topics',
+    categoriesUrl: 'https://api2.miamidade.gov/registration/api/topics',
     typesUrl: 'https://api2.miamidade.gov/calendar/api/configuration/types'
   }
 };
