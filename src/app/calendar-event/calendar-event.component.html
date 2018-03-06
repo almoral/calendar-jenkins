@@ -35,15 +35,7 @@
             </div>
           </div>
 
-          <div class="list-item">
-            <div class="detail-item">
-              <span>Price</span>
-            </div>
-            <div class="detail-item">
-              <div class="prive" *ngIf='event?.isFree === false'>$</div>
-              <div class="prive" *ngIf='event?.isFree'>This event is free.</div>
-            </div>
-          </div>
+
         </div>
 
         <div class="col s12 m4 offset-m1 right-content-calendar" *ngIf="(event?.contactEmail || event?.contactName || event?.contactPhone)">
