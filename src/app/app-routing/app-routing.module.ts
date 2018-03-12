@@ -4,19 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {CalendarComponent} from '../calendar/calendar.component';
 
 const routes: Routes = [
-  // {path: '', redirectTo: 'calendar', pathMatch: 'full' },
-  // {path: 'calendar', component: CalendarComponent,
-  //   children: [
-  //     {path: '', redirectTo: 'events', pathMatch: 'full'},
-  //     {path: 'events', component: EventsComponent},
-  //     {path: 'test', component: TestViewComponent}
-  //   ]
-  // },
   {path: '**', component: CalendarComponent}
-  // {path: '', redirectTo: 'events', pathMatch: 'full'},
-  // {path: 'events', component: EventsComponent},
-  // {path: 'test', component: TestViewComponent},
-  // {path: '**', component: EventsComponent}
 ];
 
 @NgModule({
