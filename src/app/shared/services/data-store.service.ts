@@ -71,7 +71,7 @@ export class DataStoreService {
 
   /**
    * getEvents fetches all events falling between date:to and
-   * date:from, and the state of hte store is initialized with
+   * date:from, and the state of the store is initialized with
    * the fetched value.
    * @param to - start Date.
    * @param from - end Date.

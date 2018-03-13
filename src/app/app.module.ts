@@ -7,7 +7,7 @@ import { EventDataService } from './shared/services/event-data.service';
 import { DateService } from './shared/services/date.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import { CalendarComponent } from './calendar/calendar.component';
+import { MDCCalendarComponent } from './calendar/calendar.component';
 import { CalendarEventComponent } from './calendar-event/calendar-event.component';
 import { CalendarEventDateComponent } from './calendar-event-date/calendar-event-date.component';
 import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
@@ -38,12 +38,14 @@ import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import {TypesDataService} from "./shared/services/types-data.service";
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { CalendarGridViewComponent } from './calendar-grid-view/calendar-grid-view.component';
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
+    MDCCalendarComponent,
     CalendarEventComponent,
     CalendarEventDateComponent,
     CalendarEventListComponent,
@@ -59,7 +61,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     PhonePipe,
     InternationalPhonePipe,
     LoaderComponent,
-    CalendarFilterByTypeComponent
+    CalendarFilterByTypeComponent,
+    CalendarGridViewComponent
 
   ],
   imports: [
@@ -73,7 +76,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MaterializeModule,
     FormsModule,
     ReactiveFormsModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    FullCalendarModule
   ],
   providers: [
     ConfigurationService,

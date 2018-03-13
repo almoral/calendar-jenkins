@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CalendarComponent } from './calendar.component';
+import { MDCCalendarComponent } from './calendar.component';
 import { CalendarEventListComponent } from '../calendar-event-list/calendar-event-list.component';
 import { CalendarEventDateComponent} from '../calendar-event-date/calendar-event-date.component';
 import { CalendarEventComponent} from '../calendar-event/calendar-event.component';
@@ -10,14 +10,14 @@ import { CalendarFilterByCalendarComponent} from '../calendar-filter-by-calendar
 import { CalendarFilterByCategoryComponent} from '../calendar-filter-by-category/calendar-filter-by-category.component';
 import { CalendarFilterByTitleComponent} from '../calendar-filter-by-title/calendar-filter-by-title.component';
 
-describe('CalendarComponent', () => {
-  let component: CalendarComponent;
-  let fixture: ComponentFixture<CalendarComponent>;
+describe('MDCCalendarComponent', () => {
+  let component: MDCCalendarComponent;
+  let fixture: ComponentFixture<MDCCalendarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CalendarComponent,
+        MDCCalendarComponent,
         CalendarEventListComponent,
         CalendarEventDateComponent,
         CalendarEventComponent,
@@ -33,7 +33,7 @@ describe('CalendarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalendarComponent);
+    fixture = TestBed.createComponent(MDCCalendarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
