@@ -5,6 +5,10 @@
          name="{{option.value}}"
          value="{{option.value}}"
          [checked]="currentSelectedOptions.indexOf(option.value) !== -1"
-         (click)="selectOption(option.value)">
+         (click)="selectOption(option.value)"
+         angulartics2On="change"
+         angularticsAction="selectAFilter"
+         angularticsLabel="Select A Filter"
+         angularticsValue="{{option.value}}">
   <label for='{{option.value}}'>{{option.label}}</label>
 </p>

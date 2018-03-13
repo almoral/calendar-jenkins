@@ -38,6 +38,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import {TypesDataService} from "./shared/services/types-data.service";
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import {Angulartics2Module} from 'angulartics2';
+import {Angulartics2GoogleTagManager} from 'angulartics2/gtm';
 
 
 @NgModule({
@@ -73,7 +75,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     MaterializeModule,
     FormsModule,
     ReactiveFormsModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    Angulartics2Module.forRoot([Angulartics2GoogleTagManager])
   ],
   providers: [
     ConfigurationService,

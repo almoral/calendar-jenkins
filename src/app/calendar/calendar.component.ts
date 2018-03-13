@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Angulartics2GoogleTagManager} from 'angulartics2/gtm';
 
 @Component({
   selector: 'mdc-calendar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
+  constructor(angulartics2GTM: Angulartics2GoogleTagManager) { }
 
   ngOnInit() {
   }

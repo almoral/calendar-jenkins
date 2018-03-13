@@ -1,7 +1,11 @@
 <section class="widget" aria-labelledby="filterType">
   <ul class="accordion-filters">
     <li>
-      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Filter by Type section once its unchecked" />
+      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Filter by Type section once its unchecked"
+             angulartics2On="change"
+             angularticsAction="openTypeFilterSection"
+             angularticsLabel="Open Type Filter Section"
+             angularticsValue="openTypeFilterSection"/>
       <i aria-hidden="true"></i>
       <h3 class="widget-title" id="filterType">Filter by Types</h3>
       <div class="accordion-content">

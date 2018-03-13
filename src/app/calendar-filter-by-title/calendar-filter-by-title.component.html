@@ -1,7 +1,11 @@
 <section class="widget" aria-labelledby="filterTitle">
 	<ul class="accordion-filters">
 		<li>
-			<input type="checkbox" [checked]="toggleContainer" aria-label="Toggles the Filter by Title section once its unchecked"/>
+			<input type="checkbox" [checked]="toggleContainer" aria-label="Toggles the Filter by Title section once its unchecked"
+             angulartics2On="change"
+             angularticsAction="openTitleFilterSection"
+             angularticsLabel="Open Title Filter Section"
+             angularticsValue="openTitleFilterSection"/>
 			<i aria-hidden="true"></i>
 			<h3 class="widget-title" id="filterTitle">Filter by Title</h3>
 			<div class="accordion-content">

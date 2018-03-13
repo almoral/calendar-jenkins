@@ -1,7 +1,11 @@
 <section class="widget" aria-labelledby="filterDate">
   <ul class="accordion-filters">
     <li>
-      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Filter by Date section once its unchecked"/>
+      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Filter by Date section once its unchecked"
+             angulartics2On="change"
+             angularticsAction="openDateFilterSection"
+             angularticsLabel="Open Date Filter Section"
+             angularticsValue="openDateFilterSection"/>
       <i aria-hidden="true"></i>
       <h3 class="widget-title" id="filterDate">Filter by Date</h3>
       <div class="accordion-content">
@@ -9,14 +13,22 @@
 
           <div class="col s12">
             <label for="filterYear">Year</label>
-            <select [(ngModel)]="selectedYear" (ngModelChange)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterYear">
+            <select [(ngModel)]="selectedYear" (ngModelChange)="updateDays(selectedYear, selectedMonth)" class="browser-default" id="filterYear"
+                    angulartics2On="change"
+                    angularticsAction="SelectYear"
+                    angularticsLabel="Select Year"
+                    angularticsValue="{{selectedYear}}">
               <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
             </select>
           </div>
 
           <div class="col s12">
             <label for="filterMonth">Month</label>
-            <select [(ngModel)]="selectedMonth" (ngModelChange)="updateDays(selectedYear, selectedMonth, selectedDay)" class="browser-default" id="filterMonth">
+            <select [(ngModel)]="selectedMonth" (ngModelChange)="updateDays(selectedYear, selectedMonth, selectedDay)" class="browser-default" id="filterMonth"
+                    angulartics2On="change"
+                    angularticsAction="selectMonth"
+                    angularticsLabel="Select Month"
+                    angularticsValue="{{selectedMonth}}">
               <option value=""></option>
               <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
             </select>
@@ -24,7 +36,11 @@
 
     <div class="col s12">
       <label for="filterDay">Day</label>
-      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField" (ngModelChange)='updateDays(selectedYear, selectedMonth, selectedDay)'>
+      <select [(ngModel)]="selectedDay" class="browser-default" id="filterDay" [disabled]="disableDayField" (ngModelChange)='updateDays(selectedYear, selectedMonth, selectedDay)'
+              angulartics2On="change"
+              angularticsAction="SelectDay"
+              angularticsLabel="Select Day"
+              angularticsValue="{{selectedDay}}">
         <option value=""></option>
         <option *ngFor="let day of days" [ngValue]="day">{{day}}</option>
       </select>
@@ -32,7 +48,11 @@
 
         </div>
 
-        <button class="waves-effect wave-light btn blue" [ngx-scroll-to]="'#scrollContainer'" (click)="filterEventsByDate()">Apply Date Filter</button>
+        <button class="waves-effect wave-light btn blue" [ngx-scroll-to]="'#scrollContainer'" (click)="filterEventsByDate()"
+                angulartics2On="click"
+                angularticsAction="filterByDate"
+                angularticsLabel="Filter By Date"
+                angularticsValue="FilterByDate">Apply Date Filter</button>
       </div>
 
     </li>

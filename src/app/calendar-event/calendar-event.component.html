@@ -1,7 +1,11 @@
 <article>
 
   <!--Calendar Item-->
-  <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)">
+  <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)"
+       angulartics2On="click"
+       angularticsAction="openEventDetails"
+       angularticsLabel="Open Event Details"
+       angularticsValue="{{event?.title}}">
     <div class="column">
       <h3 class="calendar-subtitle">{{event?.title}}</h3>
     </div>
@@ -82,7 +86,8 @@
 
       <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="tel:{{event?.adaPhone | internationalPhone}}">{{event?.adaPhone | phone}}</a></span> or email <span class="email"><a href="mailto:{{event?.adaEmail}}" *ngIf="!event?.adaName">{{event?.adaEmail}}</a><a href="mailto:{{event?.adaEmail}}" *ngIf="event?.adaName">{{event?.adaName}}</a></span> at least five days in advance of the meeting.</span>
 
-      <a *ngIf='event?.url["url"] && event?.url["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.url['url']}}" tabindex="0">{{event?.url["description"]}}</a>
+      <a *ngIf='event?.url["url"] && event?.url["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.url['url']}}" tabindex="0"
+      >{{event?.url["description"]}}</a>
 
       <!-- Using this as the default value for when the event.url object has a url but no description.-->
 

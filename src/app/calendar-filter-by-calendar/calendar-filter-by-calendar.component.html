@@ -1,7 +1,11 @@
 <section class="widget" aria-labelledby="filterCalendar">
   <ul class="accordion-filters">
     <li>
-      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Select a Department section once its unchecked" />
+      <input type="checkbox" [checked]="toggleContainer" tabindex="0" aria-label="Toggles the Select a Department section once its unchecked"
+             angulartics2On="change"
+             angularticsAction="openCalendarFilterSection"
+             angularticsLabel="Filter By Calendar"
+             angularticsValue="openCalendarFilterSection"/>
       <i aria-hidden="true"></i>
       <h3 class="widget-title" id="filterCalendar">Select a department</h3>
       <div class="accordion-content">
