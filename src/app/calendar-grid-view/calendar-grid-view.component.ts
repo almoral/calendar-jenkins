@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
-import * as moment from 'moment';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 import {zip} from 'rxjs/observable/zip';
 
 @Component({
@@ -14,9 +12,9 @@ import {zip} from 'rxjs/observable/zip';
 })
 export class CalendarGridViewComponent implements OnInit {
 
-  private events = null;
+  events = null;
   calendarOptions: Options;
-
+  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
   constructor(private dateService: DateService,
               private dataStoreService: DataStoreService) {}
@@ -30,14 +28,18 @@ export class CalendarGridViewComponent implements OnInit {
     }
     );
 
-    this.dataStoreService.events$.subscribe( data => {
+    this.dataStoreService.events$
+      // .pipe(
+      //   switchMap(data) => {
+      // })
+      .subscribe( data => {
 
-      if (data.length > 0) {
-        console.log('events$ data: ', data);
+      // if (data.length > 0) {
+      //   console.log('events$ data: ', data);
 
         this.calendarOptions = {
-          editable: false,
-          eventLimit: true,
+          editable: true,
+          eventLimit: false,
           header: {
             left: 'prev,next today',
             center: 'title',
@@ -47,13 +49,16 @@ export class CalendarGridViewComponent implements OnInit {
         };
 
         // this.loadEvents();
-      }
-    });
+      // }
+    },
+        error => console.log('error: ', error),
+        () => console.log('subscription complete!'));
 
   }
 
   loadEvents() {
     this.dataStoreService.events$.subscribe(data => {
+      console.log('events$ data: ', data);
       this.events = data;
     });
   }
