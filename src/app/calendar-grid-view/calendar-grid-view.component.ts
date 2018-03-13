@@ -12,7 +12,7 @@ import * as moment from 'moment';
 })
 export class CalendarGridViewComponent implements OnInit {
 
-  private events = [];
+  private events = null;
   private year = null;
   private month = null;
 
@@ -30,7 +30,7 @@ export class CalendarGridViewComponent implements OnInit {
 
     this.dataStoreService.events$.subscribe( data => {
 
-      if (data.length > 0) {
+      // if (data.length > 0) {
         console.log('events$ data: ', data);
 
         this.calendarOptions = {
@@ -39,13 +39,13 @@ export class CalendarGridViewComponent implements OnInit {
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay,listMonth'
+            right: ''
           },
-          events: []
+          events: data
         };
 
-        this.loadEvents();
-      }
+        // this.loadEvents();
+      // }
     });
 
   }
