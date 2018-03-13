@@ -4,6 +4,8 @@ import { DataStoreService } from '../shared/services/data-store.service';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import * as moment from 'moment';
+import { forkJoin } from 'rxjs/observable/forkJoin';
+import {zip} from 'rxjs/observable/zip';
 
 @Component({
   selector: 'mdc-calendar-grid-view',
@@ -13,9 +15,6 @@ import * as moment from 'moment';
 export class CalendarGridViewComponent implements OnInit {
 
   private events = null;
-  private year = null;
-  private month = null;
-
   calendarOptions: Options;
 
 
@@ -23,14 +22,17 @@ export class CalendarGridViewComponent implements OnInit {
               private dataStoreService: DataStoreService) {}
 
   ngOnInit() {
-
-    this.dateService.year$.subscribe(year => this.year = year);
-    this.dateService.month$.subscribe( month => this.month = month);
-    this.dateService.filterByMonth(this.year, this.month);
+    zip(
+    this.dateService.year$,
+    this.dateService.month$
+  ).subscribe( ([year, month]) => {
+      this.dateService.filterByMonth(year, month);
+    }
+    );
 
     this.dataStoreService.events$.subscribe( data => {
 
-      // if (data.length > 0) {
+      if (data.length > 0) {
         console.log('events$ data: ', data);
 
         this.calendarOptions = {
@@ -45,7 +47,7 @@ export class CalendarGridViewComponent implements OnInit {
         };
 
         // this.loadEvents();
-      // }
+      }
     });
 
   }
