@@ -37,8 +37,8 @@ export class CalendarGridViewComponent implements OnInit {
           editable: false,
           eventLimit: true,
           header: {
-            left: 'prev,next today',
-            center: 'title',
+            left: '',
+            center: 'today, prev, title, next',
             right: ''
           },
           events: data

@@ -32,8 +32,8 @@ export class MdcEvent {
   public id: number;
   public odataId: string;
   public title: string;
-  public start: Date;
-  public end: Date;
+  public startDate: Date;
+  public endDate: Date;
   public isAllDayEvent: boolean;
   public isRecurringEvent: boolean;
   public recurrence: Date[];
@@ -53,6 +53,8 @@ export class MdcEvent {
   public address: MdcEventAddress;
   public calendarId: string;
   public isDepartmentOnly: boolean;
+  public start: Date;
+  public end: Date;
 
 
   public static schema = {
@@ -72,11 +74,11 @@ export class MdcEvent {
       'eventTypes': {
         'type': ['array', 'null']
       },
-      'start': {
+      'startDate': {
         'type': 'string',
         'format': 'date-time'
       },
-      'end': {
+      'endDate': {
         'type': 'string',
         'format': 'date-time'
       },
@@ -145,6 +147,14 @@ export class MdcEvent {
           }
         }
       },
+    'start': {
+      'type': 'string',
+      'format': 'date-time'
+    },
+    'end': {
+      'type': 'string',
+      'format': 'date-time'
+    },
       'categories': {
         'type': ['array', 'null'],
         'items': {
@@ -182,8 +192,8 @@ export class MdcEvent {
   constructor(id: number,
               odataId: string,
               title: string,
-              start: Date,
-              end: Date,
+              startDate: Date,
+              endDate: Date,
               isRecurringEvent: boolean,
               recurrence: Date[],
               isAllDayEvent: boolean,
@@ -202,13 +212,15 @@ export class MdcEvent {
               url: object,
               address: MdcEventAddress,
               calendarId: string,
-              isDepartmentOnly: boolean) {
+              isDepartmentOnly: boolean,
+              start: Date,
+              end: Date,) {
 
     this.id = id || null;
     this.odataId = odataId || '';
     this.title = title || '';
-    this.start = start || null;
-    this.end = end || null;
+    this.startDate = startDate || null;
+    this.endDate = endDate || null;
     this.isRecurringEvent = isRecurringEvent || false;
     this.recurrence = recurrence || null;
     this.isAllDayEvent = isAllDayEvent || false;
@@ -228,6 +240,8 @@ export class MdcEvent {
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
     this.isDepartmentOnly = isDepartmentOnly || false;
+    this.start = startDate || null;
+    this.end = endDate || null;
   }
 
 
@@ -300,7 +314,9 @@ export class MdcEvent {
         json.url,
         address,
         calendarId,
-        json.isDepartmentOnly
+        json.isDepartmentOnly,
+        new Date(json.startDate),
+        new Date(json.endDate)
       );
     } else {
       console.error('fromJSON: invalid json to build event', json, tv4.error);
@@ -343,7 +359,9 @@ export class MdcEvent {
       endDate.setHours(endHours, endMinutes, endSeconds, endMilliseconds);
 
       let recurrenceEvent = _.cloneDeep(parentEvent);
+      recurrenceEvent.startDate = startDate;
       recurrenceEvent.start = startDate;
+      recurrenceEvent.endDate = endDate;
       recurrenceEvent.end = endDate;
 
       accumulator.push(recurrenceEvent);
