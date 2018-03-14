@@ -343,8 +343,8 @@ export class MdcEvent {
       endDate.setHours(endHours, endMinutes, endSeconds, endMilliseconds);
 
       let recurrenceEvent = _.cloneDeep(parentEvent);
-      recurrenceEvent.startDate = startDate;
-      recurrenceEvent.endDate = endDate;
+      recurrenceEvent.start = startDate;
+      recurrenceEvent.end = endDate;
 
       accumulator.push(recurrenceEvent);
       return accumulator;
