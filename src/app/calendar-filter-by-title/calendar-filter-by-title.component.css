@@ -3,7 +3,6 @@ CALENDAR LEFT WIDGETS
 -------------------------- */
 
 .widget {
-  margin-bottom: 30px;
   color: #333;
 }
 
@@ -117,10 +116,9 @@ ACCORDION
   max-height: 2000px;
   opacity: 1;
   transform: translate(0, 0);
-  margin: 20px 0;
   z-index: 2;
 
-  display: block;  
+  display: block;
 }
 
 .accordion-filters {
