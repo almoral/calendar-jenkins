@@ -35,7 +35,7 @@ export class CalendarGridViewComponent implements OnInit {
       .subscribe( data => {
         this.calendarOptions = {
           editable: false,
-          eventLimit: true,
+          eventLimit: false,
           header: {
             left: 'prev,next today',
             center: 'title',

@@ -23,7 +23,6 @@
     "@angular/router": "^5.2.0",
     "@nicky-lenaers/ngx-scroll-to": "^0.6.0",
     "angular-in-memory-web-api": "^0.5.1",
-    "angular2-fullcalendar": "^1.0.19",
     "angular2-materialize": "^15.1.10",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
