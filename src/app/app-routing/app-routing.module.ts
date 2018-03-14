@@ -5,7 +5,7 @@ import {MDCCalendarComponent} from '../calendar/calendar.component';
 import {CalendarGridViewComponent} from '../calendar-grid-view/calendar-grid-view.component';
 
 const routes: Routes = [
-  {path: 'month', component: CalendarGridViewComponent},
+  {path: 'grid', component: CalendarGridViewComponent},
   {path: '**', component: MDCCalendarComponent}
 ];
 

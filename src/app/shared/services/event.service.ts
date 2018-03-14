@@ -21,12 +21,12 @@ export class EventService {
     return _.chain(events)
       .groupBy(
         event =>
-          new Date(event.startDate.getFullYear(),
-            event.startDate.getMonth(),
-            event.startDate.getDate()
+          new Date(event.start.getFullYear(),
+            event.start.getMonth(),
+            event.start.getDate()
           ))
       .map((value, key) => new MdcEventsByDate(new Date(key),
-        _.orderBy(value, ['startDate'], ['asc'])))
+        _.orderBy(value, ['start'], ['asc'])))
       .orderBy(['date'], ['asc'])
       .value();
 

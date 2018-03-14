@@ -1,8 +1,6 @@
-<div *ngIf="calendarOptions">
-
+<div class='container' *ngIf="calendarOptions">
+  <div class='row'>
   <ng-fullcalendar [options]="calendarOptions"
                    [(eventsModel)]="events"></ng-fullcalendar>
-
-
-  Events Loaded: {{events | json}}
+  </div>
 </div>

@@ -32,8 +32,8 @@ export class MdcEvent {
   public id: number;
   public odataId: string;
   public title: string;
-  public startDate: Date;
-  public endDate: Date;
+  public start: Date;
+  public end: Date;
   public isAllDayEvent: boolean;
   public isRecurringEvent: boolean;
   public recurrence: Date[];
@@ -72,11 +72,11 @@ export class MdcEvent {
       'eventTypes': {
         'type': ['array', 'null']
       },
-      'startDate': {
+      'start': {
         'type': 'string',
         'format': 'date-time'
       },
-      'endDate': {
+      'end': {
         'type': 'string',
         'format': 'date-time'
       },
@@ -182,8 +182,8 @@ export class MdcEvent {
   constructor(id: number,
               odataId: string,
               title: string,
-              startDate: Date,
-              endDate: Date,
+              start: Date,
+              end: Date,
               isRecurringEvent: boolean,
               recurrence: Date[],
               isAllDayEvent: boolean,
@@ -207,8 +207,8 @@ export class MdcEvent {
     this.id = id || null;
     this.odataId = odataId || '';
     this.title = title || '';
-    this.startDate = startDate || null;
-    this.endDate = endDate || null;
+    this.start = start || null;
+    this.end = end || null;
     this.isRecurringEvent = isRecurringEvent || false;
     this.recurrence = recurrence || null;
     this.isAllDayEvent = isAllDayEvent || false;
@@ -321,15 +321,15 @@ export class MdcEvent {
       return [];
 
     // Compute start and end times.
-    const startHours = parentEvent.startDate.getHours();
-    const startMinutes = parentEvent.startDate.getMinutes();
-    const startSeconds = parentEvent.startDate.getSeconds();
-    const startMilliseconds = parentEvent.startDate.getMilliseconds();
+    const startHours = parentEvent.start.getHours();
+    const startMinutes = parentEvent.start.getMinutes();
+    const startSeconds = parentEvent.start.getSeconds();
+    const startMilliseconds = parentEvent.start.getMilliseconds();
 
-    const endHours = parentEvent.endDate.getHours();
-    const endMinutes = parentEvent.endDate.getMinutes();
-    const endSeconds = parentEvent.endDate.getSeconds();
-    const endMilliseconds = parentEvent.endDate.getMilliseconds();
+    const endHours = parentEvent.end.getHours();
+    const endMinutes = parentEvent.end.getMinutes();
+    const endSeconds = parentEvent.end.getSeconds();
+    const endMilliseconds = parentEvent.end.getMilliseconds();
 
 
     // Loop through the set of dates and build the recurring events
