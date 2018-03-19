@@ -3,7 +3,9 @@ import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { Options } from 'fullcalendar';
 import {zip} from 'rxjs/observable/zip';
-import {skip} from 'rxjs/operators';
+import {map, skip} from 'rxjs/operators';
+import {MdcEvent} from '../shared/models/mdc-event';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'mdc-calendar-grid-view',
@@ -32,10 +34,15 @@ export class CalendarGridViewComponent implements OnInit {
       .pipe(
         skip(1)
       )
-      .subscribe( data => {
+      .subscribe( (data: MdcEvent[]) => {
+
+        // Clearing the url for the grid view.
+        // data.map( event => event.url = null);
+
         this.calendarOptions = {
           editable: false,
           eventLimit: true,
+          selectable: true,
           header: {
             left: '',
             center: 'today, prev, title, next',
@@ -44,5 +51,12 @@ export class CalendarGridViewComponent implements OnInit {
           events: data
         };
     });
+  }
+
+  eventClick($event: any) {
+    $event.preventDefault();
+    console.log('click fired! ', $event);
+    // click.stopPropagation();
+    return false;
   }
 }

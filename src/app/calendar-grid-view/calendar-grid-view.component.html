@@ -3,12 +3,9 @@
     <a href='/'>List View</a> | <a href='/grid'>Grid View</a>
   </div>
 
-  <!--<div class='row'>-->
-    <!--{{events | json}}-->
-  <!--</div>-->
-
   <div class='row'>
   <ng-fullcalendar [options]="calendarOptions"
-                   [(eventsModel)]="events"></ng-fullcalendar>
+                   [(eventsModel)]="events"
+                    (eventClick)='eventClick($event)'></ng-fullcalendar>
   </div>
 </div>

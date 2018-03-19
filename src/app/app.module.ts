@@ -40,7 +40,7 @@ import {TypesDataService} from './shared/services/types-data.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { CalendarGridViewComponent } from './calendar-grid-view/calendar-grid-view.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
-
+import {ModalDialogModule} from 'ngx-modal-dialog';
 
 @NgModule({
   declarations: [
@@ -77,7 +77,8 @@ import { FullCalendarModule } from 'ng-fullcalendar';
     FormsModule,
     ReactiveFormsModule,
     ScrollToModule.forRoot(),
-    FullCalendarModule
+    FullCalendarModule,
+    ModalDialogModule
   ],
   providers: [
     ConfigurationService,
