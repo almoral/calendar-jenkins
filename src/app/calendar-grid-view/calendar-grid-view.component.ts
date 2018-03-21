@@ -1,11 +1,9 @@
-import {AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { Options } from 'fullcalendar';
-import {zip} from 'rxjs/observable/zip';
-import {map, skip} from 'rxjs/operators';
 import {MdcEvent} from '../shared/models/mdc-event';
-import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'mdc-calendar-grid-view',
@@ -16,29 +14,19 @@ export class CalendarGridViewComponent implements OnInit {
 
   events = null;
   calendarOptions: Options;
+  eventSelected = new BehaviorSubject<boolean>(false);
+  event = new BehaviorSubject(null);
 
   constructor(private dateService: DateService,
               private dataStoreService: DataStoreService) {}
 
   ngOnInit() {
-    zip(
-    this.dateService.year$,
-    this.dateService.month$
-  ).subscribe( ([year, month]) => {
-      this.dateService.filterByMonth(year, month);
-    }
-    );
 
-    // const end$ = new Subject();
-    this.dataStoreService.events$
-      .pipe(
-        skip(1)
-      )
+    this.events = this.dataStoreService.events$;
+
+    this.events
       .subscribe( (data: MdcEvent[]) => {
-
-        // Clearing the url for the grid view.
-        // data.map( event => event.url = null);
-
+        console.log('data for events: ', data);
         this.calendarOptions = {
           editable: false,
           eventLimit: true,
@@ -54,9 +42,8 @@ export class CalendarGridViewComponent implements OnInit {
   }
 
   eventClick($event: any) {
-    $event.preventDefault();
-    console.log('click fired! ', $event);
-    // click.stopPropagation();
-    return false;
+    console.log('testing listener: ', $event);
+    this.event.next($event.detail.event);
+    this.eventSelected.next(true);
   }
 }

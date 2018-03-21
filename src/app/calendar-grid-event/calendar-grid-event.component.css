@@ -1,0 +1,232 @@
+/* --------------------------
+CALENDAR MAIN CONTENT
+-------------------------- */
+
+/*--Date Selector/Dropdowns --*/
+
+.date-container {
+  background-color: #9E9E9E;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.date-container h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+
+.date-container label {
+  color: #fff;
+}
+
+.calendar-content h2:not(:nth-of-type(1)) { margin-top: 75px; }
+
+h2.group-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+h2.group-title::after {
+  content: " ";
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin: 15px 0 0 0;
+  background-color: #f7f6f6;
+}
+
+.calendar-title-container {
+  width: 100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #03a9f4;
+  line-height: 1.5;
+}
+
+.plus-icon {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  margin-top: -12px;
+}
+
+.plus-icon::before,
+.plus-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #444;
+  transition: all 0.25s ease-in-out;
+}
+
+.plus-icon::before {
+  transform: rotate(0deg);
+  right: -8px;
+  width: 4px;
+  height: 12px;
+  top: 0;
+}
+
+.plus-icon::after {
+  top: 4px;
+  width: 12px;
+  height: 4px;
+}
+
+.active .plus-icon::before {
+  transform: rotate(90deg);
+  right: -8px;
+  width: 4px;
+  height: 12px;
+  top: 0;
+}
+
+.calendar-quick-view-container {
+  background-color: #f3f3f3;
+  padding: 15px;
+  font-size: 13px;
+}
+
+.calendar-quick-view-container .content-container {
+  background-color: #fff;
+  padding: 25px 25px 5px 25px;
+  border-radius: 10px;
+}
+
+.list-item {
+  display: table;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.detail-item {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.list-item.middle .detail-item{ vertical-align: middle; }
+
+.calendar-quick-view-container .content-main-calendar .list-item .detail-item:first-child {
+  width: 80px;
+}
+
+.calendar-quick-view-container .content-main-calendar .list-item .detail-item:last-child {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.calendar-quick-view-container .content-main-calendar .short-description,
+.calendar-quick-view-container .right-content-calendar {
+  margin-bottom: 35px;
+}
+
+
+.calendar-quick-view-container .right-content-calendar .list-item .detail-item:first-child {
+  width: 60px;
+}
+
+.right-content-calendar--title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 17px;
+  border-bottom: solid 1px #ddd;
+  position: relative;
+  margin: 0 0 20px 0;
+}
+
+.right-content-calendar--title:after {
+  content: " ";
+  display: block;
+  height: 3px;
+  width: 42px;
+  position: absolute;
+  bottom: -2px;
+  z-index: 999;
+  background-color: #46BCEB;
+}
+
+.icon-container {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e1e7ec;
+  color: #606975;
+  display: flex;
+}
+
+.icon-container .fa { margin: auto; }
+
+.fa {
+  font-size: 16px;
+}
+
+.calendar-title-container { display: table; }
+
+
+.calendar-title-container > .column:first-child {
+  width: 60%;
+  padding-right: 15px;
+}
+
+.calendar-title-container > .column:last-child {
+  padding-right: 100px;
+  font-size: 13px;
+}
+
+.btn {
+  width: 100%;
+}
+
+.btn.blue {
+  background-color: #027abb !important;
+  border: 1px solid #0d94d0;
+  color: #fff;
+  width: 100%;
+  margin: 15px 0 10px 0;
+}
+
+.btn.blue:focus {
+  background-color: #03a9f4 !important;
+}
+
+.ada-text {
+  font-size: 12px;
+  font-style: italic;
+}
+
+
+@media (min-width: 601px) {
+
+  .calendar-title-container > .column {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .calendar-title-container > .column:last-child {
+    text-align: right;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .calendar-subtitle {
+    margin-bottom: 5px;
+  }
+
+  .content-main-calendar {
+    margin-bottom: 25px;
+  }
+}

@@ -41,6 +41,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { CalendarGridViewComponent } from './calendar-grid-view/calendar-grid-view.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import {ModalDialogModule} from 'ngx-modal-dialog';
+import { CalendarGridEventComponent } from './calendar-grid-event/calendar-grid-event.component';
+import { CalendarListViewComponent } from './calendar-list-view/calendar-list-view.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import {ModalDialogModule} from 'ngx-modal-dialog';
     InternationalPhonePipe,
     LoaderComponent,
     CalendarFilterByTypeComponent,
-    CalendarGridViewComponent
+    CalendarGridViewComponent,
+    CalendarGridEventComponent,
+    CalendarListViewComponent
 
   ],
   imports: [

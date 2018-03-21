@@ -1,11 +1,17 @@
-<div class='container' *ngIf="calendarOptions">
-  <div class='row'>
-    <a href='/'>List View</a> | <a href='/grid'>Grid View</a>
-  </div>
 
-  <div class='row'>
+<div class='row' *ngIf="calendarOptions">
+
+
+  <div>
   <ng-fullcalendar [options]="calendarOptions"
                    [(eventsModel)]="events"
                     (eventClick)='eventClick($event)'></ng-fullcalendar>
   </div>
+
+  <div *ngIf='eventSelected.getValue()'>
+
+    <mdc-calendar-grid-event [event] = "event.getValue()"></mdc-calendar-grid-event>
+  </div>
+
+
 </div>
