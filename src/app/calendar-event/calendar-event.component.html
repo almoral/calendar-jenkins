@@ -82,10 +82,10 @@
 
       <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="tel:{{event?.adaPhone | internationalPhone}}">{{event?.adaPhone | phone}}</a></span> or email <span class="email"><a href="mailto:{{event?.adaEmail}}" *ngIf="!event?.adaName">{{event?.adaEmail}}</a><a href="mailto:{{event?.adaEmail}}" *ngIf="event?.adaName">{{event?.adaName}}</a></span> at least five days in advance of the meeting.</span>
 
-      <a *ngIf='event?.website["url"] && event?.website["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.website['url']}}" tabindex="0">{{event?.website["description"]}}</a>
+      <a *ngIf='event?.link["url"] && event?.link["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.link['url']}}" tabindex="0">{{event?.link["description"]}}</a>
 
-      <!-- Using this as the default value for when the event.website object has a website but no description.-->
-      <a *ngIf='event?.website["url"] && !event?.website["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.website['url']}}" tabindex="0">Event Details</a>
+      <!-- Using this as the default value for when the event.link object has a link but no description.-->
+      <a *ngIf='event?.link["url"] && !event?.link["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.link['url']}}" tabindex="0">Event Details</a>
 
     </div>
   </div>

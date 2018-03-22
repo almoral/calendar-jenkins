@@ -2,11 +2,9 @@
 <div class='row' *ngIf="calendarOptions">
   <div>
   <ng-fullcalendar [options]="calendarOptions"
-                   [(eventsModel)]="events"
+                   [(eventsModel)]="eventsSubject"
                     (eventClick)='eventClick($event)'></ng-fullcalendar>
   </div>
 
-  <div *ngIf='eventSelected.getValue()'>
-    <mdc-calendar-grid-event [event]="event.getValue()"></mdc-calendar-grid-event>
-  </div>
+    <mdc-calendar-grid-event [event]="selectedEvent" ></mdc-calendar-grid-event>
 </div>

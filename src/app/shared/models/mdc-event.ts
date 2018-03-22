@@ -49,7 +49,7 @@ export class MdcEvent {
   public isClosedToMedia: boolean;
   public isClosedToPublic: boolean;
   public isFree: boolean;
-  public website: object;
+  public link: object;
   public address: MdcEventAddress;
   public calendarId: string;
   public isDepartmentOnly: boolean;
@@ -133,7 +133,7 @@ export class MdcEvent {
       'isFree': {
         'type': ['boolean', 'null']
       },
-      'website': {
+      'link': {
         'type': ['object', 'null'],
         'properties': {
           'description': {
@@ -236,7 +236,7 @@ export class MdcEvent {
     this.isClosedToMedia = isClosedToMedia || false;
     this.isClosedToPublic = isClosedToPublic || false;
     this.isFree = _.isNil(isFree) || isFree;
-    this.website = url || {};
+    this.link = url || {};
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
     this.isDepartmentOnly = isDepartmentOnly || false;
@@ -348,7 +348,7 @@ export class MdcEvent {
     const endMilliseconds = parentEvent.end.getMilliseconds();
 
 
-    // Loop through the set of dates and build the recurring events
+    // Loop through the set of dates and build the recurring eventsSubject
     const recurrenceEvents: Array<MdcEvent> = parentEvent.recurrence.reduce(function(accumulator, date) {
 
       // replace start time and end time with that of the parent.
@@ -462,8 +462,8 @@ export class MdcEvent {
 
 /**
  * MdcEventsByDate has a date and
- * a collection of events that fall within that date.
- * It is a way to group all events in a specific date, with
+ * a collection of eventsSubject that fall within that date.
+ * It is a way to group all eventsSubject in a specific date, with
  * explicit access to the date in question.
  */
 export class MdcEventsByDate {

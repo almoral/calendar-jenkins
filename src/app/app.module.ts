@@ -40,9 +40,11 @@ import {TypesDataService} from './shared/services/types-data.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { CalendarGridViewComponent } from './calendar-grid-view/calendar-grid-view.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
-import {ModalDialogModule} from 'ngx-modal-dialog';
 import { CalendarGridEventComponent } from './calendar-grid-event/calendar-grid-event.component';
 import { CalendarListViewComponent } from './calendar-list-view/calendar-list-view.component';
+import {NgxSmartModalModule} from 'ngx-smart-modal';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -82,7 +84,8 @@ import { CalendarListViewComponent } from './calendar-list-view/calendar-list-vi
     ReactiveFormsModule,
     ScrollToModule.forRoot(),
     FullCalendarModule,
-    ModalDialogModule
+    NgxSmartModalModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     ConfigurationService,
