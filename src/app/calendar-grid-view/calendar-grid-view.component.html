@@ -1,7 +1,5 @@
 
 <div class='row' *ngIf="calendarOptions">
-
-
   <div>
   <ng-fullcalendar [options]="calendarOptions"
                    [(eventsModel)]="events"
@@ -9,9 +7,6 @@
   </div>
 
   <div *ngIf='eventSelected.getValue()'>
-
-    <mdc-calendar-grid-event [event] = "event.getValue()"></mdc-calendar-grid-event>
+    <mdc-calendar-grid-event [event]="event.getValue()"></mdc-calendar-grid-event>
   </div>
-
-
 </div>
