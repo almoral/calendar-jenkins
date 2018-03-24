@@ -3,7 +3,8 @@
   <div>
   <ng-fullcalendar [options]="calendarOptions"
                    [(eventsModel)]="eventsSubject"
-                    (eventClick)='eventClick($event)'></ng-fullcalendar>
+                    (eventClick)='eventClick($event)'
+                    (clickButton)='clickButton($event)'></ng-fullcalendar>
   </div>
 
     <mdc-calendar-grid-event [event]="selectedEvent" ></mdc-calendar-grid-event>

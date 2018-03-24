@@ -80,6 +80,26 @@ export class DateService {
 
   }
 
+  public getSelectedMonth(): string {
+    return this.monthSubject.getValue();
+  }
+
+  public getSelectedYear(): string {
+    return this.yearSubject.getValue().toString();
+  }
+
+  public getSelectedDay(): string {
+    return this.daySubject.getValue();
+  }
+
+  public getFormmattedDate(): string {
+    const year = this.getSelectedYear();
+    const month = this.getSelectedMonth();
+    const day = this.getSelectedDay();
+    const selectedDate = '' + year + '-' + month + '-' + day + '';
+    return moment(selectedDate, 'YYYY-MMMM-DD').format('YYYY-MM-DD');
+  }
+
 
   /**
    * createDateString concatenates the year and month that are passed in
@@ -144,6 +164,8 @@ export class DateService {
     let fromDate: string = month + '/1/' + year;
     const numberOfDays = this.numberOfDaysSubject.getValue();
     let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
+
+    // TODO: Find out why the to date is invalid when displaying grid view.
 
     fromDate = moment(fromDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
     toDate = moment(toDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
