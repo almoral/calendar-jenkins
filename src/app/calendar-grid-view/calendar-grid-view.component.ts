@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { Options } from 'fullcalendar';
@@ -10,6 +11,7 @@ import moment = require('moment');
 
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'mdc-calendar-grid-view',
   templateUrl: './calendar-grid-view.component.html',
   styleUrls: ['./calendar-grid-view.component.css']
@@ -20,7 +22,8 @@ export class CalendarGridViewComponent implements OnInit {
   calendarOptions: Options;
   dataStoreEvents = new BehaviorSubject<MdcEvent[]>([]);
 
-  constructor(private dateService: DateService,
+  constructor(private router: Router,
+              private dateService: DateService,
               private dataStoreService: DataStoreService,
               public ngxSmartModalService: NgxSmartModalService) {}
 
@@ -50,10 +53,19 @@ export class CalendarGridViewComponent implements OnInit {
       eventLimit: true,
       selectable: true,
       defaultDate: date,
+      prev: 'fa-chevron-left',
+      customButtons: {
+        listView: {
+          text: 'Day'
+        }
+        gridView: {
+          text: 'Month'
+        }       
+      },
       header: {
-        left: '',
-        center: 'today, prev, title, next',
-        right: ''
+        left: 'today,prev,next',
+        center: 'title',
+        right: 'listView,gridView'
       },
       events: data
     };
@@ -80,6 +92,15 @@ export class CalendarGridViewComponent implements OnInit {
 
       this.dateService.filterByMonth(year, month);
     }
+
+    if(event.detail.buttonType === 'listView') {
+      this.router.navigate(['/list']);
+    }
+
+    if(event.detail.buttonType === 'gridView') {
+      this.router.navigate(['/grid']);
+    }
+
   }
 
   eventClick(event: any) {
