@@ -244,6 +244,13 @@ export class DateService {
     this.filterEventsByDate();
   }
 
+  filterEventsByCurrentDate() {
 
+    this.setYear(moment().format('YYYY'));
+    this.setMonth(moment().format('MMMM'));
+    this.setDay(moment().format('D'));
+
+    this.filterEventsByDate();
+  }
 
 }

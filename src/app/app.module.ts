@@ -44,6 +44,7 @@ import { CalendarGridEventComponent } from './calendar-grid-event/calendar-grid-
 import { CalendarListViewComponent } from './calendar-list-view/calendar-list-view.component';
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CalendarNavigationComponent } from './calendar-navigation/calendar-navigation.component';
 
 
 @NgModule({
@@ -66,9 +67,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     InternationalPhonePipe,
     LoaderComponent,
     CalendarFilterByTypeComponent,
+<<<<<<< HEAD
     CalendarGridViewComponent,
     CalendarGridEventComponent,
     CalendarListViewComponent
+=======
+    CalendarNavigationComponent
+>>>>>>> ui-next-prev-today-buttons
 
   ],
   imports: [
