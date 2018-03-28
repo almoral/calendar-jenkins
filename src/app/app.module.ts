@@ -67,13 +67,10 @@ import { CalendarNavigationComponent } from './calendar-navigation/calendar-navi
     InternationalPhonePipe,
     LoaderComponent,
     CalendarFilterByTypeComponent,
-<<<<<<< HEAD
     CalendarGridViewComponent,
     CalendarGridEventComponent,
     CalendarListViewComponent
-=======
     CalendarNavigationComponent
->>>>>>> ui-next-prev-today-buttons
 
   ],
   imports: [
