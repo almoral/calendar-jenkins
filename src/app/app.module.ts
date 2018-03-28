@@ -38,6 +38,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
 import {TypesDataService} from "./shared/services/types-data.service";
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { CalendarNavigationComponent } from './calendar-navigation/calendar-navigation.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
     PhonePipe,
     InternationalPhonePipe,
     LoaderComponent,
-    CalendarFilterByTypeComponent
+    CalendarFilterByTypeComponent,
+    CalendarNavigationComponent
 
   ],
   imports: [
