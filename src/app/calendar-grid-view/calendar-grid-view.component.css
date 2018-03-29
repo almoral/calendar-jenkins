@@ -59,3 +59,15 @@
 	font-weight: bold;
 	line-height: 41px;
 }
+
+
+/*---Targeting the dialog container of the event--*/
+.overlay .grid-view-event-container.dialog {
+  max-width: 1000px;
+}
+
+.overlay .grid-view-event-container .dialog__close-btn {
+	top: 15px;
+	right: 15px;
+}
+/*---/Targeting the dialog container of the event--*/
