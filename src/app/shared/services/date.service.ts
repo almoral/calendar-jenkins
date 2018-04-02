@@ -162,11 +162,9 @@ export class DateService {
    */
   public filterByMonth(year: string, month: string): void {
     let fromDate: string = month + '/1/' + year;
+    this.getNumberOfDays(year, month);
     const numberOfDays = this.numberOfDaysSubject.getValue();
     let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
-
-    // TODO: Find out why the to date is invalid when displaying grid view.
-
     fromDate = moment(fromDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
     toDate = moment(toDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
 

@@ -1,8 +1,7 @@
 
 <div class='row' *ngIf="calendarOptions">
   <div>
-  <ng-fullcalendar [options]="calendarOptions"
-                   [(eventsModel)]="eventsSubject"
+  <ng-fullcalendar #monthView [options]="calendarOptions"
                     (eventClick)='eventClick($event)'
                     (clickButton)='clickButton($event)'></ng-fullcalendar>
   </div>
