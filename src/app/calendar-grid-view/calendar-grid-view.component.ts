@@ -108,6 +108,10 @@ export class CalendarGridViewComponent implements OnInit {
     this.router.navigate(['/'], {skipLocationChange: true});
   }
 
+  dayClick(event: any) {
+    console.log('button type: ', moment(event.detail.date).format('MM/DD/YYYY'));
+  }
+
   // Event listener that handles clicks in fullCalendar.
   clickButton(event: any) {
     const selectedDate = this.dateService.getFormmattedDate();
