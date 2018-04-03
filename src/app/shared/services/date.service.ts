@@ -92,7 +92,7 @@ export class DateService {
     return this.daySubject.getValue();
   }
 
-  public getFormmattedDate(): string {
+  public getFormattedDate(): string {
     const year = this.getSelectedYear();
     const month = this.getSelectedMonth();
     const day = this.getSelectedDay();

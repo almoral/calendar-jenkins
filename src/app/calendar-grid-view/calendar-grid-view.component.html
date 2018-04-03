@@ -1,9 +1,13 @@
 
 <div class='row' *ngIf="calendarOptions">
+  <div class='row'>
+    <a class="dayView" (click)="displayFirstOfMonth()">List View</a> | <a class="monthView" routerLink='/grid' skipLocationChange>Grid View</a>
+  </div>
   <div>
   <ng-fullcalendar #monthView [options]="calendarOptions"
                    (dayClick)="dayClick($event)"
                     (eventClick)='eventClick($event)'
+                   (initialized)="initialized($event)"
                     (clickButton)='clickButton($event)'></ng-fullcalendar>
   </div>
 
