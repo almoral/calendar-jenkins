@@ -1,6 +1,3 @@
-<div class='row'>
-  <a class="dayView" routerLink='/' skipLocationChange>List View</a> | <a class="monthView" routerLink='/grid' skipLocationChange>Grid View</a>
-</div>
 
 <ul>
   <li class="calendar-content" *ngFor="let eventDateCollection of events$ | async | paginate: { itemsPerPage: 3, currentPage: page}">

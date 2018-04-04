@@ -39,7 +39,7 @@ export class DateService {
   // Different date formats defined as constants in the date service.
 
   public static get DAY_FORMAT(): string {
-    return'D';
+    return'DD';
   }
   public static get MONTH_FORMAT(): string {
    return'MMMM';
@@ -49,6 +49,10 @@ export class DateService {
   }
   public static get YEAR_AND_MONTH_FORMAT(): string {
     return 'YYYY-MMMM';
+  }
+
+  public static get CURRENT_DATE_FORMAT(): string {
+    return 'YYYY-MMMM-DD'
   }
 
   public static get DATE_PARAM_FORMAT(): string {
@@ -98,6 +102,18 @@ export class DateService {
     const day = this.getSelectedDay();
     const selectedDate = '' + year + '-' + month + '-' + day + '';
     return moment(selectedDate, 'YYYY-MMMM-DD').format('YYYY-MM-DD');
+  }
+
+  public getCurrentYear(): string {
+    return moment().format(DateService.YEAR_FORMAT);
+  }
+
+  public getCurrentMonth(): string {
+    return moment().format(DateService.MONTH_FORMAT);
+  }
+
+  public getCurrentDay(): string {
+    return moment().format(DateService.DAY_FORMAT);
   }
 
 
@@ -244,9 +260,9 @@ export class DateService {
 
   filterEventsByCurrentDate() {
 
-    this.setYear(moment().format('YYYY'));
-    this.setMonth(moment().format('MMMM'));
-    this.setDay(moment().format('D'));
+    this.setYear(moment().format(DateService.YEAR_FORMAT));
+    this.setMonth(moment().format(DateService.MONTH_FORMAT));
+    this.setDay(moment().format(DateService.DAY_FORMAT));
 
     this.filterEventsByDate();
   }
