@@ -52,7 +52,7 @@ export class DateService {
   }
 
   public static get CURRENT_DATE_FORMAT(): string {
-    return 'YYYY-MMMM-DD'
+    return 'YYYY-MMMM-DD';
   }
 
   public static get DATE_PARAM_FORMAT(): string {

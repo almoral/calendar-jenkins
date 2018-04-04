@@ -45,6 +45,7 @@ import { CalendarListViewComponent } from './calendar-list-view/calendar-list-vi
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CalendarNavigationComponent } from './calendar-navigation/calendar-navigation.component';
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 @NgModule({
@@ -69,9 +70,8 @@ import { CalendarNavigationComponent } from './calendar-navigation/calendar-navi
     CalendarFilterByTypeComponent,
     CalendarGridViewComponent,
     CalendarGridEventComponent,
-    CalendarListViewComponent
+    CalendarListViewComponent,
     CalendarNavigationComponent
-
   ],
   imports: [
     BrowserModule,
@@ -87,7 +87,8 @@ import { CalendarNavigationComponent } from './calendar-navigation/calendar-navi
     ScrollToModule.forRoot(),
     FullCalendarModule,
     NgxSmartModalModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MyDatePickerModule
   ],
   providers: [
     ConfigurationService,
