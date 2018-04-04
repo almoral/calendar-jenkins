@@ -1,0 +1,73 @@
+.fc-header-toolbar > .fc-left > .fc-button-group button,
+.fc-header-toolbar > .fc-right > .fc-button-group button {
+	border-color: #dbe2e8;
+	text-shadow: none;
+	box-shadow: none;
+
+	background-image: none;
+	background-color: #fff;
+
+	height: auto;
+	padding: 10px 15px;
+	transition: .3s ease-out;
+}
+
+.fc-header-toolbar > .fc-right > .fc-button-group * {
+	margin: 0;
+}
+
+.fc-header-toolbar > .fc-left > .fc-button-group button:hover,
+.fc-header-toolbar > .fc-right > .fc-button-group button:first-child:hover {
+	background-color: #f5f5f5;
+}
+
+.fc-header-toolbar > .fc-right > .fc-button-group button:last-child {
+	background-color: #027abb;
+	border-color: transparent;
+	color: #fff;
+}
+
+.fc-header-toolbar > .fc-left .fc-icon-left-single-arrow,
+.fc-header-toolbar > .fc-left .fc-icon-right-single-arrow {
+	width: 9px;
+	height: 15px;
+}
+
+.fc-header-toolbar > .fc-left .fc-icon-left-single-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZGF0YS1wcmVmaXg9ImZhcyIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgNTEyIiBhcmlhLWxhYmVsPSJQcmV2aW91cyBEYXRlIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xOTIgMTI3LjMzOHYyNTcuMzI0YzAgMTcuODE4LTIxLjU0MyAyNi43NDEtMzQuMTQyIDE0LjE0MkwyOS4xOTYgMjcwLjE0MmMtNy44MS03LjgxLTcuODEtMjAuNDc0IDAtMjguMjg0bDEyOC42NjItMTI4LjY2MmMxMi41OTktMTIuNiAzNC4xNDItMy42NzYgMzQuMTQyIDE0LjE0MnoiPjwvcGF0aD48L3N2Zz4=") no-repeat;
+}
+
+.fc-header-toolbar > .fc-left .fc-icon-right-single-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZGF0YS1wcmVmaXg9ImZhcyIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgNTEyIiBhcmlhLWxhYmVsPSJOZXh0IERhdGUiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTAgMzg0LjY2MlYxMjcuMzM4YzAtMTcuODE4IDIxLjU0My0yNi43NDEgMzQuMTQyLTE0LjE0MmwxMjguNjYyIDEyOC42NjJjNy44MSA3LjgxIDcuODEgMjAuNDc0IDAgMjguMjg0TDM0LjE0MiAzOTguODA0QzIxLjU0MyA0MTEuNDA0IDAgNDAyLjQ4IDAgMzg0LjY2MnoiPjwvcGF0aD48L3N2Zz4=") no-repeat;
+}
+
+.fc-header-toolbar > .fc-left .fc-icon-left-single-arrow::after,
+.fc-header-toolbar > .fc-left .fc-icon-right-single-arrow::after {
+	content: "";
+}
+
+.fc-header-toolbar > .fc-left .fc-today-button::first-letter {
+	text-transform: uppercase;
+}
+
+.fc-header-toolbar > .fc-left .fc-today-button {
+	color: #039be5;	
+}
+
+.fc-header-toolbar h2 {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 41px;
+}
+
+
+/*---Targeting the dialog container of the event--*/
+.overlay .grid-view-event-container.dialog {
+  max-width: 1000px;
+}
+
+.overlay .grid-view-event-container .dialog__close-btn {
+	top: 15px;
+	right: 15px;
+}
+/*---/Targeting the dialog container of the event--*/

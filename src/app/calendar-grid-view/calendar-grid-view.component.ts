@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { Options } from 'fullcalendar';
@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'mdc-calendar-grid-view',
   templateUrl: './calendar-grid-view.component.html',
   styleUrls: ['./calendar-grid-view.component.css']
@@ -57,10 +58,19 @@ export class CalendarGridViewComponent implements OnInit {
       selectable: true,
       unselectAuto: false,
       defaultDate: date,
+      prev: 'fa-chevron-left',
+      customButtons: {
+        listView: {
+          text: 'Day'
+        },
+        gridView: {
+          text: 'Month'
+        }
+      },
       header: {
-        left: '',
-        center: 'today, prev, title, next',
-        right: ''
+        left: 'today,prev,next',
+        center: 'title',
+        right: 'listView,gridView'
       },
       events: data
     };
@@ -155,6 +165,15 @@ export class CalendarGridViewComponent implements OnInit {
       year = moment(selectedDate).format('YYYY');
       this.updateMonthData(month, year, day);
     }
+
+    if(event.detail.buttonType === 'listView') {
+      this.displayFirstOfMonth();
+    }
+
+    if(event.detail.buttonType === 'gridView') {
+      this.router.navigate(['/grid'], {skipLocationChange: true});
+    }
+
   }
 
   // Event listener that displays the details for a selected event.

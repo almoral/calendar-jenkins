@@ -10,7 +10,7 @@ body {
   font-size: 1.6rem;
 }
 
-a {color: #03a9f4}
+a {/* color: #03a9f4 */}
 
 a:hover {text-decoration: underline}
 
