@@ -166,11 +166,11 @@ export class CalendarGridViewComponent implements OnInit {
       this.updateMonthData(month, year, day);
     }
 
-    if(event.detail.buttonType === 'listView') {
+    if (event.detail.buttonType === 'listView') {
       this.displayFirstOfMonth();
     }
 
-    if(event.detail.buttonType === 'gridView') {
+    if (event.detail.buttonType === 'gridView') {
       this.router.navigate(['/grid'], {skipLocationChange: true});
     }
 
