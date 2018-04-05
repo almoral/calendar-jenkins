@@ -20,7 +20,9 @@
       <li>
         <my-date-picker name='datePicker'
                         [options]='pickerOptions'
-                        [formControl]='datePicker'></my-date-picker>
+                        [selDate]='selectedDate'
+                        (dateChanged)='onDateChanged($event)'>
+        </my-date-picker>
       </li>
 		</ul>
 	</div>

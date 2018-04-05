@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DateService} from '../shared/services/date.service';
 import {IMyDpOptions} from 'mydatepicker';
-import {FormControl} from '@angular/forms';
 import * as moment from 'moment';
-import {filter} from 'rxjs/operators';
+import {combineLatest} from 'rxjs/observable/combineLatest';
 
 @Component({
   selector: 'mdc-calendar-navigation',
@@ -13,34 +12,37 @@ import {filter} from 'rxjs/operators';
 export class CalendarNavigationComponent implements OnInit {
 
   pickerOptions: IMyDpOptions;
-  datePicker: FormControl;
+  selectedDate = {};
 
   constructor(private dateService: DateService) { }
 
   ngOnInit() {
 
-    this.datePicker = new FormControl();
+    const year$ = this.dateService.year$;
+    const month$ = this.dateService.month$;
+    const day$ = this.dateService.day$;
 
-    this.datePicker.valueChanges
-      .pipe(
-        filter(data => data)
-      )
-      .subscribe( selectedDate => {
-
-        this.dateService.setYear(moment(selectedDate.formatted, 'MM/DD/YYYY').format('YYYY'));
-        this.dateService.setMonth(moment(selectedDate.formatted, 'MM/DD/YYYY').format('MMMM'));
-        this.dateService.setDay(moment(selectedDate.formatted, 'MM/DD/YYYY').format('DD'));
-
-        this.dateService.filterEventsByDate();
-    });
+    combineLatest(year$, month$, day$)
+      .subscribe( date => {
+        this.selectedDate = {
+          year: moment(date[0], 'YYYY').format('YYYY'),
+          month: moment(date[1], 'MMMM').format('M'),
+          day: moment(date[2], 'DD').format('D')
+        };
+      });
 
     this.pickerOptions = {
       width: '250px',
       height: '40px'
     };
+  }
 
+  onDateChanged(event: any) {
 
-
+    this.dateService.setYear(moment(event.date.year, 'YYYY').format(DateService.YEAR_FORMAT));
+    this.dateService.setMonth(moment(event.date.month, 'M').format(DateService.MONTH_FORMAT));
+    this.dateService.setDay(moment(event.date.day, 'D').format(DateService.DAY_FORMAT));
+    this.dateService.filterEventsByDate();
   }
 
   filterEventsByNextDate() {
