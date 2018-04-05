@@ -45,8 +45,8 @@ export class CalendarGridViewComponent implements OnInit {
         takeUntil(stop$)
       )
       .subscribe( events => {
-      this.initializeGridView(events, formattedDate);
-      stop$.next(true);
+        this.initializeGridView(events, formattedDate);
+        stop$.next(true);
       });
   }
 
@@ -92,6 +92,11 @@ export class CalendarGridViewComponent implements OnInit {
 
     this.updateDateAndGetEvents(month, year, day);
 
+    // const date = moment().date(parseInt(day, 10)).month(month).year(parseInt(year, 10)).format(DateService.CURRENT_DATE_FORMAT);
+    // const date = moment().date(parseInt(day, 10)).month(month).year(parseInt(year, 10)).format(DateService.CURRENT_DATE_FORMAT);
+
+    // this.dateService.updateDateAndGetEvents(date);
+
     this.dataStoreService.events$
       .pipe(
         // The first value in the observable is the current (old) value.
@@ -100,13 +105,9 @@ export class CalendarGridViewComponent implements OnInit {
         takeUntil(stop$)
       )
       .subscribe(data => {
-          if (data.length > 0) {
             this.monthView.fullCalendar('renderEvents', data);
             stop$.next(true);
-          }
-        },
-        (error) => console.log('error: ', error),
-        () => console.log('subscription completed')
+        }
       );
   }
 

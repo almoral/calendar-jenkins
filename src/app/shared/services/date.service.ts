@@ -100,8 +100,7 @@ export class DateService {
     const year = this.getSelectedYear();
     const month = this.getSelectedMonth();
     const day = this.getSelectedDay();
-    const selectedDate = '' + year + '-' + month + '-' + day + '';
-    return moment(selectedDate, 'YYYY-MMMM-DD').format('YYYY-MM-DD');
+    return moment().year(parseInt(year, 10)).month(month).date(parseInt(day, 10)).format('YYYY-MM-DD');
   }
 
   public getCurrentYear(): string {
@@ -118,24 +117,12 @@ export class DateService {
 
 
   /**
-   * createDateString concatenates the year and month that are passed in
-   * and returns a string.
-   * @param year - selected year.
-   * @param month - selected month.
-   */
-  private static createDateString(year: string, month: string): string {
-    return year + '-' + month;
-  }
-
-
-  /**
    * getNumberOfDays calculates the number of days in a given month.
    * @param year - selected year.
    * @param month - selected month.
    */
   public getNumberOfDays(year: string, month: string) {
-    let selectedDate = DateService.createDateString(year, month);
-    let newNumberOfDays: number = moment(selectedDate, DateService.YEAR_AND_MONTH_FORMAT).daysInMonth();
+    const newNumberOfDays: number = moment().year(parseInt(year, 10)).month(month).daysInMonth();
     this.numberOfDaysSubject.next(this.generateDaysInMonth(newNumberOfDays));
   }
 
@@ -163,10 +150,7 @@ export class DateService {
    */
   public filterByDate(year: string, month: string, day: string): void {
 
-    let filterDate: string = '' + year + '-' + month + '-' + day + '';
-
-    filterDate = moment(filterDate, 'YYYY-MMMM-DD').format('MM/DD/YYYY');
-
+    const filterDate = moment().year(parseInt(year, 10)).month(month).date(parseInt(day, 10)).format('MM/DD/YYYY');
     this.dataStoreService.getEvents(new Date(filterDate), new Date(filterDate));
   }
 
@@ -177,12 +161,10 @@ export class DateService {
    * @param month - selected month.
    */
   public filterByMonth(year: string, month: string): void {
-    let fromDate: string = month + '/1/' + year;
     this.getNumberOfDays(year, month);
     const numberOfDays = this.numberOfDaysSubject.getValue();
-    let toDate: string = month + '/' + numberOfDays.length.toString() + '/' + year;
-    fromDate = moment(fromDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
-    toDate = moment(toDate, 'MMMM/DD/YYYY').format('MM/DD/YYYY');
+    const fromDate = moment().year(parseInt(year, 10)).month(month).date(1).format('MM/DD/YYYY');
+    const toDate = moment().year(parseInt(year, 10)).month(month).date(numberOfDays.length).format('MM/DD/YYYY');
 
     this.dataStoreService.getEvents(new Date(fromDate), new Date(toDate));
 
@@ -225,12 +207,7 @@ export class DateService {
     }
   }
 
-  filterEventsByNextDate() {
-    // This pulls the current date from the behavior subjects.
-    const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
-
-    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').add(1, 'days').format();
-
+  updateDateAndGetEvents(newDate: string) {
     // Update the state to match the new value based on the direction the user chose.
     this.setYear(moment(newDate).format('YYYY'));
     this.setMonth(moment(newDate).format('MMMM'));
@@ -239,23 +216,16 @@ export class DateService {
     this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
 
     this.filterEventsByDate();
+  }
 
+  filterEventsByNextDate() {
+    const newDate = moment().year(parseInt(this.yearSubject.getValue(), 10)).month(this.monthSubject.getValue()).date(parseInt(this.daySubject.getValue(), 10)).add(1, 'days').format();
+    this.updateDateAndGetEvents(newDate);
   }
 
   filterEventsByPreviousDate() {
-    // This pulls the current date from the behavior subjects.
-    const currentSelectedDate: string = this.yearSubject.getValue() + '-' +  this.monthSubject.getValue() + '-' + this.daySubject.getValue();
-
-    const newDate = moment(currentSelectedDate, 'YYYY-MMMM-D').subtract(1, 'days').format();
-
-    // Update the state to match the new value based on the direction the user chose.
-    this.setYear(moment(newDate).format('YYYY'));
-    this.setMonth(moment(newDate).format('MMMM'));
-    this.setDay(moment(newDate).format('D'));
-
-    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
-
-    this.filterEventsByDate();
+    const newDate = moment().year(parseInt(this.yearSubject.getValue(), 10)).month(this.monthSubject.getValue()).date(parseInt(this.daySubject.getValue(), 10)).subtract(1, 'days').format();
+    this.updateDateAndGetEvents(newDate);
   }
 
   filterEventsByCurrentDate() {
