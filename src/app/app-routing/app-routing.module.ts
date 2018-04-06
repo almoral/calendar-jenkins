@@ -8,7 +8,8 @@ import {CalendarListViewComponent} from '../calendar-list-view/calendar-list-vie
 
 
 const routes: Routes = [
-  { path: '',
+  { path: '', redirectTo: 'calendar', pathMatch: 'full' },
+  { path: 'calendar',
     component: MDCCalendarComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -16,8 +17,7 @@ const routes: Routes = [
       { path: 'list', component: CalendarListViewComponent }
     ]
   },
-  { path: '**', component: MDCCalendarComponent }
-
+  { path: '**', redirectTo: 'calendar'}
 ];
 
 @NgModule({
