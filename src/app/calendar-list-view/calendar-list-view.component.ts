@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar-list-view',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarListViewComponent implements OnInit {
 
+  isInCompactMode = environment.displayInCompactMode;
+
   constructor() { }
 
   ngOnInit() {
+
+
+
   }
 
 }

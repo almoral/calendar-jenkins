@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar.component.css']
 })
 export class MDCCalendarComponent implements OnInit {
+
+  isInCompactMode = environment.displayInCompactMode;
 
   constructor() { }
 

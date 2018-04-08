@@ -1,4 +1,4 @@
-<div class="container" id='scrollContainer'>
+<div class="container" id='scrollContainer' [ngClass]= '{"compactMode ": isInCompactMode}'>
   <mdc-calendar-header></mdc-calendar-header>
 	  <mdc-calendar-messages></mdc-calendar-messages>
 	  <router-outlet></router-outlet>
