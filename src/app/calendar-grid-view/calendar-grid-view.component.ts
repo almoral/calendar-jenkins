@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { DateService} from '../shared/services/date.service';
 import { DataStoreService } from '../shared/services/data-store.service';
 import { Options } from 'fullcalendar';
@@ -7,7 +7,7 @@ import {NgxSmartModalService} from 'ngx-smart-modal';
 import * as moment from 'moment';
 import {CalendarComponent} from 'ng-fullcalendar';
 import {Subject} from 'rxjs/Subject';
-import {skip, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 
@@ -17,10 +17,11 @@ import {Router} from '@angular/router';
   templateUrl: './calendar-grid-view.component.html',
   styleUrls: ['./calendar-grid-view.component.css']
 })
-export class CalendarGridViewComponent implements OnInit {
+export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
   selectedEvent: MdcEvent;
   calendarOptions: Options;
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
   @ViewChild(CalendarComponent) monthView: CalendarComponent;
 
@@ -34,22 +35,27 @@ export class CalendarGridViewComponent implements OnInit {
     const year = this.dateService.getSelectedYear();
     const month = this.dateService.getSelectedMonth();
     const formattedDate = this.dateService.getFormattedDate();
-    const stop$: Subject<boolean> = new Subject<boolean>();
 
     this.dateService.filterByMonth(year, month);
+    this.initializeGridView([], formattedDate);
+
+  }
+
+  viewRender() {
     this.dataStoreService.events$
       .pipe(
-        // The events observable is really a behavior subject so it has an initial value of [].
-        skip(1),
-        // This allows the app to unsubscribe cleanly when the view is destroyed.
-        takeUntil(stop$)
+        takeUntil(this.ngUnsubscribe)
       )
       .subscribe( events => {
-      this.initializeGridView(events, formattedDate);
-      stop$.next(true);
+        this.monthView.fullCalendar('removeEvents');
+        this.monthView.fullCalendar('renderEvents', events);
       });
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.complete();
+  }
 
   initializeGridView (data: MdcEvent[], date: string) {
     this.calendarOptions = {
@@ -87,27 +93,7 @@ export class CalendarGridViewComponent implements OnInit {
 
   // Updates the data for the grid view based on user navigation.
   updateMonthData (month: string, year: string, day: string) {
-    this.monthView.fullCalendar('removeEvents');
-    const stop$: Subject<boolean> = new Subject<boolean>();
-
     this.updateDateAndGetEvents(month, year, day);
-
-    this.dataStoreService.events$
-      .pipe(
-        // The first value in the observable is the current (old) value.
-        skip(1),
-        // This allows us to call complete on the observable once the new values have returned.
-        takeUntil(stop$)
-      )
-      .subscribe(data => {
-          if (data.length > 0) {
-            this.monthView.fullCalendar('renderEvents', data);
-            stop$.next(true);
-          }
-        },
-        (error) => console.log('error: ', error),
-        () => console.log('subscription completed')
-      );
   }
 
   // Updates the data and navigates to the day view when the user clicks on the 'Today' button.

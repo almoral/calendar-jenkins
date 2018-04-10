@@ -21,7 +21,8 @@ export class CalendarNavigationComponent implements OnInit {
     combineLatest(
         this.dateService.year$,
         this.dateService.month$,
-        this.dateService.day$)
+        this.dateService.day$
+    )
       .subscribe( date => {
         this.selectedDate = {
           year: moment(date[0], 'YYYY').format('YYYY'),
