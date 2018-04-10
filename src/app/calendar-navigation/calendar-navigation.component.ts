@@ -18,11 +18,11 @@ export class CalendarNavigationComponent implements OnInit {
 
   ngOnInit() {
 
-    const year$ = this.dateService.year$;
-    const month$ = this.dateService.month$;
-    const day$ = this.dateService.day$;
-
-    combineLatest(year$, month$, day$)
+    combineLatest(
+      this.dateService.year$,
+      this.dateService.month$,
+      this.dateService.day$
+    )
       .subscribe( date => {
         this.selectedDate = {
           year: moment(date[0], 'YYYY').format('YYYY'),
