@@ -32,11 +32,10 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    const year = this.dateService.getSelectedYear();
-    const month = this.dateService.getSelectedMonth();
+    // const year = this.dateService.getSelectedYear();
+    // const month = this.dateService.getSelectedMonth();
     const formattedDate = this.dateService.getFormattedDate();
 
-    this.dateService.filterByMonth(year, month);
     this.initializeGridView([], formattedDate);
 
   }
@@ -99,11 +98,18 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
   // Updates the data and navigates to the day view when the user clicks on the 'Today' button.
   showEventsForDate (month: string, year: string, day: string) {
     // this.updateDateAndGetEvents(month, year, day);
+    const currentlyDisplayedMonth = this.dateService.getCurrentMonth();
+
     this.dateService.setMonth(month);
     this.dateService.setYear(year);
     this.dateService.setDay(day);
-    const date = moment().month(month).year(parseInt(year, 10)).date(parseInt(day, 10)).toDate();
-    this.dateService.filterEventsForSelectedDate(date);
+
+    if (!moment(currentlyDisplayedMonth).isSame(month)) {
+      this.dateService.filterEventsByDate();
+    } else {
+      const date = moment().month(month).year(parseInt(year, 10)).date(parseInt(day, 10)).toDate();
+      this.dateService.filterEventsForSelectedDate(date);
+    }
 
     this.router.navigate(['/'], {skipLocationChange: true});
   }

@@ -207,15 +207,15 @@ export class DateService {
     const day = this.daySubject.getValue();
 
 
-    if (day === '' && month === '') {
-      this.filterByYear(year);
-    }
-    if (month !== '' && day === '') {
+    // if (day === '' && month === '') {
+    //   this.filterByYear(year);
+    // }
+    // if (month !== '' && day === '') {
       this.filterByMonth(year, month);
-    }
-    if (day !== '' && month !== '') {
-      this.filterByDate(year, month, day);
-    }
+    // }
+    // if (day !== '' && month !== '') {
+    //   this.filterByDate(year, month, day);
+    // }
   }
 
   filterEventsByNextDate() {
