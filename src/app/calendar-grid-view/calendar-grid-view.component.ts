@@ -36,7 +36,6 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
     const month = this.dateService.getSelectedMonth();
     const formattedDate = this.dateService.getFormattedDate();
 
-    this.dateService.filterByMonth(year, month);
     this.initializeGridView([], formattedDate);
 
   }
