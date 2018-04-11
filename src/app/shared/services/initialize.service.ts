@@ -4,6 +4,7 @@ import {DateService} from './date.service';
 import {DataStoreService} from './data-store.service';
 import {ActivatedRoute} from '@angular/router';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Injectable()
 export class InitializeService {
@@ -18,6 +19,9 @@ export class InitializeService {
 
     this.loadQueryParameters();
 
+    dateService.setMonth(moment().format('MMMM'));
+    dateService.setYear(moment().format('YYYY'));
+    dateService.setDay('');
     dateService.filterEventsByDate();
   }
 

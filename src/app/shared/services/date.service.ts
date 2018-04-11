@@ -70,18 +70,6 @@ export class DateService {
 
     this.setYear(moment().format(DateService.YEAR_FORMAT));
     this.setMonth(moment().format(DateService.MONTH_FORMAT));
-    this.getNumberOfDays(this.yearSubject.getValue(), this.monthSubject.getValue());
-    this.initializeDay();
-  }
-
-  public initializeDay() {
-
-    if (this.configurationService.dateFilterType === 'day') {
-      this.setDay(moment().format('D'));
-    } else {
-      this.setDay('');
-    }
-
   }
 
   public getSelectedMonth(): string {
@@ -170,6 +158,10 @@ export class DateService {
     this.dataStoreService.getEvents(new Date(filterDate), new Date(filterDate));
   }
 
+  filterEventsForSelectedDate(date: Date) {
+    this.dataStoreService.filterEventsForDate(date);
+  }
+
   /**
    * filterByMonth generates the date value for a search by  month.
    * It then passes the date to the getEvents function in the dataStoreService.
@@ -213,6 +205,7 @@ export class DateService {
     const year = this.yearSubject.getValue();
     const month = this.monthSubject.getValue();
     const day = this.daySubject.getValue();
+
 
     if (day === '' && month === '') {
       this.filterByYear(year);

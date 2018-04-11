@@ -7,7 +7,8 @@ import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
 import {TypesDataService} from './types-data.service';
-import {Option} from "../models/option";
+import {Option} from '../models/option';
+import * as moment from 'moment';
 
 
 @Injectable()
@@ -128,6 +129,20 @@ export class DataStoreService {
 
     // notify subscribers.
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+  }
+
+  filterEventsForDate(date: Date) {
+
+    const filteredEvents = _.filter(this.eventsSubject.getValue(), (events: MdcEvent) => {
+      return moment(events.startDate).format('YYYY-MMMM-DD') === moment(date).format('YYYY-MMMM-DD');
+    });
+
+    // categorize events by date.
+    const eventsByDate = this.eventService.eventsByDate(filteredEvents);
+
+      // return filteredEvents;
+    this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+
   }
 
   setEvents(events: MdcEvent[]) {

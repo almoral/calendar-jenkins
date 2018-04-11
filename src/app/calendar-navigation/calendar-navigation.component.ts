@@ -24,6 +24,11 @@ export class CalendarNavigationComponent implements OnInit {
         this.dateService.day$
     )
       .subscribe( date => {
+
+        if (date[2] === '') {
+          date[2] = '1';
+        }
+
         this.selectedDate = {
           year: moment(date[0], 'YYYY').format('YYYY'),
           month: moment(date[1], 'MMMM').format('M'),

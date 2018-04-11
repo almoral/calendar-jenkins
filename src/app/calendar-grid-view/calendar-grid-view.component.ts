@@ -98,7 +98,13 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
   // Updates the data and navigates to the day view when the user clicks on the 'Today' button.
   showEventsForDate (month: string, year: string, day: string) {
-    this.updateDateAndGetEvents(month, year, day);
+    // this.updateDateAndGetEvents(month, year, day);
+    this.dateService.setMonth(month);
+    this.dateService.setYear(year);
+    this.dateService.setDay(day);
+    const date = moment().month(month).year(parseInt(year, 10)).date(parseInt(day, 10)).toDate();
+    this.dateService.filterEventsForSelectedDate(date);
+
     this.router.navigate(['/'], {skipLocationChange: true});
   }
 
