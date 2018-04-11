@@ -17,6 +17,8 @@ export class InitializeService {
                private route: ActivatedRoute) {
 
     this.loadQueryParameters();
+
+    dateService.filterEventsByDate();
   }
 
   loadQueryParameters() {

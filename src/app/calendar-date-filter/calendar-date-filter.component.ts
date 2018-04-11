@@ -36,8 +36,6 @@ export class CalendarDateFilterComponent implements OnInit {
     this.dateService.getNumberOfDays(this.selectedYear, this.selectedMonth);
 
     this.dateService.numberOfDaysInMonth$.subscribe( numberOfDays => this.days = numberOfDays );
-
-    this.dateService.filterEventsByDate();
   }
 
   filterEventsByDate() {
