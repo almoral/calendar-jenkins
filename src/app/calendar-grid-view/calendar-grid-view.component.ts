@@ -32,11 +32,7 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    const year = this.dateService.getSelectedYear();
-    const month = this.dateService.getSelectedMonth();
     const formattedDate = this.dateService.getFormattedDate();
-
-    this.dateService.filterByMonth(year, month);
     this.initializeGridView([], formattedDate);
 
   }
