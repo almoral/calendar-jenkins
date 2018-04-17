@@ -4,7 +4,7 @@
 
 .day-navigation {
 	display: flex;
-	margin: 0; 
+	margin: 0;
 }
 
 .day-navigation__child {
@@ -58,4 +58,10 @@
 
 .day-navigation__child--active a:focus {
 	background-color: #03a9f4;
+}
+
+/* Fontawesome font styles */
+i[class*=' fa-caret-'] {
+  font-size: 15px;
+  color: #333;
 }

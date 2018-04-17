@@ -61,6 +61,7 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
       unselectAuto: false,
       defaultDate: date,
       prev: 'fa-chevron-left',
+      next: 'fa-chevron-right',
       customButtons: {
         listView: {
           text: 'Day'
