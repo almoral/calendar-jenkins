@@ -34,14 +34,14 @@
 }
 
 @media (max-width: 1249px) {
-  .row .col.m8.calendar-events {
-    width: 100%;
-    margin-left: auto;
-    left: auto;
-    right: auto;
-  }
+  /*.row .col.m8.calendar-events {*/
+    /*width: 100%;*/
+    /*margin-left: auto;*/
+    /*left: auto;*/
+    /*right: auto;*/
+  /*}*/
 
-  .sidebar .btn.blue {
-  	display: none;
-  }
+  /*.sidebar .btn.blue {*/
+  	/*display: none;*/
+  /*}*/
 }

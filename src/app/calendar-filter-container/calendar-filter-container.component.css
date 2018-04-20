@@ -102,7 +102,7 @@ CALENDAR MOBILE FILTERS
   z-index: 2000;
 }
 
-.mobile-filters.active { 
+.mobile-filters.active {
   top: 0;
   display: block;
 }
@@ -412,7 +412,7 @@ div.bottom-sheet{
   }
 
   .mobile-filters {
-    display: block !important;
+    /*display: block !important;*/
     box-shadow: none;
   }
 
