@@ -83,12 +83,11 @@
 
 	.day-navigation__container__child:last-child {
 		order: 1;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 	}
 
 	.day-navigation__day-month {
 		display: flex;
-		margin-bottom: 10px;
 	}
 
 	.day-navigation__day-month .day-navigation__child {
@@ -113,7 +112,6 @@
 .day-navigation__child__date-picker .mydp {
 	border-radius: 0;
 	border-color: #dbe2e8;
-	width: 100% !important;
 	padding-right: 12px;
 }
 
@@ -151,5 +149,9 @@
 @media (max-width: 749px) {
 	.day-navigation__child__date-picker {
 		width: 100%;
+	}
+
+	.day-navigation__child__date-picker .mydp .selectiongroup input {
+		font-size: 16px;
 	}
 }
