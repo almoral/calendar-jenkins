@@ -1,7 +1,6 @@
-<div class="row margin-bottom-zero">
+<div class="day-navigation__container">
 
-
-	<div class="col s12 m8">
+	<div class="day-navigation__container__child">
 		<ul class="day-navigation">
 			<li class="day-navigation__child"><a routerLink='/list' (click)="setSelectedDateToToday()">Today</a></li>
 			<li class="day-navigation__child">
@@ -18,7 +17,7 @@
 					</svg>
 				</a>
 			</li>
-      <li>
+      <li class="day-navigation__child__date-picker">
         <my-date-picker name='datePicker'
                         [options]='pickerOptions'
                         [selDate]='selectedDate'
@@ -28,9 +27,9 @@
 		</ul>
 	</div>
 
-	<div class="col s12 m4">
+	<div class="day-navigation__container__child">
 
-		<ul class="day-navigation right">
+		<ul class="day-navigation day-navigation__day-month">
 			<li class="day-navigation__child day-navigation__child--active">
 				<a routerLink='../list'>Day</a>
 			</li>

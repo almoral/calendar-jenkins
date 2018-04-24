@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IMyDpOptions, IMyDate} from 'mydatepicker';
 import {DataStoreService} from "../shared/services/data-store.service";
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'mdc-calendar-navigation',
   templateUrl: './calendar-navigation.component.html',
   styleUrls: ['./calendar-navigation.component.css']
