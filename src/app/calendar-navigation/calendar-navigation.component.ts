@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {DateService} from '../shared/services/date.service';
 import {IMyDpOptions} from 'mydatepicker';
 import * as moment from 'moment';
 import {combineLatest} from 'rxjs/observable/combineLatest';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'mdc-calendar-navigation',
   templateUrl: './calendar-navigation.component.html',
   styleUrls: ['./calendar-navigation.component.css']
