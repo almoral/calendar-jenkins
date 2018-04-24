@@ -106,6 +106,10 @@
 
 }
 
+.fc-event, .fc-event-dot {
+	background-color: #027abb;
+}
+
 
 /*---Targeting the dialog container of the event--*/
 .overlay .grid-view-event-container.dialog {
