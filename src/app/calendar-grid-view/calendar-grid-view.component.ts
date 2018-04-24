@@ -92,13 +92,12 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
 
   initialized(event: any) {
-    // const formattedDate = this.dateService.getFormattedDate();
-    // this.monthView.fullCalendar('select', formattedDate);
+    this.dataStoreService.selectedDate$.subscribe(selectedDate => {
+      this.monthView.fullCalendar('select', selectedDate)});
   }
 
   // Event listener that handles clicks in fullCalendar.
   clickButton(event: any) {
-
 
     if (event.detail.buttonType === 'next') {
       this.dataStoreService.setSelectedDateToNextMonth();
