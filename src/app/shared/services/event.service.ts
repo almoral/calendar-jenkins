@@ -57,6 +57,30 @@ export class EventService {
 
 
   /**
+   * filterIventsInRange filter, will return events whose start date is within
+   * the from-to range.
+   * @param events - array of MdcEvent to be filtered.
+   * @param from - start date of the range.
+   * @param to - end date of the range.
+   * @returns {MdcEvent[]} - filtered events that fall within range.
+   */
+
+  filterEventsInRange(events: MdcEvent[], from: Date, to: Date){
+
+    // No range or partial range provided, return all events.
+    if(_.isEmpty(to) || _.isEmpty(from))
+      return events;
+
+    // filter events within range
+    return _.filter(events, (event: MdcEvent) => {
+      return (Date.parse(from.toString()) <= Date.parse(event.startDate.toString()) &&
+      Date.parse(to.toString()) >= Date.parse(event.startDate.toString()))
+    });
+
+  }
+
+
+  /**
    *
    * @param events
    * @param title

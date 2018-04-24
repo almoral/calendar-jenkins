@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DateService} from '../shared/services/date.service';
-import {IMyDpOptions} from 'mydatepicker';
-import * as moment from 'moment';
-import {combineLatest} from 'rxjs/observable/combineLatest';
+import {IMyDpOptions, IMyDate} from 'mydatepicker';
+import {DataStoreService} from "../shared/services/data-store.service";
 
 @Component({
   selector: 'mdc-calendar-navigation',
@@ -11,30 +9,19 @@ import {combineLatest} from 'rxjs/observable/combineLatest';
 })
 export class CalendarNavigationComponent implements OnInit {
 
-  pickerOptions: IMyDpOptions;
-  selectedDate = {};
+  private pickerOptions: IMyDpOptions;
+  private selectedDate: IMyDate = {year: 0, month: 0, day: 0};
 
-  constructor(private dateService: DateService) { }
+  constructor(private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
 
-    combineLatest(
-        this.dateService.year$,
-        this.dateService.month$,
-        this.dateService.day$
-    )
-      .subscribe( date => {
+    this.dataStoreService.selectedDate$.subscribe(date => {
+      this.selectedDate = {year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate()};
+    });
 
-        if (date[2] === '') {
-          date[2] = '1';
-        }
-
-        this.selectedDate = {
-          year: moment(date[0], 'YYYY').format('YYYY'),
-          month: moment(date[1], 'MMMM').format('M'),
-          day: moment(date[2], 'DD').format('D')
-        };
-      });
 
     this.pickerOptions = {
       width: '250px',
@@ -43,23 +30,19 @@ export class CalendarNavigationComponent implements OnInit {
   }
 
   onDateChanged(event: any) {
-
-    this.dateService.setYear(moment(event.date.year, 'YYYY').format(DateService.YEAR_FORMAT));
-    this.dateService.setMonth(moment(event.date.month, 'M').format(DateService.MONTH_FORMAT));
-    this.dateService.setDay(moment(event.date.day, 'D').format(DateService.DAY_FORMAT));
-    this.dateService.filterEventsByDate();
+    this.dataStoreService.setSelectedDate(event.jsdate);
   }
 
-  filterEventsByNextDate() {
-    this.dateService.filterEventsByNextDate();
+  setSelectedDateToNextDate() {
+    this.dataStoreService.setSelectedDateToNextDate();
   }
 
-  filterEventsByPreviousDate() {
-    this.dateService.filterEventsByPreviousDate();
+  setSelectedDateToPreviousDate(){
+    this.dataStoreService.setSelectedDateToPreviousDate();
   }
 
-  filterEventsByCurrentDate() {
-    this.dateService.filterEventsByCurrentDate();
+  setSelectedDateToToday(){
+    this.dataStoreService.setSelectedDateToToday();
   }
 
 }

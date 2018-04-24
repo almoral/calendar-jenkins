@@ -19,10 +19,8 @@ export class InitializeService {
 
     this.loadQueryParameters();
 
-    dateService.setMonth(moment().format('MMMM'));
-    dateService.setYear(moment().format('YYYY'));
-    dateService.setDay('');
-    dateService.filterEventsByDate();
+    dataStoreService.setSelectedDate(new Date());
+
   }
 
   loadQueryParameters() {
@@ -50,11 +48,8 @@ export class InitializeService {
 
   public reset() {
 
-    // Reset the title.
+    // reset the title.
     this.dataStoreService.setTitleFilter('');
-
-    // Reset the date filter.
-    this.dateService.initializeService();
 
     // reset the categories filter
     this.dataStoreService.setCategoriesFilter([]);
