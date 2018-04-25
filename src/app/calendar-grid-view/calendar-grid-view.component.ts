@@ -39,18 +39,9 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
     //this.initializeGridView([], formattedDate);
 
+
   }
 
-  viewRender() {
-    this.dataStoreService.events$
-      .pipe(
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe( events => {
-        this.monthView.fullCalendar('removeEvents');
-        this.monthView.fullCalendar('renderEvents', events);
-      });
-  }
 
   ngOnDestroy() {
     this.ngUnsubscribe.next(true);
@@ -84,16 +75,28 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
 
   }
 
+  initialized(event: any) {
+
+    this.dataStoreService.events$
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe( events => {
+        this.monthView.fullCalendar('removeEvents');
+        this.monthView.fullCalendar('renderEvents', events);
+      });
+
+    this.dataStoreService.selectedDate$
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe(selectedDate => {
+        this.monthView.fullCalendar('select', selectedDate)});
+  }
 
   dayClick(event: any) {
     this.dataStoreService.setSelectedDate(event.detail.date.toDate());
     this.router.navigate(['../list'], {skipLocationChange: true});
-  }
-
-
-  initialized(event: any) {
-    this.dataStoreService.selectedDate$.subscribe(selectedDate => {
-      this.monthView.fullCalendar('select', selectedDate)});
   }
 
   // Event listener that handles clicks in fullCalendar.
