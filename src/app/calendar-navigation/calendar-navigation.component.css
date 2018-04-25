@@ -147,8 +147,9 @@
 }
 
 @media (max-width: 749px) {
-	.day-navigation__child__date-picker {
-		width: 100%;
+	.day-navigation__child__date-picker,
+	.day-navigation__child__date-picker .mydp {
+		width: 100% !important;
 	}
 
 	.day-navigation__child__date-picker .mydp .selectiongroup input {

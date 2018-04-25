@@ -95,6 +95,7 @@
 
 	.fc-header-toolbar > .fc-left {
 		order: 2;
+		margin-bottom: 10px;
 	}
 
 	.fc-header-toolbar > .fc-center {
