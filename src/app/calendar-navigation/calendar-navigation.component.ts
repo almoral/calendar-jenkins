@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IMyDpOptions, IMyDate} from 'mydatepicker';
-import {DataStoreService} from "../shared/services/data-store.service";
+import {DataStoreService} from '../shared/services/data-store.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -10,8 +10,8 @@ import {DataStoreService} from "../shared/services/data-store.service";
 })
 export class CalendarNavigationComponent implements OnInit {
 
-  private pickerOptions: IMyDpOptions;
-  private selectedDate: IMyDate = {year: 0, month: 0, day: 0};
+  pickerOptions: IMyDpOptions;
+  selectedDate: IMyDate = {year: 0, month: 0, day: 0};
 
   constructor(private dataStoreService: DataStoreService) { }
 
