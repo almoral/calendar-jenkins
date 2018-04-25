@@ -60,6 +60,57 @@
 	line-height: 41px;
 }
 
+@media (max-width: 749px) {
+	.fc-header-toolbar {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.fc-header-toolbar > .fc-left,
+	.fc-header-toolbar > .fc-right {
+		width: 100%;
+	}
+
+	.fc-header-toolbar > .fc-right {
+		order: 1;
+		flex-basis: 100%;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	.fc-header-toolbar > .fc-left .fc-button-group,
+	.fc-header-toolbar > .fc-right .fc-button-group {
+		display: flex;
+		float: none;
+	}
+
+	.fc-header-toolbar > .fc-left .fc-button-group button {
+		flex-basis: 34%;
+	}
+
+	.fc-header-toolbar > .fc-right .fc-button-group button {
+		flex-basis: 50%;
+		text-align: center;
+	}
+
+	.fc-header-toolbar > .fc-left {
+		order: 2;
+		margin-bottom: 10px;
+	}
+
+	.fc-header-toolbar > .fc-center {
+		order: 3;
+		flex-basis: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+}
+
+.fc-event, .fc-event-dot {
+	background-color: #027abb;
+}
+
 
 /*---Targeting the dialog container of the event--*/
 .overlay .grid-view-event-container.dialog {

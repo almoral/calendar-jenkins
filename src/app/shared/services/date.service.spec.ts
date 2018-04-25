@@ -31,47 +31,7 @@ describe('DateService', () => {
       expect(numberOfDays.length).toBe(30);
     }));
 
-  it('should return the number of days in a given month', inject([DateService, DataStoreService], (service: DateService, dataStoreService: DataStoreService) => {
-    let numberOfDays1: string[] = service.getNumberOfDays('2014', 'January');
-    expect(numberOfDays1.length).toBe(31);
-  }));
-
-  it('should return the correct number of days in a given month', inject([DateService], (service: DateService) => {
-    let numberOfDays1: string[] = service.getNumberOfDays('2014', 'November');
-    expect(numberOfDays1.length).toBe(30);
-  }));
-
-  it('should handle leap year correctly', inject([DateService], (service: DateService) => {
-    let numberOfDays2: string[] = service.getNumberOfDays('2016', 'February');
-    expect(numberOfDays2.length).toBe(29);
-  }));
-
-  it('should handle non leap years correctly', inject([DateService], (service: DateService) => {
-    let numberOfDays2: string[] = service.getNumberOfDays('2017', 'February');
-    expect(numberOfDays2.length).toBe(28);
-  }));
-
-  it('should only call filterByDate when searching by a single date', inject([DateService], (service: DateService) => {
-    service.setYear('2017');
-    service.setMonth('October');
-    service.setDay('3');
-    const byDate = spyOn(service, 'filterByDate');
-    const byMonth = spyOn(service, 'filterByMonth');
-    service.filterEventsByDate();
-    expect(byDate.calls.any()).toBe(true, 'filterByDate called');
-    expect(byMonth.calls.any()).toBe(false, 'filterByMonth not called');
-  }));
 
 
-  it('should only call filterByMonth when searching by a month', inject([DateService], (service: DateService) => {
-    service.setYear('2017');
-    service.setMonth('October');
-    service.setDay('');
-    const byDate = spyOn(service, 'filterByDate');
-    const byMonth = spyOn(service, 'filterByMonth');
-    service.filterEventsByDate();
-    expect(byMonth.calls.any()).toBe(true, 'filterByMonth called');
-    expect(byDate.calls.any()).toBe(false, 'filterByDate not called');
-  }));
 
 });
