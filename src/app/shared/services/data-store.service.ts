@@ -9,6 +9,7 @@ import {CalendarDataService} from './calendar-data.service';
 import {TypesDataService} from './types-data.service';
 import {Option} from '../models/option';
 import * as moment from 'moment';
+import {filter} from 'rxjs/operators';
 
 
 @Injectable()
@@ -81,6 +82,7 @@ export class DataStoreService {
 
 
   // observable selectedDate.
+  // private selectedDateSubject = new BehaviorSubject(moment().toDate());
   private selectedDateSubject = new BehaviorSubject(new Date());
   public selectedDate$: Observable<Date> = this.selectedDateSubject.asObservable();
 
@@ -236,24 +238,25 @@ export class DataStoreService {
     // When dateRange changes, populate events.
     this.dateRange$.subscribe((range) => {
       //mayor hack to avoid the first initial values - needs to be revisited
-      if(range.from.getFullYear() !== 1970)
+      if (range.from.getFullYear() !== 1970)
         this.getEvents(range.from, range.to);
     });
 
   }
 
-  subscribeSelectedDate(){
-    this.selectedDate$.subscribe((selectedDate) => {
-      // if selected date is within existing range
-      if(Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
-        Date.parse(this.dateRangeSubject.getValue().to.toString()) >= Date.parse(selectedDate.toString())){
-        this.filterEvents();
-      } else {
-        let from = moment(selectedDate).startOf('month').toDate();
-        let to = moment(selectedDate).endOf('month').toDate();
-        this.setDateRange(from, to);
-      }
+  subscribeSelectedDate() {
+    this.selectedDate$
+      .subscribe((selectedDate) => {
 
+        // if selected date is within existing range
+        if (Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
+          Date.parse(this.dateRangeSubject.getValue().to.toString()) >= Date.parse(selectedDate.toString())) {
+          this.filterEvents();
+        } else {
+          let from = moment(selectedDate).startOf('month').toDate();
+          let to = moment(selectedDate).endOf('month').toDate();
+          this.setDateRange(from, to);
+        }
     });
   }
 
