@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IMyDpOptions, IMyDate} from 'mydatepicker';
 import {DataStoreService} from '../shared/services/data-store.service';
 import * as _ from 'lodash';
-import {filter} from 'rxjs/operators';
+
 
 @Component({
   encapsulation: ViewEncapsulation.None,

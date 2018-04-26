@@ -9,7 +9,6 @@ import {CalendarDataService} from './calendar-data.service';
 import {TypesDataService} from './types-data.service';
 import {Option} from '../models/option';
 import * as moment from 'moment';
-import {filter} from 'rxjs/operators';
 
 
 @Injectable()
