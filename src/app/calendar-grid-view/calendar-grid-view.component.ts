@@ -93,11 +93,13 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe(selectedDate => {
-        this.monthView.fullCalendar('select', selectedDate)});
+        this.monthView.fullCalendar('select', selectedDate) });
   }
 
   dayClick(event: any) {
-    this.dataStoreService.setSelectedDate(event.detail.date.toDate());
+
+    // This is what worked and allowed the use of the js Date object.
+    this.dataStoreService.setSelectedDate(event.detail.date.add(4, 'hours').toDate());
     this.router.navigate(['../list'], {skipLocationChange: true});
   }
 
