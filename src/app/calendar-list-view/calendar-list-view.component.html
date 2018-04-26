@@ -6,13 +6,13 @@
 
 	  <div class="next-prev__container">
 	  	<div class="next-prev__item">
-		  <button class="waves-effect wave-light btn white prev" (click)="setSelectedDateToPreviousDate()">
+		  <button class="waves-effect wave-light btn white prev" [ngx-scroll-to]="'#scrollContainer'" (click)="setSelectedDateToPreviousDate()">
 		  	<i class="material-icons">arrow_back</i>
 		  	Previous
 		  </button>
 	  	</div>
 	  	<div class="next-prev__item">
-		  <button class="waves-effect wave-light btn white next" (click)="setSelectedDateToNextDate()">
+		  <button class="waves-effect wave-light btn white next" [ngx-scroll-to]="'#scrollContainer'" (click)="setSelectedDateToNextDate()">
 		  	Next
 		  	<i class="material-icons">arrow_forward</i>
 		  </button>
