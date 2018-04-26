@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataStoreService} from '../shared/services/data-store.service';
 
 @Component({
   selector: 'mdc-calendar-list-view',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarListViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
   }
+
+
+  setSelectedDateToNextDate() {
+    this.dataStoreService.setSelectedDateToNextDate();
+  }
+
+  setSelectedDateToPreviousDate() {
+    this.dataStoreService.setSelectedDateToPreviousDate();
+  }
+
 
 }
