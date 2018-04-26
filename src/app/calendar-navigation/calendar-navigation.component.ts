@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IMyDpOptions, IMyDate} from 'mydatepicker';
 import {DataStoreService} from '../shared/services/data-store.service';
+import * as _ from 'lodash';
+
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,9 +20,11 @@ export class CalendarNavigationComponent implements OnInit {
   ngOnInit() {
 
     this.dataStoreService.selectedDate$.subscribe(date => {
-      this.selectedDate = {year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()};
+        this.selectedDate = {
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          day: date.getDate()
+        };
     });
 
 
@@ -31,7 +35,9 @@ export class CalendarNavigationComponent implements OnInit {
   }
 
   onDateChanged(event: any) {
-    this.dataStoreService.setSelectedDate(event.jsdate);
+    if (!_.isNil(event.jsdate)) {
+      this.dataStoreService.setSelectedDate(event.jsdate);
+    }
   }
 
   setSelectedDateToNextDate() {
@@ -42,7 +48,7 @@ export class CalendarNavigationComponent implements OnInit {
     this.dataStoreService.setSelectedDateToPreviousDate();
   }
 
-  setSelectedDateToToday(){
+  setSelectedDateToToday() {
     this.dataStoreService.setSelectedDateToToday();
   }
 

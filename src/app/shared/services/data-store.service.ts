@@ -236,24 +236,24 @@ export class DataStoreService {
     // When dateRange changes, populate events.
     this.dateRange$.subscribe((range) => {
       //mayor hack to avoid the first initial values - needs to be revisited
-      if(range.from.getFullYear() !== 1970)
+      if (range.from.getFullYear() !== 1970)
         this.getEvents(range.from, range.to);
     });
 
   }
 
-  subscribeSelectedDate(){
+  subscribeSelectedDate() {
     this.selectedDate$.subscribe((selectedDate) => {
-      // if selected date is within existing range
-      if(Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
-        Date.parse(this.dateRangeSubject.getValue().to.toString()) >= Date.parse(selectedDate.toString())){
-        this.filterEvents();
-      } else {
-        let from = moment(selectedDate).startOf('month').toDate();
-        let to = moment(selectedDate).endOf('month').toDate();
-        this.setDateRange(from, to);
-      }
 
+        // if selected date is within existing range
+        if (Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
+          Date.parse(this.dateRangeSubject.getValue().to.toString()) >= Date.parse(selectedDate.toString())) {
+          this.filterEvents();
+        } else {
+          let from = moment(selectedDate).startOf('month').toDate();
+          let to = moment(selectedDate).endOf('month').toDate();
+          this.setDateRange(from, to);
+        }
     });
   }
 
