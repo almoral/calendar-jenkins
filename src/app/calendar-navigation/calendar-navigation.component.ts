@@ -38,7 +38,7 @@ export class CalendarNavigationComponent implements OnInit {
     this.dataStoreService.setSelectedDateToNextDate();
   }
 
-  setSelectedDateToPreviousDate(){
+  setSelectedDateToPreviousDate() {
     this.dataStoreService.setSelectedDateToPreviousDate();
   }
 
