@@ -37,25 +37,19 @@ export class AppRoutingModule {
   constructor(private router: Router,
               private route: ActivatedRoute) {
 
+    const routeName = 'calendar';
+
     this.route.queryParamMap
       .pipe(
         filter( params => params.keys.length > 0)
       )
       .subscribe( params => {
+          this.router.navigate([routeName, {queryParams: params['params']}], {skipLocationChange: true});
 
-        console.log('url: ', this.router.routerState.snapshot.url);
-
-        if (this.router.routerState.snapshot.url === '') {
-          console.log('params: ', params['params']);
-          const commands = 'calendar';
-          this.router.navigate([commands, {queryParams: params['params']}], {skipLocationChange: true});
-        }
     });
 
-    // if (this.router.routerState.snapshot.url === '') {
-    //   const commands = 'calendar';
-    //   this.router.navigate([commands], {skipLocationChange: true});
-    // }
+      this.router.navigate([routeName], {skipLocationChange: true});
+
 
   }
 
