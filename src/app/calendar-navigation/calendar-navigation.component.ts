@@ -19,8 +19,7 @@ export class CalendarNavigationComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataStoreService.selectedDate$
-      .subscribe(date => {
+    this.dataStoreService.selectedDate$.subscribe(date => {
         this.selectedDate = {
           year: date.getFullYear(),
           month: date.getMonth() + 1,

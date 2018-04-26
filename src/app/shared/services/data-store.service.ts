@@ -243,8 +243,7 @@ export class DataStoreService {
   }
 
   subscribeSelectedDate() {
-    this.selectedDate$
-      .subscribe((selectedDate) => {
+    this.selectedDate$.subscribe((selectedDate) => {
 
         // if selected date is within existing range
         if (Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
