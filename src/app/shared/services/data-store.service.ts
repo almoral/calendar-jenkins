@@ -81,7 +81,6 @@ export class DataStoreService {
 
 
   // observable selectedDate.
-  // private selectedDateSubject = new BehaviorSubject(moment().toDate());
   private selectedDateSubject = new BehaviorSubject(new Date());
   public selectedDate$: Observable<Date> = this.selectedDateSubject.asObservable();
 
