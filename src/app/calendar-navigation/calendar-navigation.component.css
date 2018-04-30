@@ -115,6 +115,11 @@
 	padding-right: 12px;
 }
 
+.day-navigation__child__date-picker .mydp .selection,
+.day-navigation__child__date-picker .mydp .selectiongroup input:focus {
+	border-radius: 0;
+}
+
 .day-navigation__child__date-picker .mydp .selectiongroup input {
 	border: 1px solid transparent;
 	height: 38px !important;
@@ -123,7 +128,6 @@
 .day-navigation__child__date-picker .mydp .selectiongroup input:focus {
 	box-shadow: none;
 	border: 1px solid #03a9f4;
-	border-radius: 0;
 }
 
 .day-navigation__child__date-picker .mydp .selection {
@@ -138,12 +142,6 @@
 .day-navigation__child__date-picker .mydp button.btnclear:focus,
 .day-navigation__child__date-picker .mydp button.btnpicker:focus {
 	color: #03a9f4;
-}
-
-@media (min-width: 750px) {
-	.day-navigation__child__date-picker .mydp .selbtngroup {
-		width: 22%;
-	}
 }
 
 @media (max-width: 749px) {
