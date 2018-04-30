@@ -97,9 +97,7 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
   }
 
   dayClick(event: any) {
-
-    // This is what worked and allowed the use of the js Date object.
-    this.dataStoreService.setSelectedDate(event.detail.date.add(4, 'hours').toDate());
+    this.dataStoreService.setSelectedDate(event.detail.date.local().toDate());
     this.router.navigate(['../list'], {skipLocationChange: true});
   }
 
