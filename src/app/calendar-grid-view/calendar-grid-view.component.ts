@@ -93,11 +93,11 @@ export class CalendarGridViewComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe(selectedDate => {
-        this.monthView.fullCalendar('select', selectedDate)});
+        this.monthView.fullCalendar('select', selectedDate) });
   }
 
   dayClick(event: any) {
-    this.dataStoreService.setSelectedDate(event.detail.date.toDate());
+    this.dataStoreService.setSelectedDate(event.detail.date.local().toDate());
     this.router.navigate(['../list'], {skipLocationChange: true});
   }
 
