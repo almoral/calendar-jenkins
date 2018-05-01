@@ -114,11 +114,24 @@
 
 /*---Targeting the dialog container of the event--*/
 .overlay .grid-view-event-container.dialog {
-  max-width: 1000px;
+	max-width: 1000px;
 }
 
 .overlay .grid-view-event-container .dialog__close-btn {
-	top: 15px;
-	right: 15px;
+	top: 25px;
+	right: 25px;
 }
+
+.overlay .grid-view-event-container button.dialog__close-btn {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgdmlld0JveD0iMCAwIDEyIDEyIiBmb2N1c2FibGU9ImZhbHNlIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0gMTEuNSAxMC41IGMgMC4zIDAuMyAwLjMgMC44IDAgMS4xIGMgLTAuMyAwLjMgLTAuOCAwLjMgLTEuMSAwIEwgNiA3LjEgbCAtNC41IDQuNSBjIC0wLjMgMC4zIC0wLjggMC4zIC0xLjEgMCBjIC0wLjMgLTAuMyAtMC4zIC0wLjggMCAtMS4xIEwgNC45IDYgTCAwLjUgMS41IEMgMC4yIDEuMiAwLjIgMC43IDAuNSAwLjQgYyAwLjMgLTAuMyAwLjggLTAuMyAxLjEgMCBMIDYgNC45IEwgMTAuNSAwLjQgYyAwLjMgLTAuMyAwLjggLTAuMyAxLjEgMCBjIDAuMyAwLjMgMC4zIDAuOCAwIDEuMSBMIDcuMSA2IGwgNC40IDQuNSBaIi8+PC9zdmc+");
+	height: 15px;
+	width: 15px;
+}
+
+.overlay .grid-view-event-container button.dialog__close-btn img {
+	visibility: hidden;
+}
+
+
+
 /*---/Targeting the dialog container of the event--*/
