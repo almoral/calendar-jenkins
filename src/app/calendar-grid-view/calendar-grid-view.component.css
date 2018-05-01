@@ -124,6 +124,12 @@
 	max-width: 1000px;
 }
 
+@media (min-width: 768px) {
+	.overlay .dialog[_ngcontent-c28] {
+		top: 25%;
+	}
+}
+
 .overlay .grid-view-event-container .dialog__close-btn {
 	top: 25px;
 	right: 25px;
