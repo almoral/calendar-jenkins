@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
