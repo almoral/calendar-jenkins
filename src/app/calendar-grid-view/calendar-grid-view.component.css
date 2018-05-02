@@ -107,8 +107,8 @@
 
 }
 
-.fc-event,
-.fc-event-dot {
+.fc-view-container .fc-event-container .fc-event,
+.fc-view-container .fc-event-dot {
 	background-color: #027abb;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .overlay .grid-view-event-container button.dialog__close-btn img {
-	visibility: hidden;
+	display: none;
 }
 
 
