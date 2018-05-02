@@ -179,7 +179,7 @@ h4.right-content-calendar--title:after {
 
 .calendar-title-container > .column:first-child {
   width: 60%;
-  padding-right: 15px;
+  padding: 0 15px;
 }
 
 .calendar-title-container > .column:last-child {
@@ -233,5 +233,13 @@ h4.right-content-calendar--title:after {
 
   .content-main-calendar {
     margin-bottom: 25px;
+  }
+
+  .calendar-title-container > .column:first-child {
+    width: 90%;
+  }
+
+  .calendar-title-container > .column:last-child {
+    padding-left: 15px;
   }
 }
