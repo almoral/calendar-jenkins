@@ -12,7 +12,7 @@ export class MDCCalendarComponent implements OnInit {
 
 
   private resizeSubject = new Subject<number>();
-  private resizeObservable = this.resizeSubject.asObservable().throttleTime(200);
+  private resizeObservable = this.resizeSubject.asObservable().debounceTime(100);
   private viewDidChangeSubject = new BehaviorSubject<boolean>(false);
   private breakpoint = 600;
 
