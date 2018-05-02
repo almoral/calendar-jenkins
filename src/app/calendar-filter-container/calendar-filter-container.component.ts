@@ -51,6 +51,7 @@ export class CalendarFilterContainerComponent implements OnInit {
     this.toggleCategoryFilter = true;
     this.toggleTypeFilter = true;
     this.toggleCalendarFilter = true;
+    this.isActive = false;
   }
 
   submitValues() {
