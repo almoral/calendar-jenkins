@@ -17,7 +17,7 @@ CALENDAR MOBILE FILTERS
   transition-duration: 250ms;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
-  z-index: 8;
+  z-index: 2;
 }
 
 .mobile-fixed button {
