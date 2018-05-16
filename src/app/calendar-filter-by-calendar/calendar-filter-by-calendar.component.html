@@ -10,14 +10,13 @@
       <h3 class="widget-title" id="filterCalendar">Select a department</h3>
       <div class="accordion-content">
 
-        <legend>Choose a department to selectItem by:</legend>
+        <legend>Choose a department to filter by:</legend>
 
         <mdc-checkbox-group
           [options]="options$ | async"
           [currentSelectedOptions]="currentSelectedOptions$ | async"
           (optionsSelected)="onOptionsSelected($event)">
         </mdc-checkbox-group>
-
 
       </div>
     </li>

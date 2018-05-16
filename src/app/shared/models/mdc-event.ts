@@ -49,10 +49,12 @@ export class MdcEvent {
   public isClosedToMedia: boolean;
   public isClosedToPublic: boolean;
   public isFree: boolean;
-  public url: object;
+  public link: object;
   public address: MdcEventAddress;
   public calendarId: string;
   public isDepartmentOnly: boolean;
+  public start: Date;
+  public end: Date;
 
 
   public static schema = {
@@ -131,7 +133,7 @@ export class MdcEvent {
       'isFree': {
         'type': ['boolean', 'null']
       },
-      'url': {
+      'link': {
         'type': ['object', 'null'],
         'properties': {
           'description': {
@@ -145,6 +147,14 @@ export class MdcEvent {
           }
         }
       },
+    'start': {
+      'type': 'string',
+      'format': 'date-time'
+    },
+    'end': {
+      'type': 'string',
+      'format': 'date-time'
+    },
       'categories': {
         'type': ['array', 'null'],
         'items': {
@@ -202,7 +212,9 @@ export class MdcEvent {
               url: object,
               address: MdcEventAddress,
               calendarId: string,
-              isDepartmentOnly: boolean) {
+              isDepartmentOnly: boolean,
+              start: Date,
+              end: Date,) {
 
     this.id = id || null;
     this.odataId = odataId || '';
@@ -224,10 +236,12 @@ export class MdcEvent {
     this.isClosedToMedia = isClosedToMedia || false;
     this.isClosedToPublic = isClosedToPublic || false;
     this.isFree = _.isNil(isFree) || isFree;
-    this.url = url || {};
+    this.link = url || {};
     this.address = address || new MdcEventAddress();
     this.calendarId = calendarId || null;
     this.isDepartmentOnly = isDepartmentOnly || false;
+    this.start = startDate || null;
+    this.end = endDate || null;
   }
 
 
@@ -300,7 +314,9 @@ export class MdcEvent {
         json.url,
         address,
         calendarId,
-        json.isDepartmentOnly
+        json.isDepartmentOnly,
+        new Date(json.startDate),
+        new Date(json.endDate)
       );
     } else {
       console.error('fromJSON: invalid json to build event', json, tv4.error);
@@ -321,18 +337,18 @@ export class MdcEvent {
       return [];
 
     // Compute start and end times.
-    const startHours = parentEvent.startDate.getHours();
-    const startMinutes = parentEvent.startDate.getMinutes();
-    const startSeconds = parentEvent.startDate.getSeconds();
-    const startMilliseconds = parentEvent.startDate.getMilliseconds();
+    const startHours = parentEvent.start.getHours();
+    const startMinutes = parentEvent.start.getMinutes();
+    const startSeconds = parentEvent.start.getSeconds();
+    const startMilliseconds = parentEvent.start.getMilliseconds();
 
-    const endHours = parentEvent.endDate.getHours();
-    const endMinutes = parentEvent.endDate.getMinutes();
-    const endSeconds = parentEvent.endDate.getSeconds();
-    const endMilliseconds = parentEvent.endDate.getMilliseconds();
+    const endHours = parentEvent.end.getHours();
+    const endMinutes = parentEvent.end.getMinutes();
+    const endSeconds = parentEvent.end.getSeconds();
+    const endMilliseconds = parentEvent.end.getMilliseconds();
 
 
-    // Loop through the set of dates and build the recurring events
+    // Loop through the set of dates and build the recurring eventsSubject
     const recurrenceEvents: Array<MdcEvent> = parentEvent.recurrence.reduce(function(accumulator, date) {
 
       // replace start time and end time with that of the parent.
@@ -344,7 +360,9 @@ export class MdcEvent {
 
       let recurrenceEvent = _.cloneDeep(parentEvent);
       recurrenceEvent.startDate = startDate;
+      recurrenceEvent.start = startDate;
       recurrenceEvent.endDate = endDate;
+      recurrenceEvent.end = endDate;
 
       accumulator.push(recurrenceEvent);
       return accumulator;
@@ -444,8 +462,8 @@ export class MdcEvent {
 
 /**
  * MdcEventsByDate has a date and
- * a collection of events that fall within that date.
- * It is a way to group all events in a specific date, with
+ * a collection of eventsSubject that fall within that date.
+ * It is a way to group all eventsSubject in a specific date, with
  * explicit access to the date in question.
  */
 export class MdcEventsByDate {

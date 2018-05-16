@@ -1,27 +1,24 @@
+<ngx-smart-modal #gridViewEvent [identifier]="'gridViewEvent'" [customClass]="'grid-view-event-container'">
 <article>
 
+<!--<article>-->
   <!--Calendar Item-->
-  <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)"
-       angulartics2On="click"
-       angularticsAction="openEventDetails"
-       angularticsLabel="Open Event Details"
-       angularticsValue="{{event?.title}}">
-    <div class="column">
-      <h3 class="calendar-subtitle">{{event?.title}}</h3>
-    </div>
-    <div class="column">
-      <span class="calendar-date">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
-      <div class="plus-icon"></div>
-    </div>
-  </div>
-
-  <div class="calendar-quick-view-container" aria-expanded="false" style="display: none;">
+  <div class="calendar-quick-view-container">
     <div class="content-container">
-
+      <div class="calendar-title-container">
+        <div class='row margin-bottom-0'>
+          <div class='col s12 m8'>
+            <h2 class="calendar-subtitle">{{event?.title}}</h2>
+          </div>
+          <div class="col s12 m4">
+            <span class="calendar-date right-align">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
+          </div>
+        </div>
+      </div>
       <div class="row">
 
         <div class="col s12 m7 content-main-calendar">
-          <div class="short-description" [innerHTML]='event?.description'>
+          <div class="short-description"  *ngIf="event?.description" [innerHTML]='event?.description'>
           </div>
           <div class="list-item">
             <div class="detail-item">
@@ -86,14 +83,13 @@
 
       <span class="ada-text">If you need materials in accessible format, sign language interpreters, and/or any accommodation to participate in this meeting, please call <span class="ada-number"><a href="tel:{{event?.adaPhone | internationalPhone}}">{{event?.adaPhone | phone}}</a></span> or email <span class="email"><a href="mailto:{{event?.adaEmail}}" *ngIf="!event?.adaName">{{event?.adaEmail}}</a><a href="mailto:{{event?.adaEmail}}" *ngIf="event?.adaName">{{event?.adaName}}</a></span> at least five days in advance of the meeting.</span>
 
-
       <a *ngIf='event?.link["url"] && event?.link["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.link['url']}}" tabindex="0">{{event?.link["description"]}}</a>
 
-
-      <!-- Using this as the default value for when the event.link object has a link but no description.-->
+      <!-- Using this as the default value for when the event.website object has a website but no description.-->
       <a *ngIf='event?.link["url"] && !event?.link["description"]' class="waves-effect wave-light btn blue" target='_blank' href="{{event?.link['url']}}" tabindex="0">Event Details</a>
 
     </div>
   </div>
 
 </article>
+</ngx-smart-modal>

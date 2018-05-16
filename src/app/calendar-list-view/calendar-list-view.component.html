@@ -1,0 +1,24 @@
+<mdc-calendar-navigation></mdc-calendar-navigation>
+<div class="row">
+	<mdc-calendar-filter-container></mdc-calendar-filter-container>
+	<div class="col s12 m8 offset-m1 calendar-events">
+	  <mdc-calendar-event-list></mdc-calendar-event-list>
+
+	  <div class="next-prev__container">
+	  	<div class="next-prev__item">
+		  <button class="waves-effect wave-light btn white prev" [ngx-scroll-to]="'#scrollContainer'" (click)="setSelectedDateToPreviousDate()">
+		  	<i class="material-icons">arrow_back</i>
+		  	Previous
+		  </button>
+	  	</div>
+	  	<div class="next-prev__item">
+		  <button class="waves-effect wave-light btn white next" [ngx-scroll-to]="'#scrollContainer'" (click)="setSelectedDateToNextDate()">
+		  	Next
+		  	<i class="material-icons">arrow_forward</i>
+		  </button>
+	  	</div>
+	  </div>
+
+
+	</div>
+</div>

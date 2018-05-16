@@ -7,11 +7,10 @@ import { EventDataService } from './shared/services/event-data.service';
 import { DateService } from './shared/services/date.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import { CalendarComponent } from './calendar/calendar.component';
+import { MDCCalendarComponent } from './calendar/calendar.component';
 import { CalendarEventComponent } from './calendar-event/calendar-event.component';
 import { CalendarEventDateComponent } from './calendar-event-date/calendar-event-date.component';
 import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
-import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-date-filter.component';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
 import { CalendarFilterByCategoryComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
@@ -32,24 +31,32 @@ import {CalendarDataService} from './shared/services/calendar-data.service';
 import {InitializeService} from './shared/services/initialize.service';
 import { PhonePipe } from './shared/pipes/phone.pipe';
 import { InternationalPhonePipe } from './shared/pipes/international-phone.pipe';
-import { NgHttpLoaderServicesModule } from "ng-http-loader/services/ng-http-loader-services.module";
-import { NgHttpLoaderComponentsModule } from "ng-http-loader/components/ng-http-loader-components.module";
+import { NgHttpLoaderServicesModule } from 'ng-http-loader/services/ng-http-loader-services.module';
+import { NgHttpLoaderComponentsModule } from 'ng-http-loader/components/ng-http-loader-components.module';
 import { LoaderComponent } from './loader/loader.component';
 import { CalendarFilterByTypeComponent } from './calendar-filter-by-type/calendar-filter-by-type.component';
-import {TypesDataService} from "./shared/services/types-data.service";
+import {TypesDataService} from './shared/services/types-data.service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import {Angulartics2Module} from 'angulartics2';
 import {Angulartics2GoogleTagManager} from 'angulartics2/gtm';
+import { CalendarGridViewComponent } from './calendar-grid-view/calendar-grid-view.component';
+import { FullCalendarModule } from 'ng-fullcalendar';
+import { CalendarGridEventComponent } from './calendar-grid-event/calendar-grid-event.component';
+import { CalendarListViewComponent } from './calendar-list-view/calendar-list-view.component';
+import {NgxSmartModalModule} from 'ngx-smart-modal';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CalendarNavigationComponent } from './calendar-navigation/calendar-navigation.component';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
+    MDCCalendarComponent,
     CalendarEventComponent,
     CalendarEventDateComponent,
     CalendarEventListComponent,
-    CalendarDateFilterComponent,
     CalendarHeaderComponent,
     CalendarFilterByTitleComponent,
     CalendarFilterByCategoryComponent,
@@ -61,8 +68,11 @@ import {Angulartics2GoogleTagManager} from 'angulartics2/gtm';
     PhonePipe,
     InternationalPhonePipe,
     LoaderComponent,
-    CalendarFilterByTypeComponent
-
+    CalendarFilterByTypeComponent,
+    CalendarGridViewComponent,
+    CalendarGridEventComponent,
+    CalendarListViewComponent,
+    CalendarNavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +86,11 @@ import {Angulartics2GoogleTagManager} from 'angulartics2/gtm';
     FormsModule,
     ReactiveFormsModule,
     ScrollToModule.forRoot(),
-    Angulartics2Module.forRoot([Angulartics2GoogleTagManager])
+    Angulartics2Module.forRoot([Angulartics2GoogleTagManager]),
+    FullCalendarModule,
+    NgxSmartModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MyDatePickerModule
   ],
   providers: [
     ConfigurationService,

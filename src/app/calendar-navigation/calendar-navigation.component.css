@@ -1,0 +1,167 @@
+.margin-bottom-zero {
+	margin-bottom: 0;
+}
+
+.day-navigation {
+	display: flex;
+	margin: 0; 
+}
+
+.day-navigation__child {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #dbe2e8;
+	border-radius: 0;
+	transition: .3s ease-out;
+	margin-left: -1px;
+}
+
+.day-navigation__child:first-child {
+	border-radius: 4px 0 0 4px;
+	border-right-width: 0;
+	margin-left: 1px;
+}
+
+.day-navigation__child a {
+	padding: 10px 15px;
+	display: block;
+}
+
+.day-navigation__child a:hover {
+	text-decoration: none;
+}
+
+.day-navigation__child:hover {
+	background-color: #f5f5f5;
+}
+
+.day-navigation__child svg {
+	width: 15px;
+	height: 15px;
+	vertical-align: sub;
+}
+
+.day-navigation__child--active {
+	background-color: #027abb;
+}
+
+.day-navigation__child--active:hover {
+	background-color: #027abb;
+}
+
+.day-navigation__child--active a {
+	color: #fff;
+}
+
+.day-navigation__child--active a:focus {
+	background-color: #03a9f4;
+}
+
+.day-navigation__child__date-picker,
+.day-navigation__child__date-picker .mydp {
+	height: 42px;
+}
+
+.day-navigation__container {
+	display: flex;
+	justify-content: space-between;
+}
+
+@media (max-width: 749px) {
+
+	.day-navigation__container {
+		flex-flow: wrap;
+	}
+
+	.day-navigation__container__child {
+		flex-basis: 100%;
+	}
+
+	.day-navigation__container__child:first-child {
+		order: 2;
+	}
+
+	.day-navigation__container__child:last-child {
+		order: 1;
+		margin-bottom: 15px;
+	}
+
+	.day-navigation__day-month {
+		display: flex;
+	}
+
+	.day-navigation__day-month .day-navigation__child {
+		flex-basis: 50%;
+		text-align: center;
+	}
+
+
+}
+
+/*****************************
+
+  Day Picker
+
+*******************************/
+
+
+.day-navigation__child__date-picker {
+	margin-left: -1px;
+}
+
+.day-navigation__child__date-picker .mydp {
+	border-radius: 0;
+	border-color: #dbe2e8;
+	padding-right: 12px;
+}
+
+.day-navigation__child__date-picker .mydp .selection,
+.day-navigation__child__date-picker .mydp .selectiongroup input:focus {
+	border-radius: 0;
+}
+
+.day-navigation__child__date-picker .mydp .selectiongroup input {
+	border: 1px solid transparent;
+	height: 38px !important;
+}
+
+.day-navigation__child__date-picker .mydp .selectiongroup input:focus {
+	box-shadow: none;
+	border: 1px solid #03a9f4;
+}
+
+.day-navigation__child__date-picker .mydp .selection {
+	padding-left: 10px;
+}
+
+.day-navigation__child__date-picker .mydp button.btnclear,
+.day-navigation__child__date-picker .mydp button.btnpicker {
+	background-color: transparent;
+}
+
+.day-navigation__child__date-picker .mydp button.btnclear:focus,
+.day-navigation__child__date-picker .mydp button.btnpicker:focus {
+	color: #03a9f4;
+}
+
+@media (max-width: 749px) {
+	.day-navigation__child__date-picker,
+	.day-navigation__child__date-picker .mydp {
+		width: 100% !important;
+	}
+
+	.day-navigation__child__date-picker .mydp .selectiongroup input {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 450px) {
+	.day-navigation__child__date-picker .mydp .selectorarrowleft:after,
+	.day-navigation__child__date-picker .mydp .selectorarrowleft:before {
+		left: 50%;
+	}
+
+	.day-navigation__child__date-picker .mydp .selectorarrow {
+		left: -39%;
+	}
+}

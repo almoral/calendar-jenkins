@@ -4,6 +4,7 @@ import {DateService} from './date.service';
 import {DataStoreService} from './data-store.service';
 import {ActivatedRoute} from '@angular/router';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Injectable()
 export class InitializeService {
@@ -17,6 +18,9 @@ export class InitializeService {
                private route: ActivatedRoute) {
 
     this.loadQueryParameters();
+
+    dataStoreService.setSelectedDate(new Date());
+
   }
 
   loadQueryParameters() {
@@ -44,11 +48,8 @@ export class InitializeService {
 
   public reset() {
 
-    // Reset the title.
+    // reset the title.
     this.dataStoreService.setTitleFilter('');
-
-    // Reset the date filter.
-    this.dateService.initializeService();
 
     // reset the categories filter
     this.dataStoreService.setCategoriesFilter([]);
