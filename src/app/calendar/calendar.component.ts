@@ -11,8 +11,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 })
 export class MDCCalendarComponent implements OnInit {
 
-  constructor(angulartics2GTM: Angulartics2GoogleTagManager,
-              router: Router) { }
+  constructor(private angulartics2GTM: Angulartics2GoogleTagManager,
+              private router: Router) { }
 
   private resizeSubject = new Subject<number>();
   private resizeObservable = this.resizeSubject.asObservable().debounceTime(100);

@@ -31,10 +31,20 @@
 
 		<ul class="day-navigation day-navigation__day-month">
 			<li class="day-navigation__child day-navigation__child--active">
-				<a routerLink='../list' [skipLocationChange]='true'>Day</a>
+				<a routerLink='../list' [skipLocationChange]='true'
+           angulartics2On="click"
+           angularticsAction="displayDayView"
+           angularticsLabel="Display Day View"
+           angularticsValue="displayDayView"
+        >Day</a>
 			</li>
 			<li class="day-navigation__child">
-				<a routerLink='../grid' [skipLocationChange]='true'>Month</a>
+				<a routerLink='../grid' [skipLocationChange]='true'
+           angulartics2On="click"
+           angularticsAction="displayMonthView"
+           angularticsLabel="Display Month View"
+           angularticsValue="displayMonthView"
+        >Month</a>
 			</li>
 
 		</ul>
