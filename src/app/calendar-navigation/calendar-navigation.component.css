@@ -4,7 +4,7 @@
 
 .day-navigation {
 	display: flex;
-	margin: 0; 
+	margin: 0;
 }
 
 .day-navigation__child {
@@ -25,6 +25,7 @@
 .day-navigation__child a {
 	padding: 10px 15px;
 	display: block;
+  color: #027abb;
 }
 
 .day-navigation__child a:hover {
