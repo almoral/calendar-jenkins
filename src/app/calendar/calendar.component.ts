@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
 })
 export class MDCCalendarComponent implements OnInit {
 
-  isInCompactMode = environment.displayInCompactMode;
+  isInCompactMode = environment.displayFullView;
 
   constructor() { }
 

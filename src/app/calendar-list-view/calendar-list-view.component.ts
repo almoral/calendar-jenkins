@@ -8,13 +8,11 @@ import {environment} from '../../environments/environment';
 })
 export class CalendarListViewComponent implements OnInit {
 
-  isInCompactMode = environment.displayInCompactMode;
+  displayFullView = environment.displayFullView;
 
   constructor() { }
 
   ngOnInit() {
-
-
 
   }
 
