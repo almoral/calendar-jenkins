@@ -231,3 +231,37 @@ h4.right-content-calendar--title:after {
     margin-bottom: 25px;
   }
 }
+
+/******************************
+  Start Right Hand side styles
+********************************/
+
+/* These Styles are only applied when the parent component has a class of 'calendarEventList__rightSide' */
+:host-context(.calendarEventList__rightSide) {
+  font-size: 1.25em;
+}
+
+:host-context(.calendarEventList__rightSide) h2.group-title {
+  font-size: 1.75em;
+  line-height: 1.25;
+}
+
+:host-context(.calendarEventList__rightSide) h3.calendar-subtitle {
+  font-size: 1em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+:host-context(.calendarEventList__rightSide) .calendar-title-container .column{
+  margin: 0;
+  padding-right: 0;
+}
+
+:host-context(.calendarEventList__rightSide) .plus-icon{
+  display: none;
+}
+
+/******************************
+  End Right Hand side styles
+********************************/
+

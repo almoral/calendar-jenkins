@@ -19,7 +19,6 @@ export const environment = {
   //   typesUrl: 'https://s0144821.miamidade.gov:7009/calendar/api/configuration/types'
   // }
 
-
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
     categoriesUrl: 'https://api2.miamidade.gov/registration/api/topics',
