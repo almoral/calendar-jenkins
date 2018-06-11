@@ -10,7 +10,7 @@ export class CalendarHeaderComponent implements OnInit {
 
   constructor() { }
 
-  isInCompactMode = environment.displayFullView;
+  isInFullMode = environment.displayFullView;
 
   ngOnInit() {
   }

@@ -1,5 +1,5 @@
 <header>
-  <h1 *ngIf="!isInCompactMode" class="general-page__title margin-top-8x">Calendar of Events</h1>
+  <h1 *ngIf="isInFullMode" class="general-page__title margin-top-8x">Calendar of Events</h1>
 
-  <h2 *ngIf="isInCompactMode" class="sub-titles">Calendar of Events</h2>
+  <h2 *ngIf="!isInFullMode" class="sub-titles">Calendar of Events</h2>
 </header>
