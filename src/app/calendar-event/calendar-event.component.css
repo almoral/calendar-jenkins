@@ -252,10 +252,6 @@ h4.right-content-calendar--title:after {
   padding-right: 0;
 }
 
-:host-context(.calendarEventList__rightSide) .plus-icon{
-  display: none;
-}
-
 /******************************
   End Right Hand side styles
 ********************************/

@@ -2,10 +2,10 @@
 
   <!--Calendar Item-->
   <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)">
-    <div class="column">
+    <div [class.column]="displayFullView">
       <h3 class="calendar-subtitle">{{event?.title}}</h3>
     </div>
-    <div class="column">
+    <div [class.column]="displayFullView">
       <span class="calendar-date">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
       <div class="plus-icon"></div>
     </div>
