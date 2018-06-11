@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DateService} from '../shared/services/date.service';
 import {Observable} from 'rxjs/Observable';
+import {DataStoreService} from "../shared/services/data-store.service";
 
 
 @Component({
@@ -27,10 +27,10 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
   private _autoHide = false;
   public isFilteredBySingleDate = false;
 
-  constructor(private dateService: DateService, private elementRef: ElementRef) { }
+  constructor(private dataStoreService: DataStoreService, private elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.dateService.day$.subscribe( day => this.isFilteredBySingleDate = day !== '');
+    //this.dateService.day$.subscribe( day => this.isFilteredBySingleDate = day !== '');
   }
 
   ngAfterViewInit() {
@@ -52,11 +52,11 @@ export class MdcPaginationComponent implements OnInit, AfterViewInit {
   }
 
   filterEventsByNextDate() {
-    this.dateService.filterEventsByNextDate();
+    this.dataStoreService.setSelectedDateToNextDate();
   }
 
   filterEventsByPreviousDate() {
-    this.dateService.filterEventsByPreviousDate();
+    this.dataStoreService.setSelectedDateToPreviousDate();
   }
 
 }

@@ -52,7 +52,7 @@ h2.group-title::after {
 .calendar-subtitle {
   font-size: 18px;
   font-weight: bold;
-  color: #03a9f4;
+  color: #027abb;
   line-height: 1.5;
 }
 
@@ -179,7 +179,7 @@ h4.right-content-calendar--title:after {
 
 .calendar-title-container > .column:first-child {
   width: 60%;
-  padding-right: 15px;
+  padding: 0 15px;
 }
 
 .calendar-title-container > .column:last-child {
@@ -208,6 +208,10 @@ h4.right-content-calendar--title:after {
   font-style: italic;
 }
 
+.calendar-quick-view-container a[href$=".pdf"]:after {
+  vertical-align: text-top;
+}
+
 
 @media (min-width: 601px) {
 
@@ -229,6 +233,14 @@ h4.right-content-calendar--title:after {
 
   .content-main-calendar {
     margin-bottom: 25px;
+  }
+
+  .calendar-title-container > .column:first-child {
+    width: 90%;
+  }
+
+  .calendar-title-container > .column:last-child {
+    padding-left: 15px;
   }
 }
 

@@ -7,7 +7,8 @@ import {EventDataService} from './event-data.service';
 import {CategoriesDataService} from './categories-data.service';
 import {CalendarDataService} from './calendar-data.service';
 import {TypesDataService} from './types-data.service';
-import {Option} from "../models/option";
+import {Option} from '../models/option';
+import * as moment from 'moment';
 
 
 @Injectable()
@@ -20,14 +21,18 @@ export class DataStoreService {
               private typesService: TypesDataService) {
 
 
+
+    this.getTypes();
+    this.getCategories();
+    this.getCalendars();
     this.subscribeTitleFilter();
     this.subscribeCategoriesFilter();
     this.subscribeTypesFilter();
     this.subscribeEvents();
     this.subscribeCalendarsFilter();
-    this.getTypes();
-    this.getCategories();
-    this.getCalendars();
+    this.subscribeDateRange();
+    this.subscribeSelectedDate();
+
   }
 
   // observable collection of events.
@@ -37,6 +42,11 @@ export class DataStoreService {
   // observable collection of events grouped by date.
   private eventsByDateSubject = new BehaviorSubject([]);
   public eventsByDate$: Observable<MdcEventsByDate[]> = this.eventsByDateSubject.asObservable();
+
+
+  // events in selectedDate.
+  private eventsInSelectedDateSubject = new BehaviorSubject([]);
+  public eventsInSelectedDate$: Observable<MdcEventsByDate[]> = this.eventsInSelectedDateSubject.asObservable();
 
   // observable filter title.
   private titleFilterSubject = new BehaviorSubject('');
@@ -68,6 +78,17 @@ export class DataStoreService {
   // observable types.
   private typesSubject = new BehaviorSubject([]);
   public types$: Observable<string[]> = this.typesSubject.asObservable();
+
+
+  // observable selectedDate.
+  private selectedDateSubject = new BehaviorSubject(new Date());
+  public selectedDate$: Observable<Date> = this.selectedDateSubject.asObservable();
+
+  // observable date range.
+  private dateRangeSubject = new BehaviorSubject({from: new Date('1970-10-01'), to: new Date('1970-10-01')});
+  public dateRange$: Observable<any> = this.dateRangeSubject.asObservable();
+
+
 
   /**
    * getEvents fetches all events falling between date:to and
@@ -128,6 +149,13 @@ export class DataStoreService {
 
     // notify subscribers.
     this.eventsByDateSubject.next(_.cloneDeep(eventsByDate));
+
+    // filter events by selected date
+    const eventsInSelectedDate = _.filter(eventsByDate, (eventByDate: MdcEventsByDate) => {
+      return moment(eventByDate.date).format('YYYY-MMMM-DD') === moment(this.selectedDateSubject.getValue()).format('YYYY-MMMM-DD');
+    });
+
+    this.eventsInSelectedDateSubject.next(_.cloneDeep(eventsInSelectedDate));
   }
 
   setEvents(events: MdcEvent[]) {
@@ -140,8 +168,6 @@ export class DataStoreService {
 
   setTypesFilter(types: string[]) {
     this.typesFilterSubject.next(types);
-
-
   }
 
   setTitleFilter(title: string) {
@@ -155,6 +181,14 @@ export class DataStoreService {
 
   setCalendars(calendars: Option[]) {
     this.calendarsSubject.next(calendars);
+  }
+
+  setDateRange(from, to){
+    this.dateRangeSubject.next({from: from, to: to});
+  }
+
+  setSelectedDate(selectedDate: Date){
+    this.selectedDateSubject.next(selectedDate);
   }
 
   /**
@@ -193,7 +227,62 @@ export class DataStoreService {
   }
 
   subscribeEvents() {
-    this.events$.subscribe((events) => this.filterEvents());
+    this.events$.subscribe((events) => {
+      this.filterEvents();
+    });
+  }
+
+  subscribeDateRange(){
+    // When dateRange changes, populate events.
+    this.dateRange$.subscribe((range) => {
+      //mayor hack to avoid the first initial values - needs to be revisited
+      if (range.from.getFullYear() !== 1970)
+        this.getEvents(range.from, range.to);
+    });
+
+  }
+
+  subscribeSelectedDate() {
+    this.selectedDate$.subscribe((selectedDate) => {
+
+        // if selected date is within existing range
+        if (Date.parse(this.dateRangeSubject.getValue().from.toString()) <= Date.parse(selectedDate.toString()) &&
+          Date.parse(this.dateRangeSubject.getValue().to.toString()) >= Date.parse(selectedDate.toString())) {
+          this.filterEvents();
+        } else {
+          let from = moment(selectedDate).startOf('month').toDate();
+          let to = moment(selectedDate).endOf('month').toDate();
+          this.setDateRange(from, to);
+        }
+    });
+  }
+
+
+  setSelectedDateToNextDate() {
+    const nextDay = moment(this.selectedDateSubject.getValue()).add(1, 'days');
+    this.setSelectedDate(nextDay.toDate());
+  }
+
+
+  setSelectedDateToPreviousDate() {
+    const previousDay = moment(this.selectedDateSubject.getValue()).subtract(1, 'days');
+    this.setSelectedDate(previousDay.toDate());
+  }
+
+  setSelectedDateToToday() {
+    this.setSelectedDate(new Date());
+  }
+
+
+  setSelectedDateToNextMonth() {
+    const nextDay = moment(this.selectedDateSubject.getValue()).add(1, 'months').startOf('month');
+    this.setSelectedDate(nextDay.toDate());
+  }
+
+
+  setSelectedDateToPreviousMonth() {
+    const previousDay = moment(this.selectedDateSubject.getValue()).subtract(1, 'months').startOf('month');
+    this.setSelectedDate(previousDay.toDate());
   }
 
 

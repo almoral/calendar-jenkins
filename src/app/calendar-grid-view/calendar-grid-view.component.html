@@ -3,7 +3,7 @@
                    [options]="calendarOptions"
                    (dayClick)="dayClick($event)"
                     (eventClick)='eventClick($event)'
-                   (initialized)="initialized($event)"
+                   (initialized)='initialized($event)'
                     (clickButton)='clickButton($event)'></ng-fullcalendar>
 
     <mdc-calendar-grid-event [event]="selectedEvent" ></mdc-calendar-grid-event>

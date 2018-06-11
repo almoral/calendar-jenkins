@@ -28,6 +28,7 @@ export class CalendarEventListComponent implements OnInit {
     } else {
       this.events$ = this.dataStore.eventsByDate$;
     }
+
   }
 
 

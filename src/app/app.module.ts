@@ -11,7 +11,6 @@ import { MDCCalendarComponent } from './calendar/calendar.component';
 import { CalendarEventComponent } from './calendar-event/calendar-event.component';
 import { CalendarEventDateComponent } from './calendar-event-date/calendar-event-date.component';
 import { CalendarEventListComponent } from './calendar-event-list/calendar-event-list.component';
-import { CalendarDateFilterComponent } from './calendar-date-filter/calendar-date-filter.component';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calendar-filter-by-title.component';
 import { CalendarFilterByCategoryComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
@@ -55,7 +54,6 @@ import { MyDatePickerModule } from 'mydatepicker';
     CalendarEventComponent,
     CalendarEventDateComponent,
     CalendarEventListComponent,
-    CalendarDateFilterComponent,
     CalendarHeaderComponent,
     CalendarFilterByTitleComponent,
     CalendarFilterByCategoryComponent,

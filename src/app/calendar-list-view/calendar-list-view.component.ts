@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {DataStoreService} from '../shared/services/data-store.service';
 import {environment} from '../../environments/environment';
 
 @Component({
@@ -8,12 +9,23 @@ import {environment} from '../../environments/environment';
 })
 export class CalendarListViewComponent implements OnInit {
 
+
   displayFullView = environment.displayFullView;
 
-  constructor() { }
+  constructor(private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
 
   }
+
+
+  setSelectedDateToNextDate() {
+    this.dataStoreService.setSelectedDateToNextDate();
+  }
+
+  setSelectedDateToPreviousDate() {
+    this.dataStoreService.setSelectedDateToPreviousDate();
+  }
+
 
 }

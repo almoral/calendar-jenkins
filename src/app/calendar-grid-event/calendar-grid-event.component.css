@@ -123,6 +123,10 @@ h2.group-title {
   font-style: italic;
 }
 
+.calendar-quick-view-container a[href$=".pdf"]:after {
+  vertical-align: text-top;
+}
+
 @media (max-width: 600px) {
   .calendar-subtitle {
     margin-bottom: 5px;

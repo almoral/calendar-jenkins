@@ -1,6 +1,5 @@
 import {InitializeService} from '../shared/services/initialize.service';
 import {Component, OnInit} from '@angular/core';
-import {DateService} from '../shared/services/date.service';
 import {ConfigurationService} from '../shared/services/configuration.service';
 import {Observable} from 'rxjs/Observable';
 import {DataStoreService} from '../shared/services/data-store.service';
@@ -16,7 +15,6 @@ export class CalendarFilterContainerComponent implements OnInit {
   isActive = false;
   showCalendarsFilter = false;
   toggleTitleFilter = false;
-  toggleDateFilter = true;
   toggleCategoryFilter = true;
   toggleTypeFilter = true;
   toggleCalendarFilter = true;
@@ -25,8 +23,7 @@ export class CalendarFilterContainerComponent implements OnInit {
   types$: Observable<string[]>;
   calendars$: Observable<string[]>;
 
-  constructor(private dateService: DateService,
-              private initializeService: InitializeService,
+  constructor(private initializeService: InitializeService,
               private configurationService: ConfigurationService,
               private dataStoreService: DataStoreService) { }
 
@@ -44,26 +41,22 @@ export class CalendarFilterContainerComponent implements OnInit {
   openModal() {
     this.isActive = true;
     this.toggleTitleFilter = false;
-    this.toggleDateFilter = false;
     this.toggleCategoryFilter = false;
     this.toggleCalendarFilter = false;
     this.toggleTypeFilter = false;
   }
 
   closeModal() {
-    this.submitValues();
     this.toggleTitleFilter = true;
-    this.toggleDateFilter = true;
     this.toggleCategoryFilter = true;
     this.toggleTypeFilter = true;
     this.toggleCalendarFilter = true;
+    this.isActive = false;
   }
 
   submitValues() {
-    this.dateService.filterEventsByDate();
     this.isActive = false;
     this.toggleTitleFilter = true;
-    this.toggleDateFilter = true;
     this.toggleCategoryFilter = true;
     this.toggleTypeFilter = true;
     this.toggleCalendarFilter = true;

@@ -60,14 +60,96 @@
 	line-height: 41px;
 }
 
+@media (max-width: 749px) {
+	.fc-header-toolbar {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.fc-header-toolbar > .fc-left,
+	.fc-header-toolbar > .fc-right {
+		width: 100%;
+	}
+
+	.fc-header-toolbar > .fc-right {
+		order: 1;
+		flex-basis: 100%;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	.fc-header-toolbar > .fc-left .fc-button-group,
+	.fc-header-toolbar > .fc-right .fc-button-group {
+		display: flex;
+		float: none;
+	}
+
+	.fc-header-toolbar > .fc-left .fc-button-group button {
+		flex-basis: 34%;
+	}
+
+	.fc-header-toolbar > .fc-right .fc-button-group button {
+		flex-basis: 50%;
+		text-align: center;
+	}
+
+	.fc-header-toolbar > .fc-left {
+		order: 2;
+		margin-bottom: 10px;
+	}
+
+	.fc-header-toolbar > .fc-center {
+		order: 3;
+		flex-basis: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+}
+
+.fc-view-container .fc-event-container .fc-event,
+.fc-view-container .fc-event-dot {
+	background-color: #027abb;
+}
+
+.fc-event:hover,
+.fc-event-dot:hover,
+.fc-day-top:hover {
+	cursor: pointer;
+}
+
 
 /*---Targeting the dialog container of the event--*/
 .overlay .grid-view-event-container.dialog {
-  max-width: 1000px;
+	max-width: 1000px;
+}
+
+
+@media (min-width: 768px) {
+	.overlay .dialog[_ngcontent-c28] {
+		top: 25%;
+	}
 }
 
 .overlay .grid-view-event-container .dialog__close-btn {
-	top: 15px;
-	right: 15px;
+	top: 20px;
+	right: 20px;
+}
+
+@media (max-width: 600px) {
+	.overlay .grid-view-event-container .dialog__close-btn {
+		right: 20px;
+	}
+}
+
+.overlay .grid-view-event-container button.dialog__close-btn {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgdmlld0JveD0iMCAwIDEyIDEyIiBmb2N1c2FibGU9ImZhbHNlIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0gMTEuNSAxMC41IGMgMC4zIDAuMyAwLjMgMC44IDAgMS4xIGMgLTAuMyAwLjMgLTAuOCAwLjMgLTEuMSAwIEwgNiA3LjEgbCAtNC41IDQuNSBjIC0wLjMgMC4zIC0wLjggMC4zIC0xLjEgMCBjIC0wLjMgLTAuMyAtMC4zIC0wLjggMCAtMS4xIEwgNC45IDYgTCAwLjUgMS41IEMgMC4yIDEuMiAwLjIgMC43IDAuNSAwLjQgYyAwLjMgLTAuMyAwLjggLTAuMyAxLjEgMCBMIDYgNC45IEwgMTAuNSAwLjQgYyAwLjMgLTAuMyAwLjggLTAuMyAxLjEgMCBjIDAuMyAwLjMgMC4zIDAuOCAwIDEuMSBMIDcuMSA2IGwgNC40IDQuNSBaIi8+PC9zdmc+") no-repeat;
+	height: 15px;
+	width: 15px;
+}
+
+
+.overlay .grid-view-event-container button.dialog__close-btn img {
+	display: none;
 }
 /*---/Targeting the dialog container of the event--*/

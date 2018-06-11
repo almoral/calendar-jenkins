@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {DateService} from '../shared/services/date.service';
-import {IMyDpOptions} from 'mydatepicker';
-import * as moment from 'moment';
-import {combineLatest} from 'rxjs/observable/combineLatest';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {IMyDpOptions, IMyDate} from 'mydatepicker';
+import {DataStoreService} from '../shared/services/data-store.service';
+import * as _ from 'lodash';
+
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'mdc-calendar-navigation',
   templateUrl: './calendar-navigation.component.html',
   styleUrls: ['./calendar-navigation.component.css']
@@ -12,24 +13,20 @@ import {combineLatest} from 'rxjs/observable/combineLatest';
 export class CalendarNavigationComponent implements OnInit {
 
   pickerOptions: IMyDpOptions;
-  selectedDate = {};
+  selectedDate: IMyDate = {year: 0, month: 0, day: 0};
 
-  constructor(private dateService: DateService) { }
+  constructor(private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
 
-    const year$ = this.dateService.year$;
-    const month$ = this.dateService.month$;
-    const day$ = this.dateService.day$;
-
-    combineLatest(year$, month$, day$)
-      .subscribe( date => {
+    this.dataStoreService.selectedDate$.subscribe(date => {
         this.selectedDate = {
-          year: moment(date[0], 'YYYY').format('YYYY'),
-          month: moment(date[1], 'MMMM').format('M'),
-          day: moment(date[2], 'DD').format('D')
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          day: date.getDate()
         };
-      });
+    });
+
 
     this.pickerOptions = {
       width: '250px',
@@ -38,23 +35,21 @@ export class CalendarNavigationComponent implements OnInit {
   }
 
   onDateChanged(event: any) {
-
-    this.dateService.setYear(moment(event.date.year, 'YYYY').format(DateService.YEAR_FORMAT));
-    this.dateService.setMonth(moment(event.date.month, 'M').format(DateService.MONTH_FORMAT));
-    this.dateService.setDay(moment(event.date.day, 'D').format(DateService.DAY_FORMAT));
-    this.dateService.filterEventsByDate();
+    if (!_.isNil(event.jsdate)) {
+      this.dataStoreService.setSelectedDate(event.jsdate);
+    }
   }
 
-  filterEventsByNextDate() {
-    this.dateService.filterEventsByNextDate();
+  setSelectedDateToNextDate() {
+    this.dataStoreService.setSelectedDateToNextDate();
   }
 
-  filterEventsByPreviousDate() {
-    this.dateService.filterEventsByPreviousDate();
+  setSelectedDateToPreviousDate() {
+    this.dataStoreService.setSelectedDateToPreviousDate();
   }
 
-  filterEventsByCurrentDate() {
-    this.dateService.filterEventsByCurrentDate();
+  setSelectedDateToToday() {
+    this.dataStoreService.setSelectedDateToToday();
   }
 
 }
