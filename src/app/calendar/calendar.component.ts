@@ -11,7 +11,7 @@ import {environment} from '../../environments/environment';
 })
 export class MDCCalendarComponent implements OnInit {
 
-  isInCompactMode = environment.displayFullView;
+  displayFullView = environment.displayFullView;
 
   private resizeSubject = new Subject<number>();
   private resizeObservable = this.resizeSubject.asObservable().debounceTime(100);

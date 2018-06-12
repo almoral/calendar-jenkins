@@ -15,6 +15,7 @@ export class CalendarEventListComponent implements OnInit {
   events$: Observable<MdcEventsByDate[]>;
   displayFullView = environment.displayFullView;
   numberOfEventsToDisplay = environment.numberOfEventsToDisplayInCompactMode;
+  linkToMoreEvents = environment.linkToMoreEvents;
   page = 1;
 
   constructor(private dataStore: DataStoreService) { }

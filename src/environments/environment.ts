@@ -13,7 +13,8 @@ export const environment = {
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   skipLegacy: window['skipLegacy'] || false,
   displayFullView: false, //window['compactMode'] || false,
-  numberOfEventsToDisplayInCompactMode: 5,
+  numberOfEventsToDisplayInCompactMode: window['numberOfEventsToShow'] || 5,
+  linkToMoreEvents: window['linkToCalendar'] || '//www8.miamidade.gov/global/calendar/global.page',
   // calendarUrls: {
   //   eventsOnCalendarUrl: (calendarId) => `https://s0144821.miamidade.gov:7009/calendar/api/calendars/${calendarId}/events`,
   //   categoriesUrl: 'https://s0144821.miamidade.gov:7000/registration/api/topics',
