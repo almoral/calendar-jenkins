@@ -281,9 +281,18 @@ h4.right-content-calendar--title:after {
   }
 
   :host-context(.calendarEventList__rightSide) .calendar-quick-view-container .content-main-calendar .list-item {
-    display: grid;
+    display: flex;
+    flex-direction: row;
   }
 }
+
+@media(max-width: 601px) {
+  :host-context(.calendarEventList__rightSide) .calendar-quick-view-container .content-main-calendar .list-item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /******************************
   End Right Hand side styles
 ********************************/
