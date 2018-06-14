@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataStoreService} from '../shared/services/data-store.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar-list-view',
@@ -8,9 +9,13 @@ import {DataStoreService} from '../shared/services/data-store.service';
 })
 export class CalendarListViewComponent implements OnInit {
 
+
+  displayFullView = environment.displayFullView;
+
   constructor(private dataStoreService: DataStoreService) { }
 
   ngOnInit() {
+
   }
 
 

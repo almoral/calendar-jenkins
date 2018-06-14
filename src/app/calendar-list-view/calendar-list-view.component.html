@@ -1,7 +1,7 @@
-<mdc-calendar-navigation></mdc-calendar-navigation>
+<mdc-calendar-navigation [hidden]="!displayFullView"></mdc-calendar-navigation>
 <div class="row">
-	<mdc-calendar-filter-container></mdc-calendar-filter-container>
-	<div class="col s12 m8 offset-m1 calendar-events">
+	<mdc-calendar-filter-container [hidden]="!displayFullView"></mdc-calendar-filter-container>
+	<div *ngIf="displayFullView" class="col s12 m8 offset-m1 calendar-events">
 	  <mdc-calendar-event-list></mdc-calendar-event-list>
 
 	  <div class="next-prev__container">
@@ -21,4 +21,7 @@
 
 
 	</div>
+  <div *ngIf="!displayFullView" class="col s12 calendar-events calendarEventList__rightSide">
+    <mdc-calendar-event-list></mdc-calendar-event-list>
+  </div>
 </div>

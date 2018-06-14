@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar-header',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarHeaderComponent implements OnInit {
 
   constructor() { }
+
+  isInFullMode = environment.displayFullView;
 
   ngOnInit() {
   }

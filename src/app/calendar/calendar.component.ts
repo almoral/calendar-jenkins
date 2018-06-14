@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'mdc-calendar',
@@ -10,6 +11,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 })
 export class MDCCalendarComponent implements OnInit {
 
+  displayFullView = environment.displayFullView;
 
   private resizeSubject = new Subject<number>();
   private resizeObservable = this.resizeSubject.asObservable().debounceTime(100);
@@ -22,6 +24,7 @@ export class MDCCalendarComponent implements OnInit {
   }
 
   constructor( private router: Router) { }
+
 
   ngOnInit() {
       this.resizeObservable.subscribe(width => this.triggerViewChange(width));

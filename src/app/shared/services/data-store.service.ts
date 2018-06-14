@@ -155,7 +155,7 @@ export class DataStoreService {
       return moment(eventByDate.date).format('YYYY-MMMM-DD') === moment(this.selectedDateSubject.getValue()).format('YYYY-MMMM-DD');
     });
 
-    this.eventsInSelectedDateSubject.next(_.cloneDeep(eventsInSelectedDate));
+      this.eventsInSelectedDateSubject.next(_.cloneDeep(eventsInSelectedDate));
   }
 
   setEvents(events: MdcEvent[]) {

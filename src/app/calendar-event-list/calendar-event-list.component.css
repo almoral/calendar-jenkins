@@ -3,3 +3,6 @@
 
 .calendar-content:nth-of-type(1){ margin-top: 0; }
 
+.right-content-calendar__viewMore {
+  width: 100%;
+}

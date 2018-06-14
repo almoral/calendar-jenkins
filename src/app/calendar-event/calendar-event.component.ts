@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {MdcEvent} from '../shared/models/mdc-event';
 import * as $ from 'jquery';
+import {environment} from '../../environments/environment';
 
 @ Component({
   selector: 'mdc-calendar-event',
@@ -11,7 +12,7 @@ export class CalendarEventComponent implements OnInit {
 
   @ Input()
   event: MdcEvent;
-
+  displayFullView = environment.displayFullView;
 
   constructor() { }
 

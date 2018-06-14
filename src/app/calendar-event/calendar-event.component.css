@@ -243,3 +243,49 @@ h4.right-content-calendar--title:after {
     padding-left: 15px;
   }
 }
+
+/******************************
+  Start Right Hand side styles
+********************************/
+
+/* These Styles are only applied when the parent component has a class of 'calendarEventList__rightSide' */
+:host-context(.calendarEventList__rightSide) {
+  font-size: 1.25em;
+}
+
+:host-context(.calendarEventList__rightSide) h3.calendar-subtitle {
+  font-size: 1em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+:host-context(.calendarEventList__rightSide) .calendar-title-container .column{
+  margin: 0;
+  padding-right: 0;
+}
+
+@supports(display: grid) {
+  :host-context(.calendarEventList__rightSide) .calendar-title-container {
+    display: grid;
+    grid-template-columns: minmax(10em, 30em) 5em;
+    grid-template-rows: max-content min-content;
+  }
+
+  :host-context(.calendarEventList__rightSide) .calendar-title-container div:nth-of-type(2) {
+    grid-row: 2;
+  }
+
+  :host-context(.calendarEventList__rightSide) .calendar-title-container .plus-icon {
+    grid-row: 1;
+    align-self: end;
+  }
+
+  :host-context(.calendarEventList__rightSide) .calendar-quick-view-container .content-main-calendar .list-item {
+    display: flex;
+    flex-direction: row;
+  }
+}
+/******************************
+  End Right Hand side styles
+********************************/
+
