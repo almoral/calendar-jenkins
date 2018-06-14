@@ -33,7 +33,7 @@ export class CalendarEventListComponent implements OnInit {
             return events;
         });
     } else {
-      this.events$ = this.dataStore.eventsByDate$;
+      this.events$ = this.dataStore.eventsInSelectedDate$;
     }
 
   }
