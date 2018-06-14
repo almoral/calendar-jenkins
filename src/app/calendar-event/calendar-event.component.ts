@@ -12,7 +12,7 @@ export class CalendarEventComponent implements OnInit {
 
   @ Input()
   event: MdcEvent;
-  isInCompactMode = environment.displayFullView;
+  displayFullView = environment.displayFullView;
 
   constructor() { }
 
