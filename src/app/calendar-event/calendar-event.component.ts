@@ -19,13 +19,13 @@ export class CalendarEventComponent implements OnInit {
   ngOnInit() {
   }
 
-  public showHide(event): void{
+  public showHide(event): void {
 
     $(event.currentTarget).next().slideToggle();
     $(event.currentTarget).toggleClass('active');
 
     // For ADA Compliance
-    var expanded = $(event.currentTarget).next().attr('aria-expanded');
+    let expanded = $(event.currentTarget).next().attr('aria-expanded');
 
     if (expanded === 'true') {
       expanded = 'false';
