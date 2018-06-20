@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="detail-item">
-              <div class="event-name"><a *ngIf="event?.contactEmail" href="mailto:{{event?.contactEmail}}">{{event?.contactName}}</a><span *ngIf="!event?.contactEmail">{{event?.contactName}}</span></div>
+              <div class="event-name"><a *ngIf="event?.contactEmail" href="mailto:{{event?.contactEmail}}" [attr.data-email]="event?.contactEmail">{{event?.contactName}}</a><span *ngIf="!event?.contactEmail">{{event?.contactName}}</span></div>
             </div>
           </div>
 

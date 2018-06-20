@@ -123,8 +123,9 @@
 	}
 
 	.event-name a:after {
-		content: attr(href) !important;
+		content: attr(data-email) !important;
 		display: block !important;
+		margin-bottom: 3px !important;
 	}
 
 }
