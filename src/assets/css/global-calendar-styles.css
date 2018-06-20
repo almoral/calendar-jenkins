@@ -45,3 +45,76 @@
   	display: none;
   }
 }
+
+
+@media print {
+  aside,
+  footer,
+  button,
+  .global-header-container,
+  .day-navigation__container,
+  .waves-effect.wave-light.btn,
+  .right-content-calendar .detail-item:first-child,
+  .calendar-content article,
+  .col.s12.m3
+   {
+    display: none !important;
+  }
+
+  .calendar-quick-view-container,
+  .calendar-content article.printItem {
+  	display: block !important;
+  }
+
+  h2.group-title {
+  	font-size: 2em!important;
+  }
+
+  h3.calendar-subtitle {
+  	font-size: 1.5em!important;
+  }
+
+	.row .col.m8.calendar-events {
+		width: 100% !important;
+		margin-left: 0 !important;
+	}
+
+	.container {
+		width: 100% !important;
+	}
+
+	.right-content-calendar,
+	h4.right-content-calendar--title,
+	.content-container .row,
+	.container {
+		margin: 0 !important;
+	}
+
+	.general-page__title {
+		margin-top: 0 !important;
+	}
+
+	.content-container,
+	.content-main-calendar {
+		padding: 0!important;
+	}
+
+	.right-content-calendar a {
+		color: rgba(0,0,0,0.87) !important;
+	}
+
+	.calendar-quick-view-container {
+		padding-left: 0!important;
+	}
+
+	h4.right-content-calendar--title { 
+		border: 0 !important;
+		border-bottom-color: #fff !important;
+	}
+
+	.event-name a:after {
+		content: attr(href) !important;
+		display: block !important;
+	}
+
+}
