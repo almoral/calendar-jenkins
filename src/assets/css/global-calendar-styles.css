@@ -88,8 +88,8 @@
 		width: 100% !important;
 	}
 
-	.right-content-calendar,
 	h4.right-content-calendar--title,
+	.list-item,
 	.content-container .row,
 	.container {
 		margin: 0 !important;
@@ -99,7 +99,12 @@
 		margin-top: 0 !important;
 	}
 
+	.right-content-calendar {
+		margin-bottom: 30px !important;
+	}
+
 	.content-container,
+	.list-item,
 	.content-main-calendar {
 		padding: 0!important;
 	}
