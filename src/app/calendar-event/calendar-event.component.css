@@ -187,16 +187,13 @@ h4.right-content-calendar--title:after {
   font-size: 13px;
 }
 
-.btn {
-  width: 100%;
-}
-
 .btn.blue {
   background-color: #027abb !important;
   border: 1px solid #0d94d0;
   color: #fff;
   width: 100%;
   margin: 15px 0 10px 0;
+  width: 100%;
 }
 
 .btn.blue:focus {
@@ -212,6 +209,17 @@ h4.right-content-calendar--title:after {
   vertical-align: text-top;
 }
 
+.calendar-quick-view-container__print {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.calendar-quick-view-container__print__button {
+  background-color: #fff;
+  font-size: 13px;
+  color: #027abb;
+}
+
 
 @media (min-width: 601px) {
 
@@ -222,6 +230,10 @@ h4.right-content-calendar--title:after {
 
   .calendar-title-container > .column:last-child {
     text-align: right;
+  }
+
+  .calendar-quick-view-container__print {
+    justify-content: flex-end;
   }
 
 }

@@ -17,10 +17,10 @@
       <div class="row">
 
         <div class="col s12 content-main-calendar" [class.m7]="displayFullView">
-          <div class="short-description" [innerHTML]='event?.description' *ngIf="event?.description">
+          <div class='calendar-quick-view-container__print'>
+            <button (click)='printEvent($event)' class="btn calendar-quick-view-container__print__button" type="button">Print Event</button>
           </div>
-          <div class='calendar-quick-view-container__printButton'>
-            <button (click)='printEvent($event)'>Print Event</button>
+          <div class="short-description" [innerHTML]='event?.description' *ngIf="event?.description">
           </div>
           <div class="list-item">
             <div class="detail-item">

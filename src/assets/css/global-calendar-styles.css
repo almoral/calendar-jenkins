@@ -46,7 +46,6 @@
   }
 }
 
-
 @media print {
   aside,
   footer,
@@ -72,6 +71,10 @@
 
   h3.calendar-subtitle {
   	font-size: 1.5em!important;
+  }
+
+  .calendar-title-container {
+  	border-top: 1px dashed #ccc !important;
   }
 
 	.row .col.m8.calendar-events {
