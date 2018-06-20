@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 import {environment} from '../../environments/environment';
 import {WindowRef} from '../shared/services/window-ref.service';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {delay, skip} from 'rxjs/operators';
+import {delay} from 'rxjs/operators';
 
 @ Component({
   selector: 'mdc-calendar-event',
@@ -31,6 +31,7 @@ export class CalendarEventComponent implements OnInit {
 
         if (value) {
           this.winRef.nativeWindow.print();
+          this.printItem.next(false);
         }
       });
 
@@ -46,7 +47,6 @@ export class CalendarEventComponent implements OnInit {
 
     if (expanded === 'true') {
       expanded = 'false';
-      this.printItem .next(false);
     } else {
       expanded  = 'true';
     }
