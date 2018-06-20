@@ -50,6 +50,7 @@
   aside,
   footer,
   button,
+  .group-title,
   .global-header-container,
   .day-navigation__container,
   .waves-effect.wave-light.btn,
@@ -60,6 +61,7 @@
     display: none !important;
   }
 
+	.calendar-date
   .calendar-quick-view-container,
   .calendar-content article.printItem {
   	display: block !important;
