@@ -6,6 +6,7 @@
       <h3 class="calendar-subtitle">{{event?.title}}</h3>
     </div>
     <div [class.column]="displayFullView">
+      <span class='calendar-date'>{{event?.startDate | date:'fullDate'}}</span> <br/>
       <span class="calendar-date">{{event?.startDate | date:'shortTime'}} - {{event?.endDate | date:'shortTime'}}</span>
       <div class="plus-icon"></div>
     </div>

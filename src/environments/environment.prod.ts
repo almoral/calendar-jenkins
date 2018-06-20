@@ -7,7 +7,7 @@ export const environment = {
   showCalendarsFilter: window['showCalendarsFilter'] || false,
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   skipLegacy: window['skipLegacy'] || false,
-  displayFullView: window['compactMode'] || false,
+  displayFullView: window['compactMode'] !== false,
   numberOfEventsToDisplayInCompactMode: window['numberOfEventsToShow'] || 5,
   linkToMoreEvents: window['linkToCalendar'] || '//www8.miamidade.gov/global/calendar/global.page',
   calendarUrls: {
