@@ -1,4 +1,4 @@
-<article>
+<article [ngClass]="{'printItem' : printItem.getValue()}">
 
   <!--Calendar Item-->
   <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)">
@@ -18,7 +18,10 @@
       <div class="row">
 
         <div class="col s12 content-main-calendar" [class.m7]="displayFullView">
-          <div class="short-description" [innerHTML]='event?.description'>
+          <div class='calendar-quick-view-container__print'>
+            <button (click)='printEvent($event)' class="btn calendar-quick-view-container__print__button" type="button">Print Event</button>
+          </div>
+          <div class="short-description" [innerHTML]='event?.description' *ngIf="event?.description">
           </div>
           <div class="list-item">
             <div class="detail-item">
@@ -49,7 +52,7 @@
               </div>
             </div>
             <div class="detail-item">
-              <div class="event-name"><a *ngIf="event?.contactEmail" href="mailto:{{event?.contactEmail}}">{{event?.contactName}}</a><span *ngIf="!event?.contactEmail">{{event?.contactName}}</span></div>
+              <div class="event-name"><a *ngIf="event?.contactEmail" href="mailto:{{event?.contactEmail}}" [attr.data-email]="event?.contactEmail">{{event?.contactName}}</a><span *ngIf="!event?.contactEmail">{{event?.contactName}}</span></div>
             </div>
           </div>
 

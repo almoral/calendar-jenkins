@@ -2,6 +2,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import {MdcEvent} from '../shared/models/mdc-event';
 import * as $ from 'jquery';
 import {environment} from '../../environments/environment';
+import {WindowRef} from '../shared/services/window-ref.service';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {delay} from 'rxjs/operators';
 
 @ Component({
   selector: 'mdc-calendar-event',
@@ -13,10 +16,25 @@ export class CalendarEventComponent implements OnInit {
   @ Input()
   event: MdcEvent;
   displayFullView = environment.displayFullView;
+  printItem = new BehaviorSubject<boolean>(false);
+  $printItem = this.printItem.asObservable();
 
-  constructor() { }
+  constructor(private winRef: WindowRef) { }
 
   ngOnInit() {
+
+    this.$printItem
+      .pipe(
+        delay(1000)
+      )
+      .subscribe( value => {
+
+        if (value) {
+          this.winRef.nativeWindow.print();
+          this.printItem.next(false);
+        }
+      });
+
   }
 
   public showHide(event): void {
@@ -31,9 +49,13 @@ export class CalendarEventComponent implements OnInit {
       expanded = 'false';
     } else {
       expanded  = 'true';
-    };
+    }
 
     $(event.currentTarget).next().attr('aria-expanded', expanded);
+  }
+
+  public printEvent(): void {
+    this.printItem.next(true);
   }
 
 }

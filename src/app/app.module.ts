@@ -45,6 +45,7 @@ import {NgxSmartModalModule} from 'ngx-smart-modal';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CalendarNavigationComponent } from './calendar-navigation/calendar-navigation.component';
 import { MyDatePickerModule } from 'mydatepicker';
+import {WindowRef} from './shared/services/window-ref.service';
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import { MyDatePickerModule } from 'mydatepicker';
     MessagesService,
     DateService,
     CalendarDataService,
-    InitializeService
+    InitializeService,
+    WindowRef
   ],
   bootstrap: [AppComponent],
   entryComponents: [
