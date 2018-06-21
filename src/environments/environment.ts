@@ -3,6 +3,8 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+import * as _ from 'lodash';
+
 export const environment = {
   production: false,
 
@@ -12,7 +14,7 @@ export const environment = {
   showCalendarsFilter: window['showCalendarsFilter'] || true,
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   skipLegacy: window['skipLegacy'] || false,
-  displayFullView: false, //window['compactMode'] || false,
+  displayFullView: !_.isNil(window['compactMode']) && window['compactMode'],
   numberOfEventsToDisplayInCompactMode: window['numberOfEventsToShow'] || 5,
   linkToMoreEvents: window['linkToCalendar'] || '//www8.miamidade.gov/global/calendar/global.page',
   // calendarUrls: {

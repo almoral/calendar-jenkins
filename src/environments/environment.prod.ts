@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export const environment = {
   production: true,
 
@@ -7,8 +9,7 @@ export const environment = {
   showCalendarsFilter: window['showCalendarsFilter'] || false,
   excludeDepartmentOnly: window['excludeDepartmentOnly'] || false,
   skipLegacy: window['skipLegacy'] || false,
-  displayFullView: window['compactMode'] !== false,
-  numberOfEventsToDisplayInCompactMode: window['numberOfEventsToShow'] || 5,
+  displayFullView: !_.isNil(window['compactMode']) && window['compactMode'],  numberOfEventsToDisplayInCompactMode: window['numberOfEventsToShow'] || 5,
   linkToMoreEvents: window['linkToCalendar'] || '//www8.miamidade.gov/global/calendar/global.page',
   calendarUrls: {
     eventsOnCalendarUrl: (calendarId) => `https://api2.miamidade.gov/calendar/api/calendars/${calendarId}/events`,
