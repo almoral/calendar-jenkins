@@ -25,7 +25,7 @@ export class CalendarEventComponent implements OnInit {
 
     this.$printItem
       .pipe(
-        delay(1000)
+        delay(150)
       )
       .subscribe( value => {
 

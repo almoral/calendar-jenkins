@@ -1,4 +1,4 @@
-<article [ngClass]="{'printItem' : printItem.getValue()}">
+<article [ngClass]="{'printItem' : printItem | async}">
 
   <!--Calendar Item-->
   <div class="calendar-title-container" tabindex="0" (keyup.enter)='showHide($event)' (click)="showHide($event)">
