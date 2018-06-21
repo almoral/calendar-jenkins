@@ -19,7 +19,7 @@
 
         <div class="col s12 content-main-calendar" [class.m7]="displayFullView">
           <div class='calendar-quick-view-container__print'>
-            <button (click)='printEvent($event)' class="btn calendar-quick-view-container__print__button" type="button">Print Event</button>
+            <button (click)='printEvent()' class="btn calendar-quick-view-container__print__button" type="button">Print Event</button>
           </div>
           <div class="short-description" [innerHTML]='event?.description' *ngIf="event?.description">
           </div>
