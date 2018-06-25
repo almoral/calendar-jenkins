@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Renderer2} from '@angular/core';
 import {MdcEvent} from '../shared/models/mdc-event';
 import * as $ from 'jquery';
 import {environment} from '../../environments/environment';
@@ -19,7 +19,8 @@ export class CalendarEventComponent implements OnInit {
   printItem = new BehaviorSubject<boolean>(false);
   $printItem = this.printItem.asObservable();
 
-  constructor(private winRef: WindowRef) { }
+  constructor(private winRef: WindowRef,
+              private renderer: Renderer2) { }
 
   ngOnInit() {
 
@@ -32,6 +33,7 @@ export class CalendarEventComponent implements OnInit {
         if (value) {
           this.winRef.nativeWindow.print();
           this.printItem.next(false);
+          this.renderer.removeClass(document.body, 'printCalendar');
         }
       });
 
@@ -55,6 +57,7 @@ export class CalendarEventComponent implements OnInit {
   }
 
   public printEvent(): void {
+    this.renderer.addClass(document.body, 'printCalendar');
     this.printItem.next(true);
   }
 
