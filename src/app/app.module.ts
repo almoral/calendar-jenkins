@@ -16,6 +16,7 @@ import { CalendarFilterByTitleComponent } from './calendar-filter-by-title/calen
 import { CalendarFilterByCategoryComponent } from './calendar-filter-by-category/calendar-filter-by-category.component';
 import { CalendarFilterByCalendarComponent } from './calendar-filter-by-calendar/calendar-filter-by-calendar.component';
 import { CalendarFilterContainerComponent } from './calendar-filter-container/calendar-filter-container.component';
+import { NgxPaginationModule} from 'ngx-pagination';
 import { MaterializeModule } from 'angular2-materialize';
 import {EventService} from './shared/services/event.service';
 import {DataStoreService} from './shared/services/data-store.service';
@@ -78,6 +79,7 @@ import {WindowRef} from './shared/services/window-ref.service';
     NgHttpLoaderComponentsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600, apiBase: 'api/calendar/ASD', passThruUnknownUrl: true}),
     AppRoutingModule,
+    NgxPaginationModule,
     MaterializeModule,
     FormsModule,
     ReactiveFormsModule,
